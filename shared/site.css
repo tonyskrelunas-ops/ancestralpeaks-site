@@ -1,0 +1,226 @@
+/* ANCESTRAL PEAKS — shared shell — 2026-11-04
+   House style from Fable's sample home page (PREVIEW — Peaks home page, from your imagery — 2026-11-04-1650).
+   Colors are sampled from Tony's own photographs: creek stone, creek shadow, pine bark, the fall creek's green,
+   Bell Rock red earth, the Peaks' sky, the evening meadow gold, the night footage.
+   Fonts: Bricolage Grotesque (display) + Figtree (text), served locally from shared/fonts/.
+   Rule for all agents: these names are stable. Add new names; never rename or remove one. */
+@import url("fonts.css");
+
+:root{
+  --stone:#E4E8EA;      /* creek stone, from the rapids photo */
+  --stone-2:#D3DADD;
+  --ink:#262723;        /* creek shadow */
+  --ink-2:#4C4937;      /* pine bark, the trail to the Peaks */
+  --creek:#44665A;      /* the fall creek's green */
+  --earth:#A4431F;      /* Bell Rock red earth */
+  --sky:#5C8BD0;        /* between the Peaks' sky and the Sedona dusk */
+  --gold:#D1A63C;       /* the evening meadow */
+  --amber:#D9A84C;      /* the breath ring */
+  --night:#100B0D;      /* sampled from the night footage */
+  --line:rgba(38,39,35,.14);
+  --line-light:rgba(255,255,255,.18);
+  --glass:rgba(16,11,13,.55);
+  --display:"Bricolage Grotesque","Avenir Next Condensed","Helvetica Neue",Arial,sans-serif;
+  --text:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4vw,64px);
+  --kb:0;               /* seconds; drives the slow push-in on stills (.kb) */
+  --bar-h:72px;
+  color-scheme:light;
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;overflow-x:clip;background:var(--stone)}
+html.lenis{scroll-behavior:auto}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 clamp(1rem,.96rem + .3vw,1.15rem)/1.55 var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video,canvas,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:.98;margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;cursor:pointer;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.wrap{padding-inline:var(--gutter)}
+.num{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:.8}
+.label{font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.on-dark .label{color:rgba(255,255,255,.7)}
+.masked{display:inline-flex;align-items:center;gap:.5em;font-size:.82rem;font-weight:600;letter-spacing:.02em;color:var(--ink-2)}
+.masked::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(209,166,60,.25)}
+.on-dark .masked{color:rgba(255,255,255,.78)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:.6em;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:.95em 1.5em;font-weight:600;text-decoration:none;letter-spacing:.005em;transition:transform .2s,background .2s,box-shadow .2s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px);background:#000}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.light:hover{background:var(--stone)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.ghost.dark{color:var(--ink);border-color:rgba(38,39,35,.4)}
+.btn.ghost.dark:hover{background:rgba(38,39,35,.06)}
+.btn.earth{background:var(--earth)}
+.btn.earth:hover{background:#8B3617}
+.btn.creek{background:var(--creek)}
+.btn.creek:hover{background:#355248}
+.btn .arrow{font-family:var(--display);font-weight:700}
+.btn[disabled]{opacity:.7;cursor:default;transform:none}
+
+/* ---------- motion primitives ---------- */
+/* slow push-in on stills and loops: put .kb on the frame, the img/video inside fills it */
+.kb{overflow:hidden;position:relative}
+.kb>img,.kb>video,.kb>.ap-loop{width:100%;height:100%;object-fit:cover}
+.kb>img,.kb>video,.kb>.ap-loop>video{transform:scale(calc(1.04 + var(--kb) * .0025)) translate3d(calc(var(--kb) * -0.5px),0,0);transform-origin:60% 40%;will-change:transform}
+.kb.still>img,.kb.still>video{transform:none}
+
+/* reveal on scroll (IntersectionObserver adds .in) */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal.slow{transition-duration:1.4s}
+.reveal.d1{transition-delay:.12s}.reveal.d2{transition-delay:.24s}.reveal.d3{transition-delay:.36s}.reveal.d4{transition-delay:.48s}
+/* words that arrive one by one (site.js splits [data-words] into .w spans) */
+[data-words] .w{display:inline-block;opacity:0;transform:translateY(.35em);transition:opacity .6s ease,transform .6s ease}
+[data-words].in .w{opacity:1;transform:none}
+/* a line that draws itself: any svg path with .draw gets stroke-dash scrubbed by site.js */
+.draw{stroke-dasharray:1;stroke-dashoffset:1}
+
+/* render mode (headless frame renderer, #render): everything instant, nothing smooth */
+html.render,html.render *{scroll-behavior:auto !important}
+html.render .reveal,html.render [data-words] .w{opacity:1;transform:none;transition:none}
+html.render *{transition:none !important;animation-play-state:paused !important}
+
+/* ---------- top bar ---------- */
+.ap-bar{position:fixed;inset:0 0 auto 0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:1rem;height:var(--bar-h);padding:env(safe-area-inset-top,0px) var(--gutter) 0;color:#fff;transition:background .5s,backdrop-filter .5s,box-shadow .5s}
+.ap-bar.solid{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(255,255,255,.08)}
+.ap-bar.on-light{color:var(--ink)}
+.ap-bar.on-light.solid{background:rgba(228,232,234,.82)}
+.ap-bar .ap-mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.ap-mark svg{width:30px;height:30px;flex:none}
+.ap-nav{display:flex;gap:clamp(.9rem,1.6vw,1.6rem);font-weight:600;font-size:.95rem}
+.ap-nav a{text-decoration:none;opacity:.88;position:relative;padding:.3em 0}
+.ap-nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;background:currentColor;transition:right .35s ease}
+.ap-nav a:hover::after,.ap-nav a[aria-current="page"]::after{right:0}
+.ap-nav a:hover,.ap-nav a[aria-current="page"]{opacity:1}
+.ap-bar .acts{display:flex;align-items:center;gap:.6rem}
+.ap-bar .btn{padding:.7em 1.2em;font-size:.95rem}
+/* the sound toggle: three bars that breathe when the layer is on */
+.ap-sound{display:inline-flex;align-items:center;gap:.55em;background:transparent;border:1.5px solid rgba(255,255,255,.5);color:inherit;border-radius:999px;padding:.6em 1em;font-weight:600;font-size:.9rem}
+.ap-bar.on-light .ap-sound{border-color:rgba(38,39,35,.35)}
+.ap-sound i{display:inline-flex;align-items:flex-end;gap:2px;height:12px}
+.ap-sound i b{display:block;width:2.5px;height:4px;background:currentColor;border-radius:1px;transform-origin:bottom}
+.ap-sound[aria-pressed="true"] i b{animation:apbars 1.1s ease-in-out infinite}
+.ap-sound[aria-pressed="true"] i b:nth-child(2){animation-delay:.18s;animation-duration:.9s}
+.ap-sound[aria-pressed="true"] i b:nth-child(3){animation-delay:.36s;animation-duration:1.3s}
+@keyframes apbars{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.ap-sound .lbl::after{content:"Sound on"}
+.ap-sound[aria-pressed="true"] .lbl::after{content:"Sound off"}
+/* phone menu */
+.ap-burger{display:none;width:44px;height:44px;border:0;background:transparent;position:relative}
+.ap-burger span{position:absolute;left:11px;right:11px;height:2px;background:currentColor;transition:transform .35s,opacity .35s;top:16px}
+.ap-burger span:nth-child(2){top:22px}.ap-burger span:nth-child(3){top:28px}
+.ap-burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.ap-burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.ap-burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.ap-menu{position:fixed;inset:0;z-index:55;background:var(--night);color:#fff;display:grid;grid-template-rows:1fr auto;padding:calc(var(--bar-h) + 24px) var(--gutter) calc(24px + env(safe-area-inset-bottom,0px));transform:translateY(-100%);transition:transform .55s cubic-bezier(.7,0,.2,1);overflow:hidden}
+.ap-menu.open{transform:none}
+.ap-menu .bg{position:absolute;inset:0;opacity:.45}
+.ap-menu .bg img{width:100%;height:100%;object-fit:cover}
+.ap-menu .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.6),rgba(16,11,13,.95))}
+.ap-menu nav{position:relative;display:flex;flex-direction:column;gap:.1em;justify-content:center}
+.ap-menu nav a{text-decoration:none;font-family:var(--display);font-weight:800;font-size:clamp(2rem,9vw,3rem);letter-spacing:-.03em;line-height:1.15;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .5s}
+.ap-menu.open nav a{opacity:1;transform:none}
+.ap-menu nav a small{display:block;font-family:var(--text);font-weight:500;font-size:.9rem;letter-spacing:0;color:rgba(255,255,255,.6);margin-bottom:.5em}
+.ap-menu .foot{position:relative;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.9rem}
+@media (max-width:980px){.ap-nav{display:none}.ap-burger{display:block}.ap-bar .acts .btn{display:none}.ap-sound .lbl{display:none}.ap-sound{padding:.6em .8em}}
+
+/* ---------- footer ---------- */
+.ap-foot{background:var(--night);color:rgba(255,255,255,.72);padding:clamp(28px,4vw,48px) var(--gutter) calc(1.6rem + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.1);font-size:.92rem}
+.ap-foot .row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr);gap:1.5rem 2rem;align-items:start}
+.ap-foot b{color:#fff;font-family:var(--display);font-weight:800;font-size:1.25rem;display:flex;align-items:center;gap:.5rem}
+.ap-foot b svg{width:26px;height:26px}
+.ap-foot .tag{margin-top:.5rem;max-width:30rem}
+.ap-foot nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.4rem 1.5rem}
+.ap-foot nav a{text-decoration:none;color:rgba(255,255,255,.85);padding:.2em 0}
+.ap-foot nav a:hover{color:#fff;text-decoration:underline;text-underline-offset:.2em}
+.ap-foot .fine{margin-top:1.6rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.84rem;color:rgba(255,255,255,.55)}
+@media (max-width:760px){.ap-foot .row{grid-template-columns:1fr}}
+
+/* ---------- looping video component ---------- */
+/* <div class="ap-loop" data-src="x.mp4" data-poster="x.jpg"></div> -> site.js inserts the <video>, lazy-loads it, plays in view */
+.ap-loop{position:relative;overflow:hidden;background:#1b2420}
+.ap-loop video,.ap-loop img.poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ap-loop img.poster{z-index:1;transition:opacity 1.2s ease}
+.ap-loop.playing img.poster{opacity:0}
+.ap-loop video{opacity:0;transition:opacity 1.2s ease}
+.ap-loop.playing video{opacity:1}
+
+/* ---------- cinematic cut (shots crossfading on a timeline) ---------- */
+.ap-cut{position:relative;overflow:hidden;background:var(--night)}
+.ap-cut .shot{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.ap-cut .shot>img,.ap-cut .shot>video,.ap-cut .shot>.ap-loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* ---------- audio player with live visual ---------- */
+.ap-player{--pc:var(--creek);--pc-text:#fff;position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.9rem 1.1rem;align-items:center;padding:1.1rem 1.2rem;border-radius:18px;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line),0 20px 50px -30px rgba(0,0,0,.35)}
+.on-dark .ap-player,.ap-player.dark{background:rgba(16,11,13,.55);color:#fff;box-shadow:0 1px 0 rgba(255,255,255,.1)}
+.ap-player .play{width:60px;height:60px;border-radius:50%;background:var(--pc);color:var(--pc-text);border:0;display:grid;place-items:center;flex:none;transition:transform .2s,box-shadow .3s;position:relative}
+.ap-player .play:hover{transform:scale(1.04)}
+.ap-player.playing .play{box-shadow:0 0 0 8px rgba(209,166,60,.18)}
+.ap-player .play svg{width:24px;height:24px;fill:currentColor}
+.ap-player .play .ic-pause{display:none}
+.ap-player.playing .play .ic-play{display:none}
+.ap-player.playing .play .ic-pause{display:block}
+.ap-player .meta h3,.ap-player .meta .t{font-family:var(--display);font-size:1.2rem;font-weight:700;letter-spacing:-.01em;line-height:1.1;margin:0}
+.ap-player .meta p{font-size:.9rem;opacity:.75;margin-top:.25rem}
+.ap-player .vis{grid-column:1 / -1;height:64px;width:100%;border-radius:10px;overflow:hidden;position:relative;background:rgba(0,0,0,.04)}
+.on-dark .ap-player .vis,.ap-player.dark .vis{background:rgba(255,255,255,.05)}
+.ap-player .vis canvas{width:100%;height:100%}
+.ap-player.tall .vis{height:140px}
+.ap-player .bar{grid-column:1 / -1;display:grid;grid-template-columns:auto 1fr auto;gap:.8rem;align-items:center;font-size:.82rem;font-variant-numeric:tabular-nums;opacity:.8}
+.ap-player .meter{height:4px;background:rgba(0,0,0,.1);border-radius:2px;overflow:hidden;cursor:pointer;position:relative}
+.on-dark .ap-player .meter,.ap-player.dark .meter{background:rgba(255,255,255,.15)}
+.ap-player .meter i{display:block;height:100%;width:0;background:var(--pc)}
+.ap-player .masked{grid-column:1 / -1;margin-top:-.2rem}
+.ap-player.compact{padding:.8rem 1rem;gap:.6rem .9rem}
+.ap-player.compact .play{width:48px;height:48px}
+.ap-player.compact .vis{height:40px}
+.ap-player.compact .meta h3,.ap-player.compact .meta .t{font-size:1.05rem}
+
+/* ---------- "hear him say it": a short voice line with text that arrives with the voice ---------- */
+.ap-say{display:inline-grid;grid-template-columns:auto minmax(0,1fr);gap:.7rem .9rem;align-items:center;text-align:left;border:1.5px solid var(--line);background:rgba(255,255,255,.6);border-radius:16px;padding:.7rem .9rem .7rem .7rem;max-width:34rem;cursor:pointer;transition:border-color .3s,background .3s,transform .3s}
+.ap-say:hover{border-color:var(--gold);transform:translateY(-1px)}
+.on-dark .ap-say,.ap-say.dark{background:rgba(16,11,13,.5);border-color:rgba(255,255,255,.22);color:#fff}
+.ap-say .ic{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--night);display:grid;place-items:center;flex:none;position:relative;overflow:hidden}
+.ap-say .ic canvas{position:absolute;inset:0;width:100%;height:100%}
+.ap-say .ic svg{width:18px;height:18px;fill:currentColor;position:relative}
+.ap-say.playing .ic svg{opacity:0}
+.ap-say .txt{font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.25;letter-spacing:-.01em}
+.ap-say .txt .w{opacity:.28;transition:opacity .25s}
+.ap-say .txt .w.on{opacity:1}
+.ap-say.done .txt .w,.ap-say:not(.armed) .txt .w{opacity:1}
+.ap-say .who{grid-column:2;font-size:.78rem;opacity:.7;margin-top:-.3rem}
+.ap-say .who::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:.5em;vertical-align:middle}
+
+/* ---------- particle canvas ---------- */
+.ap-particles{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* ---------- the breath ring ---------- */
+.ap-ring{display:grid;place-items:center;pointer-events:none}
+.ap-ring svg{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 6px 30px rgba(0,0,0,.35))}
+.ap-ring .word{font-family:var(--display);font-weight:700;font-size:78px;fill:#fff;letter-spacing:-.02em}
+.ap-ring .count{font-family:var(--display);font-weight:500;font-size:38px;fill:rgba(255,255,255,.85)}
+.ap-ring .legend{font-family:var(--text);font-weight:600;font-size:22px;fill:rgba(255,255,255,.85);letter-spacing:4px}
+.ap-ring.ink .word{fill:var(--ink)}.ap-ring.ink .count,.ap-ring.ink .legend{fill:var(--ink-2)}
+
+/* ---------- counts ---------- */
+[data-count]{font-variant-numeric:tabular-nums}
+
+/* ---------- scene marker (site.js mirrors the active data-scene onto <html data-scene>) ---------- */
+html[data-scene] .ap-scene-chip{position:fixed;left:var(--gutter);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;background:var(--glass);backdrop-filter:blur(8px);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.5em .9em;font-size:.8rem;font-weight:600;display:flex;gap:.6em;align-items:center;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s;pointer-events:none}
+html[data-scene].sound-on .ap-scene-chip{opacity:1;transform:none}
+.ap-scene-chip i{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .reveal,[data-words] .w{transition:none;opacity:1;transform:none}
+  .kb>img,.kb>video,.kb>.ap-loop>video{transform:none}
+  .ap-sound[aria-pressed="true"] i b{animation:none}
+  .ap-menu{transition:none}
+}
