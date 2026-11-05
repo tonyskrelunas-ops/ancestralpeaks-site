@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ancestral Peaks</title>
+<meta name="description" content="A morning practice by the water. Settle the body, then carry what matters whole.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../shared/vendor/lenis.css">
+<link rel="stylesheet" href="../shared/site.css">
+<style>
+/* ===== HOME PAGE — built on shared/site.css. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
+
+/* ---------- ARRIVAL: the cinematic cut, the ring, the words ---------- */
+.arrive{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
+.arrive .cutwrap{position:absolute;inset:0;z-index:0;will-change:transform}
+.arrive .ap-cut{position:absolute;inset:0}
+.arrive .ap-cut .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.5) 0%,rgba(16,11,13,.05) 28%,rgba(16,11,13,.05) 50%,rgba(16,11,13,.86) 100%)}
+.arrive .ripples{position:absolute;inset:0;z-index:1;opacity:.55;mix-blend-mode:screen}
+.arrive .copy{position:relative;z-index:3;align-self:end;padding:0 var(--gutter) clamp(28px,5vh,64px);max-width:46rem}
+.arrive h1{font-size:clamp(2.9rem,7vw,6.4rem);max-width:12ch}
+.arrive .lede{margin-top:1.1rem;max-width:34rem;font-size:clamp(1.05rem,1rem + .5vw,1.35rem);line-height:1.4;color:rgba(255,255,255,.92)}
+.arrive .lede b{font-weight:600;color:#fff}
+.arrive .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;align-items:center}
+.arrive .where{margin-top:1rem;font-size:.86rem;color:rgba(255,255,255,.72)}
+.arrive .say{margin-top:1.2rem}
+.arrive .ringcol{position:relative;z-index:3;display:grid;place-items:center;min-height:100svh}
+.arrive .ringcol .ap-ring{width:min(78%,520px)}
+.sitchip{position:absolute;right:var(--gutter);bottom:clamp(20px,4vh,40px);z-index:4;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:.55em 1em;font-size:.86rem;font-weight:600;display:flex;gap:.7em;align-items:center}
+.sitchip i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.done{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:1.2rem var(--gutter) 1.4rem;background:linear-gradient(180deg,rgba(16,11,13,0),rgba(16,11,13,.92) 40%);color:#fff;transform:translateY(100%);transition:transform .6s ease}
+.done.show{transform:none}
+.done h3{font-size:1.6rem;font-weight:700}
+.done p{margin-top:.3rem;color:rgba(255,255,255,.85)}
+.shotname{position:absolute;left:var(--gutter);top:calc(var(--bar-h) + 14px);z-index:3;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;display:flex;gap:.6em;align-items:center}
+.shotname i{width:28px;height:1px;background:rgba(255,255,255,.5)}
+@media (max-width:980px){
+  .arrive{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .arrive .ringcol{min-height:0;padding-top:calc(var(--bar-h) + 24px);order:-1}
+  .arrive .ringcol .ap-ring{width:min(62%,300px)}
+  .arrive .ringcol .ap-ring .legend{display:none}
+  .arrive .copy{padding-bottom:88px}
+  .arrive h1{font-size:clamp(2.6rem,12vw,4rem)}
+  .sitchip{right:auto;left:var(--gutter);bottom:26px}
+  .shotname{display:none}
+}
+
+/* ---------- TODAY ---------- */
+.today{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:var(--stone)}
+.today .pic{position:relative;min-height:min(84vh,820px);overflow:hidden}
+.today .pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.today .pic .pollen{position:absolute;inset:0;mix-blend-mode:screen;opacity:.9}
+.today .filmtile{position:absolute;left:var(--gutter);bottom:var(--gutter);z-index:2;width:min(46%,300px);text-decoration:none;color:#fff;border-radius:10px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25)}
+.today .filmtile .ap-loop{aspect-ratio:16/9}
+.today .filmtile span{position:absolute;left:12px;right:12px;bottom:10px;font-size:.8rem;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6);z-index:2}
+.today .filmtile small{display:block;font-weight:500;opacity:.8;font-size:.72rem}
+.today .body{padding:clamp(36px,5vw,72px) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:1.2rem}
+.today .date{font-family:var(--display);font-weight:700;font-size:1.1rem;color:var(--earth)}
+.today blockquote{margin:0;font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,1.2rem + 2vw,3rem);line-height:1.08;letter-spacing:-.02em}
+.today .from{font-size:.92rem;color:var(--ink-2)}
+.today .ap-player{margin-top:.4rem}
+.more{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:.2rem}
+.more .kb{aspect-ratio:4/3;border-radius:4px}
+.more figcaption{font-size:.8rem;color:var(--ink-2);margin-top:.35rem}
+.more figure{margin:0}
+@media (max-width:980px){.today{grid-template-columns:1fr}.today .pic{min-height:70vw}}
+
+/* ---------- THE PATH: a pinned scene in depth ---------- */
+.path{position:relative;color:#fff;background:var(--night)}
+.path .scene{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:center}
+.path .bg{position:absolute;inset:-6% 0;z-index:0}
+.path .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 60%;opacity:.6}
+.path .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.72),rgba(16,11,13,.3) 40%,rgba(16,11,13,.88))}
+.path .sand{position:absolute;inset:0;z-index:1;opacity:.7}
+.path .inner{position:relative;z-index:2;width:100%;padding:clamp(80px,10vh,120px) var(--gutter) clamp(48px,7vw,100px)}
+.path h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:14ch}
+.path .intro{margin-top:1rem;max-width:40rem;color:rgba(255,255,255,.88);font-size:1.08rem}
+.path .you{margin-top:1.3rem;display:inline-flex;flex-wrap:wrap;gap:1.2rem 2rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:.9rem 1.2rem;font-size:.95rem;backdrop-filter:blur(6px)}
+.path .you b{font-family:var(--display);font-size:1.5rem;font-weight:800;margin-right:.3rem;letter-spacing:-.02em}
+.trail{position:relative;margin-top:clamp(32px,5vw,64px)}
+.trail svg.line{position:absolute;left:0;right:0;top:92px;width:100%;height:60px;overflow:visible;z-index:0}
+.trail svg.line path{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round}
+.trail svg.line path.ghost{stroke:rgba(255,255,255,.18);stroke-dasharray:4 10}
+.trail .marker{position:absolute;z-index:3;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 6px rgba(217,168,76,.25),0 0 30px rgba(217,168,76,.8);left:2%;top:132px;opacity:0}
+.trail .marker::after{content:"";position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(217,168,76,.45);animation:markerpulse 2.4s ease-out infinite}
+@keyframes markerpulse{0%{transform:scale(.4);opacity:.9}100%{transform:scale(1.4);opacity:0}}
+.stations{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,28px);position:relative;z-index:1}
+.station{position:relative}
+.station .ph{aspect-ratio:1/1;border-radius:50%;overflow:hidden;width:min(100%,184px);border:3px solid rgba(255,255,255,.25);transition:border-color .5s,transform .5s;position:relative;background:#1b2420}
+.station .ph img,.station .ph .ap-loop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.station.open .ph{border-color:var(--gold);transform:scale(1.03)}
+.station h3{margin-top:1rem;font-size:clamp(1.25rem,1rem + 1vw,1.9rem);font-weight:800}
+.station p{margin-top:.4rem;color:rgba(255,255,255,.82);font-size:.95rem;max-width:22ch}
+.station .st{margin-top:.6rem;display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.35em .7em;border-radius:999px;border:1px solid rgba(255,255,255,.35);color:rgba(255,255,255,.8)}
+.station.open .st{background:var(--gold);color:var(--night);border-color:var(--gold)}
+.path .say{margin-top:clamp(24px,3vw,40px)}
+html.pinned .station{opacity:0;transform:translateY(26px)}
+@media (max-width:980px){.stations{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}.trail svg.line,.trail .marker{display:none}.station .ph{width:min(100%,150px)}.path .scene{min-height:0}.path .inner{padding-top:clamp(56px,8vw,120px)}}
+
+/* ---------- THE DAY: four movements ---------- */
+.day{background:var(--stone);padding:clamp(48px,6vw,88px) 0 0}
+.day .head{padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem 2rem;align-items:end}
+.day .head h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:12ch}
+.day .head p{font-size:1.1rem;color:var(--ink-2);max-width:30rem;padding-bottom:.6rem}
+.row{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:stretch;margin-top:clamp(32px,4vw,56px);position:relative}
+.row .media{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:10px;min-height:min(68vh,620px)}
+.row .media .kb{min-height:300px;position:relative}
+.row .media .fx{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen}
+.row .media .gfx{position:absolute;left:14px;bottom:14px;width:min(42%,220px);z-index:2;filter:drop-shadow(0 4px 18px rgba(0,0,0,.5))}
+.row .text{padding:clamp(24px,3vw,48px) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:.8rem}
+.row .text .num{font-size:clamp(4rem,9vw,9rem);color:var(--earth);line-height:.9}
+.row .text h3{font-size:clamp(1.9rem,1.4rem + 2.2vw,3.4rem)}
+.row .text p{font-size:clamp(1.05rem,1rem + .4vw,1.3rem);line-height:1.5;max-width:30rem}
+.row .text .when{font-size:.9rem;color:var(--ink-2)}
+.row .text .ap-say{margin-top:.4rem}
+.row.r2 .text,.row.r4 .text{order:-1}
+.row.r2 .text .num{color:var(--creek)}
+.row.r3{background:var(--night);color:#fff}
+.row.r3 .text .num{color:var(--gold)}
+.row.r3 .text .when{color:rgba(255,255,255,.7)}
+.row.r4 .text .num{color:var(--sky)}
+@media (max-width:980px){
+  .day .head{grid-template-columns:1fr;gap:1rem}
+  .row{grid-template-columns:1fr;margin-top:40px}
+  .row .media{min-height:0;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+  .row .media .kb{min-height:0;height:62vw}
+  .row .text,.row .media{order:initial}
+}
+
+/* ---------- EIGHT WEEKS: under the star compass ---------- */
+.weeks{position:relative;background:var(--night);color:#fff;padding:clamp(56px,8vw,120px) 0;overflow:hidden;isolation:isolate}
+.weeks .sea{position:absolute;inset:auto 0 0 0;height:60%;z-index:0;opacity:.28;mask-image:linear-gradient(180deg,transparent,#000 40%);-webkit-mask-image:linear-gradient(180deg,transparent,#000 40%)}
+.weeks .sea .ap-loop{position:absolute;inset:0}
+.weeks .stars{position:absolute;inset:0;z-index:0}
+.weeks .head{position:relative;z-index:1;padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2rem;align-items:center}
+.weeks h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:13ch}
+.weeks .head p{color:rgba(255,255,255,.85);font-size:1.08rem;max-width:34rem}
+.weeks .compass{position:relative;width:min(100%,380px);justify-self:end;aspect-ratio:1}
+.weeks .compass svg{width:100%;height:100%;overflow:visible}
+.weeks .compass .ring,.weeks .compass .tick{stroke:rgba(255,255,255,.45)}
+.weeks .compass .road{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:3 7;opacity:.6}
+.weeks .compass .house{stroke:var(--gold);stroke-width:6;stroke-linecap:round;opacity:.7}
+.weeks .compass .star{fill:var(--amber)}
+.weeks .compass .star.glow{fill:none;stroke:var(--amber);stroke-width:1.5;opacity:.4}
+.weeks .compass .turn{transform-origin:200px 200px;animation:turnslow 240s linear infinite}
+@keyframes turnslow{to{transform:rotate(360deg)}}
+.weeks .compass .cap{font-family:var(--text);font-size:11px;letter-spacing:3px;fill:rgba(255,255,255,.6);font-weight:600}
+.weeks .say{position:relative;z-index:1;padding-inline:var(--gutter);margin-top:1.4rem}
+.strip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding-inline:var(--gutter);margin-top:clamp(28px,4vw,56px)}
+.week{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:6px;background:#1b2420;text-decoration:none;color:inherit;display:block}
+.week img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
+.week:hover img{transform:scale(1.06)}
+.week::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.1),rgba(16,11,13,.05) 40%,rgba(16,11,13,.9) 100%)}
+.week .t{position:absolute;left:16px;right:16px;bottom:16px;z-index:1}
+.week .num{position:absolute;top:12px;left:16px;z-index:1;font-size:3.2rem;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+.week .glyph{position:absolute;top:16px;right:14px;z-index:1;width:34px;height:34px;opacity:.85}
+.week .glyph *{fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.week h3{font-size:clamp(1.15rem,1rem + .8vw,1.65rem);font-weight:800;line-height:1.02}
+.week p{margin-top:.4rem;font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.35}
+.week small{display:block;margin-top:.5rem;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.weeks .more-link{position:relative;z-index:1;padding-inline:var(--gutter);margin-top:1.6rem}
+@media (max-width:980px){
+  .weeks .head{grid-template-columns:1fr;gap:1rem}
+  .weeks .compass{justify-self:start;width:min(70%,300px)}
+  .strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;padding-bottom:8px;scrollbar-width:none}
+  .strip::-webkit-scrollbar{display:none}
+  .week{flex:0 0 72vw;scroll-snap-align:start}
+}
+
+/* ---------- LISTENING ROOM ---------- */
+.listen{position:relative;background:var(--night);color:#fff;overflow:hidden;isolation:isolate;border-top:1px solid rgba(255,255,255,.08)}
+.listen .fire{position:absolute;inset:0;z-index:0}
+.listen .fire img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;opacity:.42}
+.listen .fire::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,11,13,.55),rgba(16,11,13,.9) 55%),linear-gradient(180deg,rgba(16,11,13,.7),rgba(16,11,13,.2) 30%,rgba(16,11,13,.95))}
+.listen .embers{position:absolute;inset:0;z-index:0}
+.listen .inner{position:relative;z-index:1;padding:clamp(56px,8vw,120px) var(--gutter);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.listen h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:12ch}
+.listen .intro{margin-top:1rem;max-width:30rem;color:rgba(255,255,255,.85);font-size:1.08rem}
+.listen .say{margin-top:1.4rem}
+.listen .wfall{margin-top:1.6rem;border-radius:12px;overflow:hidden;aspect-ratio:4/5;max-width:360px;border:1px solid rgba(255,255,255,.15)}
+.listen .wfall .ap-loop{width:100%;height:100%}
+.listen .cap{margin-top:.5rem;font-size:.82rem;color:rgba(255,255,255,.6)}
+.sessions{display:grid;gap:10px}
+.sessions .ap-player{background:rgba(16,11,13,.5)}
+.sessions .ap-player.featured .vis{height:92px}
+.listen .all{margin-top:1.2rem;display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+.notes{position:relative;z-index:1;padding:0 var(--gutter) clamp(56px,8vw,100px)}
+.notes .head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.12);padding-top:1.6rem}
+.notes h3{font-size:clamp(1.6rem,3vw,2.6rem);font-weight:800}
+.notes .head p{color:rgba(255,255,255,.7);max-width:34rem;font-size:.95rem}
+.noteshelf{margin-top:1.2rem;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.25) transparent}
+.noteshelf .ap-player{flex:0 0 min(78vw,320px);scroll-snap-align:start;background:rgba(255,255,255,.06)}
+@media (max-width:980px){.listen .inner{grid-template-columns:1fr}.listen .wfall{max-width:260px}}
+
+/* ---------- FOR YOUR WORK ---------- */
+.work{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);background:var(--stone)}
+.work .pic{position:relative;min-height:min(92vh,900px);overflow:hidden}
+.work .pic img{position:absolute;inset:-8% 0;height:116%;width:100%;object-fit:cover;object-position:50% 30%}
+.work .pic .tokens{position:absolute;right:var(--gutter);bottom:var(--gutter);width:min(52%,340px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:rgba(228,232,234,.86);backdrop-filter:blur(8px);box-shadow:0 30px 60px -30px rgba(0,0,0,.5);border:1px solid rgba(38,39,35,.15)}
+.work .pic .tokens svg{width:100%;height:100%}
+.work .pic .tokcap{position:absolute;left:var(--gutter);bottom:var(--gutter);max-width:38%;color:#fff;font-size:.86rem;text-shadow:0 1px 10px rgba(0,0,0,.6)}
+.work .body{padding:clamp(48px,6vw,96px) var(--gutter)}
+.work h2{font-size:clamp(2.4rem,5vw,4.6rem);max-width:12ch}
+.work .intro{margin-top:1rem;max-width:34rem;font-size:1.08rem;color:var(--ink-2)}
+.readings{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:0 2rem;border-top:1px solid var(--line)}
+.reading{padding:1.1rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:2.6rem 1fr;gap:.6rem}
+.reading .num{font-size:2rem;color:var(--earth)}
+.reading h3{font-size:1.25rem;font-weight:800;letter-spacing:-.01em}
+.reading h3 span{display:block;font-family:var(--text);font-weight:600;font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.25rem}
+.reading p{margin-top:.35rem;font-size:.95rem;color:var(--ink-2)}
+.work .say{margin-top:1.6rem}
+.work .acts{margin-top:1.4rem;display:flex;gap:.8rem;flex-wrap:wrap}
+@media (max-width:980px){.work{grid-template-columns:1fr}.work .pic{min-height:80vw}.readings{grid-template-columns:1fr}.work .pic .tokens{width:46%}.work .pic .tokcap{max-width:46%}}
+
+/* ---------- THE BOOKS ---------- */
+.books{position:relative;background:var(--stone);padding:clamp(48px,6vw,96px) 0;border-top:1px solid var(--line);overflow:hidden}
+.books .amber{position:absolute;inset:0;z-index:0}
+.books .amber img{width:100%;height:120%;object-fit:cover;object-position:50% 40%;opacity:.5;margin-top:-10%}
+.books .amber::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--stone),rgba(228,232,234,.55) 30%,rgba(228,232,234,.55) 70%,var(--stone))}
+.books .head{position:relative;z-index:1;padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2rem;align-items:center}
+.books h2{font-size:clamp(2.2rem,4.6vw,4.2rem);max-width:12ch}
+.books .head p{font-size:1.08rem;color:var(--ink-2);max-width:36rem}
+.books .head p a{color:var(--creek);font-weight:600;text-underline-offset:.2em}
+.shelf{position:relative;z-index:1;margin-top:clamp(24px,3vw,44px);padding-inline:var(--gutter);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,2vw,24px)}
+.book{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:1rem;align-items:center;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border-radius:6px;padding:14px;box-shadow:0 1px 0 var(--line);text-decoration:none;color:inherit}
+.book img{width:100%;border-radius:3px;box-shadow:0 14px 34px rgba(38,39,35,.3);transition:transform .6s ease}
+.book:hover img{transform:translateY(-4px) rotate(-1deg)}
+.book h3{font-size:1.15rem;font-weight:800;letter-spacing:-.01em}
+.book p{margin-top:.4rem;font-size:.92rem;color:var(--ink-2);line-height:1.4}
+.book small{display:block;margin-top:.5rem;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);font-weight:700}
+@media (max-width:980px){.books .head{grid-template-columns:1fr;gap:1rem}.shelf{grid-template-columns:1fr}}
+
+/* ---------- THE GROUND: a living mosaic ---------- */
+.ground{background:var(--stone-2);padding:clamp(40px,5vw,72px) 0 clamp(48px,6vw,88px);overflow:hidden}
+.ground .head{padding-inline:var(--gutter);display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap}
+.ground h2{font-size:clamp(1.9rem,3.6vw,3.2rem)}
+.ground .head p{color:var(--ink-2);max-width:34rem}
+.ground .tally{display:flex;gap:1.6rem;flex-wrap:wrap;font-size:.9rem;color:var(--ink-2)}
+.ground .tally b{display:block;font-family:var(--display);font-weight:800;font-size:2rem;color:var(--ink);letter-spacing:-.03em;line-height:1}
+.mosaic{margin-top:1.6rem;display:grid;gap:8px;padding-inline:var(--gutter)}
+.mrow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;will-change:transform}
+.tile{position:relative;overflow:hidden;border-radius:4px;background:#c9d1d4;aspect-ratio:4/3}
+.tile.wide{grid-column:span 2;aspect-ratio:8/3}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity 1.6s ease;transform:scale(calc(1.04 + var(--kb) * .0025)) translate3d(calc(var(--kb) * -0.5px),0,0);transform-origin:60% 40%}
+.tile img.b{opacity:0}
+.tile.flip img.b{opacity:1}
+.tile .ap-loop{position:absolute;inset:0}
+@media (max-width:980px){.mrow{grid-template-columns:repeat(3,minmax(0,1fr))}.tile.wide{grid-column:span 2}}
+
+/* ---------- CLOSE ---------- */
+.close{position:relative;min-height:min(92vh,820px);display:flex;align-items:flex-end;color:#fff;background:var(--night);overflow:hidden}
+.close .bg{position:absolute;inset:0}
+.close .bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.close .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.1),rgba(16,11,13,.2) 50%,rgba(16,11,13,.88))}
+.close .pollen{position:absolute;inset:0;mix-blend-mode:screen;opacity:.7}
+.close .inner{position:relative;z-index:1;padding:clamp(56px,8vw,120px) var(--gutter) clamp(40px,6vw,80px);width:100%;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2rem;align-items:end}
+.close h2{font-size:clamp(3rem,8vw,7.5rem)}
+.close p{font-size:1.1rem;color:rgba(255,255,255,.9);max-width:30rem}
+.close .acts{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.2rem}
+.close .say{margin-top:1.2rem}
+@media (max-width:980px){.close .inner{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header data-ap-nav data-active="/" data-menu-image="media/oakcreek-rim-1000.jpg"></header>
+
+<!-- ===== ARRIVAL: a cut from his own footage, the breath ring over it, his masked voice ===== -->
+<section class="arrive" id="top" data-scene="creek" data-scene-label="Oak Creek, the water over the pebbles">
+  <div class="cutwrap" id="cutwrap">
+    <div class="ap-cut" id="cut" data-fade="2">
+      <div class="shot" data-dur="7" data-name="Oak Creek Canyon, water over the pebbles"><div class="ap-loop" data-src="media/v-pebbles.mp4" data-poster="media/v-pebbles-poster.jpg"></div></div>
+      <div class="shot" data-dur="6" data-name="A canyon waterfall, August"><div class="ap-loop" data-src="media/v-canyon-waterfall.mp4" data-poster="media/v-canyon-waterfall-poster.jpg"></div></div>
+      <div class="shot" data-dur="6" data-name="The trail to the Peaks"><img src="media/peaks-trail-2200.jpg" alt="" fetchpriority="high"></div>
+      <div class="shot" data-dur="6" data-name="Water over the boulders, March"><div class="ap-loop" data-src="media/v-rapids-white.mp4" data-poster="media/v-rapids-white-poster.jpg"></div></div>
+      <div class="shot" data-dur="6" data-name="The red wall over the creek, May"><div class="ap-loop" data-src="media/v-redwall-water.mp4" data-poster="media/v-redwall-water-poster.jpg"></div></div>
+      <div class="shot" data-dur="6" data-name="Sunset over the red earth"><img src="media/sedona-sunset-2200.jpg" alt=""></div>
+    </div>
+    <canvas class="ap-particles ripples" data-kind="ripples" data-n="6" data-opacity=".8"></canvas>
+  </div>
+  <p class="shotname" aria-hidden="true"><i></i><span id="shotName">Oak Creek Canyon, water over the pebbles</span></p>
+
+  <div class="copy">
+    <h1 data-words="90">We are the far messengers now.</h1>
+    <p class="lede reveal d2"><b>Before any tool, settle the body.</b> Calm is stored, not summoned. One sitting a morning, by the water, and the day is carried differently.</p>
+    <div class="acts reveal d3">
+      <button class="btn earth" id="beginBreath">Begin one minute <span class="arrow">→</span></button>
+      <button class="btn ghost" id="soundBtn" aria-pressed="false">Sound on</button>
+    </div>
+    <p class="where reveal d4">In four. Hold four. Out six. Hold four. Three rounds, then the creek. Turn the sound on and the water, the wind and the fire follow you down the page.</p>
+    <div class="say reveal d4"><button class="ap-say dark" data-src="media/say/w1-safe-to-think.mp3" data-who="Week one" data-text="Standing tall, widening your view, and softening your jaw tells your body it is safe to think again."></button></div>
+  </div>
+
+  <div class="ringcol">
+    <div id="ring" aria-live="polite"></div>
+  </div>
+  <div class="sitchip" id="sitchip"><i></i><span id="sitText">Your first sitting is the door</span></div>
+  <div class="done" id="done"><h3 id="doneH">That was one sitting.</h3><p id="doneP">Did your shoulders drop? The door is open.</p></div>
+</section>
+
+<!-- ===== TODAY: a new line and photograph every morning, the session in his masked voice ===== -->
+<section class="today" id="today" data-scene="dawn" data-scene-label="first light on the mesa" data-bar="light">
+  <div class="pic">
+    <img id="todayImg" src="media/oakcreek-rapids-1400.jpg" alt="">
+    <canvas class="ap-particles pollen" data-kind="pollen" data-n="60"></canvas>
+    <a class="filmtile" href="../a3/listen/" aria-label="The Week 1 film, in the Listening Room">
+      <div class="ap-loop" data-src="media/v-film-week1.mp4" data-poster="media/v-film-week1-poster.jpg"></div>
+      <span>From the Week 1 film<small>Six minutes, every scene our own footage · Listening Room</small></span>
+    </a>
+  </div>
+  <div class="body">
+    <p class="date" id="todayDate">Today</p>
+    <blockquote id="todayQuote" class="reveal">You do not make the calm. You retrieve it. You store it in your bones in the quiet days.</blockquote>
+    <p class="from reveal" id="todayFrom">From the first crossing. A new line, and a new photograph, every morning.</p>
+    <div class="ap-player tall reveal" data-src="media/sessions/week1-settle-yourself-first.mp3" data-title="Today's session: Settle yourself first" data-sub="Week one. Six minutes, with a dawn wind under the voice. The runner on Big Mountain, the stone, and the breath counted with you." data-visual="horizon" data-duration="381" data-color="#44665A"></div>
+    <div class="reveal"><button class="ap-say" data-src="media/say/w1-relax-jaw.mp3" data-who="From the session" data-text="He would relax his jaw. He would relax his temples. His eyes. His shoulders. His back."></button></div>
+    <div class="more reveal" id="more">
+      <figure><div class="kb"><img src="media/peaks-snow-800.jpg" alt=""></div><figcaption>Tomorrow</figcaption></figure>
+      <figure><div class="kb"><img src="media/canyon-de-chelly-800.jpg" alt=""></div><figcaption>The day after</figcaption></figure>
+      <figure><div class="kb"><img src="media/pacific-rocks-800.jpg" alt=""></div><figcaption>And the next</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE PATH: Door → Fire → Crossing → Council, a scene in depth ===== -->
+<section class="path" id="path" data-scene="wind" data-scene-label="wind on the canyon rim">
+  <div class="scene" id="pathScene">
+    <div class="bg" id="pathBg"><img src="media/oakcreek-rim-2000.jpg" srcset="media/oakcreek-rim-1000.jpg 1000w, media/oakcreek-rim-2000.jpg 2000w" sizes="100vw" alt=""></div>
+    <canvas class="ap-particles sand" data-kind="sand" data-n="120"></canvas>
+    <div class="inner">
+      <h2 class="reveal">The path deepens as you return.</h2>
+      <p class="intro reveal">No account. Your sittings are kept in this browser, and nothing is sold on the way. The gate is a threshold, not a lock: if you have already settled, walk through.</p>
+      <div class="you reveal"><span><b id="ySit">0</b>sittings</span><span><b id="yDays">0</b>days since the first</span><span><b id="yWeek">0</b>this week</span></div>
+      <div class="trail" id="trail">
+        <svg class="line" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path class="ghost" d="M20 40 C 180 10, 300 60, 420 32 S 650 10, 760 36 S 920 54, 985 30"/><path id="trailPath" d="M20 40 C 180 10, 300 60, 420 32 S 650 10, 760 36 S 920 54, 985 30"/></svg>
+        <div class="marker" id="trailMarker" aria-hidden="true"></div>
+        <div class="stations">
+          <div class="station" data-tier="1"><div class="ph"><div class="ap-loop" data-src="media/v-pebbles.mp4" data-poster="media/oakcreek-pebbles-photo-800.jpg"></div></div><h3>The Door</h3><p>One breath, counted, by the creek. The Stone Breath, the practice the first book is named for.</p><span class="st">Opens with your first sitting</span></div>
+          <div class="station" data-tier="2"><div class="ph"><img src="media/fire-moon-800.jpg" alt=""></div><h3>The Fire</h3><p>Seven mornings. The stone in the hand, the record of hard things you came through.</p><span class="st">After seven mornings</span></div>
+          <div class="station" data-tier="3"><div class="ph"><div class="ap-loop" data-src="media/v-oakcreek-path.mp4" data-poster="media/v-oakcreek-path-poster.jpg"></div></div><h3>The Crossing</h3><p>A month of returning, several mornings a week. The eight weeks, one training at a time.</p><span class="st">After a month</span></div>
+          <div class="station" data-tier="4"><div class="ph"><img src="media/fire-circle-800.jpg" alt=""></div><h3>The Council</h3><p>Held with others who kept the practice. The deep studies and the live voice.</p><span class="st">When the crossing is held</span></div>
+        </div>
+      </div>
+      <div class="say reveal"><button class="ap-say dark" data-auto="1" data-src="media/say/w1-hand-to-hand.mp3" data-who="Week one" data-text="This practice came down from my family, hand to hand. Now it comes to you, in our way."></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE DAY: four movements, each with his clip, his photograph, a drawn graphic, and his voice ===== -->
+<section class="day" id="day" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">The far messenger's day.</h2>
+    <p class="reveal">Live it imperfectly and daily rather than perfectly and never. Four movements, the way the carriers kept them.</p>
+  </div>
+
+  <div class="row r1" data-scene="dawn" data-scene-label="first light, a meadow at 5:39">
+    <div class="media">
+      <div class="kb"><div class="ap-loop" data-src="media/v-dawn-meadow.mp4" data-poster="media/v-dawn-meadow-poster.jpg"></div><canvas class="ap-particles fx" data-kind="pollen" data-n="40"></canvas></div>
+      <div class="kb"><img src="media/peaks-morning-1000.jpg" srcset="media/peaks-morning-1000.jpg 1000w, media/peaks-morning-2000.jpg 2000w" sizes="25vw" alt="The Peaks under morning cloud">
+        <svg class="gfx" viewBox="0 0 220 120" aria-hidden="true" data-draw-trigger><path class="draw" d="M10 100 Q 110 -20 210 100" fill="none" stroke="#D9A84C" stroke-width="2.5" stroke-linecap="round" data-start="top 85%" data-end="top 35%"/><path class="draw" d="M0 104 L220 104" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.5" data-start="top 85%" data-end="top 45%"/><circle cx="110" cy="40" r="9" fill="#D9A84C"/></svg>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num reveal">1</div>
+      <h3 class="reveal">First light</h3>
+      <p class="reveal">Rise before the noise. Set the frequency before the day sets it for you. Name what is already given until the body believes it.</p>
+      <p class="when reveal">A meadow at 5:39 in the morning. The Peaks before the cloud lifts.</p>
+      <div class="reveal"><button class="ap-say" data-src="media/say/mj-grateful.mp3" data-who="The Morning Journey" data-text="It's an honor to be here this morning with you. There's just so many things to be grateful for."></button></div>
+    </div>
+  </div>
+
+  <div class="row r2" data-scene="creek" data-scene-label="water over the boulders, March">
+    <div class="media">
+      <div class="kb"><div class="ap-loop" data-src="media/v-creek-rapids.mp4" data-poster="media/v-creek-rapids-poster.jpg"></div><canvas class="ap-particles fx" data-kind="ripples" data-n="4" data-opacity=".6"></canvas></div>
+      <div class="kb"><img src="media/sand-road-800.jpg" srcset="media/sand-road-800.jpg 800w, media/sand-road-1600.jpg 1600w" sizes="25vw" alt="A sand road with a runner far ahead">
+        <svg class="gfx" viewBox="0 0 220 120" aria-hidden="true" data-draw-trigger><path class="draw" d="M8 96 C 60 70, 90 110, 130 80 S 190 50, 214 24" fill="none" stroke="#D9A84C" stroke-width="2.5" stroke-linecap="round" data-start="top 85%" data-end="top 35%"/><circle cx="214" cy="24" r="6" fill="#fff"/></svg>
+      </div>
+    </div>
+    <div class="text">
+      <div class="num reveal">2</div>
+      <h3 class="reveal">Through the day</h3>
+      <p class="reveal">Soften the eye when friction rises. Refuse overburden; hand one thing to the circle. One act of honor, daily.</p>
+      <p class="when reveal">Water over boulders in March. A runner on the sand road, carrying the next leg.</p>
+      <div class="reveal"><button class="ap-say" data-src="media/say/w1-water-back.mp3" data-who="Week one" data-text="The picturing alone brings the water back to the dry mouth, so the thirst does not own you."></button></div>
+    </div>
+  </div>
+
+  <div class="row r3 on-dark" data-scene="ocean" data-scene-label="the Pacific at 7:53 in the evening">
+    <div class="media">
+      <div class="kb"><div class="ap-loop" data-src="media/v-pacific-sunset.mp4" data-poster="media/v-pacific-sunset-poster.jpg"></div></div>
+      <div class="kb"><img src="media/peaks-lake-sunset-1000.jpg" srcset="media/peaks-lake-sunset-1000.jpg 1000w, media/peaks-lake-sunset-2000.jpg 2000w" sizes="25vw" alt="The lake at sunset, the Peaks dark on the horizon"><canvas class="ap-particles fx" data-kind="stars" data-n="160" data-pivot="30,100" data-speed="3"></canvas></div>
+    </div>
+    <div class="text">
+      <div class="num reveal">3</div>
+      <h3 class="reveal">Evening</h3>
+      <p class="reveal">Three lines: what I carried, what I learned, whom I honored. Release the day's scarcity moment. Say it the other way.</p>
+      <p class="when reveal">The Pacific at 7:53 in the evening. The lake at 7:19, with the mountain gone dark.</p>
+      <div class="reveal"><button class="ap-say dark" data-src="media/say/w2-star.mp3" data-who="Week two" data-text="One night, step outside. Find a star low on the horizon, and watch it rise."></button></div>
+    </div>
+  </div>
+
+  <div class="row r4" data-scene="hearth" data-scene-label="the fire, the week">
+    <div class="media">
+      <div class="kb"><div class="ap-loop" data-src="media/v-hand-wool.mp4" data-poster="media/v-hand-wool-poster.jpg"></div></div>
+      <div class="kb"><img src="media/elder-hands-braiding-900.jpg" srcset="media/elder-hands-braiding-900.jpg 900w, media/elder-hands-braiding-1800.jpg 1800w" sizes="25vw" alt="An elder's hands braiding"><canvas class="ap-particles fx" data-kind="embers" data-n="50" data-opacity=".8"></canvas></div>
+    </div>
+    <div class="text">
+      <div class="num reveal">4</div>
+      <h3 class="reveal">The week</h3>
+      <p class="reveal">One real circle or kin call. Hands on a craft. Hours on the land, no screen. One hour of deliberate nothing.</p>
+      <p class="when reveal">A hand on the wool. Hands at the braid.</p>
+      <div class="reveal"><button class="ap-say" data-src="media/say/fm-books.mp3" data-who="The far messengers of time" data-text="Ordinary people, farmers mostly, carried books in on foot through the forest at night. Each one walked one stretch and handed the books on."></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EIGHT WEEKS: under the star compass, over his Pacific ===== -->
+<section class="weeks" id="weeks" data-scene="ocean" data-scene-label="the Pacific, the navigator's week">
+  <div class="sea"><div class="ap-loop" data-src="media/v-pacific-morning.mp4" data-poster="media/v-pacific-morning-poster.jpg"></div></div>
+  <canvas class="ap-particles stars" data-kind="stars" data-n="320" data-pivot="50,118" data-opacity=".9"></canvas>
+  <div class="head">
+    <div>
+      <h2 class="reveal">Eight weeks. The way they actually trained.</h2>
+      <p class="reveal">One training a week, in the order every tradition used. Regulate the operator before you read anything. Then find what holds, store it, check it, share the load, bring it home, and tie it to something that returns.</p>
+      <div class="say"><button class="ap-say dark" data-auto="1" data-src="media/say/w2-calm.mp3" data-who="Week two" data-text="And calm came first. A navigator who panics cannot read the ocean."></button></div>
+    </div>
+    <div class="compass reveal" id="compass" aria-label="A star compass of thirty-two points; one star rises at its house, climbs, and the next takes its place" role="img"></div>
+  </div>
+  <div class="strip">
+    <a class="week reveal" href="../weeks/"><img src="media/canyon-de-chelly-800.jpg" alt=""><span class="num">1</span><svg class="glyph" viewBox="0 0 34 34"><ellipse cx="17" cy="19" rx="9" ry="6"/><path d="M11 19c2-3 10-3 12 0"/></svg><div class="t"><h3>The runner's protocol.</h3><p>Settle the carrier first: the record of hard things you came through, the stone, the whole horizon when it gets bad.</p><small>Week one · with Tonas</small></div></a>
+    <a class="week reveal d1" href="../weeks/"><img src="media/pacific-rocks-800.jpg" alt=""><span class="num">2</span><svg class="glyph" viewBox="0 0 34 34"><circle cx="17" cy="17" r="12"/><path d="M17 5v4M17 25v4M5 17h4M25 17h4"/><circle cx="24" cy="10" r="1.5"/></svg><div class="t"><h3>Build one house.</h3><p>Steer by the house, not the star that climbs out of reach.</p><small>Week two · with Nalu</small></div></a>
+    <a class="week reveal d2" href="../weeks/"><img src="media/dunes-footprints-800.jpg" alt=""><span class="num">3</span><svg class="glyph" viewBox="0 0 34 34"><path d="M3 24c5-6 9-6 14 0s9 6 14 0"/><path d="M3 18c5-6 9-6 14 0s9 6 14 0" opacity=".5"/></svg><div class="t"><h3>Find the ridge under your weather.</h3><p>What the storm took, and what stayed true underneath it.</p><small>Week three · with Satoshi</small></div></a>
+    <a class="week reveal d3" href="../weeks/"><img src="media/sedona-bellrock-800.jpg" alt=""><span class="num">4</span><svg class="glyph" viewBox="0 0 34 34"><path d="M4 26c6-10 10 4 16-6s6-4 10-8"/><circle cx="4" cy="26" r="1.5"/><circle cx="30" cy="12" r="1.5"/></svg><div class="t"><h3>Build one songline.</h3><p>Put what you must carry into a road your feet already know.</p><small>Week four · with Chariya</small></div></a>
+    <a class="week reveal" href="../weeks/"><img src="media/redwoods-800.jpg" alt=""><span class="num">5</span><svg class="glyph" viewBox="0 0 34 34"><path d="M17 8v18M10 12v10M24 12v10M4 15v4M30 15v4"/></svg><div class="t"><h3>Map your acoustic horizon.</h3><p>Stop tracking the noise. Start mapping the holes.</p><small>Week five · with Aoi</small></div></a>
+    <a class="week reveal d1" href="../weeks/"><img src="media/peaks-snow-800.jpg" alt=""><span class="num">6</span><svg class="glyph" viewBox="0 0 34 34"><path d="M4 17h10M20 17h10"/><circle cx="17" cy="17" r="3"/><path d="M12 13l-3 4 3 4M22 13l3 4-3 4"/></svg><div class="t"><h3>The hand-off.</h3><p>Nobody carries the whole way. The written specifics and the spoken meaning, said back.</p><small>Week six · with Illary</small></div></a>
+    <a class="week reveal d2" href="../weeks/"><img src="media/palm-shells-800.jpg" alt=""><span class="num">7</span><svg class="glyph" viewBox="0 0 34 34"><path d="M8 26V10l9-4 9 4v16"/><path d="M8 26h18M13 26v-7h8v7"/></svg><div class="t"><h3>Carry one thing across.</h3><p>Record the one who holds it, make two copies, use it once out loud.</p><small>Week seven · with Austėja</small></div></a>
+    <a class="week reveal d3" href="../weeks/"><img src="media/peaks-meadow-evening-800.jpg" alt=""><span class="num">8</span><svg class="glyph" viewBox="0 0 34 34"><circle cx="17" cy="17" r="11"/><path d="M17 6a11 11 0 0 1 0 22" opacity=".5"/><path d="M17 11v6l4 2"/></svg><div class="t"><h3>Say the names out loud.</h3><p>Make the year ask: tie it to something that already returns.</p><small>Week eight · with Kiprono</small></div></a>
+  </div>
+  <div class="more-link reveal"><a class="btn light" href="../weeks/">The eight weeks, each with its session <span class="arrow">→</span></a></div>
+</section>
+
+<!-- ===== LISTENING ROOM: every session he has recorded, spoken in a masked voice ===== -->
+<section class="listen on-dark" id="listen" data-scene="hearth" data-scene-label="the fire">
+  <div class="fire"><img src="media/fire-circle-800.jpg" alt=""></div>
+  <canvas class="ap-particles embers" data-kind="embers" data-n="90"></canvas>
+  <div class="inner">
+    <div>
+      <h2 class="reveal">The Listening Room.</h2>
+      <p class="intro reveal">The sessions so far, each spoken in a masked voice over a bed of water, wind, ocean, desert or fire. Press play and the picture under the title breathes with the voice.</p>
+      <div class="say reveal"><button class="ap-say dark" data-auto="1" data-src="media/say/fm-honor.mp3" data-who="The far messengers of time" data-text="It is one of the largest memory systems human beings have ever built, and it ran on nothing but voices and obligation and honor."></button></div>
+      <div class="wfall reveal"><div class="ap-loop" data-src="media/v-flagstaff-waterfall.mp4" data-poster="media/v-flagstaff-waterfall-poster.jpg"></div></div>
+      <p class="cap reveal">The Flagstaff waterfall, June. Every clip on this page is our own.</p>
+    </div>
+    <div class="sessions">
+      <div class="ap-player featured reveal" data-src="media/sessions/before-we-start.mp3" data-title="Before we start" data-sub="The stream at first light, the pebble that calls you, one round of the breath. Creek bed." data-visual="ripples" data-duration="364" data-color="#8FB8A8" data-color2="#D9A84C"></div>
+      <div class="ap-player compact reveal" data-src="media/sessions/week1-settle-yourself-first.mp3" data-title="Week 1 · Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="381" data-color="#8FB8A8"></div>
+      <div class="ap-player compact reveal d1" data-src="media/sessions/week2-know-what-you-steer-by.mp3" data-title="Week 2 · Know what you steer by" data-sub="The star houses and the 1976 voyage. Ocean bed." data-visual="ripples" data-duration="299" data-color="#7FA6D6"></div>
+      <div class="ap-player compact reveal d2" data-src="media/sessions/week3-what-holds-in-a-storm.mp3" data-title="Week 3 · What holds in a storm" data-sub="The salt caravan, the sand and the stars. Desert bed." data-visual="bars" data-duration="219" data-color="#D1A63C"></div>
+      <div class="ap-player compact reveal d3" data-src="media/sessions/the-empty-quarter.mp3" data-title="The Empty Quarter · the crossing" data-sub="The quiet years before, the pebble in the fist, the dry well. Desert bed." data-visual="horizon" data-duration="382" data-color="#D1A63C"></div>
+      <div class="ap-player compact reveal d4" data-src="media/sessions/the-far-messengers-of-time.mp3" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="377" data-color="#E08A3C"></div>
+      <div class="ap-player compact reveal d4" data-src="media/sessions/the-morning-journey.mp3" data-title="The Morning Journey" data-sub="Eighteen minutes facing the Peaks: gratitude, the pebble, the breath, far to the east they are singing. Dawn bed." data-visual="horizon" data-duration="1118" data-color="#8FB8A8"></div>
+      <div class="ap-player compact reveal d4" data-src="media/sessions/the-gratitude-meditation.mp3" data-title="The Gratitude Meditation" data-sub="The stream, the medicines, the pebble and its journey, four rounds of the breath with a body scan, a gratitude list, and the eagle. Dawn bed." data-visual="horizon" data-duration="502" data-color="#8FB8A8"></div>
+      <div class="all reveal"><a class="btn light" href="../a3/listen/">The whole Listening Room <span class="arrow">→</span></a><span class="masked">Spoken in a masked voice</span></div>
+    </div>
+  </div>
+  <div class="notes">
+    <div class="head reveal"><h3>Voice notes.</h3><p>Short ones, a minute each, from his talk to a room of students in October: the runner, the navigator, the breath under sixty beats. New notes land here as they are made.</p></div>
+    <div class="noteshelf" id="noteshelf"></div>
+  </div>
+  <div class="notes abundance" id="abundance" hidden>
+    <div class="head reveal"><h3>The abundance meditations.</h3><p>The long ones and the short ones, for the morning, the drive and the night, each spoken in a masked voice.</p></div>
+    <div class="noteshelf" id="abundanceshelf"></div>
+  </div>
+</section>
+
+<!-- ===== FOR YOUR WORK: the hand and the stone, the twelve tokens gathering ===== -->
+<section class="work" id="work" data-scene="wind" data-scene-label="wind, the room settling" data-bar="light">
+  <div class="pic" data-parallax-trigger>
+    <img src="media/hand-stone-1400.jpg" srcset="media/hand-stone-800.jpg 800w, media/hand-stone-1400.jpg 1400w" sizes="45vw" alt="An open palm holding one smooth stone, the waterfall behind out of focus" data-parallax=".35">
+    <div class="tokens" id="tokens" role="img" aria-label="Twelve tokens gather to one fire"></div>
+    <p class="tokcap">Twelve peoples, twelve tokens, one fire: the governance readings come from the third book. The tokens gather as you scroll.</p>
+  </div>
+  <div class="body">
+    <h2 class="reveal">For your work.</h2>
+    <p class="intro reveal">Six readings for a leadership team or a board. Each one holds a passage, the principle, questions for the room, and one practice for the quarter. Nothing sacred is in them. Only what works and belongs to no one.</p>
+    <div class="readings">
+      <div class="reading reveal"><div class="num">1</div><div><h3><span>Goals</span>The house, not the star</h3><p>Markets, products and roles are stars: low and useful for a while, then they climb out of reach. The house is what the company is actually for.</p></div></div>
+      <div class="reading reveal d1"><div class="num">2</div><div><h3><span>Structure</span>The relay</h3><p>Nobody carries the whole way. Keep the legs short and put the engineering into the hand-off.</p></div></div>
+      <div class="reading reveal"><div class="num">3</div><div><h3><span>Meetings</span>A room where people can think</h3><p>A frightened room cannot think. Settle the room before anything is decided, and say the decision back before anyone leaves.</p></div></div>
+      <div class="reading reveal d1"><div class="num">4</div><div><h3><span>Governance</span>The One Question</h3><p>Will this make the great-grandchildren whole, or will it hollow them out? Leaders recognized, not campaigned for.</p></div></div>
+      <div class="reading reveal"><div class="num">5</div><div><h3><span>Abundance</span>Fullness is equipment</h3><p>Wanting is not a feeling. It's a heart rate. A mind rehearsing lack misreads the ground it is crossing.</p></div></div>
+      <div class="reading reveal d1"><div class="num">6</div><div><h3><span>Discipline</span>Calm is stored, not summoned</h3><p>Composure is a reserve, built on quiet days and spent on hard ones. Read the weather, not the insult.</p></div></div>
+    </div>
+    <div class="say reveal"><button class="ap-say" data-src="media/say/w3-storm.mp3" data-who="Week three" data-text="His job in a storm is not to make progress. It is not to get lost, and to pick up the way again when the air clears. Because the ridges are still there."></button></div>
+    <div class="acts reveal"><a class="btn" href="../a4/work/">The six readings <span class="arrow">→</span></a><a class="btn ghost dark" href="../a4/work/">For a board or a council</a></div>
+  </div>
+</section>
+
+<!-- ===== THE BOOKS ===== -->
+<section class="books" id="books" data-scene="hearth" data-scene-label="amber light" data-bar="light">
+  <div class="amber" data-parallax-trigger><img src="media/antelope-light-800.jpg" alt="" data-parallax=".2"></div>
+  <div class="head">
+    <h2 class="reveal">The companion to the books.</h2>
+    <p class="reveal">Each book opens a door here. The Stone Breath is the first book's practice, counted above with the creek. The eight weeks follow the disciplines of the second. The readings for your work come out of the third. <a href="../a4/books/">The books, and what each one opens here.</a></p>
+  </div>
+  <div class="shelf">
+    <a class="book reveal" href="../a4/books/"><img src="media/cover-stone-breath-cover-600.jpg" alt="Stone Breath, book one"><div><h3>Stone Breath</h3><p>A story of remembering, and the breath counted on a river pebble: in four, hold four, out six, hold four.</p><small>Book one · the Door</small></div></a>
+    <a class="book reveal d1" href="../a4/books/"><img src="media/cover-far-messengers-cover-600.jpg" alt="The Far Messengers, book two"><div><h3>The Far Messengers</h3><p>Seven days at a world congress, and the seven disciplines the carriers trained. The eight weeks follow them.</p><small>Book two · the Crossing</small></div></a>
+    <a class="book reveal d2" href="../a4/books/"><img src="media/cover-council-fire-cover-600.jpg" alt="The Council Fire, book three"><div><h3>The Council Fire</h3><p>The original instructions for the world we rebuild. The readings for goals, structure, meetings and governance come from here.</p><small>Book three · the Council</small></div></a>
+  </div>
+</section>
+
+<!-- ===== THE GROUND: a living mosaic of his photographs and clips ===== -->
+<section class="ground" id="ground" data-scene="creek" data-scene-label="the creek" data-bar="light">
+  <div class="head">
+    <div><h2 class="reveal">The ground this was made on.</h2><p class="reveal">Every photograph and every second of film on this page is our own: the canyon, the creek, the Peaks, the coast, the fire. The tiles change while you watch.</p></div>
+    <div class="tally reveal"><span><b data-count="47">0</b>photographs</span><span><b data-count="18">0</b>film clips</span><span><b data-count="7">0</b>sessions</span><span><b data-count="10">0</b>voice notes</span></div>
+  </div>
+  <div class="mosaic" id="mosaic"></div>
+</section>
+
+<!-- ===== CLOSE ===== -->
+<section class="close" data-scene="dawn" data-scene-label="sunset over the red earth">
+  <div class="bg kb"><img src="media/sedona-sunset-2200.jpg" srcset="media/sedona-sunset-1100.jpg 1100w, media/sedona-sunset-2200.jpg 2200w" sizes="100vw" alt="Sunset over the red earth and the canyon country"></div>
+  <canvas class="ap-particles pollen" data-kind="pollen" data-n="50" data-color="#FFD9A0"></canvas>
+  <div class="inner">
+    <div>
+      <h2 class="reveal" data-words="120">The door is breath.</h2>
+      <div class="acts reveal"><a class="btn light" href="https://app.ancestralpeaks.com">Begin <span class="arrow">→</span></a><a class="btn ghost" href="#top" id="sitAgain">Sit again tomorrow</a></div>
+      <div class="say reveal"><button class="ap-say dark" data-auto="1" data-src="media/say/w1-do-the-work.mp3" data-who="Week one" data-text="Notice how you feel. Now go and address that challenge. Do the work."></button></div>
+    </div>
+    <p class="reveal">Come back in the morning. The line changes, the photograph changes, and the count stays the same: in four, hold four, out six, hold four.</p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script>window.__render = location.hash === '#render'; window.__flat = location.hash === '#flat';</script>
+<script src="../shared/vendor/gsap.min.js"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js"></script>
+<script src="../shared/vendor/lenis.min.js"></script>
+<script src="js/council-tokens.js"></script>
+<script src="js/far-messengers-stars.js"></script>
+<script src="media/notes/voice-notes.js"></script>
+<script src="media/abundance/abundance-meditations.js"></script>
+<script>
+/* ---------- the voice-notes shelf and the mosaic are built BEFORE the shell wires the page (data-noinit, then AP.init) ---------- */
+document.documentElement.dataset.noinit = '1';
+</script>
+<script src="../shared/site.js"></script>
+<script>
+(function(){
+const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+const html = document.documentElement;
+
+/* ---------- shelves built from manifests: the voice notes, and the abundance meditations when they land ---------- */
+function shelfFrom(list, host, dir){
+  (list || []).forEach(n => {
+    const d = document.createElement('div'); d.className = 'ap-player compact';
+    d.dataset.src = dir + n.file + '.mp3'; d.dataset.title = n.title; d.dataset.sub = n.sub; d.dataset.duration = n.dur;
+    d.dataset.visual = ({ dawn: 'horizon', creek: 'ripples', ocean: 'ripples', wind: 'bars', hearth: 'rings' })[n.scene] || 'rings';
+    d.dataset.color = ({ dawn: '#8FB8A8', creek: '#8FB8A8', ocean: '#7FA6D6', wind: '#D1A63C', hearth: '#E08A3C' })[n.scene] || '#D1A63C';
+    host.appendChild(d);
+  });
+  return (list || []).length;
+}
+shelfFrom(window.AP_VOICE_NOTES, $('#noteshelf'), 'media/notes/');
+if (shelfFrom(window.AP_ABUNDANCE, $('#abundanceshelf'), 'media/abundance/')) $('#abundance').hidden = false;
+// the tally in The Ground counts what is actually on the page (set before the shell wires the counters)
+{ const c = document.querySelector('[data-count="7"]'); if (c) c.dataset.count = String(document.querySelectorAll('.sessions .ap-player').length + (window.AP_ABUNDANCE || []).length); const n = document.querySelector('[data-count="10"]'); if (n) n.dataset.count = String((window.AP_VOICE_NOTES || []).length); }
+
+/* ---------- the living mosaic: his photographs, a few of his clips, tiles that change ---------- */
+const PHOTOS = ['sedona-juniper-1600','antelope-light-800','stone-bowl-800','river-peaks-900','creek-log-800','pacific-torrey-800','sheep-butte-900','valley-sunset-900','oakcreek-fall-800','corn-sunset-900','pacific-waves-800','creek-superior-stones-800','creek-superior-800','redwoods-creek-800','flagstaff-waterfall-photo-800','teton-river-800','garden-creek-tecate-800','creek-boulders-pines-800','peaks-snow-800','canyon-de-chelly-800','dunes-footprints-800','sand-road-800','pacific-rocks-800','redwoods-800','palm-shells-800','peaks-meadow-evening-800','oakcreek-pebbles-photo-800','fire-moon-800','red-trail-walker-800','peaks-morning-1000','peaks-lake-sunset-1000','sedona-bellrock-800','hand-stone-800','oakcreek-fall-log-1400','oakcreek-rapids-1400','elder-hands-braiding-900'];
+const CLIPS = [['v-creek-cairn','v-creek-cairn-poster'],['v-verde-canyon','v-verde-canyon-poster'],['v-meadow-morning','v-meadow-morning-poster'],['v-lake-powell-cliffs','v-lake-powell-cliffs-poster'],['v-creek-boulders','v-creek-boulders-poster']];
+const LAYOUT = [ // three rows of six columns on desktop (three on the phone); w = a tile two columns wide, so each row adds up to six
+  ['', '', 'w','', ''],
+  ['w','', '', 'w'],
+  ['', 'w','', 'w']
+];
+const mosaic = $('#mosaic'); let pi = 0, ci = 0, ti = 0; const tiles = [];
+LAYOUT.forEach((row, r) => {
+  const mr = document.createElement('div'); mr.className = 'mrow'; mr.dataset.drift = r % 2 ? '40' : '-40';
+  row.forEach((kind, c) => {
+    const t = document.createElement('div'); t.className = 'tile' + (kind === 'w' ? ' wide' : '');
+    const useClip = (ti++ % 3 === 1 || ti === 13) && ci < CLIPS.length;
+    if (useClip) { const [v, p] = CLIPS[ci++]; const l = document.createElement('div'); l.className = 'ap-loop'; l.dataset.src = `media/${v}.mp4`; l.dataset.poster = `media/${p}.jpg`; t.appendChild(l); }
+    else { const a = document.createElement('img'); a.className = 'a'; a.src = `media/${PHOTOS[pi++ % PHOTOS.length]}.jpg`; a.alt = ''; a.loading = AP.render ? 'eager' : 'lazy'; const b = document.createElement('img'); b.className = 'b'; b.alt = ''; b.loading = AP.render ? 'eager' : 'lazy'; t.append(a, b); tiles.push(t); }
+    mr.appendChild(t);
+  });
+  mosaic.appendChild(mr);
+});
+// each tile swaps to a new photograph on its own slow clock; deterministic in render mode
+let swapT0 = performance.now();
+function mosaicSeek(t){
+  tiles.forEach((tile, i) => {
+    const period = 9 + (i % 5) * 1.7, phase = (i * 2.3) % period;
+    const k = Math.floor((t + phase) / period);
+    if (tile._k !== k) {
+      tile._k = k;
+      const front = k % 2 === 0; // which image is showing after this swap
+      const hidden = front ? tile.querySelector('img.b') : tile.querySelector('img.a');
+      // load the next picture into the hidden one, then show it
+      const next = PHOTOS[(i * 7 + k * 13 + 3) % PHOTOS.length];
+      if (!hidden.src.endsWith(next + '.jpg')) hidden.src = `media/${next}.jpg`;
+      tile.classList.toggle('flip', !front);
+    }
+  });
+}
+if (AP.motion) { (function loop(){ mosaicSeek((performance.now() - swapT0) / 1000); requestAnimationFrame(loop); })(); }
+AP.registerSeek(mosaicSeek);
+
+/* ---------- now wire the shell: nav, footer, loops, players, voice lines, particles, scenes, smooth scroll ---------- */
+AP.sound.register('creek', 'media/beds/bed-creek-oakcreek.mp3');   // his real Oak Creek water, looped; the other scenes are synthesized
+AP.init();
+const cut = $('#cut')._cut;
+const gsap = AP.gsap, ST = AP.ST;
+
+/* ---------- the shot name under the bar follows the cut ---------- */
+const shotNames = cut.shots.map(s => s.dataset.name);
+(function nameLoop(){ let best = 0, bo = 0; cut.shots.forEach((s, i) => { const o = parseFloat(s.style.opacity || 0); if (o > bo) { bo = o; best = i; } }); const el = $('#shotName'); if (el.textContent !== shotNames[best]) el.textContent = shotNames[best]; if (AP.motion) requestAnimationFrame(nameLoop); })();
+
+/* ---------- the breath ring and the path kept in this browser ---------- */
+const KEY = 'ap.path';
+const load = () => { try { return JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { return {}; } };
+const save = o => { try { localStorage.setItem(KEY, JSON.stringify(o)); } catch (e) {} };
+const dayKey = d => d.toISOString().slice(0, 10);
+function state(){
+  const o = load(), days = o.days || [], today = dayKey(new Date());
+  const first = o.first ? new Date(o.first) : null;
+  const since = first ? Math.floor((Date.now() - first.getTime()) / 864e5) : 0;
+  const weekAgo = Date.now() - 7 * 864e5;
+  const week = days.filter(d => new Date(d).getTime() >= weekAgo).length;
+  const sittings = o.sittings || 0;
+  let tier = 0; if (sittings >= 1) tier = 1; if (sittings >= 7 && since >= 6) tier = 2; if (since >= 30 && sittings >= 20 && week >= 3) tier = 3;
+  return { sittings, since, week, tier, today, sawToday: days.includes(today) };
+}
+function record(){ const o = load(), today = dayKey(new Date()); o.sittings = (o.sittings || 0) + 1; o.first = o.first || new Date().toISOString(); o.days = o.days || []; if (!o.days.includes(today)) o.days.push(today); o.days = o.days.slice(-90); save(o); paint(); return state(); }
+function paint(){
+  const s = state();
+  $('#ySit').textContent = s.sittings; $('#yDays').textContent = s.since; $('#yWeek').textContent = s.week;
+  $$('.station').forEach(el => el.classList.toggle('open', Number(el.dataset.tier) <= s.tier));
+  const names = ['', 'The Door', 'The Fire', 'The Crossing', 'The Council'];
+  $('#sitText').textContent = s.sittings ? `${s.sittings} sitting${s.sittings === 1 ? '' : 's'} · ${names[s.tier] || 'The Door'}${s.sawToday ? ' · today, done' : ''}` : 'Your first sitting is the door';
+}
+paint();
+const ring = AP.breathRing($('#ring'), { rounds: 3, legend: true, tones: true,
+  onStart(){ $('#done').classList.remove('show'); const b = $('#beginBreath'); b.textContent = 'Breathing…'; b.disabled = true; AP.scrollTo('#top', { offset: 0 }); },
+  onFinish(){
+    const s = record();
+    $('#doneH').textContent = s.sittings === 1 ? 'That was your first sitting. The door is open.' : `That was sitting ${s.sittings}.`;
+    $('#doneP').textContent = s.sittings < 7 ? `Did your shoulders drop? ${7 - s.sittings} more morning${7 - s.sittings === 1 ? '' : 's'} and the fire is lit.` : 'Did your shoulders drop? Come back tomorrow, and the path keeps opening.';
+    $('#done').classList.add('show'); const b = $('#beginBreath'); b.textContent = 'Sit again'; b.disabled = false;
+    setTimeout(() => $('#done').classList.remove('show'), 12000);
+  } });
+$('#beginBreath').addEventListener('click', () => ring.start());
+// the hero's own sound button mirrors the bar's toggle
+const sb = $('#soundBtn');
+sb.addEventListener('click', () => AP.sound.toggle());
+addEventListener('ap:sound', e => { sb.setAttribute('aria-pressed', String(e.detail.on)); sb.textContent = e.detail.on ? 'Sound off' : 'Sound on'; });
+$('#sitAgain').addEventListener('click', e => { e.preventDefault(); AP.scrollTo('#top', { offset: 0 }); });
+
+/* ---------- today: the line and the photograph rotate by the day of the year ---------- */
+const LINES = [
+ ['You do not make the calm. You retrieve it. You store it in your bones in the quiet days.', 'From the first crossing'],
+ ['The calm did not make him comfortable. The calm made him remember.', 'From the first crossing'],
+ ['We kept the cargo. We lost the carry.', 'From the far messengers'],
+ ['Read the weather, not the insult.', 'From the sixth reading'],
+ ['Wanting is not a feeling. It’s a heart rate.', 'From the fifth reading'],
+ ['Nobody carries the whole way. Keep the legs short and put the engineering into the hand-off.', 'From the second reading'],
+ ['Steer by the house, not the star that climbs out of reach.', 'From week two'],
+ ['You cannot hand anything to a person whose body is running.', 'From the first crossing'],
+ ['Not a hero. A person who was carried, who is now carrying, for people they will not meet.', 'From the far messengers'],
+ ['Very angry, and walking out at the normal speed: both can be true, and the second one is the discipline.', 'From the sixth reading'],
+ ['What is already given that we have stopped counting?', 'A question for the room'],
+ ['Your rising was not a threat. Your rising was your family’s glory and your whole people’s gain.', 'From the pattern that makes them'],
+];
+const PICS = ['oakcreek-rapids-1400','peaks-snow-1400','peaks-lake-sunset-2000','canyon-de-chelly-1600','pacific-rocks-1600','sedona-bellrock-1600','oakcreek-fall-log-1400','peaks-meadow-evening-1400','pacific-torrey-1400','creek-superior-stones-1200','oakcreek-pebbles-photo-1400','creek-log-1400'];
+const now = new Date(), doy = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 864e5);
+const L = LINES[doy % LINES.length];
+$('#todayQuote').textContent = L[0]; $('#todayFrom').textContent = L[1] + '. A new line, and a new photograph, every morning.';
+$('#todayImg').src = 'media/' + PICS[doy % PICS.length] + '.jpg';
+$$('#more img').forEach((im, i) => { im.src = 'media/' + PICS[(doy + 1 + i) % PICS.length] + '.jpg'; });
+$('#todayDate').textContent = 'Today, ' + now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+
+/* ---------- the star compass (hand-drawn SVG, from far-messengers-stars.js geometry) ---------- */
+(function compass(){
+  const host = $('#compass'); const NS = 'http://www.w3.org/2000/svg';
+  const el = (t, a, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const svg = el('svg', { viewBox: '0 0 400 400' }, host); const C = 200, R = 150;
+  el('circle', { class: 'ring', cx: C, cy: C, r: R, fill: 'none', 'stroke-width': 1.5 }, svg);
+  el('circle', { class: 'ring', cx: C, cy: C, r: R * .62, fill: 'none', 'stroke-width': 1, opacity: .5 }, svg);
+  const turn = el('g', { class: 'turn' }, svg);
+  for (let i = 0; i < 32; i++) { const a = i * Math.PI / 16; const r1 = R - (i % 4 ? 8 : 16), r2 = R + 6; el('line', { class: 'tick', x1: C + r1 * Math.sin(a), y1: C - r1 * Math.cos(a), x2: C + r2 * Math.sin(a), y2: C - r2 * Math.cos(a), 'stroke-width': i % 4 ? 1.2 : 2 }, turn); }
+  // the house where this road's star rises, and where it sets
+  [78.75, -78.75].forEach(deg => { const a = deg * Math.PI / 180; const a0 = a - .09, a1 = a + .09; el('path', { class: 'house', d: `M${C + R * Math.sin(a0)},${C - R * Math.cos(a0)} A${R},${R} 0 0 1 ${C + R * Math.sin(a1)},${C - R * Math.cos(a1)}`, fill: 'none' }, turn); });
+  // the star's road: an arc from the rising house over the dome to the setting house
+  el('path', { class: 'road', d: `M${C + R * Math.sin(78.75 * Math.PI / 180)},${C - R * Math.cos(78.75 * Math.PI / 180)} Q ${C} ${C - R * 1.15} ${C + R * Math.sin(-78.75 * Math.PI / 180)},${C - R * Math.cos(-78.75 * Math.PI / 180)}` }, svg);
+  const road = svg.querySelector('.road'); const Lr = road.getTotalLength();
+  const stars = [0, 1, 2].map(() => { const g = el('g', {}, svg); el('circle', { class: 'star glow', r: 9 }, g); el('circle', { class: 'star', r: 3.2 }, g); return g; });
+  const cap = el('text', { class: 'cap', x: C, y: 392, 'text-anchor': 'middle' }, svg); cap.textContent = 'THIRTY-TWO HOUSES · ONE STAR HANDS TO THE NEXT';
+  function seek(t){ stars.forEach((g, i) => { const k = ((t / 14) + i / 3) % 1; const p = road.getPointAtLength(Lr * k * .55); const fade = k < .08 ? k / .08 : k > .5 ? Math.max(0, 1 - (k - .5) / .08) : 1; g.setAttribute('transform', `translate(${p.x},${p.y})`); g.setAttribute('opacity', fade); }); }
+  let t0 = performance.now(); if (AP.motion) (function loop(){ seek((performance.now() - t0) / 1000); requestAnimationFrame(loop); })(); else seek(3);
+  AP.registerSeek(seek);
+})();
+
+/* ---------- the twelve tokens gather as you scroll past the readings ---------- */
+(function tokens(){
+  const host = $('#tokens'); if (!window.CouncilTokens) return;
+  const tk = window.CouncilTokens(host); const svg = host.querySelector('svg');
+  svg.querySelector('rect').setAttribute('fill', 'none');
+  svg.querySelectorAll('text').forEach(t => { t.setAttribute('font-family', 'Bricolage Grotesque, Figtree, sans-serif'); t.setAttribute('font-style', 'normal'); t.setAttribute('font-weight', '600'); t.setAttribute('fill', '#262723'); });
+  svg.setAttribute('viewBox', '60 60 880 880');
+  // the twelve tokens are already around the fire when the band arrives; the scroll gathers them to the center
+  tk.seek(tk.DUR * 0.5);
+  if (gsap && ST && AP.motion) {
+    gsap.to({ p: 0 }, { p: 1, ease: 'none', scrollTrigger: { trigger: '#work', start: 'top 70%', end: 'bottom 60%', scrub: AP.render ? true : 0.8, onUpdate(self){ tk.seek(tk.DUR * (0.5 + 0.5 * self.progress)); } } });
+  } else tk.seek(tk.DUR);
+})();
+
+/* ---------- the arrival moves in depth as you leave it ---------- */
+if (gsap && ST && AP.motion) {
+  gsap.to('#cutwrap', { scale: 1.12, yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: AP.render ? true : 0.5 } });
+  gsap.to('.arrive .copy', { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#top', start: '40% top', end: 'bottom top', scrub: AP.render ? true : 0.5 } });
+  // the mosaic rows drift against each other
+  $$('.mrow').forEach(r => gsap.fromTo(r, { x: -Number(r.dataset.drift) }, { x: Number(r.dataset.drift), ease: 'none', scrollTrigger: { trigger: '#ground', start: 'top bottom', end: 'bottom top', scrub: AP.render ? true : 0.6 } }));
+}
+
+/* ---------- THE PATH as a pinned scene (desktop): the trail draws, the stone travels, the stations light ---------- */
+(function pathScene(){
+  const path = $('#trailPath'), marker = $('#trailMarker'), trail = $('#trail'), svg = path.ownerSVGElement;
+  const Lp = path.getTotalLength(); path.style.strokeDasharray = Lp; path.style.strokeDashoffset = Lp;
+  const stations = $$('.station');
+  const desktop = matchMedia('(min-width: 981px)').matches;
+  function place(k){ // put the stone on the drawn trail at fraction k
+    const p = path.getPointAtLength(Lp * k); const r = svg.getBoundingClientRect(), tr = trail.getBoundingClientRect();
+    marker.style.left = ((r.left - tr.left) + p.x / 1000 * r.width) + 'px'; marker.style.top = ((r.top - tr.top) + p.y / 60 * r.height) + 'px';
+  }
+  if (desktop && gsap && ST && AP.motion && !AP.flat) {
+    html.classList.add('pinned');
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '#pathScene', start: 'top top', end: '+=170%', pin: true, scrub: AP.render ? true : 0.6, anticipatePin: 1 } });
+    tl.fromTo('#pathBg img', { scale: 1.02 }, { scale: 1.14, ease: 'none', duration: 1 }, 0)
+      .to(path, { strokeDashoffset: 0, ease: 'none', duration: .78 }, .06)
+      .to(marker, { opacity: 1, duration: .04 }, .06)
+      .to({ k: 0 }, { k: 1, duration: .78, ease: 'none', onUpdate(){ place(this.targets()[0].k); } }, .06);
+    stations.forEach((s, i) => tl.to(s, { opacity: 1, y: 0, duration: .1, ease: 'power2.out' }, .1 + i * .2));
+    tl.to(marker, { opacity: 0, duration: .06 }, .9);
+    addEventListener('resize', () => place(tl.progress()));
+  } else {
+    // phone, flat or reduced motion: the trail draws itself on entry, the stations reveal
+    marker.style.display = 'none';
+    stations.forEach(s => s.classList.add('reveal')); AP.reveal($('#path'));
+    path.classList.add('draw'); AP.draw($('#path'));
+  }
+})();
+
+/* ---------- render mode: window.DURATION + window.seek(t) for the frame renderer ---------- */
+window.DURATION = 50;
+window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return true; };
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-root=".." data-noinit="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Practice · Ancestral Peaks</title>
+<meta name="description" content="The stone breath over the creek: in four, hold four, out six, hold four, five rounds. Then the path, kept in your own browser, and the far messenger's day.">
+<meta name="robots" content="noindex">
+<script>if(location.hash==='#render')window.__render=true;if(location.hash==='#flat')window.__flat=true;</script>
+<link rel="stylesheet" href="../../shared/vendor/lenis.css">
+<link rel="stylesheet" href="../../shared/site.css">
+<link rel="stylesheet" href="../css/agent3.css">
+<style>
+  .scene .layer.film{clip-path:inset(0 0 0 calc(52% + 48% * var(--wipe,0)))}
+  @media (max-width:900px){.scene .layer.film{clip-path:inset(0 0 calc(48% + 52% * var(--wipe,0)) 0)}}
+</style>
+</head>
+<body>
+
+<header data-ap-nav data-active="/practice/" data-menu-image="../media/img/oakcreek-rapids-1400.jpg"></header>
+
+<!-- THE BREATH: five rounds over his real Oak Creek water -->
+<section class="breath" id="breath" data-scene="creek" data-scene-label="Oak Creek">
+  <div class="film">
+    <video id="pebblesVid" src="../media/video/v-pebbles.mp4" poster="../media/video/v-pebbles-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <canvas class="field" id="breathField" aria-hidden="true"></canvas>
+  <div class="ringwrap"><div id="ring" aria-live="polite"></div></div>
+  <div class="settle" id="settle"><p>Settle. Listen to the water.</p></div>
+  <div class="copy">
+    <div>
+      <p class="label" style="color:rgba(255,255,255,.75)">The Practice</p>
+      <h1 data-words="60">The door is breath.</h1>
+      <p class="lede reveal"><b>In four. Hold four. Out six. Hold four.</b> Five rounds over the creek, with soft tones, then settle and listen to the water. One sitting a morning, and the path opens as you return.</p>
+      <div class="acts reveal">
+        <button class="btn earth" id="beginBtn" type="button">Begin five rounds <span class="arrow">→</span></button>
+        <button class="btn ghost" id="soundBtn" type="button" aria-pressed="false">Sound on</button>
+      </div>
+      <p class="fine reveal">Ninety seconds. Your sittings are kept in this browser only. <a id="settledLink" href="#path" style="color:#fff">I have already settled today →</a></p>
+    </div>
+    <div class="you reveal" aria-label="Your path">
+      <span><b id="ySit">0</b>sittings</span><span><b id="yDays">0</b>days since the first</span><span><b id="yWeek">0</b>this week</span>
+      <span class="tier" id="yTier">Your first sitting is the door</span>
+    </div>
+  </div>
+  <div class="done" id="done"><h3 id="doneH">That was one sitting.</h3><p id="doneP">Did your shoulders drop? The door is open.</p></div>
+</section>
+
+<!-- THE PATH -->
+<section class="path on-dark" id="path" data-scene="dawn" data-scene-label="first light">
+  <div class="bg"><img src="../media/img/oakcreek-rim-2000.jpg" srcset="../media/img/oakcreek-rim-1000.jpg 1000w, ../media/img/oakcreek-rim-2000.jpg 2000w" sizes="100vw" alt="" loading="lazy"></div>
+  <div class="inner">
+    <h2 class="reveal">The path deepens as you return.</h2>
+    <p class="intro reveal">No account. Your sittings are kept in this browser, and nothing is sold on the way. The gate is a threshold, not a lock: if you have already settled, walk through.</p>
+    <div class="you reveal" style="position:static;display:inline-grid;margin-top:1.3rem"><span><b id="pSit">0</b>sittings</span><span><b id="pDays">0</b>days since the first</span><span><b id="pWeek">0</b>this week</span></div>
+    <div class="trail">
+      <svg class="line" viewBox="0 0 1000 60" preserveAspectRatio="none" aria-hidden="true"><path class="draw" data-start="top 85%" data-end="top 35%" d="M20 40 C 180 10, 300 60, 420 32 S 650 10, 760 36 S 920 54, 985 30"/></svg>
+      <div class="stations">
+        <div class="station reveal" data-tier="1"><div class="ph"><img src="../media/img/oakcreek-pebbles-photo-800.jpg" alt="" loading="lazy"></div><h3>The Door</h3><p>One breath, counted, by the creek. The stone breath, five rounds.</p><span class="st">Opens with your first sitting</span></div>
+        <div class="station reveal d1" data-tier="2"><div class="ph"><img src="../media/img/fire-moon-800.jpg" alt="" loading="lazy"></div><h3>The Fire</h3><p>Seven mornings. The stone in the hand, the record of hard things you came through.</p><span class="st">After seven mornings</span></div>
+        <div class="station reveal d2" data-tier="3"><div class="ph"><img src="../media/img/red-trail-walker-800.jpg" alt="" loading="lazy"></div><h3>The Crossing</h3><p>A month of returning, several mornings a week. The eight weeks, one training at a time.</p><span class="st">After a month</span></div>
+        <div class="station reveal d3" data-tier="4"><div class="ph"><img src="../media/img/fire-circle-800.jpg" alt="" loading="lazy"></div><h3>The Council</h3><p>Held with others who kept the practice. The deep studies and the live voice.</p><span class="st">When the crossing is held</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FAR MESSENGER'S DAY -->
+<section class="day" id="day" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">The far messenger's day.</h2>
+    <p class="reveal">Live it imperfectly and daily rather than perfectly and never. Four movements, the way the carriers kept them. Each one has its own ground and its own sound.</p>
+  </div>
+</section>
+
+<section class="scene s1" data-scene="dawn" data-scene-label="first light" data-field="dawn" data-draw-trigger>
+  <div class="layer still"><img src="../media/img/peaks-morning-2000.jpg" srcset="../media/img/peaks-morning-1000.jpg 1000w, ../media/img/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The Peaks under morning cloud" loading="lazy"></div>
+  <div class="layer film"><video src="../media/video/v-dawn-meadow.mp4" poster="../media/video/v-dawn-meadow-poster.jpg" muted loop playsinline preload="none"></video></div>
+  <div class="layer scrim"></div>
+  <canvas class="field" aria-hidden="true"></canvas>
+  <svg class="drawn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="draw" data-start="top 60%" data-end="top -40%" d="M-20 640 L1020 640" fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1.5"/>
+    <path class="draw" data-start="top 50%" data-end="top -60%" d="M120 640 C 260 300, 740 300, 880 640" fill="none" stroke="#D1A63C" stroke-width="3" stroke-linecap="round"/>
+    <circle class="draw" data-start="top 10%" data-end="top -70%" cx="500" cy="392" r="46" fill="none" stroke="#D1A63C" stroke-width="3"/>
+  </svg>
+  <div class="text">
+    <div><div class="num">1</div><h3>First light</h3><p>Rise before the noise. Set the frequency before the day sets it for you. Name what is already given until the body believes it.</p><p class="when">A meadow at 5:39 in the morning. The Peaks before the cloud lifts.</p></div>
+    <div class="side"><span class="chip">Morning · the dawn wind</span></div>
+  </div>
+</section>
+
+<section class="scene s2" data-scene="creek" data-scene-label="the creek" data-field="water" data-draw-trigger>
+  <div class="layer still"><img src="../media/img/sand-road-1600.jpg" srcset="../media/img/sand-road-800.jpg 800w, ../media/img/sand-road-1600.jpg 1600w" sizes="100vw" alt="A sand road with a runner far ahead" loading="lazy"></div>
+  <div class="layer film"><video src="../media/video/v-creek-rapids-2.mp4" poster="../media/video/v-creek-rapids-2-poster.jpg" muted loop playsinline preload="none"></video></div>
+  <div class="layer scrim"></div>
+  <canvas class="field" aria-hidden="true"></canvas>
+  <svg class="drawn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="draw" data-start="top 60%" data-end="top -60%" d="M-20 820 C 150 760, 260 700, 420 690 S 700 640, 1020 560" fill="none" stroke="#D1A63C" stroke-width="3" stroke-dasharray="10 14" stroke-linecap="round"/>
+    <circle class="draw" data-start="top 20%" data-end="top -30%" cx="420" cy="690" r="14" fill="none" stroke="#fff" stroke-width="2.5"/>
+    <circle class="draw" data-start="top 0%" data-end="top -50%" cx="760" cy="625" r="14" fill="none" stroke="#fff" stroke-width="2.5"/>
+  </svg>
+  <div class="text">
+    <div><div class="num">2</div><h3>Through the day</h3><p>Soften the eye when friction rises. Refuse overburden; hand one thing to the circle. One act of honor, daily.</p><p class="when">Water over boulders in March. A runner on the sand road, carrying the next leg.</p></div>
+    <div class="side"><span class="chip">Through the day · the creek</span></div>
+  </div>
+</section>
+
+<section class="scene s3" data-scene="ocean" data-scene-label="the Pacific" data-field="stars" data-draw-trigger>
+  <div class="layer still"><img src="../media/img/peaks-lake-sunset-2000.jpg" srcset="../media/img/peaks-lake-sunset-1000.jpg 1000w, ../media/img/peaks-lake-sunset-2000.jpg 2000w" sizes="100vw" alt="The lake at sunset, the Peaks dark on the horizon" loading="lazy"></div>
+  <div class="layer film"><video src="../media/video/v-pacific-sunset.mp4" poster="../media/video/v-pacific-sunset-poster.jpg" muted loop playsinline preload="none"></video></div>
+  <div class="layer scrim"></div>
+  <canvas class="field" aria-hidden="true"></canvas>
+  <svg class="drawn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="draw" data-start="top 60%" data-end="top 10%" d="M120 300 L 560 300" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+    <path class="draw" data-start="top 40%" data-end="top -10%" d="M120 350 L 480 350" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+    <path class="draw" data-start="top 20%" data-end="top -30%" d="M120 400 L 520 400" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+    <path class="draw" data-start="top 10%" data-end="top -60%" d="M760 240 A 70 70 0 1 1 700 180" fill="none" stroke="#D1A63C" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div class="text">
+    <div><div class="num">3</div><h3>Evening</h3><p>Three lines: what I carried, what I learned, whom I honored. Release the day's scarcity moment. Say it the other way.</p><p class="when">The Pacific at 7:53 in the evening. The lake at 7:19, with the mountain gone dark.</p></div>
+    <div class="side"><span class="chip">Evening · the Pacific</span></div>
+  </div>
+</section>
+
+<section class="scene s4" data-scene="hearth" data-scene-label="the fire" data-field="embers" data-draw-trigger>
+  <div class="layer still"><img src="../media/img/elder-hands-braiding-1800.jpg" srcset="../media/img/elder-hands-braiding-900.jpg 900w, ../media/img/elder-hands-braiding-1800.jpg 1800w" sizes="100vw" alt="An elder's hands braiding" loading="lazy"></div>
+  <div class="layer film"><video src="../media/video/v-hand-wool.mp4" poster="../media/video/v-hand-wool-poster.jpg" muted loop playsinline preload="none"></video></div>
+  <div class="layer scrim"></div>
+  <canvas class="field" aria-hidden="true"></canvas>
+  <svg class="drawn" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <circle class="draw" data-start="top 60%" data-end="top -40%" cx="500" cy="430" r="190" fill="none" stroke="#D1A63C" stroke-width="3" stroke-dasharray="4 18" stroke-linecap="round"/>
+    <path class="draw" data-start="top 30%" data-end="top -60%" d="M330 430 c 40 -40 80 40 120 0 s 80 40 120 0 s 80 40 110 0" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+  </svg>
+  <div class="text">
+    <div><div class="num">4</div><h3>The week</h3><p>One real circle or kin call. Hands on a craft. Hours on the land, no screen. One hour of deliberate nothing.</p><p class="when">A hand on the wool. Hands at the braid.</p></div>
+    <div class="side"><span class="chip">The week · the fire</span></div>
+  </div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" data-scene="creek" data-scene-label="Oak Creek">
+  <div class="kb"><img src="../media/img/oakcreek-fall-log-1400.jpg" alt="Oak Creek in fall color with the fallen log" loading="lazy"></div>
+  <div class="inner">
+    <div>
+      <h2 class="reveal">Sit again tomorrow.</h2>
+      <div class="acts reveal"><a class="btn light" href="../listen/index.html">The Listening Room <span class="arrow">→</span></a><a class="btn ghost" href="https://app.ancestralpeaks.com">Begin <span class="arrow">→</span></a></div>
+    </div>
+    <p class="reveal">The count stays the same: in four, hold four, out six, hold four. The creek is the same creek. What changes is you, a little, each morning.</p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script src="../../shared/vendor/gsap.min.js"></script>
+<script src="../../shared/vendor/ScrollTrigger.min.js"></script>
+<script src="../../shared/vendor/lenis.min.js"></script>
+<script src="../../shared/site.js"></script>
+<script>
+  ['dawn','ocean','desert','hearth','creek'].forEach(s=>AP.sound.register(s,'../media/beds/bed-'+s+'.mp3'));
+  AP.init();
+</script>
+<script src="../js/peaks-field.js"></script>
+<script src="../js/peaks-voice.js"></script>
+<script src="../js/peaks-practice.js"></script>
+</body>
+</html>

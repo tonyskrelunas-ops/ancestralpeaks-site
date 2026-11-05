@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-root=".." data-noinit="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Listening Room · Ancestral Peaks</title>
+<meta name="description" content="Sessions spoken in a masked voice, each over our own footage. The picture moves with the voice, and the room remembers where you stopped.">
+<meta name="robots" content="noindex">
+<script>if(location.hash==='#render')window.__render=true;if(location.hash==='#flat')window.__flat=true;</script>
+<link rel="stylesheet" href="../../shared/vendor/lenis.css">
+<link rel="stylesheet" href="../../shared/site.css">
+<link rel="stylesheet" href="../css/agent3.css">
+</head>
+<body>
+
+<header data-ap-nav data-active="/listen/" data-menu-image="../media/img/oakcreek-rim-2000.jpg"></header>
+
+<!-- ARRIVAL: the creek, and water that answers the pointer -->
+<section class="arrive" id="top" data-scene="creek" data-scene-label="the creek">
+  <div class="film">
+    <video src="../media/video/v-creek-rapids.mp4" poster="../media/video/v-creek-rapids-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <canvas class="field" id="roomField" aria-hidden="true"></canvas>
+  <div class="copy">
+    <p class="label" style="color:rgba(255,255,255,.75)">Ancestral Peaks</p>
+    <h1 data-words="60">The Listening Room.</h1>
+    <p class="lede reveal"><b>Eight sessions and ten short voice notes, spoken in a masked voice.</b> Each one plays over our own footage, the water or the wind or the fire moves with the voice, and the room remembers where you stopped.</p>
+    <div class="acts reveal">
+      <button class="btn earth" id="playToday" type="button">Play today's session <span class="arrow">→</span></button>
+      <button class="btn ghost" id="soundBtn" type="button" aria-pressed="false">Sound on</button>
+    </div>
+    <p class="fine reveal">Move across the water. Rest on a session to hear a few seconds of it.</p>
+  </div>
+  <a class="today reveal" id="today" href="#sessions" aria-label="Play today's session">
+    <div class="pic"><img id="todayImg" src="../media/img/oakcreek-pebbles-photo-800.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+    <div class="t"><p class="kick" id="todayKick">Today</p><h2 id="todayTitle">Before we start</h2><p id="todayLine"></p><span class="masked">Spoken in a masked voice</span></div>
+  </a>
+</section>
+
+<!-- THE SESSIONS -->
+<section class="sessions" id="sessions" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">Eight sessions. Begin where you are.</h2>
+    <p class="reveal">Each one keeps its place when you leave. Rest on a row to hear a few seconds of the voice, and the sound of that country comes up under it.</p>
+  </div>
+  <ol class="list" id="list"></ol>
+</section>
+
+<!-- VOICE NOTES -->
+<section class="notes on-dark" id="notes" data-scene="hearth" data-scene-label="the fire">
+  <div class="bg"><img src="../media/img/fire-circle-1600.jpg" alt="" loading="lazy"></div>
+  <div class="head">
+    <h2 class="reveal">Voice notes.</h2>
+    <p class="reveal"><span id="noteCount">Short ones</span>, a minute each, for the drive or before a hard meeting. Spoken in a masked voice.</p>
+  </div>
+  <div class="shelf" id="shelf"></div>
+</section>
+
+<!-- CLOSE -->
+<section class="close" data-scene="dawn" data-scene-label="first light">
+  <div class="kb"><img src="../media/img/peaks-morning-2000.jpg" srcset="../media/img/peaks-morning-1000.jpg 1000w, ../media/img/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The Peaks under morning cloud" loading="lazy"></div>
+  <div class="inner">
+    <div>
+      <h2 class="reveal">Tomorrow the pick changes.</h2>
+      <div class="acts reveal"><a class="btn light" href="../practice/index.html">The Practice <span class="arrow">→</span></a><a class="btn ghost" href="https://app.ancestralpeaks.com">Begin <span class="arrow">→</span></a></div>
+    </div>
+    <p class="reveal">Come back in the morning. A different session stands on the water, and the ones you began are waiting where you left them.</p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<!-- THE PLAYER: a full-screen scene over his footage, the field moving with the voice -->
+<div class="player" id="player" role="dialog" aria-modal="true" aria-label="Session player">
+  <div class="still"><img id="pImg" src="" alt=""></div>
+  <div class="film"><video id="pVideo" muted loop playsinline preload="auto"></video></div>
+  <div class="scrim"></div>
+  <canvas class="field" id="pField" aria-hidden="true"></canvas>
+  <div class="ptop">
+    <button class="closebtn" id="pClose" type="button">← Back to the room</button>
+    <span class="masked">Spoken in a masked voice</span>
+  </div>
+  <div class="fin" id="pFin"><h3 id="pFinH"></h3><p id="pFinP"></p><div class="acts"><button class="btn light" id="pNext" type="button">Next session <span class="arrow">→</span></button><button class="btn ghost" id="pAgain" type="button">Sit with this one again</button></div></div>
+  <div class="pcopy">
+    <div>
+      <p class="kick" id="pKick"></p>
+      <h2 id="pTitle"></h2>
+      <p class="pline" id="pLine"></p>
+    </div>
+    <div class="btns">
+      <button class="rb" id="pBack" type="button" aria-label="Back fifteen seconds">−15</button>
+      <button class="pp" id="pPlay" type="button" aria-label="Play or pause"><svg class="ico-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ico-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg></button>
+      <button class="rb" id="pFwd" type="button" aria-label="Forward fifteen seconds">+15</button>
+    </div>
+    <div class="ctl">
+      <span class="time" id="pCur">0:00</span>
+      <input class="scrub" id="pScrub" type="range" min="0" max="1000" value="0" aria-label="Position in the session">
+      <span class="time" id="pDur">0:00</span>
+    </div>
+  </div>
+  <audio id="voice" preload="none" crossorigin="anonymous"></audio>
+</div>
+
+<script src="../../shared/vendor/gsap.min.js"></script>
+<script src="../../shared/vendor/ScrollTrigger.min.js"></script>
+<script src="../../shared/vendor/lenis.min.js"></script>
+<script src="../../shared/site.js"></script>
+<script>
+  // the real bed loops (built with the same recipes as the sessions' own beds), then the shell
+  ['dawn','ocean','desert','hearth','creek'].forEach(s=>AP.sound.register(s,'../media/beds/bed-'+s+'.mp3'));
+  AP.init();
+</script>
+<script src="../media/sessions.js"></script>
+<script src="../js/peaks-field.js"></script>
+<script src="../js/peaks-voice.js"></script>
+<script src="../js/peaks-listen.js"></script>
+<script>AP.reveal(document.getElementById('list'));AP.parallax(document.getElementById('list'));document.querySelectorAll('#shelf .ap-player[data-src]').forEach(el=>AP.player(el));</script>
+</body>
+</html>

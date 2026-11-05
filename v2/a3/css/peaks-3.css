@@ -1,0 +1,73 @@
+/* Ancestral Peaks — agent 3 (Listening Room + Practice).
+   Tokens copied from the sample home page of 2026-11-04 so the pages read as one site.
+   When shared/site.css lands from agent 1, link it before this file; these tokens are the same names. */
+:root{
+  --stone:#E4E8EA;
+  --stone-2:#D3DADD;
+  --ink:#262723;
+  --ink-2:#4C4937;
+  --creek:#44665A;
+  --earth:#A4431F;
+  --sky:#5C8BD0;
+  --gold:#D1A63C;
+  --night:#100B0D;
+  --line:rgba(38,39,35,.14);
+  --display:"Bricolage Grotesque","Avenir Next Condensed","Helvetica Neue",Arial,sans-serif;
+  --text:"Figtree","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(16px,4vw,64px);
+  --kb:0;
+  color-scheme:light;
+}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;overflow-x:clip;background:var(--stone)}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 clamp(1rem,.96rem + .3vw,1.15rem)/1.55 var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:800;letter-spacing:-.025em;line-height:.98;margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit;cursor:pointer}
+.btn{display:inline-flex;align-items:center;gap:.6em;background:var(--ink);color:#fff;border:0;border-radius:999px;padding:.95em 1.5em;font-weight:600;text-decoration:none;letter-spacing:.005em;transition:transform .2s,background .2s}
+.btn:hover{transform:translateY(-1px);background:#000}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.light:hover{background:var(--stone)}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+.btn.ghost[aria-pressed="true"]{background:#fff;color:var(--ink);border-color:#fff}
+.btn.earth{background:var(--earth)}
+.btn.earth:hover{background:#8B3617}
+.btn.creek{background:var(--creek)}
+.btn.creek:hover{background:#345248}
+.btn .arrow{font-family:var(--display);font-weight:700}
+.wrap{padding-inline:var(--gutter)}
+.num{font-family:var(--display);font-weight:800;letter-spacing:-.04em;line-height:.8}
+.label{font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.kb{overflow:hidden;position:relative}
+.kb>img,.kb>video{width:100%;height:100%;object-fit:cover;transform:scale(calc(1.04 + var(--kb) * .0025)) translate3d(calc(var(--kb) * -0.5px),0,0);transform-origin:60% 40%;will-change:transform}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+html.render .reveal{opacity:1;transform:none;transition:none}
+html.render{scroll-behavior:auto}
+html.render *{transition:none !important}
+.masked{display:inline-flex;align-items:center;gap:.5em;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.masked::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(209,166,60,.25)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* top bar, as on the home page */
+.bar{position:absolute;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:calc(env(safe-area-inset-top,0px) + 18px) var(--gutter) 0;color:#fff}
+.mark{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.01em}
+.mark svg{width:30px;height:30px;flex:none}
+.nav{display:flex;gap:1.6rem;font-weight:600;font-size:.95rem}
+.nav a{text-decoration:none;opacity:.9}
+.nav a:hover,.nav a[aria-current]{opacity:1;text-decoration:underline;text-underline-offset:.2em}
+.bar .btn{padding:.7em 1.2em;font-size:.95rem}
+@media (max-width:900px){.nav{display:none}}
+
+footer{background:var(--night);color:rgba(255,255,255,.7);padding:1.6rem var(--gutter) calc(1.6rem + env(safe-area-inset-bottom,0px));display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.9rem;border-top:1px solid rgba(255,255,255,.1)}
+footer b{color:#fff;font-family:var(--display);font-weight:800}
+footer a{color:#fff;text-underline-offset:.2em}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{transition:none;opacity:1;transform:none}
+  .kb>img,.kb>video{transform:none}
+  html{scroll-behavior:auto}
+}
