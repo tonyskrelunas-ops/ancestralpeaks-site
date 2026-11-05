@@ -247,6 +247,35 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 .tile .ap-loop{position:absolute;inset:0}
 @media (max-width:980px){.mrow{grid-template-columns:repeat(3,minmax(0,1fr))}.tile.wide{grid-column:span 2}}
 
+/* ---------- JOIN: two doors into the same room ---------- */
+.join{position:relative;background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
+.join .bg{position:absolute;inset:-8% 0;z-index:0}
+.join .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 50%;opacity:.6}
+.join .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.88),rgba(16,11,13,.5) 30%,rgba(16,11,13,.62) 70%,rgba(16,11,13,.94))}
+.join .ripples{position:absolute;inset:0;z-index:0;mix-blend-mode:screen}
+.join .inner{position:relative;z-index:1;padding:clamp(64px,9vw,130px) var(--gutter) clamp(40px,6vw,88px)}
+.join .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1.5rem 3rem;align-items:end}
+.join h2{font-size:clamp(2.4rem,5.6vw,5.2rem);max-width:12ch}
+.join .head p{color:rgba(255,255,255,.88);font-size:1.08rem;max-width:34rem;padding-bottom:.4rem}
+.join .doorway{position:relative;margin-top:clamp(32px,5vw,72px);padding:clamp(28px,4vw,56px) clamp(20px,3vw,48px) 0}
+.join svg.arch{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.join svg.arch path{fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;opacity:.85}
+.doors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(28px,4vw,64px)}
+.door{display:grid;gap:.8rem;align-content:start;padding-bottom:clamp(20px,3vw,40px)}
+.door+.door{border-left:1px solid rgba(255,255,255,.22);padding-left:clamp(28px,4vw,64px)}
+.door .num{font-size:clamp(3rem,6vw,5.5rem);color:var(--gold);line-height:.85}
+.door h3{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.6rem);font-weight:800;max-width:16ch}
+.door p{color:rgba(255,255,255,.86);max-width:30rem}
+.door .btn{justify-self:start;margin-top:.4rem}
+.join .after{margin-top:1.4rem;display:flex;gap:1.2rem 2rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.join .fine{color:rgba(255,255,255,.72);font-size:.95rem}
+@media (max-width:980px){
+  .join .head{grid-template-columns:1fr}
+  .doors{grid-template-columns:1fr;gap:1.6rem 0}
+  .door+.door{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.22);padding-top:1.6rem}
+  .join .doorway{padding:clamp(22px,4vw,40px) 16px 0}
+}
+
 /* ---------- CLOSE ---------- */
 .close{position:relative;min-height:min(92vh,820px);display:flex;align-items:flex-end;color:#fff;background:var(--night);overflow:hidden}
 .close .bg{position:absolute;inset:0}
@@ -303,7 +332,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
   <div class="pic">
     <img id="todayImg" src="media/oakcreek-rapids-1400.jpg" alt="">
     <canvas class="ap-particles pollen" data-kind="pollen" data-n="60"></canvas>
-    <a class="filmtile" href="../a3/listen/" aria-label="The Week 1 film, in the Listening Room">
+    <a class="filmtile" href="../listen/" aria-label="The Week 1 film, in the Listening Room">
       <div class="ap-loop" data-src="media/v-film-week1.mp4" data-poster="media/v-film-week1-poster.jpg"></div>
       <span>From the Week 1 film<small>Six minutes, every scene our own footage · Listening Room</small></span>
     </a>
@@ -460,7 +489,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
       <div class="ap-player compact reveal d4" data-src="media/sessions/the-far-messengers-of-time.mp3" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="377" data-color="#E08A3C"></div>
       <div class="ap-player compact reveal d4" data-src="media/sessions/the-morning-journey.mp3" data-title="The Morning Journey" data-sub="Eighteen minutes facing the Peaks: gratitude, the pebble, the breath, far to the east they are singing. Dawn bed." data-visual="horizon" data-duration="1118" data-color="#8FB8A8"></div>
       <div class="ap-player compact reveal d4" data-src="media/sessions/the-gratitude-meditation.mp3" data-title="The Gratitude Meditation" data-sub="The stream, the medicines, the pebble and its journey, four rounds of the breath with a body scan, a gratitude list, and the eagle. Dawn bed." data-visual="horizon" data-duration="502" data-color="#8FB8A8"></div>
-      <div class="all reveal"><a class="btn light" href="../a3/listen/">The whole Listening Room <span class="arrow">→</span></a><span class="masked">Spoken in a masked voice</span></div>
+      <div class="all reveal"><a class="btn light" href="../listen/">The whole Listening Room <span class="arrow">→</span></a><span class="masked">Spoken in a masked voice</span></div>
     </div>
   </div>
   <div class="notes">
@@ -492,7 +521,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
       <div class="reading reveal d1"><div class="num">6</div><div><h3><span>Discipline</span>Calm is stored, not summoned</h3><p>Composure is a reserve, built on quiet days and spent on hard ones. Read the weather, not the insult.</p></div></div>
     </div>
     <div class="say reveal"><button class="ap-say" data-src="media/say/w3-storm.mp3" data-who="Week three" data-text="His job in a storm is not to make progress. It is not to get lost, and to pick up the way again when the air clears. Because the ridges are still there."></button></div>
-    <div class="acts reveal"><a class="btn" href="../a4/work/">The six readings <span class="arrow">→</span></a><a class="btn ghost dark" href="../a4/work/">For a board or a council</a></div>
+    <div class="acts reveal"><a class="btn" href="../work/">The six readings <span class="arrow">→</span></a><a class="btn ghost dark" href="../work/">For a board or a council</a></div>
   </div>
 </section>
 
@@ -501,12 +530,12 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
   <div class="amber" data-parallax-trigger><img src="media/antelope-light-800.jpg" alt="" data-parallax=".2"></div>
   <div class="head">
     <h2 class="reveal">The companion to the books.</h2>
-    <p class="reveal">Each book opens a door here. The Stone Breath is the first book's practice, counted above with the creek. The eight weeks follow the disciplines of the second. The readings for your work come out of the third. <a href="../a4/books/">The books, and what each one opens here.</a></p>
+    <p class="reveal">Each book opens a door here. The Stone Breath is the first book's practice, counted above with the creek. The eight weeks follow the disciplines of the second. The readings for your work come out of the third. <a href="../books/">The books, and what each one opens here.</a></p>
   </div>
   <div class="shelf">
-    <a class="book reveal" href="../a4/books/"><img src="media/cover-stone-breath-cover-600.jpg" alt="Stone Breath, book one"><div><h3>Stone Breath</h3><p>A story of remembering, and the breath counted on a river pebble: in four, hold four, out six, hold four.</p><small>Book one · the Door</small></div></a>
-    <a class="book reveal d1" href="../a4/books/"><img src="media/cover-far-messengers-cover-600.jpg" alt="The Far Messengers, book two"><div><h3>The Far Messengers</h3><p>Seven days at a world congress, and the seven disciplines the carriers trained. The eight weeks follow them.</p><small>Book two · the Crossing</small></div></a>
-    <a class="book reveal d2" href="../a4/books/"><img src="media/cover-council-fire-cover-600.jpg" alt="The Council Fire, book three"><div><h3>The Council Fire</h3><p>The original instructions for the world we rebuild. The readings for goals, structure, meetings and governance come from here.</p><small>Book three · the Council</small></div></a>
+    <a class="book reveal" href="../books/"><img src="media/cover-stone-breath-cover-600.jpg" alt="Stone Breath, book one"><div><h3>Stone Breath</h3><p>A story of remembering, and the breath counted on a river pebble: in four, hold four, out six, hold four.</p><small>Book one · the Door</small></div></a>
+    <a class="book reveal d1" href="../books/"><img src="media/cover-far-messengers-cover-600.jpg" alt="The Far Messengers, book two"><div><h3>The Far Messengers</h3><p>Seven days at a world congress, and the seven disciplines the carriers trained. The eight weeks follow them.</p><small>Book two · the Crossing</small></div></a>
+    <a class="book reveal d2" href="../books/"><img src="media/cover-council-fire-cover-600.jpg" alt="The Council Fire, book three"><div><h3>The Council Fire</h3><p>The original instructions for the world we rebuild. The readings for goals, structure, meetings and governance come from here.</p><small>Book three · the Council</small></div></a>
   </div>
 </section>
 
@@ -517,6 +546,40 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
     <div class="tally reveal"><span><b data-count="47">0</b>photographs</span><span><b data-count="18">0</b>film clips</span><span><b data-count="7">0</b>sessions</span><span><b data-count="10">0</b>voice notes</span></div>
   </div>
   <div class="mosaic" id="mosaic"></div>
+</section>
+
+<!-- ===== JOIN: the companion membership, two doors into the same room ===== -->
+<section class="join" id="join" data-scene="creek" data-scene-label="the water over the pebbles">
+  <div class="bg kb" data-parallax-trigger><img src="media/oakcreek-pebbles-photo-1400.jpg" srcset="media/oakcreek-pebbles-photo-800.jpg 800w, media/oakcreek-pebbles-photo-1400.jpg 1400w" sizes="100vw" alt="Colored pebbles under the moving water of Oak Creek" data-parallax=".22"></div>
+  <canvas class="ap-particles ripples" data-kind="ripples" data-n="5" data-opacity=".55"></canvas>
+  <div class="inner">
+    <div class="head">
+      <h2 class="reveal" data-words="80">There is room. There is always room.</h2>
+      <p class="reveal">The membership is the companion to the books. Inside are the far messenger writings, the films, the sessions in the masked voice, short and long, the writings from the books, and first word of the workshops at Rancho La Puerta and 1440.</p>
+    </div>
+    <div class="doorway" data-draw-trigger>
+      <svg class="arch" viewBox="0 0 1000 400" preserveAspectRatio="none" aria-hidden="true"><path class="draw" d="M14 400 V120 Q14 14 120 14 H880 Q986 14 986 120 V400" vector-effect="non-scaling-stroke" data-start="top 85%" data-end="top 30%"/></svg>
+      <div class="doors">
+        <div class="door reveal">
+          <div class="num">1</div>
+          <h3>Bought a book? Your first month is free.</h3>
+          <p>Any of the three, bought direct. The month is yours, the room is open, and the sittings you have kept on this page come with you.</p>
+          <a class="btn light" href="#join-placeholder" data-offer="book-month">Come in with the book <span class="arrow">→</span></a>
+        </div>
+        <div class="door reveal d1">
+          <div class="num">2</div>
+          <h3>Start with a free week. Your first month is then half off.</h3>
+          <p>Seven mornings of the sessions and the breath. If it holds, the first month after is half off, and you decide.</p>
+          <a class="btn earth" href="#join-placeholder" data-offer="week-then-half">Begin the free week <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="after">
+      <button class="ap-say dark reveal" data-src="media/say/bw-thank.mp3" data-who="Before we start" data-text="Thank you for taking this journey. Thank you for still being here. You are beautiful. You are strong."></button>
+      <p class="fine reveal">Either door opens the same room.</p>
+    </div>
+    <div id="join-placeholder" aria-hidden="true"></div>
+  </div>
 </section>
 
 <!-- ===== CLOSE ===== -->
