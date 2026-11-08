@@ -1,6 +1,6 @@
 /* Ancestral Peaks, the installable app: pages come fresh from the network when there is one and from the
    phone when there isn't; images, previews and the free sessions are kept on the phone after the first play. */
-const VERSION = 'peaks-app-2026-11-08d';
+const VERSION = 'peaks-app-2026-11-08e';
 const SHELL = ['/', '/listen/', '/reading/', '/manifest.webmanifest', '/app/icon-192.png', '/app/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -18,7 +18,12 @@ self.addEventListener('fetch', e => {
       .catch(() => caches.match(req).then(r => r || caches.match('/'))));
     return;
   }
-  if (/\.(?:jpg|jpeg|png|webp|svg|css|js|woff2|mp3)$/i.test(url.pathname)) {
+  if (/\.(?:css|js)$/i.test(url.pathname)) {                 // styles and scripts: always the newest from the network, the phone's copy only offline
+    e.respondWith(fetch(req).then(r => { if (r.ok && r.status === 200) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); } return r; })
+      .catch(() => caches.match(req, { ignoreSearch: true })));
+    return;
+  }
+  if (/\.(?:jpg|jpeg|png|webp|svg|woff2|mp3)$/i.test(url.pathname)) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
       if (r.ok && r.status === 200) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
       return r;

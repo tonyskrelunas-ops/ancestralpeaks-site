@@ -6,8 +6,8 @@
 <title>Ancestral Peaks</title>
 <meta name="description" content="A morning practice by the water. Settle the body, then carry what matters whole.">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="shared/vendor/lenis.css">
-<link rel="stylesheet" href="shared/site.css">
+<link rel="stylesheet" href="shared/vendor/lenis.css?v=1108e">
+<link rel="stylesheet" href="shared/site.css?v=1108e">
 <style>
 /* ===== HOME PAGE — built on shared/site.css. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
 
@@ -298,7 +298,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Peaks">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="/app/pwa.js" defer></script>
+<script src="/app/pwa.js?v=1108e" defer></script>
 </head>
 <body>
 
@@ -629,18 +629,18 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 <footer data-ap-foot></footer>
 
 <script>window.__render = location.hash === '#render'; window.__flat = location.hash === '#flat';</script>
-<script src="shared/vendor/gsap.min.js"></script>
-<script src="shared/vendor/ScrollTrigger.min.js"></script>
-<script src="shared/vendor/lenis.min.js"></script>
-<script src="js/council-tokens.js"></script>
-<script src="js/far-messengers-stars.js"></script>
-<script src="media/notes/voice-notes.js"></script>
+<script src="shared/vendor/gsap.min.js?v=1108e"></script>
+<script src="shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
+<script src="shared/vendor/lenis.min.js?v=1108e"></script>
+<script src="js/council-tokens.js?v=1108e"></script>
+<script src="js/far-messengers-stars.js?v=1108e"></script>
+<script src="media/notes/voice-notes.js?v=1108e"></script>
 <script src="media/abundance/abundance-meditations.js?v=7"></script>
 <script>
 /* ---------- the voice-notes shelf and the mosaic are built BEFORE the shell wires the page (data-noinit, then AP.init) ---------- */
 document.documentElement.dataset.noinit = '1';
 </script>
-<script src="shared/site.js"></script>
+<script src="shared/site.js?v=1108e"></script>
 <script>
 (function(){
 const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
@@ -853,6 +853,6 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
 })();
 </script>
 <script src="./shared/media-guard.js?v=1" defer></script>
-<script src="js/peaks-welcome.js" defer></script>
+<script src="js/peaks-welcome.js?v=1108e" defer></script>
 </body>
 </html>
