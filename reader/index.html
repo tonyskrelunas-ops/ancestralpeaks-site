@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Come in with the book · Ancestral Peaks</title>
+<meta name="description" content="For readers of Stone Breath, The Council Fire and The Far Messengers: the word at the end of your book opens your first month free.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../shared/vendor/lenis.css">
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="../css/pages.css">
+<style>
+/* /reader/ — the word at the end of the book */
+.reader .hero .copy{align-items:end}
+.reader .hero .bg>img{object-position:50% 62%}
+.reader .hero .bg::after{background:linear-gradient(90deg,rgba(16,11,13,.6) 0%,rgba(16,11,13,.25) 55%,rgba(16,11,13,.1) 100%),linear-gradient(180deg,rgba(16,11,13,.45) 0%,rgba(16,11,13,.05) 32%,rgba(16,11,13,.2) 60%,rgba(16,11,13,.9) 100%)}
+.reader .covers{display:flex;gap:12px;margin-top:1.4rem}
+.reader .covers img{width:clamp(58px,6vw,84px);aspect-ratio:2/3;object-fit:cover;border-radius:2px 5px 5px 2px;box-shadow:0 18px 30px -14px rgba(0,0,0,.7)}
+.rd-card{position:relative;z-index:2;background:#fff;color:var(--ink);border-radius:18px;padding:clamp(20px,2.6vw,34px);box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border-top:4px solid var(--earth);width:100%;max-width:520px;justify-self:end}
+.rd-card h2{font-size:clamp(1.5rem,1.2rem + 1.2vw,2.1rem)}
+.rd-card .say{margin-top:.5rem;color:var(--ink-2);font-size:1rem}
+.rd-card form{display:grid;gap:.9rem;margin-top:1.1rem}
+.rd-card .fld{display:grid;gap:.35rem}
+.rd-card .fld span{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.rd-card .fld input{font:inherit;font-size:1.08rem;padding:.85em 1em;border:1.5px solid rgba(38,39,35,.25);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+.rd-card .fld input:focus{outline:none;border-color:var(--creek);box-shadow:0 0 0 4px rgba(68,102,90,.15)}
+.rd-card #rdWord{letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.rd-card .btn{justify-content:center}
+.rd-card .btn.busy{opacity:.6}
+.rd-card .hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.rd-card .status{min-height:1.4em;font-weight:600;color:var(--creek);font-size:.98rem}
+.rd-card .status.bad{color:var(--earth)}
+.rd-card .fine{font-size:.88rem;color:var(--ink-2)}
+.rd-card .done .k{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--creek)}
+.rd-card .done h2{margin-top:.4rem}
+.rd-card .done p{margin-top:.6rem;color:var(--ink-2)}
+.rd-card .done .btn{margin-top:1.1rem}
+.rd-note{position:relative;z-index:2;margin-top:1rem;font-size:.95rem;color:rgba(255,255,255,.85);max-width:520px;justify-self:end}
+.rd-note a{color:#fff;font-weight:700;text-underline-offset:.2em}
+.reader .side-col{display:grid;justify-items:end;align-content:end}
+@media (max-width:900px){.rd-card,.rd-note{justify-self:stretch;max-width:none}.reader .side-col{justify-items:stretch}}
+</style>
+</head>
+<body class="reader">
+
+<header data-ap-nav data-active="" data-menu-image="../media/img/oakcreek-rim-1000.jpg"></header>
+
+<section class="hero" id="top" data-scene="dawn" data-scene-label="evening on the lake below the Peaks">
+  <div class="bg"><img src="../media/img/peaks-lake-sunset-2000.jpg" srcset="../media/img/peaks-lake-sunset-1000.jpg 1000w, ../media/img/peaks-lake-sunset-2000.jpg 2000w" sizes="100vw" alt="Evening light on the lake below the Peaks"></div>
+  <div class="copy">
+    <div>
+      <span class="eyebrow">For readers of the books</span>
+      <h1>Come in with the book.</h1>
+      <p class="lede">The last page of <b>Stone Breath</b>, <b>The Council Fire</b> and <b>The Far Messengers</b> carries one word. Type it here with your email and the Book Reader membership opens: the first month is free, and after that it is $12 a month.</p>
+      <div class="covers" aria-hidden="true">
+        <img src="../media/img/cover-stone-breath-cover-600.jpg" alt="">
+        <img src="../media/img/cover-council-fire-cover-600.jpg" alt="">
+        <img src="../media/img/cover-far-messengers-cover-600.jpg" alt="">
+      </div>
+    </div>
+    <div class="side-col">
+      <div class="rd-card">
+        <form id="readerForm" novalidate>
+          <div>
+            <h2>The word from your book.</h2>
+            <p class="say">It is printed on the last page, once the story ends.</p>
+          </div>
+          <label class="fld"><span>The word</span><input type="text" id="rdWord" name="word" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="40" required></label>
+          <label class="fld"><span>Email</span><input type="email" id="rdEmail" name="email" autocomplete="email" spellcheck="false" maxlength="120" required></label>
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="btn earth" type="submit" id="rdBtn">Open my first month <span class="arrow">→</span></button>
+          <p class="status" id="rdStatus" role="status" aria-live="polite"></p>
+          <p class="fine">Your address stays with our team and is never shared or sold. It tells us which book brought you here; nothing automatic is sent to you.</p>
+        </form>
+        <div class="done" id="rdDone" hidden>
+          <p class="k">The word matches</p>
+          <h2>Welcome, reader of <span id="rdBook"></span>.</h2>
+          <p>Your first month in the membership is free, and after that it is $12 a month. You join, and you listen, inside the membership on Payhip.</p>
+          <a class="btn earth" id="rdGo" href="#" rel="noopener">Open my free month <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <p class="rd-note">Not from a book? <a href="../listen/#free">Two sessions are free in the Listening Room</a>, and <a href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa">membership is $12 a month</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script src="../shared/vendor/gsap.min.js"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js"></script>
+<script src="../shared/vendor/lenis.min.js"></script>
+<script src="../shared/site.js"></script>
+<script src="../js/peaks-capture.js"></script>
+<script src="../js/peaks-reader.js"></script>
+</body>
+</html>
