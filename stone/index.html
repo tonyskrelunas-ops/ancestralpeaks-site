@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The new form of the stone · Ancestral Peaks</title>
+<meta name="description" content="A thirty-second film: the far messengers, the stone our ancestors carried, and its new form on your phone.">
+<meta name="theme-color" content="#0d0b09">
+<link rel="icon" href="../favicon.ico">
+<style>
+  /* The welcome film on its own page: nothing else runs here, so a phone has all its memory for the film.
+     The film sits in the middle; the logo and what Ancestral Peaks is fill the space above and below it. */
+  :root{--ink:#f4efe4;--soft:rgba(244,239,228,.78);--dim:rgba(244,239,228,.55);--earth:#b5532f}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#0d0b09;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+  body{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(18px,4vh,34px);
+       padding:calc(env(safe-area-inset-top,0px) + 22px) 18px calc(env(safe-area-inset-bottom,0px) + 22px);
+       background:radial-gradient(120% 70% at 50% 0%,#2a2117 0%,#0d0b09 62%)}
+  header{text-align:center}
+  .brand{display:inline-flex;align-items:center;gap:12px;color:var(--ink);text-decoration:none}
+  .brand svg{width:46px;height:46px}
+  .brand b{font-size:clamp(1.55rem,6.4vw,2.2rem);font-weight:800;letter-spacing:-.01em}
+  .tag{margin:.55em 0 0;font-size:clamp(1rem,4vw,1.15rem);color:var(--soft)}
+  .stage{position:relative;width:min(100%,calc(70vh*9/16),420px);aspect-ratio:9/16;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+  video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+  .go{position:absolute;inset:0;z-index:2;border:0;background:transparent;display:grid;place-items:center;cursor:pointer}
+  .go span{width:78px;height:78px;border-radius:50%;background:rgba(20,17,13,.55);border:1px solid rgba(255,255,255,.65);display:grid;place-items:center}
+  .go svg{width:30px;height:30px;fill:#fff;margin-left:5px}
+  .go[hidden]{display:none}
+  .about{max-width:34em;text-align:center}
+  .about p{margin:0 0 .7em;font-size:clamp(1rem,4vw,1.12rem);line-height:1.5;color:var(--soft)}
+  .about p b{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:.5em;margin-top:.4em;background:var(--earth);color:#fff;text-decoration:none;font-weight:700;
+       padding:.85em 1.3em;border-radius:999px}
+  .note{margin-top:1.2em!important;font-size:.78rem!important;color:var(--dim)!important}
+</style>
+<link rel="canonical" href="https://ancestralpeaks.com/stone/">
+</head>
+<body>
+<header>
+  <a class="brand" href="../" aria-label="Ancestral Peaks, home">
+    <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>
+    <b>Ancestral Peaks</b>
+  </a>
+  <p class="tag">We are the far messengers now.</p>
+</header>
+
+<div class="stage">
+  <video id="v" playsinline preload="metadata"></video>
+  <button class="go" id="go" type="button" aria-label="Play the thirty-second film"><span><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></button>
+</div>
+
+<section class="about">
+  <p><b>The practice of the far messengers, one calm session at a time.</b> Guided sessions from two minutes to forty-three, the Eight Weeks, one training a week, and readings from the books.</p>
+  <p>Two sessions are free with your name and email.</p>
+  <a class="btn" href="../listen/">Open the Listening Room <span aria-hidden="true">→</span></a>
+  <p class="note">The far messengers of other peoples in this film are drawn with AI. The water, the land and the app are our own.</p>
+</section>
+
+<script>
+(function(){
+    var v = document.getElementById('v'), go = document.getElementById('go');
+  v.poster = '../media/stone/poster-720x1280.jpg';
+  v.src = '../media/stone/the-new-form-of-the-stone-33s-720x1280.mp4';
+  function playing(){ go.hidden = true; v.controls = true; }
+  go.addEventListener('click', function(){ var p = v.play(); playing(); if (p && p.catch) p.catch(function(){ go.hidden = false; }); });
+  v.addEventListener('play', playing);
+  if (/[?&]play\b/.test(location.search)) { var p = v.play(); if (p && p.then) p.then(playing).catch(function(){}); }
+})();
+</script>
+</body>
+</html>
