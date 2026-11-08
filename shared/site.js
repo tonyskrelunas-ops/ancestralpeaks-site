@@ -564,7 +564,7 @@ AP.particles = function(canvas, kind, opts){
       // faint star roads: short arcs behind the brightest
       ctx.strokeStyle = hexA(col, .06); ctx.lineWidth = 1; P.slice(0, 18).forEach(p => { const r = R * Math.sqrt(p.z); ctx.beginPath(); ctx.arc(cx, cy, r, p.ph + rot - .25, p.ph + rot); ctx.stroke(); });
     } else { // ripples
-      P.forEach(p => { const per = 5 + p.w * 4; const cx = W * (.1 + p.x * .8), cy = H * (.15 + p.y * .7); for (let j = 0; j < 3; j++) { const k = ((t / per) + p.ph / 6.283 + j / 3) % 1; const r = 4 + k * (40 + p.z * 90); ctx.beginPath(); ctx.ellipse(cx, cy, r, r * .42, 0, 0, Math.PI * 2); ctx.strokeStyle = hexA(col, (1 - k) * (1 - k) * .45); ctx.lineWidth = 1 + (1 - k) * 1.4; ctx.stroke(); } });
+      P.forEach(p => { const per = 5 + p.w * 4; const cx = W * (.1 + p.x * .8), cy = H * (.15 + p.y * .7); for (let j = 0; j < 3; j++) { const k = ((((t / per) + p.ph / 6.283 + j / 3) % 1) + 1) % 1; const r = 4 + k * (40 + p.z * 90); /* k stays in 0..1 even when the first frame's clock reads a hair before t0 */ ctx.beginPath(); ctx.ellipse(cx, cy, r, r * .42, 0, 0, Math.PI * 2); ctx.strokeStyle = hexA(col, (1 - k) * (1 - k) * .45); ctx.lineWidth = 1 + (1 - k) * 1.4; ctx.stroke(); } });
     }
     ctx.globalAlpha = 1;
   }

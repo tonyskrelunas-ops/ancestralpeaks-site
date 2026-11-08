@@ -387,3 +387,4 @@ html.flat .scene{min-height:min(100svh,900px)}
   .store .today .t p.kick{display:block;font-size:.72rem}
   .sittings .head{grid-template-columns:1fr;gap:.6rem}
 }
+.store [hidden]{display:none!important}
