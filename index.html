@@ -267,6 +267,8 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 .door h3{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.6rem);font-weight:800;max-width:16ch}
 .door p{color:rgba(255,255,255,.86);max-width:30rem}
 .door .btn{justify-self:start;margin-top:.4rem}
+.door .yearly{justify-self:start;color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:.22em;display:inline-flex;gap:.45em;align-items:center}
+.door .yearly:hover{color:var(--gold)}
 .join .after{margin-top:1.4rem;display:flex;gap:1.2rem 2rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .join .fine{color:rgba(255,255,255,.72);font-size:.95rem}
 @media (max-width:980px){
@@ -341,7 +343,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
     <p class="date" id="todayDate">Today</p>
     <blockquote id="todayQuote" class="reveal">You do not make the calm. You retrieve it. You store it in your bones in the quiet days.</blockquote>
     <p class="from reveal" id="todayFrom">From the first crossing. A new line, and a new photograph, every morning.</p>
-    <div class="ap-player tall reveal" data-src="media/sessions/week1-settle-yourself-first.mp3" data-title="Today's session: Settle yourself first" data-sub="Week one. Six minutes, with a dawn wind under the voice. The runner on Big Mountain, the stone, and the breath counted with you." data-visual="horizon" data-duration="381" data-color="#44665A"></div>
+    <div class="ap-player tall reveal" data-src="media/previews/week1-settle-yourself-first-30s.mp3" data-preview="free" data-full="6 min" data-title="Today's session: Settle yourself first" data-sub="Week one. Six minutes, with a dawn wind under the voice. The runner on Big Mountain, the stone, and the breath counted with you." data-visual="horizon" data-duration="30" data-color="#44665A"></div>
     <div class="reveal"><button class="ap-say" data-src="media/say/w1-relax-jaw.mp3" data-who="From the session" data-text="He would relax his jaw. He would relax his temples. His eyes. His shoulders. His back."></button></div>
     <div class="more reveal" id="more">
       <figure><div class="kb"><img src="media/peaks-snow-800.jpg" alt=""></div><figcaption>Tomorrow</figcaption></figure>
@@ -475,29 +477,29 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
   <div class="inner">
     <div>
       <h2 class="reveal">The Listening Room.</h2>
-      <p class="intro reveal">The sessions so far, each spoken in a masked voice over a bed of water, wind, ocean, desert or fire. Press play and the picture under the title breathes with the voice.</p>
+      <p class="intro reveal">Thirty seconds of each session, spoken in a masked voice over a bed of water, wind, ocean, desert or fire. Press play and the picture under the title breathes with the voice. Two open in full with a free sign-up; members hear every one.</p>
       <div class="say reveal"><button class="ap-say dark" data-auto="1" data-src="media/say/fm-honor.mp3" data-who="The far messengers of time" data-text="It is one of the largest memory systems human beings have ever built, and it ran on nothing but voices and obligation and honor."></button></div>
       <div class="wfall reveal"><div class="ap-loop" data-src="media/v-flagstaff-waterfall.mp4" data-poster="media/v-flagstaff-waterfall-poster.jpg"></div></div>
       <p class="cap reveal">The Flagstaff waterfall, June. Every clip on this page is our own.</p>
     </div>
     <div class="sessions">
-      <div class="ap-player featured reveal" data-src="media/sessions/before-we-start.mp3" data-title="Before we start" data-sub="The stream at first light, the pebble that calls you, one round of the breath. Creek bed." data-visual="ripples" data-duration="364" data-color="#8FB8A8" data-color2="#D9A84C"></div>
-      <div class="ap-player compact reveal" data-src="media/sessions/week1-settle-yourself-first.mp3" data-title="Week 1 · Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="381" data-color="#8FB8A8"></div>
-      <div class="ap-player compact reveal d1" data-src="media/sessions/week2-know-what-you-steer-by.mp3" data-title="Week 2 · Know what you steer by" data-sub="The star houses and the 1976 voyage. Ocean bed." data-visual="ripples" data-duration="299" data-color="#7FA6D6"></div>
-      <div class="ap-player compact reveal d2" data-src="media/sessions/week3-what-holds-in-a-storm.mp3" data-title="Week 3 · What holds in a storm" data-sub="The salt caravan, the sand and the stars. Desert bed." data-visual="bars" data-duration="219" data-color="#D1A63C"></div>
-      <div class="ap-player compact reveal d3" data-src="media/sessions/the-empty-quarter.mp3" data-title="The Empty Quarter · the crossing" data-sub="The quiet years before, the pebble in the fist, the dry well. Desert bed." data-visual="horizon" data-duration="382" data-color="#D1A63C"></div>
-      <div class="ap-player compact reveal d4" data-src="media/sessions/the-far-messengers-of-time.mp3" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="377" data-color="#E08A3C"></div>
-      <div class="ap-player compact reveal d4" data-src="media/sessions/the-morning-journey.mp3" data-title="The Morning Journey" data-sub="Eighteen minutes facing the Peaks: gratitude, the pebble, the breath, far to the east they are singing. Dawn bed." data-visual="horizon" data-duration="1118" data-color="#8FB8A8"></div>
-      <div class="ap-player compact reveal d4" data-src="media/sessions/the-gratitude-meditation.mp3" data-title="The Gratitude Meditation" data-sub="The stream, the medicines, the pebble and its journey, four rounds of the breath with a body scan, a gratitude list, and the eagle. Dawn bed." data-visual="horizon" data-duration="502" data-color="#8FB8A8"></div>
+      <div class="ap-player featured reveal" data-src="media/previews/before-we-start-30s.mp3" data-preview="member" data-full="6 min" data-title="Before we start" data-sub="The stream at first light, the pebble that calls you, one round of the breath. Creek bed." data-visual="ripples" data-duration="30" data-color="#8FB8A8" data-color2="#D9A84C"></div>
+      <div class="ap-player compact reveal" data-src="media/previews/week1-settle-yourself-first-30s.mp3" data-preview="free" data-full="6 min" data-title="Week 1 · Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
+      <div class="ap-player compact reveal d1" data-src="media/previews/week2-know-what-you-steer-by-30s.mp3" data-preview="member" data-full="5 min" data-title="Week 2 · Know what you steer by" data-sub="The star houses and the 1976 voyage. Ocean bed." data-visual="ripples" data-duration="30" data-color="#7FA6D6"></div>
+      <div class="ap-player compact reveal d2" data-src="media/previews/week3-what-holds-in-a-storm-30s.mp3" data-preview="member" data-full="4 min" data-title="Week 3 · What holds in a storm" data-sub="The salt caravan, the sand and the stars. Desert bed." data-visual="bars" data-duration="30" data-color="#D1A63C"></div>
+      <div class="ap-player compact reveal d3" data-src="media/previews/the-empty-quarter-30s.mp3" data-preview="member" data-full="6 min" data-title="The Empty Quarter · the crossing" data-sub="The quiet years before, the pebble in the fist, the dry well. Desert bed." data-visual="horizon" data-duration="30" data-color="#D1A63C"></div>
+      <div class="ap-player compact reveal d4" data-src="media/previews/the-far-messengers-of-time-30s.mp3" data-preview="member" data-full="6 min" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="30" data-color="#E08A3C"></div>
+      <div class="ap-player compact reveal d4" data-src="media/previews/the-morning-journey-30s.mp3" data-preview="member" data-full="19 min" data-title="The Morning Journey" data-sub="Nineteen minutes facing the Peaks: gratitude, the pebble, the breath, far to the east they are singing. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
+      <div class="ap-player compact reveal d4" data-src="media/previews/the-gratitude-meditation-30s.mp3" data-preview="member" data-full="8 min" data-title="The Gratitude Meditation" data-sub="The stream, the medicines, the pebble and its journey, four rounds of the breath with a body scan, a gratitude list, and the eagle. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
       <div class="all reveal"><a class="btn light" href="listen/">The whole Listening Room <span class="arrow">→</span></a><span class="masked">Spoken in a masked voice</span></div>
     </div>
   </div>
   <div class="notes">
-    <div class="head reveal"><h3>Voice notes.</h3><p>Short ones, a minute each, from his talk to a room of students in October: the runner, the navigator, the breath under sixty beats. New notes land here as they are made.</p></div>
+    <div class="head reveal"><h3>Voice notes.</h3><p>Short ones, a minute each, from his talk to a room of students in October: the runner, the navigator, the breath under sixty beats. Thirty seconds of each plays here; members hear them whole.</p></div>
     <div class="noteshelf" id="noteshelf"></div>
   </div>
   <div class="notes abundance" id="abundance" hidden>
-    <div class="head reveal"><h3>The abundance meditations.</h3><p>The long ones and the short ones, for the morning, the drive and the night, each spoken in a masked voice.</p></div>
+    <div class="head reveal"><h3>The abundance meditations.</h3><p>The long ones and the short ones, for the morning, the drive and the night, each spoken in a masked voice. Thirty seconds of each plays here.</p></div>
     <div class="noteshelf" id="abundanceshelf"></div>
   </div>
 </section>
@@ -563,14 +565,15 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
         <div class="door reveal">
           <div class="num">1</div>
           <h3>Bought a book? Your first month is free.</h3>
-          <p>Any of the three, bought direct. The month is yours, the room is open, and the sittings you have kept on this page come with you.</p>
-          <a class="btn light" href="#join-placeholder" data-offer="book-month">Come in with the book <span class="arrow">→</span></a>
+          <p>Any of the three. The last page of your book carries a word; type it in and the first month is yours, then it is $12 a month.</p>
+          <a class="btn light" href="reader/" data-offer="book-reader">Come in with the book <span class="arrow">→</span></a>
         </div>
         <div class="door reveal d1">
           <div class="num">2</div>
-          <h3>Start with a free week. Your first month is then half off.</h3>
-          <p>Seven mornings of the sessions and the breath. If it holds, the first month after is half off, and you decide.</p>
-          <a class="btn earth" href="#join-placeholder" data-offer="week-then-half">Begin the free week <span class="arrow">→</span></a>
+          <h3>Become a member. $12 a month, or $79 a year.</h3>
+          <p>Every session and voice note in the Listening Room, in full, short and long. Two sessions stay free there when you leave your name.</p>
+          <a class="btn earth" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa" data-offer="member-monthly">Join for $12 a month <span class="arrow">→</span></a>
+          <a class="yearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=rdWQg8NPBj" data-offer="member-yearly">Or $79 a year <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -620,7 +623,8 @@ const html = document.documentElement;
 function shelfFrom(list, host, dir){
   (list || []).forEach(n => {
     const d = document.createElement('div'); d.className = 'ap-player compact';
-    d.dataset.src = dir + n.file + '.mp3'; d.dataset.title = n.title; d.dataset.sub = n.sub; d.dataset.duration = n.dur;
+    d.dataset.src = 'media/previews/' + n.preview + '-30s.mp3'; d.dataset.title = n.title; d.dataset.sub = n.sub; d.dataset.duration = 30;
+    d.dataset.preview = n.free ? 'free' : 'member'; d.dataset.full = n.full || '';
     d.dataset.visual = ({ dawn: 'horizon', creek: 'ripples', ocean: 'ripples', wind: 'bars', hearth: 'rings' })[n.scene] || 'rings';
     d.dataset.color = ({ dawn: '#8FB8A8', creek: '#8FB8A8', ocean: '#7FA6D6', wind: '#D1A63C', hearth: '#E08A3C' })[n.scene] || '#D1A63C';
     host.appendChild(d);
