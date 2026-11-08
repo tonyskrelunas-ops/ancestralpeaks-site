@@ -16,6 +16,8 @@ const motion=()=>window.AP?AP.motion:true;
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
 const local={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+// Tony's owner pass: open ancestralpeaks.com/listen/?owner once on a device and the free sessions open without the sign-up
+if(/[?&]owner\b/.test(location.search)&&!local.get('ap.free',null))local.set('ap.free',{name:'Tony',at:Date.now(),owner:true});
 const byId=id=>D.sessions.find(s=>s.id===id)||D.notes.find(n=>n.id===id);
 const FREE=D.sessions.filter(s=>s.free);
 const ROOM=D.sessions.filter(s=>s.shelf==='sessions');
