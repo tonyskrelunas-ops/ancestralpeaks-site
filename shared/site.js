@@ -67,7 +67,7 @@ AP.nav = function(host, opts){
     menu = document.createElement('div'); menu.className = 'ap-menu'; menu.id = 'apMenu'; menu.setAttribute('aria-hidden', 'true');
     menu.innerHTML = `${opts.menuImage ? `<div class="bg"><img src="${opts.menuImage}" alt=""></div>` : ''}
       <nav aria-label="Pages">${AP.pages.map((p, i) => `<a href="${AP.href(p.href)}" style="transition-delay:${.08 + i * .05}s"><small>${p.n}</small>${p.label}</a>`).join('')}</nav>
-      <div class="foot"><span class="masked">Sessions spoken in a masked voice</span><a class="btn light" href="${opts.begin}">Begin <span class="arrow">→</span></a></div>`;
+      <div class="foot"><a class="btn light" href="${opts.begin}">Begin <span class="arrow">→</span></a></div>`;
     document.body.appendChild(menu);
   }
   const burger = $('.ap-burger', host);
@@ -96,7 +96,7 @@ AP.nav = function(host, opts){
 AP.footer = function(host, opts){
   host = typeof host === 'string' ? $(host) : (host || $('[data-ap-foot]'));
   if (!host) return null;
-  opts = Object.assign({ tag: 'A place to practice. The companion to the books. Every photograph and every second of film is our own; every session is spoken in a masked voice.' }, opts || {});
+  opts = Object.assign({ tag: 'A place to practice. The companion to the books. Every photograph and every second of film is our own.' }, opts || {});
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
     <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>
@@ -485,7 +485,7 @@ AP.player = function(el, opts){
     <div class="meta"><h3 class="t">${opts.title}</h3>${opts.sub ? `<p>${opts.sub}</p>` : ''}</div>
     <div class="vis"><canvas aria-hidden="true"></canvas></div>
     <div class="bar"><span class="cur">0:00</span><div class="meter" role="slider" aria-label="Position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><i></i></div><span class="dur">${opts.duration ? fmt(opts.duration) : '–:––'}</span></div>
-    ${door}${opts.masked ? '<span class="masked">Spoken in a masked voice</span>' : ''}`;
+    ${door}`;
   const audio = new Audio(); audio.preload = 'none'; audio.src = opts.src;
   const canvas = $('canvas', el), vis = AP.Visual(canvas, opts.visual, { color: opts.color, color2: opts.color2 });
   const bands = BandSource(audio, opts.env);
@@ -518,7 +518,7 @@ AP.say = function(el){
   if (el.dataset.sayDone) return el._say; el.dataset.sayDone = '1';
   const text = el.dataset.text || el.textContent.trim(), who = el.dataset.who || '';
   const words = text.split(/\s+/);
-  el.innerHTML = `<span class="ic"><canvas aria-hidden="true"></canvas><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">${words.map(w => `<span class="w">${w}</span>`).join(' ')}</span>${who ? `<span class="who">${who} · spoken in a masked voice</span>` : ''}`;
+  el.innerHTML = `<span class="ic"><canvas aria-hidden="true"></canvas><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="txt">${words.map(w => `<span class="w">${w}</span>`).join(' ')}</span>${who ? `<span class="who">${who}</span>` : ''}`;
   el.classList.add('armed'); el.setAttribute('aria-label', `Hear it said: ${text}`);
   const audio = new Audio(); audio.preload = 'none'; audio.src = el.dataset.src;
   const canvas = $('canvas', el), vis = AP.Visual(canvas, 'bars', { color: '#100B0D', color2: '#100B0D' });

@@ -1,7 +1,7 @@
 {
   "name": "Ancestral Peaks",
   "short_name": "Peaks",
-  "description": "Guided sessions in a calm masked voice, the Eight Weeks, readings from the books, and the monthly Council.",
+  "description": "Guided sessions, the Eight Weeks, readings from the books, and the monthly Council.",
   "start_url": "/?source=app",
   "scope": "/",
   "display": "standalone",

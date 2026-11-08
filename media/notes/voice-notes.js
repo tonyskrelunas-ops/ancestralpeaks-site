@@ -1,4 +1,4 @@
-/* Voice notes from his Prescott talk, in the masked voice. Source: Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/MASKED SESSIONS/voice notes/
+/* Voice notes from his Prescott talk. Source: Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/MASKED SESSIONS/voice notes/
    The site plays a 30-second preview of each (media/previews/<preview>-30s.mp3); members hear the whole note inside the
    membership, so the full notes are not kept on the public site. (11/7: store window) */
 window.AP_VOICE_NOTES = [

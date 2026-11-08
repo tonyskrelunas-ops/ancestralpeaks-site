@@ -59,7 +59,7 @@ function rowHTML(s,i){
       <h3 class="reveal">${esc(s.title)}</h3>
       <p class="blurb reveal">${esc(s.blurb)}</p>
       <p class="line reveal">${esc(s.line)}</p>
-      <div class="meta reveal"><span class="masked">Spoken in a masked voice</span><span class="mem">${LOCK}${esc(s.mins)} in full for members</span></div>
+      <div class="meta reveal"><span class="mem">${LOCK}${esc(s.mins)} in full for members</span></div>
       <div class="acts reveal">${pvBtn(s.id,s.title)}${doorBtn(s.title)}</div>
     </div></li>`;
 }
@@ -230,7 +230,7 @@ function open(id){
     gsap.fromTo('#player .ptop',{opacity:0},{opacity:1,duration:.6,delay:.4});
   } else { P.el.style.opacity=1; }
   PeaksVoice.cue('open');
-  if('mediaSession' in navigator){ try{ navigator.mediaSession.metadata=new MediaMetadata({title:s.title,artist:'Ancestral Peaks · spoken in a masked voice',album:'The Listening Room',artwork:[{src:MEDIA+'img/'+s.img+'.jpg',sizes:'1400x1400',type:'image/jpeg'}]}); navigator.mediaSession.setActionHandler('play',()=>toggle()); navigator.mediaSession.setActionHandler('pause',()=>toggle()); navigator.mediaSession.setActionHandler('seekbackward',()=>skip(-15)); navigator.mediaSession.setActionHandler('seekforward',()=>skip(15)); }catch(e){} }
+  if('mediaSession' in navigator){ try{ navigator.mediaSession.metadata=new MediaMetadata({title:s.title,artist:'Ancestral Peaks',album:'The Listening Room',artwork:[{src:MEDIA+'img/'+s.img+'.jpg',sizes:'1400x1400',type:'image/jpeg'}]}); navigator.mediaSession.setActionHandler('play',()=>toggle()); navigator.mediaSession.setActionHandler('pause',()=>toggle()); navigator.mediaSession.setActionHandler('seekbackward',()=>skip(-15)); navigator.mediaSession.setActionHandler('seekforward',()=>skip(15)); }catch(e){} }
   lastT=performance.now(); cancelAnimationFrame(raf); if(motion()) raf=requestAnimationFrame(loop); else if(field) field.still();
   P.close.focus({preventScroll:true});
 }

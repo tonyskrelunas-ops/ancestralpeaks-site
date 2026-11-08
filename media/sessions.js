@@ -8,7 +8,7 @@
    at:     where the preview starts in the full recording (seconds), 1 s before the voice clearly begins.
    bed:    creek | dawn | desert | ocean | hearth        field: water | dawn | wind | stars | embers
    img:    a still in media/img/      video: a loop in media/video/ (or null)
-   Source of every recording: Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/MASKED SESSIONS/ (masked voice only). */
+   Source of every recording: Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/MASKED SESSIONS/. */
 window.PEAKS_SESSIONS = {
   "sessions": [
     {
