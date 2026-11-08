@@ -66,6 +66,7 @@ function writingHTML(s,i){
     </div></li>`;
 }
 const wr=$('#writingRows'); if(wr) wr.innerHTML=D.writings.map(writingHTML).join('');
+if(!D.writings.length){ const ws=$('#writings'); if(ws) ws.hidden=true; document.querySelectorAll('a[href="#writings"]').forEach(a=>{ const li=a.closest('li'); (li||a).hidden=true; }); }   // the longer writings wait for Tony's approval
 
 /* ---------- keep reading: the rest of the excerpt opens in place ---------- */
 document.addEventListener('click',e=>{

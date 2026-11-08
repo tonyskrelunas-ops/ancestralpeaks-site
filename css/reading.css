@@ -59,3 +59,4 @@ html.flat .reading .arrive{min-height:min(100svh,900px)}   /* full-page screensh
   .reading .today{grid-template-columns:120px 1fr}
   .reading .today .pic{aspect-ratio:auto;min-height:120px}
 }
+#writings[hidden]{display:none!important}

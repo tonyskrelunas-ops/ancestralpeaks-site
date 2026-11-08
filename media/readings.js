@@ -8,11 +8,16 @@
              opening and the members' door. img: a still in media/img/.
    words:    length of the full piece.   date: as published.   kick: the shelf line shown over the title.
    Member texts, ready to post: Dropbox/2026 ANCESTRAL PEAKS/READING ROOM — for members — 2026-11-07/ */
+/* 11/7: held for Tony to approve first (Hopi ceremonial running; unpublished papers): Thirty-Two Houses, The Paper Under the Books, Three Mechanisms, Not One. The full set is in Dropbox READING ROOM — for members. */
 window.PEAKS_READINGS = {
   "free": [
     {
-      "id": "what-a-far-messenger-is", "title": "What a Far Messenger Is", "date": "August 25, 2026", "words": 2270,
-      "img": "what-a-far-messenger-is-1400", "bed": "desert",
+      "id": "what-a-far-messenger-is",
+      "title": "What a Far Messenger Is",
+      "date": "August 25, 2026",
+      "words": 2270,
+      "img": "what-a-far-messenger-is-1400",
+      "bed": "desert",
       "href": "https://tribeawaken.com/journal/what-a-far-messenger-is/",
       "dek": "Every people once kept the one who went out and came back whole. The first teaching, what we kept and what we set down, and why the role has a name again.",
       "excerpt": [
@@ -30,8 +35,12 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "little-piles-of-rock", "title": "Little Piles of Rock", "date": "October 19, 2026", "words": 1342,
-      "img": "little-piles-of-rock-1000", "bed": "dawn",
+      "id": "little-piles-of-rock",
+      "title": "Little Piles of Rock",
+      "date": "October 19, 2026",
+      "words": 1342,
+      "img": "little-piles-of-rock-1000",
+      "bed": "dawn",
       "href": "https://tribeawaken.com/journal/little-piles-of-rock/",
       "dek": "On Labor Day morning, facing the San Francisco Peaks, I recorded a meditation about an old trail. The part that stays with me is the knowledge that was waiting in us all along.",
       "excerpt": [
@@ -45,8 +54,12 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "wanting-narrows-the-eye", "title": "Wanting Narrows the Eye", "date": "September 17, 2026", "words": 1079,
-      "img": "wanting-narrows-the-eye-1400", "bed": "dawn",
+      "id": "wanting-narrows-the-eye",
+      "title": "Wanting Narrows the Eye",
+      "date": "September 17, 2026",
+      "words": 1079,
+      "img": "wanting-narrows-the-eye-1400",
+      "bed": "dawn",
       "href": "https://tribeawaken.com/journal/wanting-narrows-the-eye/",
       "dek": "My grandfather never had money and was never poor a day in his life. Abundance turns out to be a question about perception, not arithmetic.",
       "excerpt": [
@@ -61,8 +74,12 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "speak-only-what-you-want-built", "title": "Speak Only What You Want Built", "date": "September 17, 2026", "words": 1148,
-      "img": "speak-only-what-you-want-built-1400", "bed": "hearth",
+      "id": "speak-only-what-you-want-built",
+      "title": "Speak Only What You Want Built",
+      "date": "September 17, 2026",
+      "words": 1148,
+      "img": "speak-only-what-you-want-built-1400",
+      "bed": "hearth",
       "href": "https://tribeawaken.com/journal/speak-only-what-you-want-built/",
       "dek": "My great-grandmother corrected careless speech the way she corrected a tool set down in the wrong place. Forty years later I understand why they were the same error.",
       "excerpt": [
@@ -76,11 +93,15 @@ window.PEAKS_READINGS = {
       ]
     }
   ],
-
   "science": [
     {
-      "id": "the-audit-function", "title": "The Audit Function", "kick": "The argument", "words": 615,
-      "img": "peaks-trail-2200", "video": null, "bed": "dawn",
+      "id": "the-audit-function",
+      "title": "The Audit Function",
+      "kick": "The argument",
+      "words": 615,
+      "img": "peaks-trail-2200",
+      "video": null,
+      "bed": "dawn",
       "dek": "The claim the whole deep dive rests on: storage is cheap, verification is expensive, and the carry is how societies without writing paid for it.",
       "excerpt": [
         "Storage is the cheap part. Any society can hold a story. Verification is the expensive part — and the carry is how societies without writing paid for it.",
@@ -88,17 +109,13 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "thirty-two-houses", "title": "Thirty-Two Houses", "kick": "The ocean", "words": 1596,
-      "img": "pacific-rocks-1600", "video": "v-pacific-sunset", "bed": "ocean",
-      "dek": "What a navigator physically does: the horizon cut into houses, the swell read through the pelvis, and the count that survives a tired mind.",
-      "excerpt": [
-        "The Pacific system does not treat a star as a point to steer at. It treats the horizon as a fixed architecture and the stars as temporary occupants of it.",
-        "A star is useful as a bearing only while it is near the horizon. High in the sky it marks nothing, because its azimuth changes quickly and the angle subtended at the eye no longer resolves direction. So the navigator takes a star just risen, places it on a fixed part of the canoe — the bow, a particular lashing, the shoulder of the sail — and steers to hold it there. Within roughly ninety minutes that star has climbed out of use."
-      ]
-    },
-    {
-      "id": "the-compass-underfoot", "title": "The Compass Underfoot", "kick": "The sand and the pass", "words": 673,
-      "img": "dune-slope-1600", "video": null, "bed": "desert",
+      "id": "the-compass-underfoot",
+      "title": "The Compass Underfoot",
+      "kick": "The sand and the pass",
+      "words": 673,
+      "img": "dune-slope-1600",
+      "video": null,
+      "bed": "desert",
       "dek": "Crossing ground where everything looks the same, and holding the breath to the stride where the air thins.",
       "excerpt": [
         "Dune fields are not random. Their geometry is set by the regional wind regime and is stable over timescales far longer than a crossing. Barchan dunes are crescents whose horns point downwind. Seif — longitudinal — dunes form under bimodal wind regimes and run as long ridges parallel to the resultant direction of sand transport. Across an entire erg, that orientation is effectively constant.",
@@ -106,8 +123,13 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "why-the-roads-are-straight", "title": "Why the Roads Are Straight", "kick": "The path and the route", "words": 847,
-      "img": "red-trail-walker-1600", "video": null, "bed": "desert",
+      "id": "why-the-roads-are-straight",
+      "title": "Why the Roads Are Straight",
+      "kick": "The path and the route",
+      "words": 847,
+      "img": "red-trail-walker-1600",
+      "video": null,
+      "bed": "desert",
       "dek": "How ancient routes were found, how we recover them, and the two findings at Chaco that refuse an efficiency explanation.",
       "excerpt": [
         "Routes are not invented. They are inherited, and the inheritance is older than the people using it.",
@@ -115,8 +137,13 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "the-return", "title": "The Return", "kick": "Coming home", "words": 1083,
-      "img": "elder-hands-braiding-1800", "video": "v-hand-wool", "bed": "hearth",
+      "id": "the-return",
+      "title": "The Return",
+      "kick": "Coming home",
+      "words": 1083,
+      "img": "elder-hands-braiding-1800",
+      "video": "v-hand-wool",
+      "bed": "hearth",
       "dek": "An audit that is not reported is not an audit. Transfer, verification and reintegration: the three problems every tradition had to solve at the far end.",
       "excerpt": [
         "An audit that is not reported is not an audit.",
@@ -124,8 +151,13 @@ window.PEAKS_READINGS = {
       ]
     },
     {
-      "id": "recurrence-and-the-line-that-broke", "title": "Recurrence, and the Line That Broke", "kick": "What lasts", "words": 561,
-      "img": "fire-circle-1600", "video": "v-fire-bowl", "bed": "hearth",
+      "id": "recurrence-and-the-line-that-broke",
+      "title": "Recurrence, and the Line That Broke",
+      "kick": "What lasts",
+      "words": 561,
+      "img": "fire-circle-1600",
+      "video": "v-fire-bowl",
+      "bed": "hearth",
       "dek": "Why willingness is not a storage medium: the line that held, the line that nearly broke, and the case where the ceremony stopped and the seed went with it.",
       "excerpt": [
         "A system that depends on people choosing to maintain it decays at the speed of one distracted generation. A system attached to something that comes around whether anyone feels like it or not does not.",
@@ -133,25 +165,5 @@ window.PEAKS_READINGS = {
       ]
     }
   ],
-
-  "writings": [
-    {
-      "id": "the-paper-under-the-books", "title": "The Paper Under the Books", "kick": "October 2026 · unpublished", "words": 1642,
-      "img": "hand-stone-1400", "bed": "hearth",
-      "dek": "What I was actually doing when I wrote The Council Fire and The Far Messengers.",
-      "excerpt": [
-        "People ask which comes first, the research or the story. For me it has never been either. I write a thing twice — once so it can be checked, and once so it can be carried.",
-        "The checkable version is a working paper called The Ancestral Carry. It argues that climate adaptation has been built almost entirely outward — seawalls, grids, warning systems — while the inward capacity that carried people across hard ground for thousands of years has quietly gone out of use. I call the two the Cargo and the Carry. The Cargo is what you retrieve. The Carry is what you are."
-      ]
-    },
-    {
-      "id": "three-mechanisms-not-one", "title": "Three Mechanisms, Not One", "kick": "From the working paper", "words": 1738,
-      "img": "stone-bowl-1600", "bed": "creek",
-      "dek": "From The Ancestral Carry: the vagal brake, thalamic gating and the brain’s own map, and why the breath is taught before anything else.",
-      "excerpt": [
-        "When the well is dry, a frightened mind forgets its own name.",
-        "On the fourth day of an unbroken crossing through the six hundred and fifty thousand square kilometers of the Rub' al Khali, a navigator comes down off the crest of an eight-hundred-foot dune to find that the far well is cracked mud."
-      ]
-    }
-  ]
+  "writings": []
 };
