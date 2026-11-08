@@ -30,6 +30,11 @@
       page: location.pathname,
       site: 'ancestralpeaks.com'
     };
+    // the same sign-up also lands on the team's list (the capture list tribeawaken.com uses), tagged with where it came from
+    try {
+      const lb = new URLSearchParams({ 'form-name': 'tribe-capture', email: f.email || '', name: f.name || '', source: f.source || 'peaks', edition: 'en', page: 'ancestralpeaks.com' + location.pathname });
+      fetch('https://tribeawaken-capture.netlify.app/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: lb.toString(), keepalive: true }).catch(function () {});
+    } catch (e) {}
     try {
       const r = await fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(body) });
       let j = null; try { j = await r.json(); } catch (e) {}

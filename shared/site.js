@@ -99,7 +99,7 @@ AP.footer = function(host, opts){
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
     <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>
-    <div class="fine"><span>© 2026 Ancestral Peaks</span><span>Preview. Nothing here is published.</span></div>`;
+    <div class="fine"><span>© 2026 Ancestral Peaks</span><span>The practice, one calm session at a time.</span></div>`;
   return host;
 };
 
