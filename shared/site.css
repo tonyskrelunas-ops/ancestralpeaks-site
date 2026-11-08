@@ -231,3 +231,6 @@ html[data-scene].sound-on .ap-scene-chip{opacity:1;transform:none}
   .ap-sound[aria-pressed="true"] i b{animation:none}
   .ap-menu{transition:none}
 }
+
+/* 11/8 easy to cancel, under the join links on the home page */
+.door .cancel{font-size:.92rem;opacity:.82;margin:.8rem 0 0;max-width:34em}

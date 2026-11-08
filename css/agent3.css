@@ -388,3 +388,6 @@ html.flat .scene{min-height:min(100svh,900px)}
   .sittings .head{grid-template-columns:1fr;gap:.6rem}
 }
 .store [hidden]{display:none!important}
+
+/* 11/8 easy to cancel, said plainly beside the plans */
+.plans .cancel{grid-column:1 / -1;font-size:.95rem;color:rgba(255,255,255,.84);margin:.3rem 0 0}
