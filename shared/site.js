@@ -25,6 +25,13 @@ if (AP.render) html.classList.add('render');
 if (AP.flat) html.classList.add('flat');
 AP.root = html.dataset.root !== undefined ? html.dataset.root : '';   // path prefix for site links ('' on the live site, '..' in a preview folder)
 AP.BEGIN = 'https://app.ancestralpeaks.com';
+/* the membership doors (Payhip checkout). One place for every page; the Book Reader plan is reached only through /reader/. */
+AP.JOIN = {
+  monthly: 'https://payhip.com/order?link=6bM8i&pricing_plan=nLWRyaNyGa',   // Member, $12 a month
+  yearly:  'https://payhip.com/order?link=6bM8i&pricing_plan=rdWQg8NPBj',   // Member, $79 a year
+  reader:  '/reader/',                                                      // book buyers: the word at the end of the book
+  free:    '/listen/#free'                                                  // the two sessions that open with a free sign-up
+};
 
 /* ---------- the pages (one source of truth for nav + footer) ---------- */
 AP.pages = [
@@ -462,16 +469,22 @@ function BandSource(audio, envUrl){
 }
 
 /* ---------- the audio player ---------- */
-/* <div class="ap-player" data-src="x.mp3" data-title="…" data-sub="…" data-visual="rings|horizon|ripples|bars" [data-env="x.env.json"] [data-masked="1"] [data-color="#44665A"]></div> */
+/* <div class="ap-player" data-src="x.mp3" data-title="…" data-sub="…" data-visual="rings|horizon|ripples|bars" [data-env="x.env.json"] [data-masked="1"] [data-color="#44665A"]
+       [data-preview="member|free" data-full="6 min"]></div>
+   data-preview: the file is a 30-second preview. "member" adds the door to the membership; "free" adds the door to the free sign-up. */
 AP.players = []; AP.current = null;
 AP.player = function(el, opts){
   if (el.dataset.playerDone) return el._player; el.dataset.playerDone = '1';
-  opts = Object.assign({ src: el.dataset.src, title: el.dataset.title || '', sub: el.dataset.sub || '', visual: el.dataset.visual || 'rings', env: el.dataset.env || (el.dataset.src ? el.dataset.src.replace(/\.(mp3|m4a|wav|ogg)$/i, '.env.json') : ''), masked: el.dataset.masked !== '0', color: el.dataset.color || getComputedStyle(el).getPropertyValue('--pc').trim() || '#44665A', color2: el.dataset.color2 || '#D1A63C', duration: Number(el.dataset.duration) || 0 }, opts || {});
-  el.innerHTML = `<button class="play" type="button" aria-label="Play ${opts.title}"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+  opts = Object.assign({ src: el.dataset.src, title: el.dataset.title || '', sub: el.dataset.sub || '', visual: el.dataset.visual || 'rings', env: el.dataset.env || (el.dataset.src ? el.dataset.src.replace(/\.(mp3|m4a|wav|ogg)$/i, '.env.json') : ''), masked: el.dataset.masked !== '0', color: el.dataset.color || getComputedStyle(el).getPropertyValue('--pc').trim() || '#44665A', color2: el.dataset.color2 || '#D1A63C', duration: Number(el.dataset.duration) || 0, preview: el.dataset.preview || '', full: el.dataset.full || '' }, opts || {});
+  const door = opts.preview === 'free'
+    ? `<p class="door"><span>30-second preview${opts.full ? ` of ${opts.full}` : ''}</span><a href="${AP.href(AP.JOIN.free)}">Free in full with a sign-up <span class="arrow">→</span></a></p>`
+    : opts.preview ? `<p class="door"><span>30-second preview${opts.full ? ` of ${opts.full}` : ''}</span><a href="${AP.JOIN.monthly}">Members listen in full <span class="arrow">→</span></a></p>` : '';
+  if (opts.preview) el.classList.add('is-preview');
+  el.innerHTML = `<button class="play" type="button" aria-label="Play ${opts.preview ? 'a preview of ' : ''}${opts.title}"><svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
     <div class="meta"><h3 class="t">${opts.title}</h3>${opts.sub ? `<p>${opts.sub}</p>` : ''}</div>
     <div class="vis"><canvas aria-hidden="true"></canvas></div>
     <div class="bar"><span class="cur">0:00</span><div class="meter" role="slider" aria-label="Position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0"><i></i></div><span class="dur">${opts.duration ? fmt(opts.duration) : '–:––'}</span></div>
-    ${opts.masked ? '<span class="masked">Spoken in a masked voice</span>' : ''}`;
+    ${door}${opts.masked ? '<span class="masked">Spoken in a masked voice</span>' : ''}`;
   const audio = new Audio(); audio.preload = 'none'; audio.src = opts.src;
   const canvas = $('canvas', el), vis = AP.Visual(canvas, opts.visual, { color: opts.color, color2: opts.color2 });
   const bands = BandSource(audio, opts.env);

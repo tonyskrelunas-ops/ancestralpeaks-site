@@ -178,6 +178,13 @@ html.render *{transition:none !important;animation-play-state:paused !important}
 .on-dark .ap-player .meter,.ap-player.dark .meter{background:rgba(255,255,255,.15)}
 .ap-player .meter i{display:block;height:100%;width:0;background:var(--pc)}
 .ap-player .masked{grid-column:1 / -1;margin-top:-.2rem}
+/* a 30-second preview and its door (data-preview) */
+.ap-player .door{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.4rem 1rem;font-size:.86rem;margin-top:-.1rem}
+.ap-player .door span{opacity:.75}
+.ap-player .door a{display:inline-flex;align-items:center;gap:.45em;font-weight:700;text-decoration:none;color:var(--earth);border-bottom:1.5px solid currentColor;padding-bottom:1px}
+.ap-player .door a:hover{color:var(--ink)}
+.on-dark .ap-player .door a,.ap-player.dark .door a{color:var(--gold)}
+.on-dark .ap-player .door a:hover,.ap-player.dark .door a:hover{color:#fff}
 .ap-player.compact{padding:.8rem 1rem;gap:.6rem .9rem}
 .ap-player.compact .play{width:48px;height:48px}
 .ap-player.compact .vis{height:40px}

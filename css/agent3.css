@@ -238,3 +238,152 @@ html.player-open{overflow:hidden}
   .scene .text .num{font-size:clamp(3.5rem,18vw,6rem)}
 }
 html.flat .scene{min-height:min(100svh,900px)}
+
+/* ======================================================================================================
+   THE LISTENING ROOM AS A STORE WINDOW (2026-11-07)
+   Every recording visible with its art, length and one line; a 30-second preview for anyone; two sessions
+   open with a free sign-up; every other recording carries the members' door.
+   ====================================================================================================== */
+.store .lk{width:.95em;height:.95em;fill:currentColor;flex:none;display:inline-block;vertical-align:-.1em}
+
+/* the preview button: a pill with its own half-minute clock */
+.pv{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.65em;border:1.5px solid rgba(38,39,35,.28);background:rgba(255,255,255,.7);color:var(--ink);border-radius:999px;padding:.38em 1.05em .38em .38em;font-weight:600;line-height:1;white-space:nowrap;transition:border-color .25s,background .25s,transform .2s}
+.pv:hover{border-color:var(--ink);transform:translateY(-1px)}
+.pv .ic{width:38px;height:38px;border-radius:50%;background:var(--creek);color:#fff;display:grid;place-items:center;flex:none;transition:box-shadow .3s}
+.pv .ic svg{width:16px;height:16px;fill:currentColor}
+.pv .i-pause{display:none}
+.pv.playing .i-play{display:none}
+.pv.playing .i-pause{display:block}
+.pv.playing{border-color:var(--gold)}
+.pv.playing .ic{box-shadow:0 0 0 6px rgba(209,166,60,.22)}
+.pv .tm{font-variant-numeric:tabular-nums;font-size:.86rem;opacity:.7;font-weight:600}
+.pv .fill{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--gold);transition:width .15s linear}
+.pv.sm{padding:.3em .8em .3em .3em;gap:.5em}
+.pv.sm .ic{width:32px;height:32px}
+.pv.sm .ic svg{width:13px;height:13px}
+.on-dark .pv{background:rgba(16,11,13,.45);color:#fff;border-color:rgba(255,255,255,.35)}
+.on-dark .pv:hover{border-color:#fff}
+.on-dark .pv .ic{background:var(--gold);color:var(--night)}
+
+/* the members' door */
+.store .door{gap:.5em}
+.store .door .lk{opacity:.8}
+.door-link{display:inline-flex;align-items:center;gap:.45em;font-weight:700;font-size:.92rem;text-decoration:none;color:var(--earth);border-bottom:1.5px solid currentColor;padding-bottom:1px;white-space:nowrap}
+.door-link:hover{color:var(--ink)}
+.on-dark .door-link{color:var(--gold)}
+.on-dark .door-link:hover{color:#fff}
+@keyframes doorlit{0%{box-shadow:0 0 0 0 rgba(209,166,60,.0)}30%{box-shadow:0 0 0 8px rgba(209,166,60,.35)}100%{box-shadow:0 0 0 0 rgba(209,166,60,0)}}
+.door.lit,.door-link.lit{animation:doorlit 1.6s ease-out 2}
+.door.lit{border-color:var(--gold)}
+
+/* ---------- the two free sessions ---------- */
+.free{background:var(--stone);padding:clamp(56px,7vw,104px) 0 clamp(40px,5vw,72px);border-bottom:1px solid var(--line)}
+.free .head{padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem 2rem;align-items:end}
+.free .head h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:12ch;margin-top:.5rem}
+.free .head>p{font-size:1.1rem;color:var(--ink-2);max-width:32rem;padding-bottom:.6rem}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,28px);padding-inline:var(--gutter);margin-top:clamp(28px,4vw,52px)}
+.fcard{background:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;box-shadow:0 1px 0 var(--line),0 30px 60px -40px rgba(0,0,0,.45)}
+.fcard .pic{position:relative;aspect-ratio:16/9;background:#1b2420;overflow:hidden}
+.fcard .pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
+.fcard:hover .pic img{transform:scale(1.04)}
+.fcard .dur,.sess .pic .dur,.srow .dur{display:inline-flex;align-items:center;gap:.4em}
+.fcard .dur{position:absolute;right:14px;top:14px;background:var(--creek);color:#fff;border-radius:999px;padding:.4em .85em;font-size:.82rem;font-weight:700;letter-spacing:.04em}
+.fcard .body{padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;gap:.6rem}
+.fcard .num{font-size:clamp(2.6rem,4.6vw,4.4rem);color:var(--earth)}
+.fcard:nth-child(2) .num{color:var(--creek)}
+.fcard .kick,.srow .kick{font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.fcard h3{font-size:clamp(1.8rem,1.3rem + 1.8vw,2.8rem)}
+.fcard .blurb{font-size:1.05rem;line-height:1.5;color:var(--ink)}
+.fcard .line{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,1rem + .5vw,1.4rem);line-height:1.18;letter-spacing:-.01em;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:.8rem}
+.fcard .acts{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1rem;margin-top:auto;padding-top:.6rem}
+.fcard .full{display:none}
+.unlocked .fcard .full{display:inline-flex}
+.fcard .state{font-size:.88rem;color:var(--ink-2);display:inline-flex;align-items:center;gap:.4em}
+.fcard .state b{color:var(--creek)}
+
+.join-box{margin:clamp(20px,3vw,36px) var(--gutter) 0;background:#fff;border-radius:18px;padding:clamp(20px,3vw,40px);box-shadow:0 1px 0 var(--line),0 30px 60px -40px rgba(0,0,0,.35);border-top:4px solid var(--earth)}
+.signup h3,.welcome h3{font-size:clamp(1.5rem,1.2rem + 1.2vw,2.2rem)}
+.signup .fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) auto;gap:.8rem 1rem;align-items:end;margin-top:1rem}
+.fld{display:grid;gap:.35rem}
+.fld span{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.fld input{font:inherit;font-size:1.05rem;padding:.85em 1em;border:1.5px solid rgba(38,39,35,.25);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+.fld input:focus{outline:none;border-color:var(--creek);box-shadow:0 0 0 4px rgba(68,102,90,.15)}
+.signup .btn{justify-content:center}
+.signup .btn.busy{opacity:.6}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.signup .status{min-height:1.4em;margin-top:.7rem;font-weight:600;color:var(--creek)}
+.signup .status.bad{color:var(--earth)}
+.signup .fine,.welcome p{font-size:.92rem;color:var(--ink-2);max-width:46rem;margin-top:.3rem}
+.welcome p{font-size:1.02rem;margin-top:.6rem}
+@media (max-width:900px){
+  .free .head{grid-template-columns:1fr;gap:.6rem}
+  .pair{grid-template-columns:1fr}
+  .signup .fields{grid-template-columns:1fr}
+  .signup .btn{width:100%}
+}
+
+/* ---------- the rest of the room: locked editorial rows ---------- */
+.store .sessions .sess{cursor:default;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.store .today .masked{color:rgba(255,255,255,.82)}
+.store .sess .pic{min-height:min(56vh,500px)}
+.store .sess .pic .dur{background:rgba(16,11,13,.6)}
+.store .sess .meta .mem{display:inline-flex;align-items:center;gap:.4em}
+.store .sess .acts{gap:.8rem 1rem}
+.store .sess .door{padding:.85em 1.3em}
+@media (max-width:900px){.store .sessions .sess{grid-template-columns:1fr}.store .sess .pic{min-height:0;aspect-ratio:16/10}}
+
+/* ---------- short practices and long sittings ---------- */
+.sittings{background:var(--stone-2);padding:clamp(56px,7vw,100px) 0 clamp(48px,6vw,88px)}
+.sittings .head{padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem 2rem;align-items:end}
+.sittings .head h2{font-size:clamp(2.4rem,5.4vw,5rem);max-width:13ch}
+.sittings .head p{font-size:1.1rem;color:var(--ink-2);max-width:32rem;padding-bottom:.6rem}
+.rows{list-style:none;margin:clamp(28px,4vw,52px) 0 0;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(20px,3vw,48px)}
+.srow{display:grid;grid-template-columns:clamp(120px,14vw,200px) minmax(0,1fr);gap:clamp(14px,1.6vw,24px);padding:clamp(18px,2vw,26px) 0;border-top:1px solid var(--line);align-items:start}
+.srow .th{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;background:#1b2420}
+.srow .th img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.srow:hover .th img{transform:scale(1.05)}
+.srow .th .dur{position:absolute;left:8px;bottom:8px;background:rgba(16,11,13,.62);color:#fff;border-radius:999px;padding:.3em .65em;font-size:.76rem;font-weight:700;letter-spacing:.03em}
+.srow .tx{display:flex;flex-direction:column;gap:.4rem}
+.srow .kick{color:var(--earth);font-size:.8rem}
+.srow .kick .n{color:var(--ink-2);margin-right:.7em}
+.srow h3{font-size:clamp(1.3rem,1.1rem + .8vw,1.75rem)}
+.srow .blurb{font-size:.98rem;line-height:1.5;color:var(--ink)}
+.srow .acts{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.1rem;margin-top:.4rem}
+@media (max-width:900px){.rows{grid-template-columns:1fr}.srow{grid-template-columns:104px minmax(0,1fr)}.srow .blurb{font-size:.94rem}}
+
+/* ---------- voice notes, as a list ---------- */
+.nlist{list-style:none;margin:clamp(24px,3vw,44px) 0 0;padding:0 var(--gutter);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(20px,3vw,48px);position:relative;z-index:1}
+.nrow{display:grid;grid-template-columns:56px 2.2rem minmax(0,1fr) auto;grid-template-areas:"th nn tt pv" "th nn door door";gap:.35rem .8rem;align-items:center;padding:14px 0;border-top:1px solid rgba(255,255,255,.16)}
+.nrow .th{grid-area:th;width:56px;height:56px;border-radius:10px;overflow:hidden;background:#1b2420}
+.nrow .th img{width:100%;height:100%;object-fit:cover}
+.nrow .nn{grid-area:nn;font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--gold)}
+.nrow:nth-child(3n+2) .nn{color:#8FB8A8}
+.nrow:nth-child(3n) .nn{color:#7FA6D6}
+.nrow .tt{grid-area:tt;display:grid;gap:.15rem}
+.nrow .tt b{font-family:var(--display);font-weight:700;font-size:1.08rem;letter-spacing:-.01em;line-height:1.15}
+.nrow .tt small{font-size:.84rem;color:rgba(255,255,255,.72);display:inline-flex;align-items:center;gap:.35em;flex-wrap:wrap}
+.nrow .pv{grid-area:pv;justify-self:end}
+.nrow .door-link{grid-area:door;justify-self:end;font-size:.84rem}
+@media (max-width:900px){.nlist{grid-template-columns:1fr}.nrow{grid-template-columns:48px 1.8rem minmax(0,1fr) auto}.nrow .th{width:48px;height:48px}}
+
+/* ---------- the members' door ---------- */
+.members .inner{align-items:end}
+.members p{margin-top:1rem}
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-self:end}
+.plan{display:flex;flex-direction:column;gap:.35rem;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.94);border-radius:16px;padding:18px 20px;transition:transform .25s,box-shadow .25s}
+.plan:hover{transform:translateY(-3px);box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.plan .k{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.plan b{font-family:var(--display);font-weight:800;font-size:clamp(2rem,3vw,2.8rem);letter-spacing:-.03em;line-height:1}
+.plan b small{font-family:var(--text);font-size:.95rem;font-weight:600;letter-spacing:0;color:var(--ink-2)}
+.plan .go{margin-top:.4rem;display:inline-flex;align-items:center;gap:.5em;font-weight:700;color:var(--earth)}
+.plan#planYearly .go{color:var(--creek)}
+.plans .book{grid-column:1 / -1;font-size:.98rem;color:rgba(255,255,255,.9);margin-top:.4rem}
+.plans .book a{color:#fff;font-weight:700;text-underline-offset:.2em;white-space:nowrap}
+@media (max-width:520px){.plans{grid-template-columns:1fr}}
+/* the hero over bright water: a scrim under the words so they always read */
+.store .arrive .film::after{background:linear-gradient(90deg,rgba(16,11,13,.62) 0%,rgba(16,11,13,.38) 38%,rgba(16,11,13,0) 62%),linear-gradient(180deg,rgba(16,11,13,.45) 0%,rgba(16,11,13,.08) 30%,rgba(16,11,13,.15) 55%,rgba(16,11,13,.88) 100%)}
+@media (max-width:900px){
+  .store .arrive .film::after{background:linear-gradient(180deg,rgba(16,11,13,.55) 0%,rgba(16,11,13,.5) 45%,rgba(16,11,13,.72) 75%,rgba(16,11,13,.9) 100%)}
+  .store .today .t p.kick{display:block;font-size:.72rem}
+  .sittings .head{grid-template-columns:1fr;gap:.6rem}
+}

@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Listening Room · Ancestral Peaks</title>
-<meta name="description" content="Sessions spoken in a masked voice, each over our own footage. The picture moves with the voice, and the room remembers where you stopped.">
+<meta name="description" content="Every session and voice note in the Listening Room, spoken in a masked voice. Play thirty seconds of any of them; two open in full with a free sign-up, and members hear the whole room.">
 <meta name="robots" content="noindex">
-<script>if(location.hash==='#render')window.__render=true;if(location.hash==='#flat')window.__flat=true;</script>
 <link rel="stylesheet" href="../shared/vendor/lenis.css">
 <link rel="stylesheet" href="../shared/site.css">
 <link rel="stylesheet" href="../css/agent3.css">
 </head>
-<body>
+<body class="store">
 
 <header data-ap-nav data-active="/listen/" data-menu-image="../media/img/oakcreek-rim-2000.jpg"></header>
 
@@ -24,26 +23,65 @@
   <div class="copy">
     <p class="label" style="color:rgba(255,255,255,.75)">Ancestral Peaks</p>
     <h1 data-words="60">The Listening Room.</h1>
-    <p class="lede reveal"><b>Eight sessions and ten short voice notes, spoken in a masked voice.</b> Each one plays over our own footage, the water or the wind or the fire moves with the voice, and the room remembers where you stopped.</p>
+    <p class="lede reveal"><b>Every session and voice note in the room is here to see and to sample, spoken in a masked voice.</b> Each one shows its length and what is in it, anyone can play thirty seconds of it, and two open in full when you leave your first name. Members hear the whole room.</p>
     <div class="acts reveal">
-      <button class="btn earth" id="playToday" type="button">Play today's session <span class="arrow">→</span></button>
+      <a class="btn earth" href="#free">Open the two free sessions <span class="arrow">→</span></a>
       <button class="btn ghost" id="soundBtn" type="button" aria-pressed="false">Sound on</button>
     </div>
-    <p class="fine reveal">Move across the water. Rest on a session to hear a few seconds of it.</p>
+    <p class="fine reveal">Move across the water.</p>
   </div>
-  <a class="today reveal" id="today" href="#sessions" aria-label="Play today's session">
-    <div class="pic"><img id="todayImg" src="../media/img/oakcreek-pebbles-photo-800.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
-    <div class="t"><p class="kick" id="todayKick">Today</p><h2 id="todayTitle">Before we start</h2><p id="todayLine"></p><span class="masked">Spoken in a masked voice</span></div>
+  <a class="today reveal" id="today" href="#free" aria-label="The free sessions">
+    <div class="pic"><img src="../media/img/canyon-de-chelly-800.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M12 4v13m0 0-6-6m6 6 6-6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="t"><p class="kick">Free with a sign-up · 6 min</p><h2>Settle yourself first</h2><p>And The Pocket, three minutes of the breath. Both open in full when you leave your name.</p><span class="masked">Spoken in a masked voice</span></div>
   </a>
 </section>
 
-<!-- THE SESSIONS -->
-<section class="sessions" id="sessions" data-bar="light">
+<!-- THE TWO FREE SESSIONS -->
+<section class="free" id="free" data-bar="light" data-scene="dawn" data-scene-label="first light">
   <div class="head">
-    <h2 class="reveal">Eight sessions. Begin where you are.</h2>
-    <p class="reveal">Each one keeps its place when you leave. Rest on a row to hear a few seconds of the voice, and the sound of that country comes up under it.</p>
+    <div>
+      <p class="label">Free with a sign-up</p>
+      <h2 class="reveal">Two sessions, free.</h2>
+    </div>
+    <p class="reveal">Leave your first name and email and both open here in full: the first week's teaching, and the three-minute breath you can run on any Tuesday. Until then, play thirty seconds of each.</p>
+  </div>
+  <div class="pair" id="freePair"></div>
+
+  <div class="join-box" id="joinBox">
+    <form class="signup" id="signup" novalidate>
+      <h3>Leave your name, and both open now.</h3>
+      <div class="fields">
+        <label class="fld"><span>First name</span><input type="text" name="name" id="suName" autocomplete="given-name" required maxlength="60"></label>
+        <label class="fld"><span>Email</span><input type="email" name="email" id="suEmail" autocomplete="email" required spellcheck="false" maxlength="120"></label>
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn earth" type="submit" id="suBtn">Open both sessions <span class="arrow">→</span></button>
+      </div>
+      <p class="status" id="suStatus" role="status" aria-live="polite"></p>
+      <p class="fine">Your address stays with our team and is never shared or sold. Nothing is sent to you to wait for; the two sessions open right here, on this device, the moment you press the button.</p>
+    </form>
+    <div class="welcome" id="welcome" hidden>
+      <h3 id="welcomeH">Both sessions are open.</h3>
+      <p>They stay open on this device, and the room remembers where you stopped. When you want the rest of the room, the members' door is beside every session below.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE REST OF THE ROOM -->
+<section class="sessions" id="room" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">The rest of the room.</h2>
+    <p class="reveal">Every session is shown here with its length and what is in it. Play thirty seconds of any of them. Members listen to all of it, in full, inside the membership.</p>
   </div>
   <ol class="list" id="list"></ol>
+</section>
+
+<!-- SHORT PRACTICES AND LONG SITTINGS -->
+<section class="sittings" id="sittings" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">Short practices, long sittings.</h2>
+    <p class="reveal">From a two-minute stone to a forty-three-minute crossing, for the morning, the drive and the night. Thirty seconds of each plays here.</p>
+  </div>
+  <ul class="rows" id="sitRows"></ul>
 </section>
 
 <!-- VOICE NOTES -->
@@ -51,36 +89,40 @@
   <div class="bg"><img src="../media/img/fire-circle-1600.jpg" alt="" loading="lazy"></div>
   <div class="head">
     <h2 class="reveal">Voice notes.</h2>
-    <p class="reveal"><span id="noteCount">Short ones</span>, a minute each, for the drive or before a hard meeting. Spoken in a masked voice.</p>
+    <p class="reveal"><span id="noteCount">Short ones</span>, about a minute each, from his talk: for the drive, or before a hard meeting. Thirty seconds of each plays here; members hear them whole.</p>
   </div>
-  <div class="shelf" id="shelf"></div>
+  <ul class="nlist" id="noteList"></ul>
 </section>
 
-<!-- CLOSE -->
-<section class="close" data-scene="dawn" data-scene-label="first light">
+<!-- THE MEMBERS' DOOR -->
+<section class="close members" id="members" data-scene="dawn" data-scene-label="first light">
   <div class="kb"><img src="../media/img/peaks-morning-2000.jpg" srcset="../media/img/peaks-morning-1000.jpg 1000w, ../media/img/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The Peaks under morning cloud" loading="lazy"></div>
   <div class="inner">
     <div>
-      <h2 class="reveal">Tomorrow the pick changes.</h2>
-      <div class="acts reveal"><a class="btn light" href="../practice/index.html">The Practice <span class="arrow">→</span></a><a class="btn ghost" href="https://app.ancestralpeaks.com">Begin <span class="arrow">→</span></a></div>
+      <h2 class="reveal">Members listen in full.</h2>
+      <p class="reveal">Membership opens every session and voice note in this room, in full, short and long. You join, and you listen, inside the membership on Payhip. The two free sessions stay yours either way.</p>
     </div>
-    <p class="reveal">Come back in the morning. A different session stands on the water, and the ones you began are waiting where you left them.</p>
+    <div class="plans reveal">
+      <a class="plan" id="planMonthly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa" data-offer="member-monthly"><span class="k">Monthly</span><b>$12 <small>a month</small></b><span class="go">Join monthly <span class="arrow">→</span></span></a>
+      <a class="plan" id="planYearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=rdWQg8NPBj" data-offer="member-yearly"><span class="k">Yearly</span><b>$79 <small>a year</small></b><span class="go">Join yearly <span class="arrow">→</span></span></a>
+      <p class="book">Bought one of the books? The word printed at the end of it opens your first month free. <a href="../reader/">Come in with the book <span class="arrow">→</span></a></p>
+    </div>
   </div>
 </section>
 
 <footer data-ap-foot></footer>
 
-<!-- THE PLAYER: a full-screen scene over his footage, the field moving with the voice -->
+<!-- THE PLAYER: a full-screen scene over his footage, for the two free sessions in full -->
 <div class="player" id="player" role="dialog" aria-modal="true" aria-label="Session player">
-  <div class="still"><img id="pImg" src="" alt=""></div>
-  <div class="film"><video id="pVideo" muted loop playsinline preload="auto"></video></div>
+  <div class="still"><img id="pImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt=""></div>
+  <div class="film"><video id="pVideo" muted loop playsinline preload="none"></video></div>
   <div class="scrim"></div>
   <canvas class="field" id="pField" aria-hidden="true"></canvas>
   <div class="ptop">
     <button class="closebtn" id="pClose" type="button">← Back to the room</button>
     <span class="masked">Spoken in a masked voice</span>
   </div>
-  <div class="fin" id="pFin"><h3 id="pFinH"></h3><p id="pFinP"></p><div class="acts"><button class="btn light" id="pNext" type="button">Next session <span class="arrow">→</span></button><button class="btn ghost" id="pAgain" type="button">Sit with this one again</button></div></div>
+  <div class="fin" id="pFin"><h3 id="pFinH"></h3><p id="pFinP"></p><div class="acts"><button class="btn light" id="pNext" type="button">The other free session <span class="arrow">→</span></button><a class="btn ghost" id="pJoin" href="#members">The rest of the room</a></div></div>
   <div class="pcopy">
     <div>
       <p class="kick" id="pKick"></p>
@@ -98,22 +140,22 @@
       <span class="time" id="pDur">0:00</span>
     </div>
   </div>
-  <audio id="voice" preload="none" crossorigin="anonymous"></audio>
+  <audio id="voice" preload="none"></audio>
 </div>
 
 <script src="../shared/vendor/gsap.min.js"></script>
 <script src="../shared/vendor/ScrollTrigger.min.js"></script>
 <script src="../shared/vendor/lenis.min.js"></script>
 <script src="../shared/site.js"></script>
+<script src="../media/sessions.js"></script>
+<script src="../js/peaks-capture.js"></script>
+<script src="../js/peaks-field.js"></script>
+<script src="../js/peaks-voice.js"></script>
+<script src="../js/peaks-listen.js"></script>
 <script>
   // the real bed loops (built with the same recipes as the sessions' own beds), then the shell
   ['dawn','ocean','desert','hearth','creek'].forEach(s=>AP.sound.register(s,'../media/beds/bed-'+s+'.mp3'));
   AP.init();
 </script>
-<script src="../media/sessions.js"></script>
-<script src="../js/peaks-field.js"></script>
-<script src="../js/peaks-voice.js"></script>
-<script src="../js/peaks-listen.js"></script>
-<script>AP.reveal(document.getElementById('list'));AP.parallax(document.getElementById('list'));document.querySelectorAll('#shelf .ap-player[data-src]').forEach(el=>AP.player(el));</script>
 </body>
 </html>
