@@ -156,7 +156,7 @@ function paintUnlock(){
     const s=byId(c.dataset.id), p=prog[s.id];
     const st=$('.state',c), btn=$('.full',c);
     btn.firstChild.textContent=on&&p&&p.t>20&&!p.done?'Continue ':'Listen in full ';
-    st.innerHTML=on?(p&&p.done?'<b>Heard</b> · sit with it again any time':p&&p.t>20?'You stopped at <b>'+fmt(p.t)+'</b>':'Open on this device'):LOCK+'Opens in full when you leave your name';
+    st.innerHTML=on?(p&&p.done?'<b>Heard</b> · sit with it again any time':p&&p.t>20?'You stopped at <b>'+fmt(p.t)+'</b>':'Open on this device'):LOCK+'Opens in full when you leave your name and email';
   });
   const form=$('#signup'), wel=$('#welcome');
   if(form) form.hidden=on; if(wel) wel.hidden=!on;
