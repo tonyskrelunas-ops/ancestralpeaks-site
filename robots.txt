@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /reader/
+Disallow: /work/assets/
+
+Sitemap: https://ancestralpeaks.com/sitemap.xml
