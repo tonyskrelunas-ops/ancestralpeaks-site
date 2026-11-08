@@ -96,7 +96,7 @@ AP.nav = function(host, opts){
 AP.footer = function(host, opts){
   host = typeof host === 'string' ? $(host) : (host || $('[data-ap-foot]'));
   if (!host) return null;
-  opts = Object.assign({ tag: 'A place to practice. The companion to the books. Every photograph and every second of film is our own.' }, opts || {});
+  opts = Object.assign({ tag: 'A place to practice. The companion to the books. Every photograph is our own.' }, opts || {});
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
     <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>

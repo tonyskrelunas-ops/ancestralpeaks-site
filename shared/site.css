@@ -234,3 +234,30 @@ html[data-scene].sound-on .ap-scene-chip{opacity:1;transform:none}
 
 /* 11/8 easy to cancel, under the join links on the home page */
 .door .cancel{font-size:.92rem;opacity:.82;margin:.8rem 0 0;max-width:34em}
+
+/* 11/8 the welcome film: one picture and a play button; the film loads only when pressed */
+.wfsec{background:#14110d;color:#f4efe4;padding:clamp(56px,9vw,120px) 20px}
+.wfsec .in{max-width:1080px;margin:0 auto;display:grid;gap:28px;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);align-items:center}
+.wfsec h2{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.05;margin:0 0 .4em}
+.wfsec p{color:rgba(244,239,228,.84);max-width:30em;margin:0 0 .8em}
+.wf{position:relative}
+.wf-stage{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.wf-stage img,.wf-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.wf-stage video{object-fit:contain;background:#000}
+.wf-go{position:absolute;inset:0;border:0;padding:0;margin:0;background:transparent;cursor:pointer;display:grid;place-items:center;color:#fff}
+.wf-go .pl{width:84px;height:84px;border-radius:50%;background:rgba(20,17,13,.55);border:1px solid rgba(255,255,255,.6);display:grid;place-items:center;transition:transform .25s ease,background .25s ease}
+.wf-go .pl svg{width:30px;height:30px;fill:#fff;margin-left:4px}
+.wf-go:hover .pl,.wf-go:focus-visible .pl{transform:scale(1.06);background:rgba(20,17,13,.75)}
+.wf-go .lb{position:absolute;left:18px;bottom:16px;font-size:.95rem;letter-spacing:.03em;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.wf .wf-note{font-size:.82rem;color:rgba(244,239,228,.62);margin:.7rem 0 0}
+@media (max-width:899px),(orientation:portrait){
+  .wfsec .in{grid-template-columns:1fr}
+  .wf-stage{aspect-ratio:9/16;max-height:82vh;margin:0 auto;max-width:calc(82vh*9/16)}
+}
+@media (min-width:900px) and (orientation:landscape){.wf.is-wide .wf-stage{aspect-ratio:16/9}}
+.welcome .wf{margin-top:18px}
+.welcome .wf .wf-note{color:inherit;opacity:.7}
+
+.wfsec .wf-phone{width:170px;aspect-ratio:9/16;border-radius:16px;overflow:hidden;margin-top:22px;box-shadow:0 20px 50px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.1)}
+.wfsec .wf-phone video{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:899px),(orientation:portrait){.wfsec .wf-phone{display:none}}
