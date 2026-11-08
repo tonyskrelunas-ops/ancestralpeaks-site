@@ -1,0 +1,61 @@
+/* Ancestral Peaks — THE READING ROOM (2026-11-07).
+   The arrival, the editorial rows, the members' door, the preview pill and the door-link all come from css/agent3.css
+   (the Listening Room's sheet). Only the parts that are the Reading Room's own live here. */
+
+/* ---------- the free pieces: two cards, the opening shown, the rest a press away ---------- */
+.reading .shelf-free{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(14px,2vw,28px);padding-inline:var(--gutter);margin-top:clamp(28px,4vw,52px)}
+.rcard{background:#fff;border-radius:18px;overflow:hidden;display:grid;grid-template-rows:auto 1fr;box-shadow:0 1px 0 var(--line),0 30px 60px -40px rgba(0,0,0,.45)}
+.rcard .pic{position:relative;aspect-ratio:16/10;background:#1b2420;overflow:hidden}
+.rcard .pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease}
+.rcard:hover .pic img{transform:scale(1.04)}
+.rcard .pic .dur{position:absolute;right:14px;top:14px;display:inline-flex;align-items:center;gap:.4em;background:var(--creek);color:#fff;border-radius:999px;padding:.4em .85em;font-size:.82rem;font-weight:700;letter-spacing:.04em}
+.rcard .body{padding:clamp(20px,2.4vw,32px);display:flex;flex-direction:column;gap:.6rem}
+.rcard .num{font-size:clamp(2.6rem,4.6vw,4.4rem);color:var(--earth);line-height:.85}
+.rcard:nth-child(2) .num{color:var(--creek)}
+.rcard:nth-child(3) .num{color:var(--sky)}
+.rcard:nth-child(4) .num{color:var(--gold)}
+.rcard .kick{font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.rcard h3{font-size:clamp(1.8rem,1.3rem + 1.8vw,2.8rem)}
+.rcard .dek{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,1rem + .5vw,1.4rem);line-height:1.18;letter-spacing:-.01em;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:.8rem}
+.rcard .acts{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1.2rem;margin-top:auto;padding-top:.8rem}
+
+/* the excerpt itself: his paragraphs, set to read */
+.excerpt{max-width:38rem}
+.excerpt p{font-size:clamp(1.02rem,1rem + .3vw,1.18rem);line-height:1.6;color:var(--ink);margin:0}
+.excerpt p+p{margin-top:.85em}
+.excerpt .more{display:none}
+.excerpt.open .more{display:block;margin-top:.85em}
+.excerpt .fade{position:relative}
+.excerpt:not(.open) .fade::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2.4em;background:linear-gradient(180deg,rgba(255,255,255,0),#fff)}
+.on-dark .excerpt p,.sess .excerpt p{color:var(--ink)}
+.keep{display:inline-flex;align-items:center;gap:.5em;background:none;border:0;padding:0;font:inherit;font-weight:700;color:var(--creek);border-bottom:1.5px solid currentColor;padding-bottom:1px;cursor:pointer}
+.keep:hover{color:var(--ink)}
+.keep .arrow{font-family:var(--display);font-weight:700;transition:transform .3s}
+.excerpt.open~.acts .keep .arrow,.open .keep .arrow{transform:rotate(90deg)}
+.ta-link{display:inline-flex;align-items:center;gap:.5em;background:var(--ink);color:#fff;border-radius:999px;padding:.8em 1.25em;font-weight:600;text-decoration:none;white-space:nowrap;transition:transform .2s,background .2s}
+.ta-link:hover{transform:translateY(-1px);background:#000}
+.ta-link .arrow{font-family:var(--display);font-weight:700}
+.ta-link small{font-weight:500;opacity:.75}
+@media (max-width:900px){.reading .shelf-free{grid-template-columns:1fr}}
+
+/* ---------- the science shelf: the Listening Room's rows, with an opening paragraph where the line was ---------- */
+.reading .sess .excerpt{margin-top:.2rem;max-width:34rem}
+.reading .sess .excerpt p{font-size:clamp(1rem,.98rem + .3vw,1.15rem);line-height:1.55;color:var(--ink-2)}
+.reading .sess .pic .dur{background:rgba(16,11,13,.6)}
+.reading .sess .meta .mem{display:inline-flex;align-items:center;gap:.4em}
+
+/* ---------- longer writings: the sittings rows, on the warmer stone ---------- */
+.reading .writings .srow .excerpt{margin-top:.1rem}
+.reading .writings .srow .excerpt p{font-size:.98rem;line-height:1.55;color:var(--ink-2)}
+.reading .writings .srow .th{aspect-ratio:4/3}
+.reading .writings .srow .kick{color:var(--earth)}
+
+/* ---------- the arrival: a reading card standing over the fire ---------- */
+html.flat .reading .arrive{min-height:min(100svh,900px)}   /* full-page screenshots (#flat): the arrival keeps one screen's height */
+.reading .today .pic{aspect-ratio:16/9}
+.reading .today .t .kick{color:var(--gold)}
+.reading .store-note{margin-top:1rem;font-size:.86rem;color:rgba(255,255,255,.7)}
+@media (max-width:900px){
+  .reading .today{grid-template-columns:120px 1fr}
+  .reading .today .pic{aspect-ratio:auto;min-height:120px}
+}

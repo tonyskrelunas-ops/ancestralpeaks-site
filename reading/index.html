@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" data-root=".." data-noinit="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Reading Room · Ancestral Peaks</title>
+<meta name="description" content="Every piece of writing in the Reading Room: his published pieces free to read, with the originals on TribeAwaken, and the science and research of the far messengers and the longer writings in full for members.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../shared/vendor/lenis.css">
+<link rel="stylesheet" href="../shared/site.css">
+<link rel="stylesheet" href="../css/agent3.css">
+<link rel="stylesheet" href="../css/reading.css">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Peaks">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="/app/pwa.js" defer></script>
+</head>
+<body class="store reading">
+
+<header data-ap-nav data-active="/reading/" data-menu-image="../media/img/fire-moon-1600.jpg"></header>
+
+<!-- ARRIVAL: the fire, and embers that answer the pointer -->
+<section class="arrive" id="top" data-scene="hearth" data-scene-label="the fire">
+  <div class="film">
+    <video src="../media/video/v-fire-bowl.mp4" poster="../media/video/v-fire-bowl-poster.jpg" autoplay muted loop playsinline preload="auto"></video>
+  </div>
+  <canvas class="field" id="roomField" aria-hidden="true"></canvas>
+  <div class="copy">
+    <p class="label" style="color:rgba(255,255,255,.75)">Ancestral Peaks</p>
+    <h1 data-words="60">The Reading Room.</h1>
+    <p class="lede reveal"><b>Every piece of writing in the room is here to see, with its opening.</b> Four of his published pieces are free to read, with the rest of each on TribeAwaken. The science and research of the far messengers, and the longer writings, open in full for members.</p>
+    <div class="acts reveal">
+      <a class="btn earth" href="#free">Open the free pieces <span class="arrow">→</span></a>
+      <button class="btn ghost" id="soundBtn" type="button" aria-pressed="false">Sound on</button>
+    </div>
+    <p class="fine reveal">Read by the fire.</p>
+  </div>
+  <a class="today reveal" id="today" href="#free" aria-label="The free pieces">
+    <div class="pic"><img src="../media/reading/what-a-far-messenger-is-1400.jpg" alt=""><span class="play"><svg viewBox="0 0 24 24"><path d="M12 4v13m0 0-6-6m6 6 6-6" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="t"><p class="kick">Free to read · 10 min</p><h2>What a Far Messenger Is</h2><p>The first teaching, what we kept and what we set down, and why the role has a name again.</p></div>
+  </a>
+</section>
+
+<!-- THE FREE PIECES -->
+<section class="free" id="free" data-bar="light" data-scene="dawn" data-scene-label="first light">
+  <div class="head">
+    <div>
+      <p class="label">Free to read</p>
+      <h2 class="reveal">Four pieces, free.</h2>
+    </div>
+    <p class="reveal">His published writing on the far messengers, the breath, and what comes forward from the people who raised us. The opening of each is here; keep reading as far as you like, and the whole piece is on TribeAwaken, where it was first published.</p>
+  </div>
+  <div class="shelf-free" id="freeShelf"></div>
+</section>
+
+<!-- THE SCIENCE SHELF -->
+<section class="sessions" id="science" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">The science shelf.</h2>
+    <p class="reveal">The research under the far messengers: what a carrier physically did, how what they learned got home, and what kept it alive. Every claim carries its source; where the record is thin, it says so. Members read each piece in full inside the membership.</p>
+  </div>
+  <ol class="list" id="list"></ol>
+</section>
+
+<!-- LONGER WRITINGS -->
+<section class="sittings writings" id="writings" data-bar="light">
+  <div class="head">
+    <h2 class="reveal">Longer writings.</h2>
+    <p class="reveal">The pieces that sit under the books: what he was doing when he wrote them, and the working paper behind the practice. The opening of each is here; members read the rest.</p>
+  </div>
+  <ul class="rows" id="writingRows"></ul>
+</section>
+
+<!-- THE MEMBERS' DOOR -->
+<section class="close members" id="members" data-scene="dawn" data-scene-label="first light">
+  <div class="kb"><img src="../media/img/peaks-morning-2000.jpg" srcset="../media/img/peaks-morning-1000.jpg 1000w, ../media/img/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The Peaks under morning cloud" loading="lazy"></div>
+  <div class="inner">
+    <div>
+      <h2 class="reveal">Members read in full.</h2>
+      <p class="reveal">Membership opens every piece on the science shelf and every longer writing, in full, and the whole Listening Room beside them. You join, and you read, inside the membership on Payhip. The four free pieces stay free either way.</p>
+    </div>
+    <div class="plans reveal">
+      <a class="plan" id="planMonthly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa" data-offer="member-monthly"><span class="k">Monthly</span><b>$12 <small>a month</small></b><span class="go">Join monthly <span class="arrow">→</span></span></a>
+      <a class="plan" id="planYearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=rdWQg8NPBj" data-offer="member-yearly"><span class="k">Yearly</span><b>$79 <small>a year</small></b><span class="go">Join yearly <span class="arrow">→</span></span></a>
+      <p class="book">Bought one of the books? The word printed at the end of it opens your first month free. <a href="../reader/">Come in with the book <span class="arrow">→</span></a></p>
+    </div>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script src="../shared/vendor/gsap.min.js"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js"></script>
+<script src="../shared/vendor/lenis.min.js"></script>
+<script src="../shared/site.js"></script>
+<script src="../media/readings.js"></script>
+<script src="../js/peaks-field.js"></script>
+<script src="../js/peaks-voice.js"></script>
+<script src="../js/peaks-reading.js"></script>
+<script>
+  // the real bed loops (built with the same recipes as the sessions' own beds), then the shell
+  ['dawn','ocean','desert','hearth','creek'].forEach(s=>AP.sound.register(s,'../media/beds/bed-'+s+'.mp3'));
+  AP.init();
+</script>
+<script src="../shared/media-guard.js?v=1" defer></script>
+</body>
+</html>
