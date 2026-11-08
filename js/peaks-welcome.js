@@ -2,7 +2,7 @@
    several water loops and a 3-minute film on top closed the app about 15 seconds in. On a laptop it plays here, and
    every other film on the page is paused and handed back first so the welcome has the memory to itself. */
 (function () {
-  var phone = window.matchMedia('(max-width: 899px), (orientation: portrait), (pointer: coarse)').matches;
+  var phone = window.matchMedia('(max-width: 1099px), (orientation: portrait), (pointer: coarse)').matches;
   var boxes = document.querySelectorAll('.wf');
   for (var i = 0; i < boxes.length; i++) (function (box) {
     var go = box.querySelector('.wf-go'); if (!go) return;

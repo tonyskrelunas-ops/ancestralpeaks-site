@@ -250,9 +250,18 @@ html[data-scene].sound-on .ap-scene-chip{opacity:1;transform:none}
 .wf-go:hover .pl,.wf-go:focus-visible .pl{transform:scale(1.06);background:rgba(20,17,13,.75)}
 .wf-go .lb{position:absolute;left:18px;bottom:16px;font-size:.95rem;letter-spacing:.03em;text-shadow:0 1px 8px rgba(0,0,0,.7)}
 .wf .wf-note{font-size:.82rem;color:rgba(244,239,228,.62);margin:.7rem 0 0}
+/* the logo above and the line about the site below fill the space a phone leaves around the wide film */
+.wf-top,.wf-bottom{display:none}
 @media (max-width:899px),(orientation:portrait){
   .wfsec .in{grid-template-columns:1fr}
-  .wf-stage{aspect-ratio:9/16;max-height:82vh;margin:0 auto;max-width:calc(82vh*9/16)}
+  .wfsec .wf{background:#0d0b09;border-radius:18px;padding:26px 0 22px;box-shadow:0 26px 70px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.08)}
+  .wf-top{display:flex;align-items:center;justify-content:center;gap:10px;color:#f4efe4;margin:0 0 20px}
+  .wf-top svg{width:38px;height:38px}
+  .wf-top b{font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
+  .wfsec .wf-stage{border-radius:0;box-shadow:none;aspect-ratio:16/9}
+  .wf-bottom{display:block;text-align:center;margin:18px 22px 0!important;color:rgba(244,239,228,.82);font-size:1rem;line-height:1.5}
+  .wf-bottom b{color:#f4efe4}
+  .wfsec .wf .wf-note{text-align:center;margin:12px 22px 0}
 }
 @media (min-width:900px) and (orientation:landscape){.wf.is-wide .wf-stage{aspect-ratio:16/9}}
 .welcome .wf{margin-top:18px}
