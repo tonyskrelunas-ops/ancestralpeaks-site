@@ -27,6 +27,7 @@
   }
   // The voice: a media element the picture listens to.
   function attachVoice(el){
+    if((/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))) return false;   // 11/8: iPhone silent switch mutes Web Audio; let the voice play straight
     if(!ensure()) return false;
     if(sources.has(el)) return true;
     try{

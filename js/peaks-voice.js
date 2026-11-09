@@ -11,6 +11,7 @@
   function attach(el){
     if(!ctxNow()) return false;
     if(window.AP&&AP.fileMode) return false;
+    if((/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))) return false;   // 11/8: iPhone silent switch mutes Web Audio; let the voice play straight
     if(sources.has(el)) return true;
     try{
       const s=ctx.createMediaElementSource(el);

@@ -447,7 +447,9 @@ function BandSource(audio, envUrl){
     } else fetch(envUrl).then(r => r.ok ? r.json() : null).then(useEnv).catch(() => {});
   }
   S.attach = () => {
-    if (S.an || AP.fileMode || !AP.sound.ensure()) return;
+    // 11/8: on iPhone and iPad a voice routed through Web Audio is silenced by the ring/silent switch, so the voice
+    // plays straight from the element there and the picture moves from the prepared envelope instead
+    if (S.an || AP.fileMode || (/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)) || !AP.sound.ensure()) return;
     try { const c = AP.sound.ctx; const srcNode = c.createMediaElementSource(audio); S.an = c.createAnalyser(); S.an.fftSize = 512; S.an.smoothingTimeConstant = .6; srcNode.connect(S.an); S.an.connect(c.destination); S.data = new Uint8Array(S.an.frequencyBinCount); } catch (e) { S.an = null; }
   };
   S.read = t => {
