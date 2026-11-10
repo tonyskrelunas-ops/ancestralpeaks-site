@@ -105,7 +105,7 @@ var CALM=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matche
 
 /* Tony's rule (2026-11-10): one game and one story are free (The Short Crossing, The Living Memory); the rest are for members.
    For now the three longer stories open when a full game is finished. Real member checking still has to be tied to the site's membership. */
-var all=/[?&]open=all\b/.test(location.search)||window.FIRE_ALL===true;   // FIRE_ALL is set in the members' single-file copy
+var all=true;   // 11/10: all four stories free for now (Tony). The original line: var all=/[?&]open=all\b/.test(location.search)||window.FIRE_ALL===true;   // FIRE_ALL is set in the members' single-file copy
 try{ if(all)localStorage.setItem('peaks-fire-all','1'); else all=localStorage.getItem('peaks-fire-all')==='1'; }catch(e){}
 var from=(location.search.match(/[?&]from=([a-z-]+)/)||[])[1];
 if(from==='open-water'){$('#back').setAttribute('href','../open-water/');} else if(from==='crossing'){$('#back').setAttribute('href','../crossing/?full');}

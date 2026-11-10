@@ -157,7 +157,7 @@ var D={
  desert:{n:'The desert', line:'Six hundred and fifty thousand square kilometers of unbroken sand, where the body that wastes water is the body that does not come home.', wisdom:'Panic kills and calm carries you across.'},
  mountains:{n:'The mountains, and the relay', line:'No runner crosses alone. Each carries one stretch and hands it on whole.', wisdom:'A people who keep their old ones are a people, and the rest is just a gym.'}
 };
-var SHORT=true;
+var SHORT=false;   // 11/10: everything free for now (Tony). The original line: var SHORT=!(/[?&]full\b/.test(location.search)||window.CROSSING_FULL===true);
 var DRAW=SHORT?2:5;                                                // "Draw five to seven." (two in the short one)
 var KEY='peaks-crossing-met';
 function met(){try{var v=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
