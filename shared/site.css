@@ -277,3 +277,10 @@ html[data-scene].sound-on .ap-scene-chip{opacity:1;transform:none}
 .wfsec .wf-phone{position:relative;isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black);transform:translateZ(0)}
 .wfsec .wf-phone video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .wf-stage{isolation:isolate;-webkit-mask-image:-webkit-radial-gradient(white,black)}
+
+/* the menu, grouped (11/10): three short groups that fit one phone screen */
+.ap-menu nav{gap:clamp(.9rem,2.6vh,1.6rem)}
+.ap-menu nav .grp{display:flex;flex-direction:column;gap:.05em}
+.ap-menu nav .grp-h{margin:0 0 .25em;font-family:var(--text);font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.ap-menu nav a{font-size:clamp(1.55rem,6.6vw,2.4rem);line-height:1.18}
+.ap-menu nav a[aria-current="page"]{color:var(--gold,#d6aa5c)}

@@ -35,16 +35,27 @@ AP.JOIN = {
 
 /* ---------- the pages (one source of truth for nav + footer) ---------- */
 AP.pages = [
-  { href: '/',          label: 'Home',           n: '' },
-  { href: '/#path',     label: 'The Path',       n: '01' },
-  { href: '/weeks/',    label: 'Eight Weeks',    n: '02' },
-  { href: '/listen/',   label: 'Listening Room', n: '03' },
-  { href: '/reading/',  label: 'Reading Room',   n: '04' },
-  { href: '/practice/', label: 'Practice',       n: '05' },
-  { href: '/play/',      label: 'Games & Fireside Stories', n: '06' },
-  { href: '/books/',    label: 'The Books',      n: '07' },
-  { href: '/work/',     label: 'For Your Work',  n: '08' }
+  // group: where it sits in the menu; bar: shown in the wide-screen bar; menu:false keeps it out of the menu (the logo goes home)
+  { href: '/',          label: 'Home',                     n: '',   group: '',             bar: false, menu: false },
+  { href: '/#path',     label: 'The Path',                 n: '01', group: 'Start here',   bar: true },
+  { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true },
+  { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
+  { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: false },
+  { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: false },
+  { href: '/play/',     label: 'Games & Fireside Stories', n: '06', group: 'Explore',      bar: true },
+  { href: '/books/',    label: 'The Books',                n: '07', group: 'Explore',      bar: true },
+  { href: '/work/',     label: 'For Your Work',            n: '08', group: 'Explore',      bar: false }
 ];
+/* the menu, grouped: Start here / The practice / Explore (Tony, 11/10: "better organize the menu") */
+AP.menuGroups = function(){
+  const out = [];
+  AP.pages.filter(p => p.menu !== false).forEach(p => {
+    let g = out.find(x => x.name === (p.group || ''));
+    if (!g) { g = { name: p.group || '', items: [] }; out.push(g); }
+    g.items.push(p);
+  });
+  return out;
+};
 AP.markSVG = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>';
 AP.href = p => (AP.root || '') + p;
 
@@ -54,7 +65,7 @@ AP.nav = function(host, opts){
   if (!host) return null;
   opts = Object.assign({ active: host.dataset.active || '', light: host.dataset.light === '1', begin: AP.BEGIN, menuImage: host.dataset.menuImage || '' }, opts || {});
   host.classList.add('ap-bar'); if (opts.light) host.classList.add('on-light');
-  const links = AP.pages.map(p => `<a href="${AP.href(p.href)}"${p.href === opts.active ? ' aria-current="page"' : ''}>${p.label}</a>`).join('');
+  const links = AP.pages.filter(p => p.bar).map(p => `<a href="${AP.href(p.href)}"${p.href === opts.active ? ' aria-current="page"' : ''}>${p.label}</a>`).join('');
   host.innerHTML = `<a class="ap-mark" href="${AP.href('/')}" aria-label="Ancestral Peaks">${AP.markSVG}Ancestral Peaks</a>
     <nav class="ap-nav" aria-label="Pages">${links}</nav>
     <div class="acts">
@@ -67,7 +78,7 @@ AP.nav = function(host, opts){
   if (!menu) {
     menu = document.createElement('div'); menu.className = 'ap-menu'; menu.id = 'apMenu'; menu.setAttribute('aria-hidden', 'true');
     menu.innerHTML = `${opts.menuImage ? `<div class="bg"><img src="${opts.menuImage}" alt=""></div>` : ''}
-      <nav aria-label="Pages">${AP.pages.map((p, i) => `<a href="${AP.href(p.href)}" style="transition-delay:${.08 + i * .05}s"><small>${p.n}</small>${p.label}</a>`).join('')}</nav>
+      <nav aria-label="Pages">${(function(){ let i = 0; return AP.menuGroups().map(g => `<div class="grp">${g.name ? `<p class="grp-h">${g.name}</p>` : ''}${g.items.map(p => `<a href="${AP.href(p.href)}"${p.href === opts.active ? ' aria-current="page"' : ''} style="transition-delay:${.08 + (i++) * .04}s">${p.label}</a>`).join('')}</div>`).join(''); })()}</nav>
       <div class="foot"><a class="btn light" href="${opts.begin}">Begin <span class="arrow">→</span></a></div>`;
     document.body.appendChild(menu);
   }
