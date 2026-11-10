@@ -41,8 +41,9 @@ AP.pages = [
   { href: '/listen/',   label: 'Listening Room', n: '03' },
   { href: '/reading/',  label: 'Reading Room',   n: '04' },
   { href: '/practice/', label: 'Practice',       n: '05' },
-  { href: '/books/',    label: 'The Books',      n: '06' },
-  { href: '/work/',     label: 'For Your Work',  n: '07' }
+  { href: '/play/fireside/', label: 'By the Fire', n: '06' },
+  { href: '/books/',    label: 'The Books',      n: '07' },
+  { href: '/work/',     label: 'For Your Work',  n: '08' }
 ];
 AP.markSVG = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>';
 AP.href = p => (AP.root || '') + p;
