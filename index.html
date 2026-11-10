@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ancestral Peaks</title>
-<meta name="description" content="A morning practice by the water. Settle the body, then carry what matters whole.">
+<meta name="description" content="For the one who is settled and wants tools to cross hard ground, to do even more, and to make a difference for the generations to come. A morning practice by the water.">
 <link rel="stylesheet" href="shared/vendor/lenis.css?v=1108e">
-<link rel="stylesheet" href="shared/site.css?v=1108i">
+<link rel="stylesheet" href="shared/site.css?v=1110b">
 <style>
 /* ===== HOME PAGE — built on shared/site.css. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
 
@@ -51,6 +51,7 @@
 .today .pic .pollen{position:absolute;inset:0;mix-blend-mode:screen;opacity:.9}
 .today .filmtile{position:absolute;left:var(--gutter);bottom:var(--gutter);z-index:2;width:min(46%,300px);text-decoration:none;color:#fff;border-radius:10px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25)}
 .today .filmtile .ap-loop{aspect-ratio:16/9}
+.today .filmtile::after{content:"";position:absolute;inset:35% 0 0 0;z-index:1;background:linear-gradient(180deg,rgba(16,11,13,0),rgba(16,11,13,.88) 70%);pointer-events:none}
 .today .filmtile span{position:absolute;left:12px;right:12px;bottom:10px;font-size:.8rem;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.6);z-index:2}
 .today .filmtile small{display:block;font-weight:500;opacity:.8;font-size:.72rem}
 .today .body{padding:clamp(36px,5vw,72px) var(--gutter);display:flex;flex-direction:column;justify-content:center;gap:1.2rem}
@@ -265,6 +266,8 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 .door .num{font-size:clamp(3rem,6vw,5.5rem);color:var(--gold);line-height:.85}
 .door h3{font-size:clamp(1.5rem,1.1rem + 1.6vw,2.6rem);font-weight:800;max-width:16ch}
 .door p{color:rgba(255,255,255,.86);max-width:30rem}
+.door p.price{font-size:1.15rem;color:#fff}
+.door p.price b{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.01em}
 .door .btn{justify-self:start;margin-top:.4rem}
 .door .yearly{justify-self:start;color:#fff;font-weight:600;text-decoration:underline;text-underline-offset:.22em;display:inline-flex;gap:.45em;align-items:center}
 .door .yearly:hover{color:var(--gold)}
@@ -321,7 +324,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 
   <div class="copy">
     <h1 data-words="90">We are the far messengers now.</h1>
-    <p class="lede reveal d2"><b>Before any tool, settle the body.</b> Calm is stored, not summoned. One sitting a morning, by the water, and the day is carried differently.</p>
+    <p class="lede reveal d2"><b>For the one who is settled,</b> and wants tools to cross hard ground, to do even more, and to make a difference for the generations to come. It begins with one sitting a morning, by the water.</p>
     <div class="acts reveal d3">
       <button class="btn earth" id="beginBreath">Begin one minute <span class="arrow">→</span></button>
       <button class="btn ghost" id="soundBtn" aria-pressed="false">Sound on</button>
@@ -598,10 +601,11 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
         </div>
         <div class="door reveal d1">
           <div class="num">2</div>
-          <h3>Become a member. $12 a month, or $79 a year.</h3>
-          <p>Every session and voice note in the Listening Room, in full, short and long. Two sessions stay free there when you leave your name and email.</p>
-          <a class="btn earth" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa" data-offer="member-monthly">Join for $12 a month <span class="arrow">→</span></a>
-          <a class="yearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=rdWQg8NPBj" data-offer="member-yearly">Or $79 a year <span class="arrow">→</span></a>
+          <h3>Become a member.</h3>
+          <p>Membership keeps this work going and carries it to the ones who come after. It opens every session and voice note in the Listening Room in full, the Eight Weeks, the films and the readings from the books.</p>
+          <p class="price"><b>$79 a year</b>, or $12 a month. Two sessions stay free when you leave your name and email.</p>
+          <a class="btn earth" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=rdWQg8NPBj" data-offer="member-yearly">Join for $79 a year <span class="arrow">→</span></a>
+          <a class="yearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=nLWRyaNyGa" data-offer="member-monthly">Or $12 a month <span class="arrow">→</span></a>
           <p class="cancel"><b>Safe to join, easy to leave.</b> Your card is handled by Stripe inside Payhip's secure checkout and never reaches us. Cancel anytime, on your own, from your account: Settings, then Subscriptions. No email to write, no one to call.</p>
         </div>
       </div>
