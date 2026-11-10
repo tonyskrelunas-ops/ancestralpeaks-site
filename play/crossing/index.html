@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Short Crossing · Ancestral Peaks</title>
+<meta name="description" content="A free two-minute game from The Council Fire. Cross hard ground, answer what steps into the path, then come in by the fire for a story.">
+<link rel="canonical" href="https://ancestralpeaks.com/play/crossing/">
+<link rel="stylesheet" href="../../shared/site.css?v=1110b">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Peaks">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="/app/pwa.js?v=1108e" defer></script>
+<style>
+/* THE CROSSING — one page, sound off until asked for, nothing sent anywhere. Colors and type come from shared/site.css. */
+html,body{background:var(--night);color:#fff}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;transition:background 1.2s;
+  background:linear-gradient(180deg,#17110F 0%,var(--night) 70%)}
+body[data-d="ocean"]{background:linear-gradient(180deg,#0C1826 0%,var(--night) 75%)}
+body[data-d="desert"]{background:linear-gradient(180deg,#2C170E 0%,var(--night) 75%)}
+body[data-d="mountains"]{background:linear-gradient(180deg,#13231D 0%,var(--night) 75%)}
+.cx{width:100%;max-width:520px;margin:0 auto;padding-inline:20px}
+.cx-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:calc(env(safe-area-inset-top,0px) + 14px);padding-bottom:6px}
+.cx-top a.mark{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap}
+@media (max-width:420px){.cx-top a.mark span{display:none}}
+.cx-top a.mark svg{width:26px;height:26px}
+.cx-top .tools{display:flex;align-items:center;white-space:nowrap}
+.cx-top button[aria-pressed="true"]{color:var(--amber)}
+.cx-top button{background:none;border:0;padding:.6em 0 .6em .9em;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);min-height:44px}
+.cx-top button[hidden]{display:none}
+
+/* the road: the same drawing language as the Crossing road on For Your Work */
+.road{margin-top:2px}
+.road svg{width:100%;height:auto;overflow:visible}
+.road .thin{fill:none;stroke:rgba(255,255,255,.4);stroke-width:3;stroke-dasharray:3 12;stroke-linecap:round}
+.road .lit{fill:none;stroke:var(--amber);stroke-width:4;stroke-linecap:round}
+.road text{font-family:var(--text);font-size:30px;fill:rgba(255,255,255,.6)}
+.road .mk circle{fill:none;stroke:#E0714A;stroke-width:4;stroke-dasharray:6 9;transition:stroke .6s}
+.road .mk.done circle{stroke:var(--amber);stroke-dasharray:none}
+.road .mk.now circle{stroke:#fff}
+
+.stage{flex:1;display:flex;flex-direction:column;padding-top:10px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transition:opacity .22s ease}
+.stage.out{opacity:0}
+.stage .body{flex:1}
+.stage .foot{padding-top:22px;display:flex;flex-direction:column;gap:10px}
+.stage h1{font-size:clamp(2.6rem,13vw,3.6rem)}
+.stage h2{font-size:clamp(1.7rem,7.6vw,2.2rem);line-height:1.04}
+.move{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.7rem}
+.stage p{margin-top:.9rem;color:rgba(255,255,255,.86)}
+.stage p.fine{font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.45}
+.stage p.fine a{color:#fff}
+.stage .btn{justify-content:center;width:100%;min-height:56px;font-size:1.05rem;white-space:normal;text-align:center}
+.stage .btn.amber{background:var(--amber);color:var(--night)}
+.stage .btn.amber:hover{background:#E6BA66}
+.quiet{background:none;border:0;color:rgba(255,255,255,.7);font-size:.92rem;min-height:44px;text-decoration:underline;text-underline-offset:3px}
+
+/* three distances */
+.dist{display:flex;flex-direction:column;gap:12px;margin-top:1.2rem}
+.dist button{display:flex;gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1px solid var(--line-light);border-radius:18px;padding:14px;color:#fff;transition:background .2s,border-color .2s}
+.dist button:active,.dist button:hover{background:rgba(255,255,255,.12);border-color:var(--amber)}
+.dist .med{flex:0 0 58px;width:58px;height:58px;border-radius:50%;background:#F7F0E1;overflow:hidden;display:grid;place-items:center}
+.dist .med svg{width:100%;height:100%}
+.dist b{display:block;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.dist span span{display:block;font-size:.9rem;line-height:1.4;color:rgba(255,255,255,.72);margin-top:2px}
+
+/* the calm */
+.breath{display:grid;place-items:center;margin:26px auto 6px;width:230px;height:230px;position:relative}
+.breath .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--amber);box-shadow:0 0 44px rgba(217,168,76,.22) inset;transform:scale(.62);transition:transform 1s linear}
+.breath svg{width:96px;height:auto;position:relative}
+.count{text-align:center;font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.02em;min-height:2.2rem;margin-top:10px}
+.count small{font-family:var(--text);font-weight:600;font-size:1rem;color:var(--amber);margin-left:.4em}
+
+/* the sending */
+.carry{width:100%;margin-top:1rem;background:rgba(255,255,255,.07);border:1px solid var(--line-light);border-radius:14px;color:#fff;font:inherit;padding:14px;min-height:92px;resize:none}
+.carry::placeholder{color:rgba(255,255,255,.45)}
+.party{margin-top:.5rem;padding-left:0;list-style:none;font-size:.93rem;color:rgba(255,255,255,.75);line-height:1.45}
+.party li{padding-left:1.1em;position:relative;margin-top:.35em}
+.party li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8)}
+
+/* what steps into the path: a card around the neck is a costume */
+.mask{display:flex;flex-direction:column;align-items:center;margin-top:4px;transition:transform .8s ease,opacity .8s ease;transform-origin:50% 0}
+.mask .cord{width:120px;height:34px;border:2px solid rgba(255,255,255,.45);border-bottom:0;border-radius:60px 60px 0 0}
+.mask .card{background:#F7F0E1;color:#3B3020;border-radius:10px;padding:12px 20px 14px;text-align:center;max-width:300px;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:sway 5s ease-in-out infinite;transform-origin:50% -34px}
+.mask .card small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#91691F}
+.mask .card b{display:block;font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.02em;line-height:1.05;margin-top:3px}
+.mask.off{transform:translateY(-4px) rotate(7deg) scale(.8);opacity:.3}
+.mask.off .card{animation:none}
+@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+.dir{font-style:italic;font-size:.9rem;color:rgba(255,255,255,.6);text-align:center}
+.says{margin:1rem 0 0;font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,5.8vw,1.6rem);line-height:1.18;letter-spacing:-.015em;text-align:center;text-wrap:balance}
+.ask{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:1.3rem}
+.choices{display:flex;flex-direction:column;gap:10px;margin-top:.7rem}
+.choices button{text-align:left;background:rgba(255,255,255,.07);border:1px solid var(--line-light);border-radius:16px;padding:14px 16px;min-height:56px;line-height:1.35;color:#fff;transition:opacity .4s,background .2s,border-color .2s}
+.choices button:hover{background:rgba(255,255,255,.12)}
+.choices button.set{opacity:.32;pointer-events:none}
+.stage p.conductor{margin-top:.9rem;font-size:.95rem;color:var(--amber);min-height:1.5em}
+.answer{margin-top:1.2rem;border-left:3px solid var(--amber);padding:2px 0 2px 16px}
+.answer b{display:block;font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.15;letter-spacing:-.015em}
+.stage p.big{color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(2rem,9.4vw,2.7rem);line-height:1.02;letter-spacing:-.025em;margin-top:1.4rem;text-wrap:balance}
+.carried{margin-top:1.1rem;background:#F7F0E1;color:#3B3020;border-radius:12px;padding:14px 16px;white-space:pre-wrap;overflow-wrap:anywhere}
+.met{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.1rem}
+.met i{width:20px;height:27px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35)}
+.met i.on{background:#F7F0E1;border-color:#F7F0E1}
+@media (prefers-reduced-motion:reduce){.mask .card{animation:none}.stage{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="cx cx-top">
+  <a class="mark" href="../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
+  <span class="tools"><button type="button" id="sound" aria-pressed="false">Sound off</button><button type="button" id="again" hidden>Start over</button></span>
+</header>
+
+<div class="cx road" aria-hidden="true"><svg id="road" viewBox="0 0 1000 250"></svg></div>
+
+<main class="cx stage" id="stage" aria-live="polite"></main>
+
+<noscript><p class="cx" style="padding-block:2rem">The Crossing needs JavaScript to play.</p></noscript>
+
+<script src="../../js/far-messengers-stars.js?v=1108e"></script>
+<script>
+/* THE CROSSING. Every rule and nearly every word here is from "A Crossing to Play" in The Council Fire:
+   the six moves, the three distances, the twelve monsters and what answers them, the conductor's pause and again.
+   The stone stays in the hand. Sound is off until the player turns it on, and it is recorded sound only:
+   the Oak Creek water and spoken lines already on the site. Nothing typed here leaves the phone. */
+(function(){
+'use strict';
+var NS='http://www.w3.org/2000/svg';
+var FAST=/[?&]fast\b/.test(location.search)?0.04:1;               // for checking the page quickly
+var CALM=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+function $(s,r){return (r||document).querySelector(s);}
+function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+/* The monsters, and what answers them: the book's own table. "avoid" keeps two near answers from being offered together. */
+var M=[
+ {id:'thirst', n:'Thirst', says:'You will never make it. There is no water between here and there.', a:'The stone in the fist, pictured cool on the tongue.', note:'The stone stays in the hand. It never goes in the mouth.', avoid:['glowing','heat']},
+ {id:'spring', n:'The dried spring', says:'I was full last year. Plan on me again and see what happens.', a:'Pace. You do not sprint toward what you have not seen with your own eyes.', avoid:['heat','mind','storm']},
+ {id:'heat',   n:'Heat', says:'Faster. Push through. Rest is for the weak.', a:'The count: four in, four hold, six out, four hold.', avoid:['spring','mind','thirst']},
+ {id:'storm',  n:'The storm', says:'Sail now. You are already late and everyone is watching.', a:'The navigator’s refusal. Nobody thanks you for the storm you did not sail into.', avoid:['spring','mind','doom']},
+ {id:'mind',   n:'Mind', says:'Remember the last time you failed? Everyone else does.', a:'Notice it arrive. Do not let it set the pace.', avoid:['heat','spring','doom','storm']},
+ {id:'ego',    n:'Ego', says:'You are the only one who can carry this. Do not hand it to anyone.', a:'The relay. Hand it on whole or it goes with you.', avoid:['voice']},
+ {id:'want',   n:'Want', says:'Take the shortcut. Take the credit. Nobody will know.', a:'The country gives to the one who is already full.', avoid:['seller']},
+ {id:'gossip', n:'Gossip', dir:'whispering about one of the party’s own', says:'Did you hear what they said about you?', a:'The fire faces out, never sideways. There is no them.', avoid:[]},
+ {id:'doom',   n:'The doom anchor', says:'Everything is falling apart and there is nothing you can do.', a:'Turn the volume down and keep reading the sky yourself.', avoid:['mind','storm']},
+ {id:'glowing',n:'The glowing thing', dir:'buzzing, tugging at sleeves', says:'Look at me. Someone said something. Look at me now.', a:'One real thing held in the hand.', avoid:['thirst']},
+ {id:'seller', n:'The shortcut seller', says:'Sign here. Easy money. Just trade me your water.', a:'The four capitals. A deal that grows one wealth by eating another is a loss with a smile on it.', avoid:['want']},
+ {id:'voice',  n:'The voice that offers to carry it for you', says:'Let me take it. Faster, and you can stay home.', a:'It held it beautifully, and there was nobody in there holding it.', avoid:['ego']}
+];
+var D={
+ ocean:{n:'The ocean', line:'Twenty-six million square kilometers of open water, and the stars, the clouds and the birds to steer by.', wisdom:'The quiet ones went farthest, and this is not a saying but a map.'},
+ desert:{n:'The desert', line:'Six hundred and fifty thousand square kilometers of unbroken sand, where the body that wastes water is the body that does not come home.', wisdom:'Panic kills and calm carries you across.'},
+ mountains:{n:'The mountains, and the relay', line:'No runner crosses alone. Each carries one stretch and hands it on whole.', wisdom:'A people who keep their old ones are a people, and the rest is just a gym.'}
+};
+var SHORT=true;
+var DRAW=SHORT?2:5;                                                // "Draw five to seven." (two in the short one)
+var KEY='peaks-crossing-met';
+function met(){try{var v=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(v)?v:[];}catch(e){return [];}}
+function addMet(id){try{var m=met();if(m.indexOf(id)<0){m.push(id);localStorage.setItem(KEY,JSON.stringify(m));}}catch(e){}}
+
+var S={d:'',carry:'',draw:[],i:0}, run=0;
+var stage=$('#stage'), againBtn=$('#again');
+
+/* ---------- the road ---------- */
+var road=(function(){
+  var svg=$('#road');
+  var d='M40,150 C150,60 240,210 350,130 S570,60 660,150 S860,220 960,110';
+  var base=el('path',{d:d,'class':'thin'},svg), L=base.getTotalLength();
+  var lit=el('path',{d:d,'class':'lit'},svg); lit.style.strokeDasharray=L; lit.style.strokeDashoffset=L;
+  var t1=el('text',{x:40,y:215,'text-anchor':'start'},svg); t1.textContent='home';
+  var t2=el('text',{x:960,y:60,'text-anchor':'end'},svg); t2.textContent='the far shore';
+  var marks=el('g',{},svg), left=el('g',{},svg);
+  var comp=[0,1,2,3].map(function(){return el('circle',{r:8,fill:'rgba(255,255,255,.82)'},svg);});
+  var carrier=el('circle',{r:15,fill:'#D9A84C'},svg);
+  var k=0.02, raf=0, mk=[];
+  function at(q){return base.getPointAtLength(L*Math.max(0,Math.min(1,q)));}
+  function place(q){
+    k=q; lit.style.strokeDashoffset=(L*(1-q)).toFixed(1);
+    var p=at(q); carrier.setAttribute('cx',p.x.toFixed(1)); carrier.setAttribute('cy',p.y.toFixed(1));
+    comp.forEach(function(c,j){var r=at(q-0.035*(j+1)); c.setAttribute('cx',r.x.toFixed(1)); c.setAttribute('cy',(r.y+(j%2?-13:13)).toFixed(1)); c.setAttribute('opacity',q-0.035*(j+1)>0?1:0);});
+  }
+  function go(to){
+    cancelAnimationFrame(raf); if(CALM||FAST<1){place(to);return;}
+    var from=k, t0=performance.now(), dur=1500;
+    (function step(now){var x=Math.min(1,(now-t0)/dur); x=x*x*(3-2*x); place(from+(to-from)*x); if(x<1)raf=requestAnimationFrame(step);})(t0);
+  }
+  function pos(i){return (i+1)/(DRAW+1.4);}
+  function reset(){
+    while(marks.firstChild)marks.removeChild(marks.firstChild); while(left.firstChild)left.removeChild(left.firstChild);
+    mk=[]; for(var i=0;i<DRAW;i++){var p=at(pos(i)); var g=el('g',{'class':'mk',transform:'translate('+p.x.toFixed(1)+','+p.y.toFixed(1)+')'},marks); el('circle',{r:24},g); mk.push(g);}
+    cancelAnimationFrame(raf); place(0.02);
+  }
+  function meet(i){mk.forEach(function(g,j){g.setAttribute('class','mk'+(j<i?' done':j===i?' now':''));}); go(pos(i)-0.045);}
+  function pass(i,relay){mk[i].setAttribute('class','mk done'); if(relay){var p=at(pos(i)); el('circle',{cx:p.x.toFixed(1),cy:(p.y+44).toFixed(1),r:7,fill:'rgba(217,168,76,.55)'},left);} go(pos(i)+0.02);}
+  function arrive(){go(0.985);}
+  reset();
+  return {reset:reset,meet:meet,pass:pass,arrive:arrive};
+})();
+
+/* ---------- sound: off until asked for; recorded sound only ---------- */
+var SND={
+ bed:'../../media/beds/bed-creek-oakcreek.mp3',      // his real Oak Creek water
+ stone:'../../media/say/w1-stone-older.mp3',         // "This stone is older than you, and it will be older than your grandchildren someday."
+ count:'../../media/say/w1-breathe-count.mp3',       // "Then breathe in four. Hold four. Breathe out for six. Nice and slow. Hold for four."
+ calm:'../../media/say/w2-calm.mp3',                 // "And calm came first. A navigator who panics cannot read the ocean."
+ water:'../../media/say/w1-water-back.mp3',          // "The picturing alone brings the water back to the dry mouth, so the thirst does not own you."
+ storm:'../../media/say/w3-storm.mp3',               // "His job in a storm is not to make progress..."
+ quiet:'../../media/say/eq-quiet.mp3'                // "The crossing was not made out on the sand. It was made before, in the quiet days..."
+};
+var sound=(function(){
+  var on=false, bed=null, cur=null, btn=$('#sound');
+  function startBed(){                                   // a plain looping audio element: it plays on every phone, silent switch or not
+    try{
+      if(!bed){bed=new Audio(SND.bed); bed.loop=true; bed.volume=.5;}
+      var p=bed.play(); if(p&&p.catch)p.catch(function(){});
+    }catch(e){}
+  }
+  function stopBed(){ if(bed){try{bed.pause();}catch(e){}} }
+  function hush(){ if(cur){try{cur.pause();}catch(e){} cur=null;} }
+  function say(k,done){                                  // a spoken line, straight from the audio element (as the site does on iPhone)
+    hush(); if(!on)return false;
+    try{
+      var a=new Audio(SND[k]); cur=a;
+      if(done){a.addEventListener('ended',done); a.addEventListener('error',done);}
+      var p=a.play(); if(p&&p.catch)p.catch(function(){if(done)done();});
+      return true;
+    }catch(e){return false;}
+  }
+  function set(v){ on=v; btn.setAttribute('aria-pressed',String(v)); btn.textContent=v?'Sound on':'Sound off'; if(v)startBed(); else{stopBed();hush();} }
+  btn.addEventListener('click',function(){set(!on);});
+  document.addEventListener('visibilitychange',function(){ if(document.hidden){hush();stopBed();} else if(on)startBed(); });
+  return {say:say,hush:hush,set:set};
+})();
+
+/* ---------- small drawings ---------- */
+var STONE='<svg viewBox="-34 -24 68 48" aria-hidden="true"><ellipse rx="27" ry="18" fill="#8C7F6E" stroke="#6A5F51" stroke-width="2"/><ellipse cx="-5" cy="-4" rx="11" ry="6" fill="#B5A893"/></svg>'; // the river stone, as drawn in council-tokens.js
+var MED={
+ ocean:'',  // filled by the star compass from far-messengers-stars.js
+ desert:'<svg viewBox="0 0 58 58" aria-hidden="true"><path d="M4 36 C14 24 22 24 30 33 S46 42 54 30" fill="none" stroke="#B98D3E" stroke-width="2.6" stroke-linecap="round"/><path d="M4 45 C16 38 26 40 34 44 S48 46 54 41" fill="none" stroke="#3B3020" stroke-width="1.6" stroke-linecap="round" opacity=".55"/><circle cx="41" cy="16" r="5" fill="#B98D3E"/></svg>',
+ mountains:'<svg viewBox="-4 -2 48 48" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="#3B3020" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="#B98D3E"/></svg>'
+};
+
+/* ---------- showing a stage ---------- */
+function show(html,then){
+  var mine=++run; sound.hush();
+  if(SHORT)html=html.replace(/<p class="move">(First|Second|Third|Fourth|Fifth|Sixth) · /,'<p class="move">');
+  stage.classList.add('out');
+  setTimeout(function(){
+    if(mine!==run)return;
+    stage.innerHTML=html; stage.classList.remove('out'); window.scrollTo(0,0);
+    if(then)then(mine);
+  },CALM?0:220);
+}
+function foot(label,act,cls){return '<div class="foot"><button class="btn '+(cls||'amber')+'" type="button" data-act="'+act+'">'+label+' <span class="arrow">→</span></button></div>';}
+
+var acts={};
+stage.addEventListener('click',function(e){var b=e.target.closest('[data-act]'); if(b&&acts[b.dataset.act])acts[b.dataset.act](b);});
+againBtn.addEventListener('click',function(){title();});
+
+/* 0 · the door */
+function title(){
+  S={d:'',carry:'',draw:[],i:0}; document.body.removeAttribute('data-d'); againBtn.hidden=true; road.reset();
+  show('<div class="body"><p class="move">'+(SHORT?'A short crossing to play':'A crossing to play')+' · from The Council Fire</p><h1>'+(SHORT?'The Short Crossing':'The Crossing')+'</h1>'
+   +'<p>You carry something your people need across a hard distance.</p>'
+   +'<p>Everything you meet on the way is an ordinary trouble wearing a mask, and every one of them is answered with a discipline out of the book.</p>'
+   +'<p class="fine">'+(SHORT?'About two minutes':'About five minutes')+'. One thumb, no score. With sound you hear the creek and a few spoken lines. The party and the monsters are invented, for play. Nothing you type leaves this phone.</p></div>'
+   +'<div class="foot"><button class="btn amber" type="button" data-act="withsound">Begin with sound <span class="arrow">→</span></button><button class="btn ghost" type="button" data-act="dist">Begin quietly</button></div>');
+}
+acts.withsound=function(){sound.set(true);acts.dist();};
+/* choose the distance */
+acts.dist=function(){
+  againBtn.hidden=false;
+  show('<div class="body"><p class="move">Three distances to choose from</p><h2>Which will you cross?</h2><div class="dist">'
+   +['ocean','desert','mountains'].map(function(k){return '<button type="button" data-act="pick" data-d="'+k+'"><span class="med" data-med="'+k+'">'+MED[k]+'</span><span><b>'+D[k].n+'</b><span>'+D[k].line+'</span></span></button>';}).join('')
+   +'</div></div>',function(){
+     var host=$('[data-med="ocean"]',stage);
+     try{ if(window.FarMessengersStars){var c=window.FarMessengersStars(host,{words:false}); c.seek(c.DUR);} }catch(e){}
+   });
+};
+acts.pick=function(b){S.d=b.dataset.d; document.body.dataset.d=S.d; calm();};
+
+/* 1 · the calm */
+function calm(){
+  show('<div class="body"><p class="move">First · the calm</p><h2>The party is settled before it goes anywhere.</h2>'
+   +'<p>Hold a smooth stone in your fist, or picture one there. Picture it cool on the tongue.</p>'
+   +'<p class="fine">The stone stays in the hand. It never goes in the mouth.</p>'
+   +'<div class="breath"><div class="ring" id="ring"></div>'+STONE+'</div><div class="count" id="count">&nbsp;</div></div>'
+   +'<div class="foot" id="calmFoot"><button class="btn amber" type="button" data-act="count">Begin the count <span class="arrow">→</span></button><button class="quiet" type="button" data-act="send">I am already settled</button></div>',function(){sound.say('stone');});
+}
+acts.count=function(){
+  var mine=run, ring=$('#ring'), out=$('#count'), ft=$('#calmFoot');
+  ft.innerHTML='<p class="fine" style="text-align:center;margin:0">Four in, four hold, six out, four hold. '+(SHORT?'One round':'Two rounds')+'.</p>';
+  var P=[['In',4,1],['Hold',4,1],['Out',6,.62],['Hold',4,.62]], seq=[];
+  for(var r=0;r<(SHORT?1:2);r++)P.forEach(function(p){seq.push(p);});
+  var begun=false;
+  function begin(){ if(begun||mine!==run)return; begun=true; next(0); }
+  if(sound.say('count',begin)){ out.textContent='Listen.'; setTimeout(begin,13000*FAST); } else begin();
+  function next(i){
+    if(mine!==run)return;
+    if(i>=seq.length){ out.innerHTML='Settled.'; sound.say('calm'); ft.innerHTML='<button class="btn amber" type="button" data-act="send">Go on <span class="arrow">→</span></button>'; return; }
+    var p=seq[i]; ring.style.transitionDuration=(p[1]*FAST)+'s'; ring.style.transform='scale('+p[2]+')';
+    var n=1; (function tick(){ if(mine!==run)return; out.innerHTML=p[0]+'<small>'+n+'</small>'; if(n<p[1]){n++;setTimeout(tick,1000*FAST);} else setTimeout(function(){next(i+1);},1000*FAST); })();
+  }
+};
+
+/* 2 · the sending */
+acts.send=function(){
+  if(SHORT){acts.go();return;}
+  show('<div class="body"><p class="move">Second · the sending</p><h2>What is being carried?</h2>'
+   +'<p>A true thing your own people cannot afford to lose. Name it in a few words, or hold it in your head.</p>'
+   +'<textarea class="carry" id="carry" maxlength="400" placeholder="What you carry" aria-label="What you carry"></textarea>'
+   +'<p class="fine">It stays on this phone and is gone when you close the page.</p>'
+   +'<p class="ask">Who travels with you</p><ul class="party"><li>the one who can do everything and wants to do all of it alone</li><li>the one nobody can manage, who turns out to be the reason the party survives</li><li>the quiet one</li><li>the one who waits the whole way for a single pass</li></ul>'
+   +'<p class="fine">The blessing for the road is your own people’s to say. Say it in their words, or keep the quiet.</p></div>'
+   +foot('Set out','go'));
+};
+acts.go=function(){
+  var t=$('#carry'); S.carry=t?t.value.trim():'';
+  var seen=met(), fresh=shuffle(M.filter(function(m){return seen.indexOf(m.id)<0;})), old=shuffle(M.filter(function(m){return seen.indexOf(m.id)>=0;}));
+  S.draw=shuffle(fresh.concat(old).slice(0,DRAW)); S.i=0; road.reset(); meetOne();
+};
+
+/* 3 · the crossing */
+function meetOne(){
+  var m=S.draw[S.i];
+  var others=shuffle(M.filter(function(o){return o.id!==m.id&&m.avoid.indexOf(o.id)<0;})).slice(0,2);
+  var opts=shuffle([m].concat(others));
+  road.meet(S.i);
+  show('<div class="body"><p class="move">Third · the crossing · '+(S.i+1)+' of '+DRAW+'</p>'
+   +'<div class="mask" id="mask"><div class="cord"></div><div class="card"><small>steps into the path</small><b>'+esc(m.n)+'</b></div></div>'
+   +(m.dir?'<p class="dir">('+esc(m.dir)+')</p>':'')
+   +'<p class="says">“'+esc(m.says)+'”</p>'
+   +'<div id="turn"><p class="ask">What does the party answer?</p><div class="choices">'
+   +opts.map(function(o){return '<button type="button" data-act="answer" data-id="'+o.id+'">'+esc(o.a)+'</button>';}).join('')
+   +'</div><p class="conductor" id="conductor" role="status"></p></div></div>');
+}
+acts.answer=function(b){
+  var m=S.draw[S.i];
+  if(b.dataset.id!==m.id){ b.classList.add('set'); $('#conductor').textContent='The conductor calls pause, and again. Run the moment back and make a better choice.'; return; }
+  addMet(m.id); if(m.id==='thirst')sound.say('water'); if(m.id==='storm')sound.say('storm');
+  $('#mask').classList.add('off'); road.pass(S.i,S.d==='mountains');
+  var last=S.i===DRAW-1;
+  $('#turn').innerHTML='<div class="answer"><p class="ask" style="margin-top:0">The party answers</p><b>'+esc(m.a)+'</b></div>'
+   +(m.note?'<p class="fine">'+esc(m.note)+'</p>':'')
+   +'<p>'+esc(m.n)+' steps out of the path.'+(S.d==='mountains'&&!last?' The stretch is handed on whole.':'')+'</p>'
+   +foot(last?'To the far shore':'Go on','next');
+};
+acts.next=function(){ S.i++; if(S.i<DRAW)meetOne(); else arrive(); };
+
+/* 4 · the arrival */
+function arrive(){
+  road.arrive();
+  show('<div class="body"><p class="move">Fourth · the arrival</p><h2>The village stands, goes quiet, and says the oldest sentence there is.</h2>'
+   +'<p class="big">“Sit, eat first, then tell us.”</p></div>'+foot('Sit','story'));
+}
+/* 5 · the story */
+acts.story=function(){
+  if(SHORT){acts.wisdom();return;}
+  show('<div class="body"><p class="move">Fifth · the story</p><h2>Two minutes, told sitting down.</h2>'
+   +(S.carry?'<div class="carried" id="carried"></div>':'<p>Tell the true thing you carried. Out loud, or to yourself.</p>')
+   +'<p class="fine">Everything before this exists to make a room quiet enough to receive it. Take the time it needs.</p></div>'+foot('It is told','wisdom'),
+   function(){var c=$('#carried'); if(c)c.textContent=S.carry;});
+};
+/* 6 · the wisdom */
+acts.wisdom=function(){
+  var seen=met();
+  show('<div class="body"><p class="move">Sixth · the wisdom, said by everyone together</p>'
+   +'<p class="big" style="margin-top:.4rem">'+D[S.d].wisdom+'</p>'
+   +'<p class="fine">Your own people’s line belongs here too. That one is theirs to fill.</p>'
+   +'<div class="met" aria-hidden="true">'+M.map(function(m){return '<i'+(seen.indexOf(m.id)>=0?' class="on"':'')+'></i>';}).join('')+'</div>'
+   +'<p class="fine">You have met '+seen.length+' of the twelve. Cross again and different ones step into the path, until you know their voices in the street.</p>'
+   +'<p class="fine">'+(SHORT?'The fire is lit, and a story is waiting. This short crossing and its story are free. The full crossing, Open Water and three more stories are for members.':'The fire is lit, and the stories are waiting.')+'</p>'
+   +'<p class="fine">In the book this is a staged reading for a whole circle, with parts for everyone. It is in <a href="../../books/">The Council Fire</a>, under A Crossing to Play.</p></div>'
+   +'<div class="foot"><a class="btn amber" href="../fireside/'+(SHORT?'?from=short':'?open=all&from=crossing')+'">Come in by the fire <span class="arrow">→</span></a><button class="btn ghost" type="button" data-act="dist">Cross again</button></div>',function(){sound.say('quiet'); if(!SHORT){try{localStorage.setItem('peaks-fire-all','1');}catch(e){}}});
+};
+
+title();
+})();
+</script>
+</body>
+</html>
