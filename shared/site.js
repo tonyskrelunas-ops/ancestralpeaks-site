@@ -104,6 +104,26 @@ AP.nav = function(host, opts){
   return host;
 };
 
+/* ---------- the floating bar at the bottom, on every page (Tony, 11/10): Home, Listen, 8 Weeks, Play, Menu ---------- */
+AP.thumb = function(){
+  if (document.querySelector('.ap-thumb') || !document.querySelector('[data-ap-nav]')) return;
+  const host = document.querySelector('[data-ap-nav]'), active = host.dataset.active || '';
+  const ico = {
+    home: '<svg viewBox="0 0 24 24"><path d="M4 11.5 12 4.5l8 7"/><path d="M6 10v9h4.5v-5h3v5H18v-9"/></svg>',
+    listen: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8.5" opacity=".55"/></svg>',
+    weeks: '<svg viewBox="0 0 24 24"><path d="M4 18h4v-4h4v-4h4V6h4"/></svg>',
+    play: '<svg viewBox="0 0 24 24"><path d="M12 3c1 3.2 4.5 4.7 4.5 9a4.5 4.5 0 0 1-9 0c0-2.3 1.4-3.5 2.2-5 .5 1.5 1.3 2.2 2.3 2.6C12.4 7.5 11.8 5.4 12 3z"/></svg>',
+    menu: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>'
+  };
+  const items = [['/', 'Home', 'home'], ['/listen/', 'Listen', 'listen'], ['/weeks/', '8 Weeks', 'weeks'], ['/play/', 'Play', 'play']];
+  const bar = document.createElement('nav'); bar.className = 'ap-thumb'; bar.setAttribute('aria-label', 'Quick links');
+  bar.innerHTML = items.map(([h, t, k]) => `<a href="${AP.href(h)}"${h === active ? ' aria-current="page"' : ''}>${ico[k]}<span>${t}</span></a>`).join('')
+    + `<button type="button" aria-label="Menu">${ico.menu}<span>Menu</span></button>`;
+  bar.querySelector('button').addEventListener('click', () => { const b = document.querySelector('.ap-burger'); if (b) b.click(); });
+  document.body.appendChild(bar);
+  document.documentElement.classList.add('has-thumb');
+};
+
 /* ---------- footer ---------- */
 AP.footer = function(host, opts){
   host = typeof host === 'string' ? $(host) : (host || $('[data-ap-foot]'));
@@ -661,7 +681,7 @@ AP.seekPage = async function(t, o){
 /* ---------- init ---------- */
 AP.init = function(root){
   AP.smooth();
-  AP.nav(); AP.footer();
+  AP.nav(); AP.footer(); AP.thumb();
   AP.words(root); AP.reveal(root); AP.counts(root);
   $$('.ap-loop[data-src]', root).forEach(el => { if (!el.closest('.ap-cut')) AP.loop(el); });
   $$('.ap-cut', root).forEach(el => AP.cut(el).start());
