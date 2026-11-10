@@ -41,7 +41,7 @@ AP.pages = [
   { href: '/listen/',   label: 'Listening Room', n: '03' },
   { href: '/reading/',  label: 'Reading Room',   n: '04' },
   { href: '/practice/', label: 'Practice',       n: '05' },
-  { href: '/play/fireside/', label: 'By the Fire', n: '06' },
+  { href: '/play/',      label: 'Games & Fireside Stories', n: '06' },
   { href: '/books/',    label: 'The Books',      n: '07' },
   { href: '/work/',     label: 'For Your Work',  n: '08' }
 ];
