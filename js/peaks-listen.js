@@ -35,8 +35,8 @@ const doorBtn=(title,small,dark)=>`<a class="${small?'door-link':'btn ghost'+(da
 
 /* ---------- the two free sessions ---------- */
 function freeCard(s,i){
-  return `<article class="fcard" data-id="${s.id}" data-bed="${s.bed}">
-    <div class="pic"><img src="${MEDIA}img/${s.img}.jpg" alt="" loading="lazy"><span class="dur">Free · ${esc(s.mins)}</span></div>
+  return `<article class="fcard${s.open?' gift':''}" data-id="${s.id}" data-bed="${s.bed}">
+    <div class="pic"><img src="${MEDIA}img/${s.img}.jpg" alt="" loading="lazy"><span class="dur">${s.open?'A gift · no sign-up':'Free'} · ${esc(s.mins)}</span></div>
     <div class="body">
       <div class="num">${String(i+1).padStart(2,'0')}</div>
       <p class="kick">${esc(s.n)} · ${esc(s.where)}</p>
@@ -131,7 +131,7 @@ pv.addEventListener('ended',()=>{
 });
 document.addEventListener('click',e=>{
   const b=e.target.closest('.pv'); if(b){ e.preventDefault(); playPreview(b.dataset.pv); return; }
-  const f=e.target.closest('[data-full]'); if(f){ e.preventDefault(); if(unlocked) open(f.dataset.full); else { const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } } }
+  const f=e.target.closest('[data-full]'); if(f){ e.preventDefault(); if(unlocked||(byId(f.dataset.full)||{}).open) open(f.dataset.full); else { const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } } }
 });
 addEventListener('ap:play',e=>{ if(e.detail!==pvApi) stopPreview(); });
 
@@ -155,8 +155,9 @@ function paintUnlock(){
   $$('.fcard').forEach(c=>{
     const s=byId(c.dataset.id), p=prog[s.id];
     const st=$('.state',c), btn=$('.full',c);
-    btn.firstChild.textContent=on&&p&&p.t>20&&!p.done?'Continue ':'Listen in full ';
-    st.innerHTML=on?(p&&p.done?'<b>Heard</b> · sit with it again any time':p&&p.t>20?'You stopped at <b>'+fmt(p.t)+'</b>':'Open on this device'):LOCK+'Opens in full when you leave your name and email';
+    const can=on||s.open;
+    btn.firstChild.textContent=can&&p&&p.t>20&&!p.done?'Continue ':'Listen in full ';
+    st.innerHTML=can?(p&&p.done?'<b>Heard</b> · sit with it again any time':p&&p.t>20?'You stopped at <b>'+fmt(p.t)+'</b>':s.open?'Open to everyone. No name, no email.':'Open on this device'):LOCK+'Opens in full when you leave your name and email';
   });
   const form=$('#signup'), wel=$('#welcome');
   if(form) form.hidden=on; if(wel) wel.hidden=!on;
@@ -207,7 +208,7 @@ function setScene(s){
   P.el.dataset.field=s.field;
 }
 function open(id){
-  const s=byId(id); if(!s||!s.free||!s.full||!unlocked) return;   // only the free sessions, and only after the sign-up
+  const s=byId(id); if(!s||!s.free||!s.full||!(unlocked||s.open)) return;   // the free sessions after the sign-up; the gift (open: true) for everyone
   stopPreview();
   if(window.AP&&AP.current&&AP.current!==pvApi) try{ AP.current.pause(); }catch(e){}
   cur=s;
@@ -260,10 +261,17 @@ P.audio.addEventListener('ended',()=>{
   save(true); P.el.classList.remove('playing'); P.el.classList.add('finished');
   if(window.AP) AP.sound.duck(false);
   PeaksVoice.cue('done');
-  const other=FREE.find(s=>s!==cur)||cur;
+  const other=FREE.find(s=>s!==cur&&!s.open)||FREE.find(s=>s!==cur)||cur;
   P.finH.textContent='That was '+cur.title+'.';
-  P.finP.textContent='Notice how you feel. The other free session is '+other.title+', '+other.mins+'. The rest of the room is open to members.';
-  P.next.onclick=()=>{ P.el.classList.remove('finished'); open(other.id); };
+  if(!unlocked){   // the gift was heard without a sign-up: only now, the invitation
+    P.finP.textContent='Notice how you feel. If it served you, two more sessions open free when you leave your first name and email.';
+    P.next.firstChild.textContent='Open the two free sessions ';
+    P.next.onclick=()=>{ close(); const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } };
+  } else {
+    P.finP.textContent='Notice how you feel. Another free session is '+other.title+', '+other.mins+'. The rest of the room is open to members.';
+    P.next.firstChild.textContent='Another free session ';
+    P.next.onclick=()=>{ P.el.classList.remove('finished'); open(other.id); };
+  }
   P.join.onclick=()=>{ close(); };
 });
 P.pp.addEventListener('click',toggle);

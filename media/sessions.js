@@ -12,6 +12,13 @@
 window.PEAKS_SESSIONS = {
   "sessions": [
     {
+      "id": "morning-water", "shelf": "free", "free": true, "open": true, "n": "A gift", "where": "the water", "title": "Morning Water",
+      "blurb": "Wherever you are: on a plane over the ocean, in a parked car before work, at a kitchen table before anyone else is up. Bring your own water with you, hold a small stone, and the stone breath is counted with you. Then three minutes of water, strings and flute to sit in.",
+      "line": "We'll start with the breath. The stone breath, the way it was taught to me.",
+      "mins": "11 min", "dur": 690, "at": 29, "bed": "creek", "field": "water", "video": "v-garden-waterfall", "img": "flagstaff-waterfall-photo-1200",
+      "full": "audio/morning-water.mp3", "env": "env/morning-water.env.js"
+    },
+    {
       "id": "week1-settle-yourself-first", "shelf": "free", "free": true, "n": "Week one", "where": "first light", "title": "Settle yourself first",
       "blurb": "The runner on Big Mountain, the stone in his hand, why the eyes narrow under stress, and the breath counted with you at the end.",
       "line": "Standing tall, widening your view, and softening your jaw tells your body it is safe to think again.",

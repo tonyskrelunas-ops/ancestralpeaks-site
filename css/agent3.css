@@ -297,6 +297,11 @@ html.flat .scene{min-height:min(100svh,900px)}
 .fcard .line{font-family:var(--display);font-weight:700;font-size:clamp(1.1rem,1rem + .5vw,1.4rem);line-height:1.18;letter-spacing:-.01em;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:.8rem}
 .fcard .acts{display:flex;flex-wrap:wrap;align-items:center;gap:.7rem 1rem;margin-top:auto;padding-top:.6rem}
 .fcard .full{display:none}
+.fcard.gift .full{display:inline-flex}
+.fcard.gift{grid-column:1/-1;grid-template-rows:none;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.fcard.gift .pic{aspect-ratio:auto;min-height:340px}
+.fcard.gift .dur{background:var(--earth)}
+@media (max-width:900px){.fcard.gift{grid-template-columns:1fr;grid-template-rows:auto 1fr}.fcard.gift .pic{aspect-ratio:16/9;min-height:0}}
 .unlocked .fcard .full{display:inline-flex}
 .fcard .state{font-size:.88rem;color:var(--ink-2);display:inline-flex;align-items:center;gap:.4em}
 .fcard .state b{color:var(--creek)}
