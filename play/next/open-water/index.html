@@ -97,7 +97,7 @@ function rnd(a,b){return a+Math.random()*(b-a);}
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 
-/* ---------- sound: off until asked for; recorded spoken lines only ---------- */
+/* ---------- sound: off until asked for; the sea underneath and the recorded spoken lines ---------- */
 var SND={
  star:'../../../media/say/w2-star.mp3',             // "One night, step outside, find a star low on the horizon, and watch it rise."
  house:'../../../media/say/w2-house.mp3',           // "What is your house? The one direction that holds when everything else moves."
@@ -105,13 +105,37 @@ var SND={
  horizon:'../../../media/say/w1-whole-horizon.mp3'  // "...he softened his eyes and took in the whole horizon, instead of staring at just one spot."
 };
 var sound=(function(){
-  var on=false, cur=null, btn=$('#sound');
-  function hush(){ if(cur){try{cur.pause();}catch(e){} cur=null;} }
-  function say(k){ hush(); if(!on)return; try{var a=new Audio(SND[k]); cur=a; var p=a.play(); if(p&&p.catch)p.catch(function(){});}catch(e){} }
-  function set(v){ on=v; btn.setAttribute('aria-pressed',String(v)); btn.textContent=v?'Sound on':'Sound off'; if(!v)hush(); }
+  /* the sea under everything once sound is on: a looping ocean bed through Web Audio (iPhone ignores audio.volume),
+     louder in the storm, almost gone in the calm, stepping back under each spoken line */
+  var on=false, cur=null, btn=$('#sound'), ctx=null, gain=null, bedEl=null, level=.45,
+      LEVELS={night:.45,dawn:.55,swell:.7,day:.16,storm:1,dusk:.5,end:.4};
+  function ramp(v,secs){
+    if(gain&&ctx){ var t=ctx.currentTime; gain.gain.cancelScheduledValues(t); gain.gain.setValueAtTime(gain.gain.value,t); gain.gain.linearRampToValueAtTime(v,t+(secs||1.2)); }
+    else if(bedEl){ try{bedEl.volume=Math.min(1,v);}catch(e){} }
+  }
+  function bedStart(){
+    try{
+      if(!bedEl){ bedEl=new Audio('../../../media/audio/loop-ocean-48s.mp3'); bedEl.loop=true; bedEl.preload='auto'; }
+      var AC=window.AudioContext||window.webkitAudioContext;
+      if(AC&&!ctx){ ctx=new AC(); var src=ctx.createMediaElementSource(bedEl); gain=ctx.createGain(); gain.gain.value=0; src.connect(gain); gain.connect(ctx.destination); }
+      if(ctx&&ctx.state==='suspended')ctx.resume();
+      var p=bedEl.play(); if(p&&p.catch)p.catch(function(){});
+      ramp(cur?level*.45:level,1.5);
+    }catch(e){}
+  }
+  function bedStop(){ ramp(0,.6); setTimeout(function(){ if(!on&&bedEl){try{bedEl.pause();}catch(e){}} },700); }
+  function bed(k){ level=(k in LEVELS)?LEVELS[k]:.45; if(on)ramp(cur?level*.45:level,2.5); }
+  function hush(){ if(cur){try{cur.pause();}catch(e){} cur=null;} if(on)ramp(level,1); }
+  function say(k){ hush(); if(!on)return; try{var a=new Audio(SND[k]); cur=a; ramp(level*.45,.6);
+    a.addEventListener('ended',function(){ if(cur===a){ cur=null; ramp(level,1.5); } });
+    var p=a.play(); if(p&&p.catch)p.catch(function(){});}catch(e){} }
+  function set(v){ on=v; btn.setAttribute('aria-pressed',String(v)); btn.textContent=v?'Sound on':'Sound off'; if(v)bedStart(); else{ hush(); bedStop(); } }
   btn.addEventListener('click',function(){set(!on);});
-  document.addEventListener('visibilitychange',function(){ if(document.hidden)hush(); });
-  return {say:say,hush:hush,set:set};
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){ hush(); if(bedEl){try{bedEl.pause();}catch(e){}} }
+    else if(on&&bedEl){ if(ctx&&ctx.state==='suspended')ctx.resume(); var p=bedEl.play(); if(p&&p.catch)p.catch(function(){}); }
+  });
+  return {say:say,hush:hush,set:set,bed:bed};
 })();
 
 /* ---------- the picture ---------- */
@@ -127,7 +151,7 @@ var hidden=false; document.addEventListener('visibilitychange',function(){hidden
 /* the sky and the water for a scene: the WebGL sea takes the kind and the horizon; the stars come with it */
 var NEAR={night:'#06101C',dawn:'#1E3E52',day:'#2C6E8E',storm:'#0A1420',dusk:'#17344A',end:'#06101C'}, kind='night';
 function backdrop(k,hy){
-  kind=k;
+  kind=k; sound.bed(k);
   if(ocean.ok)ocean.scene(k,hy); else stillPic.src='img/still-'+k+'-'+hy+'.jpg';
 }
 function starfield(){ }
@@ -293,7 +317,7 @@ acts.stars=function(){
 
 /* ================= 3 · the swell ================= */
 acts.swell=function(){
-  clear(); kind='night';
+  clear(); kind='night'; sound.bed('swell');
   var CX=200,CY=150,R=132, base=Math.floor(Math.random()*24)*15;
   var defs=el('defs',{},svg), cp=el('clipPath',{id:'sea'},defs); el('circle',{cx:CX,cy:CY,r:R},cp);
   if(ocean.ok){ el('path',{d:'M0,0H400V300H0Z M'+(CX-R)+','+CY+' a'+R+','+R+' 0 1,0 '+(2*R)+',0 a'+R+','+R+' 0 1,0 '+(-2*R)+',0','fill-rule':'evenodd',fill:'#050A12',opacity:.85},svg); }
