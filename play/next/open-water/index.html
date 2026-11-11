@@ -6,7 +6,7 @@
 <title>Open Water · Ancestral Peaks</title>
 <meta name="description" content="An ocean crossing to play, from The Far Messengers. Steer by the rising stars, read the swell, sit out the calm, hold through the storm, and find the signs of land.">
 <meta name="robots" content="noindex">
-<link rel="stylesheet" href="../../shared/site.css?v=1110s">
+<link rel="stylesheet" href="../../../shared/site.css?v=1110s">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
 <link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -31,14 +31,16 @@ body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;backg
 
 /* the picture: sky and water, drawn */
 .view{max-width:520px;width:100%;margin:4px auto 0;padding-inline:12px}
-.view svg{width:100%;height:auto;border-radius:18px;background:#0A1320;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
-.view text{font-family:var(--text);user-select:none;-webkit-user-select:none}
+.pic{position:relative;width:100%;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:#0A1320;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;isolation:isolate}
+.pic canvas.sea,.pic img.still{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;pointer-events:none}
+.pic svg{position:absolute;inset:0;width:100%;height:100%;display:block;background:transparent;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.view text{font-family:var(--text);user-select:none;-webkit-user-select:none;paint-order:stroke;stroke:rgba(255,255,255,.55);stroke-width:2.5px}
 .view .hit{fill:transparent;cursor:pointer}
 
 .stage{flex:1;display:flex;flex-direction:column;padding-top:14px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transition:opacity .22s ease}
 .stage.out{opacity:0}
 .stage .body{flex:1}
-.stage .foot{padding-top:18px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.stage .foot{padding-top:18px;display:flex;flex-direction:column;gap:10px;align-items:center;-webkit-touch-callout:none}
 .stage h1{font-size:clamp(2.6rem,13vw,3.6rem)}
 .stage h2{font-size:clamp(1.5rem,6.6vw,1.95rem);line-height:1.06}
 .move{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.6rem}
@@ -66,17 +68,18 @@ body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;backg
 <body>
 
 <header class="cx cx-top">
-  <a class="mark" href="../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
+  <a class="mark" href="../../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
   <span class="tools"><button type="button" id="sound" aria-pressed="false">Sound off</button><button type="button" id="again" hidden>Start over</button></span>
 </header>
 
-<div class="view"><svg id="view" viewBox="0 0 400 300" role="img" aria-label="The sky and the water"></svg></div>
+<div class="view"><div class="pic" id="pic"><svg id="view" viewBox="0 0 400 300" role="img" aria-label="The sky and the water"></svg></div></div>
 
 <main class="cx stage" id="stage" aria-live="polite"></main>
 
 <noscript><p class="cx" style="padding-block:2rem">Open Water needs JavaScript to play.</p></noscript>
 
-<script src="../../js/far-messengers-stars.js?v=1108e"></script>
+<script src="../../../js/far-messengers-stars.js?v=1108e"></script>
+<script src="ocean.js?v=1"></script>
 <script>
 /* OPEN WATER. The situations and the tools are from The Far Messengers: Before the First Stroke, the passage on
    the reading (stars, swell, birds, clouds, drift), The Crossing · Open Water, The Night He Went Still,
@@ -96,10 +99,10 @@ function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(M
 
 /* ---------- sound: off until asked for; recorded spoken lines only ---------- */
 var SND={
- star:'../../media/say/w2-star.mp3',             // "One night, step outside, find a star low on the horizon, and watch it rise."
- house:'../../media/say/w2-house.mp3',           // "What is your house? The one direction that holds when everything else moves."
- calm:'../../media/say/w2-calm.mp3',             // "And calm came first. A navigator who panics cannot read the ocean."
- horizon:'../../media/say/w1-whole-horizon.mp3'  // "...he softened his eyes and took in the whole horizon, instead of staring at just one spot."
+ star:'../../../media/say/w2-star.mp3',             // "One night, step outside, find a star low on the horizon, and watch it rise."
+ house:'../../../media/say/w2-house.mp3',           // "What is your house? The one direction that holds when everything else moves."
+ calm:'../../../media/say/w2-calm.mp3',             // "And calm came first. A navigator who panics cannot read the ocean."
+ horizon:'../../../media/say/w1-whole-horizon.mp3'  // "...he softened his eyes and took in the whole horizon, instead of staring at just one spot."
 };
 var sound=(function(){
   var on=false, cur=null, btn=$('#sound');
@@ -112,29 +115,58 @@ var sound=(function(){
 })();
 
 /* ---------- the picture ---------- */
-var svg=$('#view'), tick=null, T0=performance.now(), run=0, timers=[];
-function clear(){ while(svg.firstChild)svg.removeChild(svg.firstChild); tick=null; timers.forEach(clearInterval); timers=[]; }
+var svg=$('#view'), tick=null, T0=performance.now(), run=0, timers=[], boats=[];
+/* the sea and the sky, drawn behind the SVG by ocean.js; a still picture of each scene when WebGL is missing */
+var pic=$('#pic'), ocean=window.Ocean?window.Ocean(pic,{slow:CALM?.35:1,keep:/[?&]keep\b/.test(location.search)}):{ok:false}, stillPic=null;
+if(!ocean.ok){ stillPic=document.createElement('img'); stillPic.className='still'; stillPic.alt=''; stillPic.decoding='async'; pic.insertBefore(stillPic,svg); }
+function clear(){ while(svg.firstChild)svg.removeChild(svg.firstChild); tick=null; boats=[]; timers.forEach(clearInterval); timers=[]; }
 function every(ms,fn){ var id=setInterval(fn,ms); timers.push(id); return id; }
-(function loop(now){ if(tick){try{tick((now-T0)/1000);}catch(e){}} requestAnimationFrame(loop); })(T0);
+var hidden=false; document.addEventListener('visibilitychange',function(){hidden=document.hidden;});
+(function loop(now){ var t=(now-T0)/1000; if(!hidden){ if(tick){try{tick(t);}catch(e){}} boats.forEach(function(b){wash(b,t);}); if(ocean.ok)ocean.render(t); } requestAnimationFrame(loop); })(T0);
 
-var SKY={night:['#060D1A','#0E1B30','#07111D'],dawn:['#2B3C5C','#E7A77A','#1D3147'],day:['#7FA6C9','#CFE0EA','#5E8FA8'],storm:['#05070C','#131A26','#060A10'],dusk:['#3A4468','#F0B98A','#243A52']};
-function backdrop(kind,hy){
-  var c=SKY[kind], defs=el('defs',{},svg), g=el('linearGradient',{id:'gs',x1:0,y1:0,x2:0,y2:1},defs);
-  el('stop',{offset:0,'stop-color':c[0]},g); el('stop',{offset:1,'stop-color':c[1]},g);
-  el('rect',{width:400,height:hy,fill:'url(#gs)'},svg);
-  el('rect',{y:hy,width:400,height:300-hy,fill:c[2]},svg);
-  el('line',{x1:0,y1:hy,x2:400,y2:hy,stroke:'rgba(255,255,255,.28)','stroke-width':1},svg);
+/* the sky and the water for a scene: the WebGL sea takes the kind and the horizon; the stars come with it */
+var NEAR={night:'#06101C',dawn:'#1E3E52',day:'#2C6E8E',storm:'#0A1420',dusk:'#17344A',end:'#06101C'}, kind='night';
+function backdrop(k,hy){
+  kind=k;
+  if(ocean.ok)ocean.scene(k,hy); else stillPic.src='img/still-'+k+'-'+hy+'.jpg';
 }
-function starfield(n,hy){ var g=el('g',{},svg); for(var i=0;i<n;i++)el('circle',{cx:rnd(4,396).toFixed(1),cy:rnd(4,hy-14).toFixed(1),r:rnd(.4,1.1).toFixed(2),fill:'#fff',opacity:rnd(.25,.8).toFixed(2)},g); return g; }
-/* the voyaging canoe from the side: two hulls lashed, a deck, one sail */
+function starfield(){ }
+/* the voyaging canoe from the side: two hulls lashed with crossbeams, a platform between them, one mast and a crab-claw sail.
+   The near hull hides most of the far one; its raised ends show behind. The water it sits in is drawn with it, so it rides low. */
 function canoe(x,y,s,limp){
   var g=el('g',{transform:'translate('+x+','+y+') scale('+s+')'},svg), r=el('g',{},g);
-  el('path',{d:limp?'M2,-6 L2,-58 Q9,-40 7,-22 Q10,-12 5,-6 Z':'M2,-6 L2,-60 Q34,-40 36,-8 Z',fill:'#E9DFC8',opacity:.92},r);
-  el('line',{x1:2,y1:-4,x2:2,y2:-62,stroke:'#2A1D14','stroke-width':2.4},r);
-  el('path',{d:'M-46,-4 Q0,9 46,-4 L40,3 Q0,13 -40,3 Z',fill:'#1B120D'},r);
-  el('path',{d:'M-38,3 Q0,15 38,3 L33,9 Q0,18 -33,9 Z',fill:'#120C09'},r);
-  el('rect',{x:-24,y:-7,width:48,height:4,rx:1.5,fill:'#3A2A1C'},r);
-  return {g:g,r:r};
+  el('path',{d:'M-44,-11 Q-40,-6 -32,-5 L32,-5 Q40,-6 44,-12 L45,-10 Q40,-3 32,-2 L-32,-2 Q-40,-3 -45,-9 Z',fill:'#3B2A1C'},r);
+  el('path',{d:'M-46,-6 Q-42,-1 -34,0 Q0,7 34,0 Q42,-1 46,-7 L47,-6 Q43,2 35,4 Q0,13 -35,4 Q-43,2 -47,-5 Z',fill:'#1E140D'},r);
+  el('path',{d:'M-40,4 Q0,14 40,4 L36,9 Q0,19 -36,9 Z',fill:'#140D08'},r);
+  el('path',{d:'M-34,0 Q0,7 34,0',fill:'none',stroke:'#5A4330','stroke-width':1,opacity:.75},r);
+  [-20,0,20].forEach(function(bx){el('rect',{x:bx-1.5,y:-10,width:3,height:9,fill:'#2E2014'},r);});
+  el('rect',{x:-27,y:-11,width:54,height:4,rx:1.2,fill:'#4A3522'},r);
+  el('line',{x1:-27,y1:-9,x2:27,y2:-9,stroke:'#2C1E12','stroke-width':.6,opacity:.8},r);
+  el('line',{x1:2,y1:-9,x2:2,y2:-66,stroke:'#2A1D14','stroke-width':2.4,'stroke-linecap':'round'},r);
+  if(limp){
+    el('path',{d:'M0,-10 L6,-62 Q13,-40 11,-24 Q13,-14 7,-10 Z',fill:'#E9DFC8',opacity:.92},r);
+    el('line',{x1:0,y1:-10,x2:6,y2:-62,stroke:'#5A4330','stroke-width':1.6,'stroke-linecap':'round'},r);
+    el('line',{x1:0,y1:-10,x2:12,y2:-18,stroke:'#5A4330','stroke-width':1.6,'stroke-linecap':'round'},r);
+  }else{
+    el('path',{d:'M-1,-11 L30,-66 Q24,-34 44,-16 Z',fill:'#E9DFC8',opacity:.94},r);
+    el('path',{d:'M8,-27 L30,-66 M15,-29 Q22,-46 29,-58',fill:'none',stroke:'#C9BCA0','stroke-width':.7,opacity:.7},r);
+    el('line',{x1:-1,y1:-11,x2:30,y2:-66,stroke:'#5A4330','stroke-width':1.7,'stroke-linecap':'round'},r);
+    el('line',{x1:-1,y1:-11,x2:44,y2:-16,stroke:'#5A4330','stroke-width':1.7,'stroke-linecap':'round'},r);
+  }
+  el('path',{d:'M-38,-9 L-47,6 L-50,11 L-47,13 L-44,8 Z',fill:'#3B2A1C'},r);
+  // the water line: the hull below it is seen through the water, and a line of wash runs along it
+  var id='hull'+(++hullN), cp=el('clipPath',{id:id},el('defs',{},g));
+  el('path',{d:'M-47,-6 Q-43,2 -35,4 Q0,13 35,4 Q43,2 47,-7 L40,4 L36,9 Q0,19 -36,9 L-40,4 Z'},cp);
+  var w=el('path',{fill:NEAR[kind]||'#06101C',opacity:.82,'clip-path':'url(#'+id+')'},g), f=el('path',{fill:'none',stroke:'rgba(255,255,255,.5)','stroke-width':1.2,'stroke-linecap':'round'},g);
+  var b={g:g,r:r,w:w,f:f,ph:rnd(0,6),big:kind==='storm'?2.4:kind==='day'?.35:.9};
+  boats.push(b); return b;
+}
+var hullN=0;
+/* the water around a hull: a soft edge that moves, and a line of wash on it */
+function wash(b,t){
+  var a=b.big, d='', f='';
+  for(var x=-60;x<=60;x+=6){ var y=4+Math.sin(x*.11+t*1.3+b.ph)*1.2*a+Math.sin(x*.27-t*2.1)*.5*a, k=1-Math.pow(Math.abs(x)/60,3); d+=(x===-60?'M':' L')+x+','+y.toFixed(1); f+=(x===-60?'M':' L')+x+','+(y-.6).toFixed(1); }
+  b.w.setAttribute('d',d+' L60,40 L-60,40 Z'); b.f.setAttribute('d',f); b.f.setAttribute('opacity',(.35+.25*Math.sin(t*.9+b.ph)).toFixed(2));
 }
 
 /* ---------- stage text ---------- */
@@ -171,7 +203,7 @@ function holdButton(btn,secs,keep,done){
 /* ================= 0 · the door ================= */
 function title(){
   againBtn.hidden=true; clear(); backdrop('night',190); starfield(70,190);
-  var c=canoe(200,206,1); tick=function(t){c.r.setAttribute('transform','rotate('+(Math.sin(t*.8)*2).toFixed(2)+')');};
+  var c=canoe(200,206,1); tick=function(t){ var s=ocean.ok?ocean.at(200,214,t):{dy:0,slope:0}; c.g.setAttribute('transform','translate(200,'+(206+s.dy*1.4).toFixed(1)+') scale(1)'); c.r.setAttribute('transform','rotate('+(Math.sin(t*.8)*2-s.slope*20).toFixed(2)+')');};
   show('<div class="body"><p class="move">An ocean crossing to play · from The Far Messengers</p><h1>Open Water</h1>'
    +'<p>Two great hulls lashed side by side, and water that has no marks on it. There was no map.</p>'
    +'<p class="said">“What they had was a reading.”</p>'
@@ -183,9 +215,15 @@ acts.withsound=function(){sound.set(true);acts.shore();};
 /* ================= 1 · before the first stroke ================= */
 acts.shore=function(){
   againBtn.hidden=false; clear(); backdrop('dawn',170);
-  el('path',{d:'M0,262 Q120,236 400,250 L400,300 L0,300 Z',fill:'#C9B28C'},svg);
   var c=canoe(210,232,1.15), off=0;
-  tick=function(t){c.g.setAttribute('transform','translate('+(210+off*70)+','+(232-off*26)+') scale('+(1.15-off*.45)+')'); c.r.setAttribute('transform','rotate('+(Math.sin(t)*1.2).toFixed(2)+')');};
+  var defs=el('defs',{},svg), sg=el('linearGradient',{id:'sand',x1:0,y1:0,x2:0,y2:1},defs); el('stop',{offset:0,'stop-color':'#8C7A62'},sg); el('stop',{offset:.25,'stop-color':'#B9A17C'},sg); el('stop',{offset:1,'stop-color':'#D9C49E'},sg);
+  var beach=el('g',{},svg);
+  el('path',{d:'M0,262 Q120,236 400,250 L400,300 L0,300 Z',fill:'url(#sand)'},beach);
+  el('path',{d:'M0,262 Q120,236 400,250 L400,256 Q120,243 0,268 Z',fill:'#6E8A92',opacity:.55},beach);
+  var foam=el('path',{fill:'none',stroke:'rgba(255,255,255,.7)','stroke-width':2,'stroke-linecap':'round'},beach);
+  tick=function(t){ var k=(Math.sin(t*.55)+1)/2, d='M0,'+(262-k*5).toFixed(1); for(var x=0;x<=400;x+=25){ var yy=262-(x/400)*12+Math.sin(x*.05+t*.8)*1.5*(x<120?x/120:1)-k*5+ (x>120?(x-120)*.004:0); d+=' L'+x+','+yy.toFixed(1);} foam.setAttribute('d',d); foam.setAttribute('opacity',(.35+k*.4).toFixed(2));
+    var s=ocean.ok?ocean.at(210+off*70,240-off*26,t):{dy:0,slope:0};
+    c.g.setAttribute('transform','translate('+(210+off*70)+','+(232-off*26+s.dy*1.2).toFixed(1)+') scale('+(1.15-off*.45)+')'); c.r.setAttribute('transform','rotate('+(Math.sin(t)*1.2-s.slope*16).toFixed(2)+')');};
   show('<div class="body"><p class="move">1 of 6 · Before the first stroke</p><h2>The canoe is in the water. Everything is loaded. There is a pull to just go.</h2>'
    +'<p class="said">“What I do is stand there and let it settle. Feet in the water. One long breath out.”</p>'
    +'<p class="cap" id="cap"></p></div>'
@@ -205,15 +243,16 @@ acts.stars=function(){
   clear(); backdrop('night',178); starfield(46,150);
   var HY=178, xs=[]; for(var i=0;i<9;i++){xs.push(40+i*40); el('line',{x1:40+i*40,y1:HY-4,x2:40+i*40,y2:HY+4,stroke:'rgba(255,255,255,.45)','stroke-width':1.2},svg);}
   var T=2+Math.floor(Math.random()*5), mark=el('path',{d:'M'+xs[T]+','+(HY+7)+' l-6,11 l12,0 Z',fill:'#D9A84C'},svg);
-  canoe(200,268,.8);
+  var boat=canoe(200,268,.8);
   var layer=el('g',{},svg), live=[], round=-1, locked=true;
   function star(x0,key){
     var g=el('g',{},layer); el('circle',{r:9,fill:'#fff',opacity:.12},g); var core=el('circle',{r:3.2,fill:'#fff'},g);
     var hit=el('circle',{r:24,'class':'hit'},g); var s={g:g,core:core,x0:x0,born:performance.now(),key:key,old:false,lift:0};
     hit.addEventListener('click',function(){tap(s);}); live.push(s); return s;
   }
-  tick=function(){
-    var now=performance.now();
+  tick=function(t){
+    var now=performance.now(), sw=ocean.ok?ocean.at(200,274,t):{dy:0,slope:0};
+    boat.g.setAttribute('transform','translate(200,'+(268+sw.dy).toFixed(1)+') scale(.8)'); boat.r.setAttribute('transform','rotate('+(-sw.slope*18).toFixed(2)+')');
     live.forEach(function(s){
       var age=(now-s.born)/1000/Math.max(FAST,.2), climb=Math.min(1,age/5)*30+age*.9;
       if(s.old){ s.lift=Math.min(1,s.lift+.012); climb+=s.lift*70; }
@@ -254,22 +293,28 @@ acts.stars=function(){
 
 /* ================= 3 · the swell ================= */
 acts.swell=function(){
-  clear(); el('rect',{width:400,height:300,fill:'#050A12'},svg);
+  clear(); kind='night';
   var CX=200,CY=150,R=132, base=Math.floor(Math.random()*24)*15;
   var defs=el('defs',{},svg), cp=el('clipPath',{id:'sea'},defs); el('circle',{cx:CX,cy:CY,r:R},cp);
-  el('circle',{cx:CX,cy:CY,r:R,fill:'#081424',stroke:'rgba(255,255,255,.18)'},svg);
-  var sea=el('g',{'clip-path':'url(#sea)'},svg);
+  if(ocean.ok){ el('path',{d:'M0,0H400V300H0Z M'+(CX-R)+','+CY+' a'+R+','+R+' 0 1,0 '+(2*R)+',0 a'+R+','+R+' 0 1,0 '+(-2*R)+',0','fill-rule':'evenodd',fill:'#050A12',opacity:.85},svg); }
+  else { stillPic.src='img/still-swell.jpg'; el('rect',{width:400,height:300,fill:'#050A12',opacity:.5},svg); el('circle',{cx:CX,cy:CY,r:R,fill:'#081424'},svg); }
+  el('circle',{cx:CX,cy:CY,r:R,fill:'none',stroke:'rgba(255,255,255,.22)'},svg);
+  var sea=el('g',{'clip-path':'url(#sea)'},svg), lit=[];
   function train(a,spacing,speed,w,op,dash){
     var outer=el('g',{transform:'rotate('+a+' '+CX+' '+CY+')',opacity:op},sea), inner=el('g',{},outer);
-    for(var y=-120;y<420;y+=spacing){ var at={x1:-60,x2:460,y1:y,y2:y,stroke:'#BFD6EA','stroke-width':w,'stroke-linecap':'round'}; if(dash)at['stroke-dasharray']=dash; el('line',at,inner); }
-    return {a:a,outer:outer,inner:inner,spacing:spacing,speed:speed};
+    for(var y=-120;y<420;y+=spacing){ var at={x1:-60,x2:460,y1:y,y2:y,stroke:'#BFD6EA','stroke-width':w,'stroke-linecap':'round',opacity:ocean.ok?.5:1}; if(dash)at['stroke-dasharray']=dash; el('line',at,inner); }
+    var rad=a*Math.PI/180, tr={a:a,outer:outer,inner:inner,spacing:spacing,speed:speed,d:[-Math.sin(rad),Math.cos(rad)],len:spacing,amp:w*1.1,op:op}; lit.push(tr); return tr;
   }
   var deep=train(base+45,46,8,3.4,.9), chop=train(base+270,12,26,1,.38), young=train(base+160,23,15,1.6,.5), back=null;
   var trains=[deep,chop,young];
+  if(ocean.ok)ocean.top(lit,[CX,CY,R]);
   // the canoe from above, lying in the hull
   var cg=el('g',{transform:'translate('+CX+','+CY+')'},svg);
-  el('ellipse',{cx:-11,rx:5.5,ry:30,fill:'#1B120D',stroke:'#4A3626'},cg); el('ellipse',{cx:11,rx:5.5,ry:30,fill:'#1B120D',stroke:'#4A3626'},cg); el('rect',{x:-13,y:-12,width:26,height:24,rx:2,fill:'#3A2A1C'},cg);
-  tick=function(t){ trains.forEach(function(tr){tr.inner.setAttribute('transform','translate(0,'+((t*tr.speed)%tr.spacing).toFixed(2)+')');}); cg.setAttribute('transform','translate('+CX+','+(CY+Math.sin(t*.9)*2.2).toFixed(1)+') rotate('+(Math.sin(t*.7)*2.4).toFixed(1)+')'); };
+  [-11,11].forEach(function(hx){ el('path',{d:'M'+hx+',-34 Q'+(hx+6)+',-12 '+(hx+6)+',0 Q'+(hx+6)+',12 '+hx+',34 Q'+(hx-6)+',12 '+(hx-6)+',0 Q'+(hx-6)+',-12 '+hx+',-34 Z',fill:'#1B120D',stroke:'#4A3626','stroke-width':1},cg); });
+  [-14,0,14].forEach(function(by){ el('rect',{x:-16,y:by-1.5,width:32,height:3,fill:'#2E2014'},cg); });
+  el('rect',{x:-13,y:-12,width:26,height:24,rx:2,fill:'#3A2A1C'},cg);
+  el('line',{x1:-13,y1:-4,x2:13,y2:-4,stroke:'#2C1E12','stroke-width':.6},cg); el('line',{x1:-13,y1:4,x2:13,y2:4,stroke:'#2C1E12','stroke-width':.6},cg);
+  tick=function(t){ trains.forEach(function(tr){tr.inner.setAttribute('transform','translate(0,'+((t*tr.speed)%tr.spacing).toFixed(2)+')'); if(tr===back)tr.op=parseFloat(tr.outer.getAttribute('opacity'))||0;}); cg.setAttribute('transform','translate('+CX+','+(CY+Math.sin(t*.9)*2.2).toFixed(1)+') rotate('+(Math.sin(t*.7)*2.4).toFixed(1)+')'); };
   var step=0, glow=null;
   [45,105,160,225,270,330].forEach(function(d){
     var a=base+d, x=CX+(R+0)*Math.sin(a*Math.PI/180), y=CY-(R+0)*Math.cos(a*Math.PI/180), g=el('g',{transform:'translate('+x.toFixed(1)+','+y.toFixed(1)+')'},svg);
@@ -279,7 +324,7 @@ acts.swell=function(){
     var cap=$('#cap');
     if(step===0){
       if(d===45){ dot.setAttribute('fill','#D9A84C'); step=1; cap.textContent='That is the deep one. It has come a thousand miles from a storm you will never see.';
-        setTimeout(function(){ back=train(base+225,46,8,2.2,0,'10 9'); trains.push(back); var a=performance.now(); every(60,function(){back.outer.setAttribute('opacity',Math.min(.62,(performance.now()-a)/2500*.62).toFixed(2));}); step=2;
+        setTimeout(function(){ back=train(base+225,46,8,2.2,0,'10 9'); back.amp=3; trains.push(back); var a=performance.now(); every(60,function(){back.outer.setAttribute('opacity',Math.min(.62,(performance.now()-a)/2500*.62).toFixed(2));}); step=2;
           $('#task').textContent='Now something is sending a wave back. Tap where the broken lines come from.'; },1600*Math.max(FAST,.1)); }
       else cap.textContent=(d===270||d===160)?'“That one is new and shallow and does not matter.” Feel for the slow one.':'Nothing is coming from there. Feel again.';
     } else if(step===2){
@@ -294,15 +339,15 @@ acts.swell=function(){
 
 /* ================= 4 · the calm ================= */
 acts.calm=function(){
-  clear(); backdrop('day',170); el('circle',{cx:320,cy:52,r:20,fill:'#FFF3D0',opacity:.9},svg);
-  canoe(200,188,1.1,true);
-  el('path',{d:'M150,196 Q200,203 250,196',fill:'none',stroke:'rgba(255,255,255,.35)','stroke-width':1},svg);
+  clear(); backdrop('day',170);
+  var boat=canoe(200,188,1.1,true);
   var nums=el('g',{},svg), list=[], settled=false, still=0, presses=0, mine;
   var WORDS=['9 days of water','6 days of food','14 days to the mainland','the season closing','9 − 14','6 − 14','half rations?','14 days. Or 20.','count it again'];
   function add(txt,x,y){ var t=el('text',{x:x,y:y,'text-anchor':'middle','font-size':13,fill:'#1B2A38',opacity:.9},nums); t.textContent=txt; list.push({t:t,x:x,y:y,ph:rnd(0,6)}); }
   add(WORDS[0],90,60); add(WORDS[1],200,34); add(WORDS[2],292,100);
   var SLOTS=shuffle([[80,26],[84,96],[190,74],[70,134],[196,112],[306,134],[190,146],[300,22],[112,160]]);
-  tick=function(t){ list.forEach(function(n,i){ var k=settled?0:Math.min(3.2,1+presses*.7); n.t.setAttribute('x',(n.x+Math.sin(t*6+n.ph)*k).toFixed(1)); n.t.setAttribute('y',(n.y+Math.cos(t*7.3+n.ph)*k).toFixed(1)); }); };
+  tick=function(t){ var s=ocean.ok?ocean.at(200,196,t):{dy:0,slope:0}; boat.g.setAttribute('transform','translate(200,'+(188+s.dy*2).toFixed(1)+') scale(1.1)'); boat.r.setAttribute('transform','rotate('+(-s.slope*20).toFixed(2)+')');
+    list.forEach(function(n,i){ var k=settled?0:Math.min(3.2,1+presses*.7); n.t.setAttribute('x',(n.x+Math.sin(t*6+n.ph)*k).toFixed(1)); n.t.setAttribute('y',(n.y+Math.cos(t*7.3+n.ph)*k).toFixed(1)); }); };
   function touched(){ if(!settled)still=0; }
   document.addEventListener('pointerdown',touched,true);
   acts.numbers=function(){
@@ -333,17 +378,16 @@ acts.calm=function(){
 /* ================= 5 · the storm ================= */
 acts.storm=function(){
   clear(); backdrop('storm',150);
+  var c=canoe(200,196,1.05);
+  var spray=el('g',{},svg), drops=[]; if(!ocean.ok){ spray.setAttribute('stroke','rgba(200,220,255,.28)'); for(var i=0;i<46;i++){var x=rnd(0,440),y=rnd(0,300); drops.push({l:el('line',{x1:x,y1:y,x2:x-7,y2:y+16},spray),x:x,y:y,v:rnd(240,360)});} }
   var flash=el('rect',{width:400,height:300,fill:'#DCE8FF',opacity:0},svg);
-  var rain=el('g',{stroke:'rgba(200,220,255,.28)','stroke-width':1},svg), drops=[]; for(var i=0;i<46;i++){var x=rnd(0,440),y=rnd(0,300); drops.push({l:el('line',{x1:x,y1:y,x2:x-7,y2:y+16},rain),x:x,y:y,v:rnd(240,360)});}
-  var waves=[0,1,2,3].map(function(i){return el('path',{fill:['#0C1420','#0A111B','#080E16','#060A10'][i]},svg);});
-  var c=canoe(200,196,1.05); svg.insertBefore(c.g,waves[2]);
   var last=0, h=null, marks=[25,55,85], fl=0;
   tick=function(t){
     var dt=Math.min(.05,t-last); last=t;
-    waves.forEach(function(w,i){ var d='M0,300 L0,'+(168+i*26); for(var x=0;x<=400;x+=20)d+=' L'+x+','+(168+i*26+Math.sin(x*.022+t*(1.5+i*.35)+i*2)*(12+i*3)).toFixed(1); w.setAttribute('d',d+' L400,300 Z'); });
-    c.g.setAttribute('transform','translate(200,'+(196+Math.sin(t*1.7)*9).toFixed(1)+') scale(1.05)'); c.r.setAttribute('transform','rotate('+(Math.sin(t*1.5+.6)*11).toFixed(1)+')');
+    var s=ocean.ok?ocean.at(200,204,t):{dy:Math.sin(t*1.7)*9,slope:Math.sin(t*1.5+.6)*-.5};
+    c.g.setAttribute('transform','translate(200,'+(196+s.dy).toFixed(1)+') scale(1.05)'); c.r.setAttribute('transform','rotate('+(Math.max(-16,Math.min(16,-s.slope*22))+Math.sin(t*2.3)*2).toFixed(1)+')');
     drops.forEach(function(d){ d.y+=d.v*dt; d.x-=d.v*dt*.44; if(d.y>300){d.y=-10;d.x=rnd(0,460);} d.l.setAttribute('x1',d.x.toFixed(0)); d.l.setAttribute('y1',d.y.toFixed(0)); d.l.setAttribute('x2',(d.x-7).toFixed(0)); d.l.setAttribute('y2',(d.y+16).toFixed(0)); });
-    fl=Math.max(0,fl-dt*1.6); flash.setAttribute('opacity',(CALM?0:fl*.42).toFixed(2));
+    fl=Math.max(0,fl-dt*1.6); flash.setAttribute('opacity',(CALM?0:fl*.3).toFixed(2)); if(ocean.ok)ocean.flash(CALM?0:fl);
   };
   show('<div class="body"><p class="move">5 of 6 · The storm</p><h2>The storm found them four days off the mainland, at night, from a quarter the sky had not advertised.</h2>'
    +'<p>Everything lashed, everyone harnessed. The job in a storm is not to make progress. It is not to get lost.</p>'
@@ -366,17 +410,20 @@ acts.storm=function(){
 acts.signs=function(){
   clear(); backdrop('dusk',176);
   var hz=el('rect',{x:0,y:160,width:400,height:30,'class':'hit'},svg);
-  function cloud(x,y,s,green){ var g=el('g',{},svg); if(green)el('ellipse',{cx:0,cy:11,rx:30*s,ry:5*s,fill:'#7FD6A8',opacity:.75},g);
-    el('ellipse',{cx:-16*s,cy:2,rx:18*s,ry:9*s,fill:'#F4EDE4',opacity:.92},g); el('ellipse',{cx:8*s,cy:-4,rx:24*s,ry:12*s,fill:'#F4EDE4',opacity:.92},g); el('ellipse',{cx:26*s,cy:3,rx:15*s,ry:8*s,fill:'#F4EDE4',opacity:.92},g);
+  var defs=el('defs',{},svg), cg=el('linearGradient',{id:'cl',x1:0,y1:0,x2:0,y2:1},defs); el('stop',{offset:0,'stop-color':'#FFF6EC'},cg); el('stop',{offset:.55,'stop-color':'#F1D9CC'},cg); el('stop',{offset:1,'stop-color':'#C9A3A6'},cg);
+  function cloud(x,y,s,green){ var g=el('g',{},svg); if(green)el('ellipse',{cx:0,cy:11,rx:30*s,ry:5*s,fill:'#7FD6A8',opacity:.7},g);
+    el('ellipse',{cx:-16*s,cy:2,rx:18*s,ry:9*s,fill:'url(#cl)',opacity:.95},g); el('ellipse',{cx:8*s,cy:-4,rx:24*s,ry:12*s,fill:'url(#cl)',opacity:.95},g); el('ellipse',{cx:26*s,cy:3,rx:15*s,ry:8*s,fill:'url(#cl)',opacity:.95},g);
+    el('ellipse',{cx:4*s,cy:7,rx:28*s,ry:5*s,fill:'#B88E96',opacity:.35},g);
     var hit=el('ellipse',{rx:46*s,ry:24*s,'class':'hit'},g); return {g:g,x:x,y:y,hit:hit}; }
   var walkers=[cloud(60,48,1),cloud(210,30,.8),cloud(340,84,.9)], stillc=cloud(292,128,.82,true);
   stillc.g.setAttribute('transform','translate(292,128)');
-  var island=el('path',{d:'M258,176 Q280,166 296,169 Q316,163 334,176 Z',fill:'#1E2F3F',opacity:0},svg);
+  var island=el('path',{d:'M258,176 Q280,166 296,169 Q316,163 334,176 Z',fill:'#2A2F44',opacity:0},svg);
   function bird(){ var g=el('g',{},svg); el('path',{d:'M-7,0 Q-3.5,-5 0,0 Q3.5,-5 7,0',fill:'none',stroke:'#1A1410','stroke-width':1.7,'stroke-linecap':'round'},g); var hit=el('circle',{r:22,'class':'hit'},g); return {g:g,hit:hit}; }
   var wander=[bird(),bird(),bird()], home=bird(), home2=bird(); home2.hit.setAttribute('r',0);
   var leaf=el('g',{},svg); el('path',{d:'M-11,0 Q0,-8 12,0 Q0,7 -11,0 Z',fill:'#5C7A3A'},leaf); el('line',{x1:-9,y1:0,x2:10,y2:0,stroke:'#33481F','stroke-width':1},leaf); var leafHit=el('circle',{r:24,'class':'hit'},leaf);
-  canoe(92,214,.8);
+  var boat=canoe(92,214,.8);
   tick=function(t){
+    var sw=ocean.ok?ocean.at(92,220,t):{dy:0,slope:0}; boat.g.setAttribute('transform','translate(92,'+(214+sw.dy*1.2).toFixed(1)+') scale(.8)'); boat.r.setAttribute('transform','rotate('+(-sw.slope*18).toFixed(2)+')');
     walkers.forEach(function(c,i){ var x=((c.x+t*(7+i*2.5))%520)-60; c.g.setAttribute('transform','translate('+x.toFixed(1)+','+c.y+')'); });
     wander.forEach(function(b,i){ var a=t*(.5+i*.13)+i*2.1; b.g.setAttribute('transform','translate('+(120+i*70+Math.cos(a)*44).toFixed(1)+','+(88+i*14+Math.sin(a*1.4)*20).toFixed(1)+')'); });
     var k=((t*.045)%1), hx=-20+k*330, hy=150-k*26; home.g.setAttribute('transform','translate('+hx.toFixed(1)+','+hy.toFixed(1)+')'); home2.g.setAttribute('transform','translate('+(hx-15).toFixed(1)+','+(hy+7).toFixed(1)+')');
@@ -405,13 +452,14 @@ acts.signs=function(){
 
 /* ================= the far side ================= */
 acts.end=function(){
-  clear(); backdrop('night',190); starfield(70,190);
-  el('path',{d:'M230,190 Q262,170 290,176 Q326,160 372,190 Z',fill:'#0B1420',stroke:'rgba(255,255,255,.2)'},svg);
-  var c=canoe(120,206,.9); tick=function(t){c.r.setAttribute('transform','rotate('+(Math.sin(t*.8)*2).toFixed(2)+')');};
+  clear(); backdrop('end',190); starfield(70,190);
+  el('path',{d:'M230,190 Q262,170 290,176 Q326,160 372,190 Z',fill:'#070C16',stroke:'rgba(255,255,255,.14)'},svg);
+  el('path',{d:'M230,190 Q262,170 290,176 Q326,160 372,190 L372,194 Q300,198 230,194 Z',fill:'#0B1422',opacity:.8},svg);
+  var c=canoe(120,206,.9); tick=function(t){ var s=ocean.ok?ocean.at(120,213,t):{dy:0,slope:0}; c.g.setAttribute('transform','translate(120,'+(206+s.dy*1.4).toFixed(1)+') scale(.9)'); c.r.setAttribute('transform','rotate('+(Math.sin(t*.8)*2-s.slope*20).toFixed(2)+')');};
   show('<div class="body"><p class="move">Landfall</p>'
    +'<p class="said" style="font-size:clamp(1.45rem,6.4vw,1.8rem)">“On the canoe, the island is there before you can see it. The birds go home to it at night. The swell bends around it. Everything tells you it is there except your eyes.”</p>'
    +'<p>The knowledge was never the difficult part. The instrument that carried the knowledge was the difficult part.</p>'
-   +'<p class="fine">All of this is from <a href="../../books/">The Far Messengers</a>. The navigator, his teacher and the ones aboard are invented. The way of reading the ocean is real, and it belongs to the peoples who still teach it.</p></div>'
+   +'<p class="fine">All of this is from <a href="../../../books/">The Far Messengers</a>. The navigator, his teacher and the ones aboard are invented. The way of reading the ocean is real, and it belongs to the peoples who still teach it.</p></div>'
    +'<div class="foot"><a class="btn amber" href="../fireside/?open=all&from=open-water">Come in by the fire <span class="arrow">→</span></a><button class="btn ghost" type="button" data-act="shore">Cross again</button></div>',function(){try{localStorage.setItem('peaks-fire-all','1');}catch(e){}});
 };
 
