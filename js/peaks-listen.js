@@ -27,11 +27,14 @@ const LOCK='<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 1
 const PLAY='<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
 
 let unlocked=local.get('ap.free',null);
+// members (11/11): signed in with the email link, every recording plays in full here (AP.member, shared/site.js)
+const MEM=()=>!!(window.AP&&AP.member&&AP.member.on);
+const BEDF={creek:'water',ocean:'water',dawn:'dawn',desert:'wind',hearth:'embers'};
 let prog=local.get('ap.listen',{});
 
 /* ---------- pieces ---------- */
 const pvBtn=(id,title,small)=>`<button class="pv${small?' sm':''}" type="button" data-pv="${id}" aria-pressed="false" aria-label="Play a 30-second preview of ${esc(title)}"><span class="ic">${PLAY}</span>${small?'':'<span class="lb">Hear 30 seconds</span>'}<span class="tm">0:30</span><i class="fill"></i></button>`;
-const doorBtn=(title,small,dark)=>`<a class="${small?'door-link':'btn ghost'+(dark?'':' dark')+' door'}" href="${JOIN.monthly}" data-offer="member-monthly" aria-label="Members listen to ${esc(title)} in full">${LOCK}Members listen in full <span class="arrow">→</span></a>`;
+const doorBtn=(title,small,dark,id)=>`<a class="${small?'door-link':'btn ghost'+(dark?'':' dark')+' door'}" href="${JOIN.monthly}" data-offer="member-monthly" aria-label="Members listen to ${esc(title)} in full">${LOCK}Members listen in full <span class="arrow">→</span></a>`+(id?`<button class="${small?'door-link':'btn earth'} mfull" type="button" data-full="${id}" aria-label="Listen to ${esc(title)} in full">Listen in full <span class="arrow">→</span></button>`:'');
 
 /* ---------- the two free sessions ---------- */
 function freeCard(s,i){
@@ -59,8 +62,8 @@ function rowHTML(s,i){
       <h3 class="reveal">${esc(s.title)}</h3>
       <p class="blurb reveal">${esc(s.blurb)}</p>
       <p class="line reveal">${esc(s.line)}</p>
-      <div class="meta reveal"><span class="mem">${LOCK}${esc(s.mins)} in full for members</span></div>
-      <div class="acts reveal">${pvBtn(s.id,s.title)}${doorBtn(s.title)}</div>
+      <div class="meta reveal"><span class="mem">${LOCK}${esc(s.mins)} in full for members</span><span class="mem-open">Open to you · ${esc(s.mins)}</span></div>
+      <div class="acts reveal">${pvBtn(s.id,s.title)}${doorBtn(s.title,false,false,s.id)}</div>
     </div></li>`;
 }
 const list=$('#list'); if(list) list.innerHTML=ROOM.map(rowHTML).join('');
@@ -73,7 +76,7 @@ function sitHTML(s,i){
       <p class="kick"><span class="n">${String(i+FREE.length+ROOM.length+1).padStart(2,'0')}</span>${esc(s.mins)} · ${esc(s.where)}</p>
       <h3>${esc(s.title)}</h3>
       <p class="blurb">${esc(s.blurb)}</p>
-      <div class="acts">${pvBtn(s.id,s.title)}${doorBtn(s.title,true)}</div>
+      <div class="acts">${pvBtn(s.id,s.title)}${doorBtn(s.title,true,false,s.id)}</div>
     </div></li>`;
 }
 const sit=$('#sitRows'); if(sit) sit.innerHTML=SITS.map(sitHTML).join('');
@@ -87,7 +90,7 @@ const sit=$('#sitRows'); if(sit) sit.innerHTML=SITS.map(sitHTML).join('');
     <span class="nn">${String(i+1).padStart(2,'0')}</span>
     <span class="tt"><b>${esc(n.title)}</b><small>${esc(n.sub)} · ${LOCK}${fmt(n.dur)} for members</small></span>
     ${pvBtn(n.id,n.title,true)}
-    ${doorBtn(n.title,true,true)}
+    ${doorBtn(n.title,true,true,n.id)}
   </li>`).join('');
   const c=$('#noteCount'); if(c) c.textContent=['','One short one','Two short ones','Three short ones','Four short ones','Five short ones','Six short ones','Seven short ones','Eight short ones','Nine short ones','Ten short ones'][D.notes.length]||(D.notes.length+' short ones');
 })();
@@ -131,7 +134,7 @@ pv.addEventListener('ended',()=>{
 });
 document.addEventListener('click',e=>{
   const b=e.target.closest('.pv'); if(b){ e.preventDefault(); playPreview(b.dataset.pv); return; }
-  const f=e.target.closest('[data-full]'); if(f){ e.preventDefault(); if(unlocked||(byId(f.dataset.full)||{}).open) open(f.dataset.full); else { const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } } }
+  const f=e.target.closest('[data-full]'); if(f){ e.preventDefault(); const it=byId(f.dataset.full)||{}; if((it.free&&(unlocked||it.open))||(!it.free&&MEM())) open(f.dataset.full); else if(!it.free){ if(window.AP&&AP.member) AP.member.dialog(); } else { const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } } }
 });
 addEventListener('ap:play',e=>{ if(e.detail!==pvApi) stopPreview(); });
 
@@ -208,7 +211,15 @@ function setScene(s){
   P.el.dataset.field=s.field;
 }
 function open(id){
-  const s=byId(id); if(!s||!s.free||!s.full||!(unlocked||s.open)) return;   // the free sessions after the sign-up; the gift (open: true) for everyone
+  let s=byId(id); if(!s) return;
+  const freeOk=s.free&&s.full&&(unlocked||s.open);   // the free sessions after the sign-up; the gift (open: true) for everyone
+  if(!freeOk&&!(MEM()&&!s.free)) return;              // members: every other recording, in full
+  let src=freeOk?MEDIA+s.full:(window.AP&&AP.member.urlNow(s.id));
+  if(!src){   // the signed addresses are not here yet (or ran out): fetch them, then open
+    AP.member.urls(true).then(u=>{ if(u&&u[id]) open(id); else if(!MEM()) AP.member.dialog('Your membership could not be confirmed on this device.'); });
+    return;
+  }
+  if(!s.field){ s=Object.assign({n:'Voice note',where:s.sub||'',mins:fmt(s.dur),line:'',field:BEDF[s.bed]||'water'},s); }
   stopPreview();
   if(window.AP&&AP.current&&AP.current!==pvApi) try{ AP.current.pause(); }catch(e){}
   cur=s;
@@ -219,7 +230,7 @@ function open(id){
   if(window.AP&&AP.lenis) AP.lenis.stop();
   setScene(s);
   if(s.env) PeaksVoice.loadEnv(MEDIA+s.env, s.id);
-  P.audio.src=MEDIA+s.full;
+  P.audio.src=src;
   PeaksVoice.attach(P.audio);
   const p=prog[s.id]; const start=(p&&!p.done&&p.t>5&&p.t<s.dur-15)?p.t:0;
   const begin=()=>{ try{ P.audio.currentTime=start; }catch(e){} P.audio.play().then(()=>{ P.el.classList.add('playing'); if(window.AP) AP.sound.duck(true); }).catch(()=>{ P.el.classList.remove('playing'); }); };
@@ -263,7 +274,11 @@ P.audio.addEventListener('ended',()=>{
   PeaksVoice.cue('done');
   const other=FREE.find(s=>s!==cur&&!s.open)||FREE.find(s=>s!==cur)||cur;
   P.finH.textContent='That was '+cur.title+'.';
-  if(!unlocked){   // the gift was heard without a sign-up: only now, the invitation
+  if(MEM()){
+    P.finP.textContent='Notice how you feel. Every session in the room is open to you, whenever you want it.';
+    P.next.firstChild.textContent='Back to the room ';
+    P.next.onclick=()=>{ close(); const r=$('#room'); if(r){ (window.AP&&AP.scrollTo?AP.scrollTo(r,{offset:-60}):r.scrollIntoView({behavior:'smooth'})); } };
+  } else if(!unlocked){   // the gift was heard without a sign-up: only now, the invitation
     P.finP.textContent='Notice how you feel. If it served you, two more sessions open free when you leave your first name and email.';
     P.next.firstChild.textContent='Open the two free sessions ';
     P.next.onclick=()=>{ close(); const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } };
@@ -323,6 +338,19 @@ setTimeout(()=>$$('.arrive .reveal, .arrive [data-words]').forEach(el=>el.classL
   b.addEventListener('click',()=>{ AP.sound.toggle(); paint(); });
   addEventListener('ap:sound',paint); paint();
 })();
+
+/* ---------- members: the welcome line, and the signed addresses ready before the first tap ---------- */
+P.audio.crossOrigin='anonymous';   // the members' recordings come from the members service, which allows this site
+function paintMember(){
+  const on=MEM(); document.body.classList.toggle('member',on);
+  const copy=$('.arrive .copy'); if(!copy) return;
+  let w=$('.ap-mwelcome',copy);
+  if(on){ if(!w){ w=document.createElement('p'); w.className='ap-mwelcome'; const acts=$('.acts',copy); copy.insertBefore(w,acts||null); }
+    const f=window.AP&&AP.member.first; w.innerHTML=(f?'Welcome back, '+esc(f)+'. ':'Welcome back. ')+'Every session and voice note here is open to you, in full. <a href="#room">Go to the room <span class="arrow">→</span></a>';
+    AP.member.urls(); if(!unlocked){ unlocked={name:(AP.member.first||'Member'),at:Date.now(),member:true}; local.set('ap.free',unlocked); paintUnlock(); } }
+  else if(w) w.remove();
+}
+paintMember(); addEventListener('ap:member',paintMember);
 
 window.PeaksListen={open,close,toggle,playPreview,stopPreview,get unlocked(){return !!unlocked;},get current(){return cur;},get previewing(){return pvId;}};
 })();

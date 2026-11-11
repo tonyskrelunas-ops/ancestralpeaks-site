@@ -320,3 +320,24 @@ html.gated,html.gated body{overflow:hidden}
 .ap-gate .btn{width:100%;justify-content:center;margin-top:1.15rem;min-height:56px;font-size:1.05rem}
 .ap-gate .err{color:#F3B28A;min-height:1.2em;font-size:.92rem;margin-top:.6rem}
 .ap-gate .fine{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.3rem}
+
+/* members (11/11): the sign-in card, the quiet lines, and what changes once signed in */
+.ap-msign{z-index:10000}
+.ap-msign .ap-gate-card{position:relative}
+.ap-msign .x{position:absolute;top:10px;right:12px;width:40px;height:40px;border:0;background:none;color:rgba(255,255,255,.75);font-size:28px;line-height:1;cursor:pointer;border-radius:999px}
+.ap-msign .x:hover,.ap-msign .x:focus-visible{color:#fff;background:rgba(255,255,255,.08)}
+.ap-msign .fine a,.ap-gate .fine a{color:#fff;text-underline-offset:.2em}
+.ap-mline{flex-basis:100%;margin:0;font-size:.92rem;color:rgba(255,255,255,.72)}
+.ap-mline a{color:#fff;text-underline-offset:.2em}
+.ap-mdoor{grid-column:1 / -1;margin:.55rem 0 0;font-size:.95rem;line-height:1.45;opacity:.9}
+.ap-mdoor a{color:inherit;font-weight:700;text-underline-offset:.2em}
+html.is-member a[data-offer^="member"]{display:none !important}
+html.is-member .ap-mdoor{font-size:1.02rem;opacity:1}
+/* the Listening Room, signed in: the members' door gives way to "Listen in full"; the locks go */
+html:not(.is-member) .mfull{display:none !important}
+button.door-link.mfull{background:none;border:0;border-bottom:1.5px solid currentColor;border-radius:0;font:inherit;font-weight:700;cursor:pointer;padding:0 0 .1em}
+.mem-open{display:none}
+html.is-member .mem-open{display:inline}
+html.is-member .sess .mem,html.is-member .lk{display:none !important}
+.ap-mwelcome{margin-top:1rem;max-width:34em;padding:.8rem 1rem;border-radius:14px;background:rgba(0,0,0,.38);color:#fff;font-size:1rem;line-height:1.45}
+.ap-mwelcome a{color:#fff;font-weight:700;text-underline-offset:.2em;white-space:nowrap}

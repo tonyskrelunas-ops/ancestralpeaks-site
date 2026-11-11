@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Members · Ancestral Peaks</title>
+<meta name="description" content="Members of Ancestral Peaks: open the Listening Room on this device.">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
+<link rel="stylesheet" href="../shared/site.css?v=1111m">
+<link rel="stylesheet" href="../css/pages.css?v=1110a">
+<style>
+/* /member/ (11/11): the link from the email lands here, opens the room on this device, and sends them on */
+.member .hero .copy{align-items:end}
+.member .hero .bg>img{object-position:50% 62%}
+.member .hero .bg::after{background:linear-gradient(90deg,rgba(16,11,13,.62) 0%,rgba(16,11,13,.25) 55%,rgba(16,11,13,.12) 100%),linear-gradient(180deg,rgba(16,11,13,.45) 0%,rgba(16,11,13,.05) 32%,rgba(16,11,13,.25) 100%)}
+.mb-card{position:relative;z-index:2;background:#fff;color:var(--ink);border-radius:18px;padding:clamp(20px,2.6vw,34px);box-shadow:0 40px 80px -40px rgba(0,0,0,.7);border-top:4px solid var(--earth);width:100%;max-width:520px;justify-self:end}
+.mb-card [hidden]{display:none!important}
+.mb-card .k{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--creek)}
+.mb-card h2{margin-top:.4rem;font-size:clamp(1.5rem,1.2rem + 1.2vw,2.1rem)}
+.mb-card p{margin-top:.6rem;color:var(--ink-2)}
+.mb-card .btn{margin-top:1.1rem;justify-content:center}
+.mb-card form{display:grid;gap:.9rem;margin-top:1rem}
+.mb-card .fld{display:grid;gap:.35rem}
+.mb-card .fld span{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--ink-2)}
+.mb-card .fld input{font:inherit;font-size:1.08rem;padding:.85em 1em;border:1.5px solid rgba(38,39,35,.25);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+.mb-card .fld input:focus{outline:none;border-color:var(--creek);box-shadow:0 0 0 4px rgba(68,102,90,.15)}
+.mb-card .status{min-height:1.4em;font-weight:600;color:var(--creek);font-size:.98rem}
+.mb-card .status.bad{color:var(--earth)}
+.mb-card .fine{font-size:.88rem;color:var(--ink-2)}
+.mb-card .fine a,.mb-card p a{color:var(--earth);font-weight:700;text-underline-offset:.2em}
+.mb-card .spin{display:inline-block;width:1em;height:1em;border:2px solid rgba(68,102,90,.25);border-top-color:var(--creek);border-radius:50%;vertical-align:-.15em;margin-right:.5em;animation:mbspin .9s linear infinite}
+@keyframes mbspin{to{transform:rotate(360deg)}}
+.member .side-col{display:grid;justify-items:end;align-content:end}
+@media (max-width:900px){.mb-card{justify-self:stretch;max-width:none}.member .side-col{justify-items:stretch}}
+</style>
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Peaks">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script src="/app/pwa.js?v=1108e" defer></script>
+</head>
+<body class="member">
+
+<header data-ap-nav data-active="" data-menu-image="../media/img/oakcreek-rim-1000.jpg"></header>
+
+<section class="hero" id="top" data-scene="dawn" data-scene-label="morning below the Peaks">
+  <div class="bg"><img src="../media/img/peaks-morning-2000.jpg" srcset="../media/img/peaks-morning-1000.jpg 1000w, ../media/img/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The Peaks under the morning cloud"></div>
+  <div class="copy">
+    <div>
+      <span class="eyebrow">Members</span>
+      <h1>The room, on this device.</h1>
+      <p class="lede">No password. The link in your email opens every session and voice note in the Listening Room, here, for as long as you are a member.</p>
+    </div>
+    <div class="side-col">
+      <div class="mb-card" aria-live="polite">
+        <div id="mbWork"><p class="k"><span class="spin" aria-hidden="true"></span>Opening the room</p><h2>One moment.</h2></div>
+        <div id="mbIn" hidden>
+          <p class="k">You're in</p>
+          <h2 id="mbHi">Welcome.</h2>
+          <p>Every session and voice note in the Listening Room is open to you on this device, in full. It stays open while you are a member.</p>
+          <a class="btn earth" id="mbGo" href="../listen/#room">Go to the Listening Room <span class="arrow">→</span></a>
+          <p class="fine">On another phone or computer, choose <b>Members: sign in</b> in the menu and type the email you joined with.</p>
+        </div>
+        <div id="mbOut" hidden>
+          <p class="k" id="mbOutK">This link has run its course</p>
+          <h2 id="mbOutH">Let's send you a fresh one.</h2>
+          <p id="mbOutP">A link from the sign-in works for 20 minutes, and the one in the welcome email for a week. Type the email you joined with and a new one comes to you.</p>
+          <form id="mbForm" novalidate>
+            <label class="fld"><span>Email</span><input type="email" id="mbEmail" autocomplete="email" spellcheck="false" maxlength="120" required></label>
+            <button class="btn earth" type="submit" id="mbBtn">Send me the link <span class="arrow">→</span></button>
+            <p class="status" id="mbStatus" role="status" aria-live="polite"></p>
+          </form>
+          <p class="fine">Not a member yet? <a href="../listen/#members">See the membership</a>. Two sessions stay free with your name and email.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script src="../shared/vendor/gsap.min.js?v=1108e"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
+<script src="../shared/vendor/lenis.min.js?v=1108e"></script>
+<script src="../shared/site.js?v=1111m"></script>
+<script>
+(function(){
+  'use strict';
+  var $ = function(s){ return document.querySelector(s); };
+  var q = new URLSearchParams(location.search), t = q.get('t');
+  if (t) { try { history.replaceState(null, '', location.pathname); } catch (e) {} }   // the link leaves the address bar at once
+  function show(id){ ['#mbWork', '#mbIn', '#mbOut'].forEach(function(s){ $(s).hidden = s !== id; }); }
+  function inside(first){
+    $('#mbHi').textContent = first ? 'Welcome, ' + first + '.' : 'Welcome.';
+    show('#mbIn');
+    setTimeout(function(){ if (!document.hidden) location.href = $('#mbGo').getAttribute('href'); }, 2600);
+  }
+  function out(reason){
+    if (reason === 'not-member') { $('#mbOutK').textContent = 'No active membership on this link'; $('#mbOutH').textContent = 'The room did not open.'; $('#mbOutP').textContent = 'This link belongs to a membership that is no longer active. If you joined again just now, give it a minute, then send yourself a fresh link with the email you joined with.'; }
+    else if (reason === 'offline' || reason === 'error') { $('#mbOutK').textContent = 'The room could not be reached'; $('#mbOutH').textContent = 'Try the link once more.'; $('#mbOutP').textContent = 'Check your connection and tap the link in your email again, or send yourself a fresh one here.'; }
+    else if (!t) { $('#mbOutK').textContent = 'Members'; $('#mbOutH').textContent = 'Sign in with your email.'; $('#mbOutP').textContent = 'Type the email you joined with. A link comes to you; tap it on this phone or computer and the whole Listening Room opens.'; }
+    show('#mbOut');
+  }
+  var M = window.AP && AP.member;
+  if (!M) { out('error'); return; }
+  if (t) M.verify(t).then(function(r){ if (r.ok) inside(r.first); else out(r.reason); });
+  else if (M.on) M.check(true).then(function(on){ if (on) { $('#mbHi').textContent = M.first ? 'Welcome back, ' + M.first + '.' : 'Welcome back.'; show('#mbIn'); } else out(''); });
+  else out('');
+  $('#mbForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var em = $('#mbEmail').value.trim(), st = $('#mbStatus'), b = $('#mbBtn');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { st.textContent = 'That email does not look complete.'; st.classList.add('bad'); return; }
+    b.disabled = true; st.classList.remove('bad'); st.textContent = 'Sending…';
+    M.signin(em).then(function(r){
+      b.disabled = false;
+      if (!r.ok) { st.textContent = r.message || 'That did not go through. Please try once more in a moment.'; st.classList.add('bad'); return; }
+      st.innerHTML = 'Check your email. If it belongs to a member, a link is on its way.' + (r.test ? ' <a href="' + r.test.replace(/^https:\/\/ancestralpeaks\.com/, location.origin) + '">Test link</a>' : '');
+    });
+  });
+})();
+</script>
+</body>
+</html>

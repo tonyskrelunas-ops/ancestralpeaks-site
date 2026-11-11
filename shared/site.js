@@ -683,6 +683,149 @@ AP.seekPage = async function(t, o){
   return true;
 };
 
+/* ---------- members (11/11, Tony: "we do need a way for folks to log in if they pay ... im worried that we are making it too hard") ----------
+   No password. A member joins on Payhip's checkout as before; Payhip tells the members service
+   (ancestralpeaks-members.netlify.app), which emails a one-tap link. The link opens /member/, which trades it for a
+   device session kept in localStorage['ap.member']. Signed in, the Listening Room plays every recording in full
+   (short-lived signed addresses from the service), the join buttons give way to "You're a member", and the sign-up
+   wall never shows. On another device: "Members: sign in", type the email, tap the link. A cancelled membership is
+   refused by the service on the next check. The partner copy never shows any of this (everything is open there). */
+AP.member = (function(){
+  const API = 'https://ancestralpeaks-members.netlify.app/api';
+  const KEY = 'ap.member';
+  const off = () => AP.render || AP.fileMode || /partners/.test(location.hostname);
+  const esc = t => String(t == null ? '' : t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  let st = null; try { st = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+  let urls = null;   // { id: signed url } for this page view, with their expiry
+  const M = {
+    get on(){ return !off() && !!(st && st.session); },
+    get first(){ return (st && st.first) || ''; },
+    save(s){
+      st = s; urls = null;
+      try { s ? localStorage.setItem(KEY, JSON.stringify(s)) : localStorage.removeItem(KEY); } catch (e) {}
+      M.paint(); dispatchEvent(new CustomEvent('ap:member', { detail: { on: M.on } }));
+    },
+    async call(path, body, auth){
+      const h = { 'Content-Type': 'application/json' };
+      if (auth && st && st.session) h.Authorization = 'Bearer ' + st.session;
+      const r = await fetch(API + path, { method: body ? 'POST' : 'GET', headers: h, body: body ? JSON.stringify(body) : undefined, cache: 'no-store' });
+      let j = {}; try { j = await r.json(); } catch (e) {}
+      return { status: r.status, j };
+    },
+    // is the membership still active? (asked at most every 6 hours; a cancelled one signs the device out)
+    async check(force){
+      if (!M.on) return false;
+      if (!force && st.checked && Date.now() - st.checked < 6 * 3600e3) return true;
+      try {
+        const { status, j } = await M.call('/me', null, true);
+        if (status === 401 || (j && j.member === false)) { M.save(null); return false; }
+        if (j && j.member) M.save(Object.assign({}, st, { first: j.first || st.first || '', plan: j.plan || st.plan || '', checked: Date.now() }));
+      } catch (e) {}
+      return M.on;
+    },
+    // signed addresses for every members' recording, fetched once per page view (they last eight hours)
+    async urls(force){
+      if (!M.on) return null;
+      if (!force && urls && urls.exp - Date.now() > 10 * 60e3) return urls.map;
+      try {
+        const { status, j } = await M.call('/media', { all: 1 }, true);
+        if (status === 401 || (j && j.member === false)) { M.save(null); return null; }
+        if (j && j.ok) { urls = { map: j.urls, exp: j.exp }; return j.urls; }
+      } catch (e) {}
+      return null;
+    },
+    urlNow(id){ return urls && urls.exp - Date.now() > 60e3 ? urls.map[id] || null : null; },
+    async signin(email){
+      try { const { status, j } = await M.call('/signin', { email }); return { ok: status < 400, message: j.message || '', test: local ? j.test_link : null }; }
+      catch (e) { return { ok: false, message: 'That did not go through. Please try once more in a moment.' }; }
+    },
+    async verify(t){
+      try {
+        const { status, j } = await M.call('/verify', { t });
+        if (j && j.ok && j.session) {
+          M.save({ session: j.session, first: j.first || '', plan: j.plan || '', checked: Date.now(), at: Date.now() });
+          try { if (!localStorage.getItem('ap.free')) localStorage.setItem('ap.free', JSON.stringify({ name: j.first || 'Member', at: Date.now(), member: true })); } catch (e) {}
+          return { ok: true, first: j.first || '' };
+        }
+        return { ok: false, reason: (j && j.reason) || (status >= 500 ? 'error' : 'expired') };
+      } catch (e) { return { ok: false, reason: 'offline' }; }
+    },
+    signOut(){ M.save(null); },
+    // the small sign-in card: email, then "check your email"
+    dialog(note){
+      if (off() || document.querySelector('.ap-msign')) return;
+      const g = document.createElement('div'); g.className = 'ap-gate ap-msign'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); g.setAttribute('aria-labelledby', 'apMsH');
+      g.innerHTML = `<form class="ap-gate-card" novalidate>
+        <button class="x" type="button" aria-label="Close">&times;</button>
+        <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>
+        <h2 id="apMsH">Members, sign in.</h2>
+        <p>${note ? esc(note) + ' ' : ''}Type the email you joined with. A link comes to you; tap it on this phone or computer and the whole Listening Room opens. No password.</p>
+        <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" spellcheck="false" required></label>
+        <button class="btn earth" type="submit">Send me the link <span class="arrow">→</span></button>
+        <p class="err" aria-live="polite"></p>
+        <p class="fine">Not a member yet? <a href="${AP.href('/listen/#members')}">See the membership</a>.</p>
+      </form>`;
+      document.body.appendChild(g); document.documentElement.classList.add('gated');
+      const form = g.querySelector('form'), err = g.querySelector('.err');
+      const close = () => { g.remove(); if (!document.querySelector('.ap-gate')) document.documentElement.classList.remove('gated'); removeEventListener('keydown', onKey); };
+      const onKey = e => { if (e.key === 'Escape') close(); };
+      addEventListener('keydown', onKey);
+      g.querySelector('.x').addEventListener('click', close);
+      g.addEventListener('click', e => { if (e.target === g) close(); });
+      setTimeout(() => { try { form.email.focus({ preventScroll: true }); } catch (e) {} }, 60);
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const email = form.email.value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'That email does not look complete.'; form.email.focus(); return; }
+        const btn = form.querySelector('button[type=submit]'); btn.disabled = true; err.textContent = '';
+        const r = await M.signin(email);
+        btn.disabled = false;
+        if (!r.ok) { err.textContent = r.message || 'That did not go through. Please try once more in a moment.'; return; }
+        form.innerHTML = `<button class="x" type="button" aria-label="Close">&times;</button>
+          <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>
+          <h2 id="apMsH">Check your email.</h2>
+          <p>If <b>${esc(email)}</b> belongs to a member, a link is on its way. Open it on this phone or computer within 20 minutes and the room opens.</p>
+          <p class="fine">Nothing after a few minutes? Look in Promotions or Spam, or check that this is the email you joined with on Payhip.</p>
+          ${r.test ? `<p class="fine">Test link (this computer only): <a class="test-link" href="${esc(r.test.replace(/^https:\/\/ancestralpeaks\.com/, location.origin))}">open it</a></p>` : ''}
+          <button class="btn earth" type="button" data-done>Done</button>`;
+        form.querySelector('.x').addEventListener('click', close);
+        form.querySelector('[data-done]').addEventListener('click', close);
+      });
+    },
+    // the quiet lines: in the menu, and beside every members' door
+    paint(){
+      if (off()) return;
+      const on = M.on, first = M.first;
+      html.classList.toggle('is-member', on);
+      const inLine = `<a href="#" data-member-signin>Members: sign in</a>`;
+      const outLine = `<span>You're a member${first ? ', ' + esc(first) : ''}.</span> <a href="#" data-member-signout>Sign out</a>`;
+      const foot = $('#apMenu .foot');
+      if (foot) { let l = $('.ap-mline', foot); if (!l) { l = document.createElement('p'); l.className = 'ap-mline'; foot.appendChild(l); } l.innerHTML = on ? outLine : inLine; }
+      $$('.cancel').forEach(c => {
+        let l = c.nextElementSibling && c.nextElementSibling.classList.contains('ap-mdoor') ? c.nextElementSibling : null;
+        if (!l) { l = document.createElement('p'); l.className = 'ap-mdoor'; c.insertAdjacentElement('afterend', l); }
+        l.innerHTML = on
+          ? `<b>You're a member${first ? ', ' + esc(first) : ''}.</b> Every session is open to you in <a href="${AP.href('/listen/#room')}">the Listening Room</a>. <a href="#" data-member-signout>Sign out</a>`
+          : `Already a member? <a href="#" data-member-signin>Sign in with your email</a>. No password.`;
+      });
+      if (on) { const g = $('.ap-gate:not(.ap-msign)'); if (g) { g.remove(); html.classList.remove('gated'); } }
+    },
+    init(){
+      if (off()) return;
+      M.paint();
+      document.addEventListener('click', e => {
+        const a = e.target.closest('[data-member-signin]'); if (a) { e.preventDefault(); M.dialog(); return; }
+        const o = e.target.closest('[data-member-signout]'); if (o) { e.preventDefault(); M.signOut(); }
+      });
+      addEventListener('storage', e => { if (e.key === KEY) { try { st = JSON.parse(e.newValue || 'null'); } catch (x) { st = null; } urls = null; M.paint(); dispatchEvent(new CustomEvent('ap:member', { detail: { on: M.on } })); } });
+      if (/[?&]signin\b/.test(location.search) && !M.on) setTimeout(() => M.dialog(), 400);
+      M.check();
+    }
+  };
+  return M;
+})();
+
 /* ---------- init ---------- */
 /* ---------- the sign-up wall (Tony, 11/10: "on ancestral peaks.. 30 sec max.. have to sign up.. no matter what") ----------
    30 seconds after a visitor first arrives (counted across pages and visits), a sign-up covers the page until they join.
@@ -692,6 +835,7 @@ AP.gate = function(){
   if (AP.render || AP.fileMode || /partners/.test(location.hostname)) return;
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
+  if (AP.member && AP.member.on) return;   // members never see the wall
   // Tony's own pass, like tribeawaken.com/?member: open any page with ?member once on a device and it never asks there
   if (/[?&]member\b/.test(location.search)) { try { localStorage.setItem('ap.free', JSON.stringify({ name: 'Member', at: Date.now(), pass: true })); } catch (e) {} return; }
   // the home page (11/10, Tony): the opening and the welcome film are free to watch; the 30 seconds start only once the
@@ -724,7 +868,7 @@ AP.gate = function(){
       <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn earth" type="submit">Join free <span class="arrow">→</span></button>
       <p class="err" aria-live="polite"></p>
-      <p class="fine">Members: use the email you joined with. Nothing to pay here.</p>
+      <p class="fine">Already a member? <a href="#" data-member-signin>Sign in with your email</a>. No password.</p>
     </form>`;
     document.body.appendChild(g); document.documentElement.classList.add('gated');
     try { document.querySelectorAll('audio,video').forEach(m => { if (!m.muted) m.pause(); }); if (AP.sound && AP.sound.on) AP.sound.stop(); } catch (e) {}
@@ -747,7 +891,7 @@ AP.gate = function(){
 
 AP.init = function(root){
   AP.smooth();
-  AP.nav(); AP.footer(); AP.thumb(); AP.gate();
+  AP.nav(); AP.footer(); AP.thumb(); AP.member.init(); AP.gate();
   AP.words(root); AP.reveal(root); AP.counts(root);
   $$('.ap-loop[data-src]', root).forEach(el => { if (!el.closest('.ap-cut')) AP.loop(el); });
   $$('.ap-cut', root).forEach(el => AP.cut(el).start());
