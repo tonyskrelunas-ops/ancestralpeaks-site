@@ -251,7 +251,7 @@ var road=(function(){
 
 /* ---------- sound: off until asked for; recorded sound only ---------- */
 var SND={
- bed:'../../media/beds/bed-creek-oakcreek.mp3',      // his real Oak Creek water
+ bed:'../../media/beds/bed-creek-oakcreek.mp3?v=1111',      // his real Oak Creek water
  stone:'../../media/say/w1-stone-older.mp3',         // "This stone is older than you, and it will be older than your grandchildren someday."
  count:'../../media/say/w1-breathe-count.mp3',       // "Then breathe in four. Hold four. Breathe out for six. Nice and slow. Hold for four."
  calm:'../../media/say/w2-calm.mp3',                 // "And calm came first. A navigator who panics cannot read the ocean."
@@ -269,8 +269,14 @@ var sound=(function(){
   }
   function stopBed(){ if(bed){try{bed.pause();}catch(e){}} }
   function hush(){ if(cur){try{cur.pause();}catch(e){} cur=null;} }
-  function say(k,done){                                  // Tony 11/11: "the kids voice keeps coming on.. it will annoy someone" -
-    return false;                                        // no spoken lines in The Crossing; the creek alone, and the words stay on screen
+  function say(k,done){                                  // a spoken line, straight from the audio element (as the site does on iPhone)
+    hush(); if(!on)return false;
+    try{
+      var a=new Audio(SND[k]); cur=a;
+      if(done){a.addEventListener('ended',done); a.addEventListener('error',done);}
+      var p=a.play(); if(p&&p.catch)p.catch(function(){if(done)done();});
+      return true;
+    }catch(e){return false;}
   }
   function set(v){ on=v; btn.setAttribute('aria-pressed',String(v)); btn.textContent=v?'Sound on':'Sound off'; if(v)startBed(); else{stopBed();hush();} }
   btn.addEventListener('click',function(){set(!on);});
