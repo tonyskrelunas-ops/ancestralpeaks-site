@@ -1,6 +1,6 @@
 /* Ancestral Peaks, the installable app: pages come fresh from the network when there is one and from the
    phone when there isn't; images, previews and the free sessions are kept on the phone after the first play. */
-const VERSION = 'peaks-app-2026-11-10k';
+const VERSION = 'peaks-app-2026-11-10l';
 const SHELL = ['/', '/listen/', '/reading/', '/manifest.webmanifest', '/app/icon-192.png', '/app/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
