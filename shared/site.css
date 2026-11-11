@@ -300,6 +300,6 @@ html.has-thumb[data-scene] .ap-scene-chip{bottom:calc(128px + env(safe-area-inse
 
 /* 11/10 (Tony: 'make the top bar work... put some as 2 rows... this has to work on laptop and phone'):
    on laptops narrower than 1280 the page links stay in the top bar, in two rows, instead of hiding behind the menu button */
-@media (min-width:981px) and (max-width:1280px){
+@media (min-width:981px) and (max-width:1500px){
   .ap-bar .ap-nav{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;max-width:min(640px,52vw);column-gap:1.05rem;row-gap:.25rem;font-size:.86rem;line-height:1.25}
 }

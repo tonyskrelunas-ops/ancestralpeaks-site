@@ -6,7 +6,7 @@
 <title>Ancestral Peaks</title>
 <meta name="description" content="For the one who is settled and wants tools to cross hard ground, to do even more, and to make a difference for the generations to come. A morning practice by the water.">
 <link rel="stylesheet" href="shared/vendor/lenis.css?v=1108e">
-<link rel="stylesheet" href="shared/site.css?v=1110v">
+<link rel="stylesheet" href="shared/site.css?v=1110w">
 <style>
 /* ===== HOME PAGE — built on shared/site.css. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
 
@@ -16,8 +16,8 @@
 .arrive .ap-cut{position:absolute;inset:0}
 .arrive .ap-cut .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.5) 0%,rgba(16,11,13,.05) 28%,rgba(16,11,13,.05) 50%,rgba(16,11,13,.86) 100%)}
 .arrive .ripples{position:absolute;inset:0;z-index:1;opacity:.55;mix-blend-mode:screen}
-.arrive .copy{position:relative;z-index:3;align-self:end;padding:0 var(--gutter) clamp(28px,5vh,64px);max-width:46rem}
-.arrive h1{font-size:clamp(2.9rem,7vw,6.4rem);max-width:12ch}
+.arrive .copy{position:relative;z-index:3;align-self:end;padding:calc(var(--bar-h) + 24px) var(--gutter) clamp(28px,5vh,64px);max-width:46rem} /* 11/10: never under the top bar on a short laptop screen */
+.arrive h1{font-size:clamp(2.9rem,min(7vw,10.5vh),6.4rem);max-width:12ch}
 .arrive .lede{margin-top:1.1rem;max-width:34rem;font-size:clamp(1.05rem,1rem + .5vw,1.35rem);line-height:1.4;color:rgba(255,255,255,.92)}
 .arrive .lede b{font-weight:600;color:#fff}
 .arrive .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;align-items:center}
@@ -648,7 +648,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 /* ---------- the voice-notes shelf and the mosaic are built BEFORE the shell wires the page (data-noinit, then AP.init) ---------- */
 document.documentElement.dataset.noinit = '1';
 </script>
-<script src="shared/site.js?v=1110v"></script>
+<script src="shared/site.js?v=1110w"></script>
 <script>
 (function(){
 const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
