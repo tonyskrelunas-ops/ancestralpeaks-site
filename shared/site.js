@@ -691,7 +691,8 @@ AP.init = function(root){
   AP.parallax(root); AP.draw(root); AP.scenes(root);
   if (AP.motion) requestAnimationFrame(kbLoop);
   // remembered sound preference: start on the first gesture
-  try { if (localStorage.getItem('ap.sound') === '1' && AP.motion) AP.onFirstGesture(() => { if (!AP.sound._started) AP.sound.start(); }); } catch (e) {}
+  // 11/10 (Tony): sound starts only when the visitor presses the button, never by itself on a later tap.
+  // The old line, kept: try { if (localStorage.getItem('ap.sound') === '1' && AP.motion) AP.onFirstGesture(() => { if (!AP.sound._started) AP.sound.start(); }); } catch (e) {}
   dispatchEvent(new CustomEvent('ap:ready'));
 };
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => { if (!html.dataset.noinit) AP.init(); });

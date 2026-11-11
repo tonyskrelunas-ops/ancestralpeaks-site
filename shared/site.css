@@ -131,7 +131,9 @@ html.render *{transition:none !important;animation-play-state:paused !important}
 .ap-menu .foot{position:relative;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;color:rgba(255,255,255,.7);font-size:.9rem}
 @media (max-width:1280px){.ap-nav{display:none}.ap-burger{display:block}}
 .ap-bar .ap-mark,.ap-sound,.ap-bar .btn{white-space:nowrap}
-@media (max-width:980px){.ap-bar .acts .btn{display:none}.ap-sound .lbl{display:none}.ap-sound{padding:.6em .8em}}
+@media (max-width:980px){.ap-bar .acts .btn{display:none}.ap-sound{padding:.55em .8em;font-size:.82rem}}
+/* 11/10 (Tony: 'we need a off button'): the sound button says what it does, in words, on phones too */
+@media (max-width:360px){.ap-bar .ap-mark{font-size:.95rem}}
 
 /* ---------- footer ---------- */
 .ap-foot{background:var(--night);color:rgba(255,255,255,.72);padding:clamp(28px,4vw,48px) var(--gutter) calc(1.6rem + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.1);font-size:.92rem}
