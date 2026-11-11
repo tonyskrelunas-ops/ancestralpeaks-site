@@ -694,7 +694,11 @@ AP.gate = function(){
   if (joined) return;
   let first = Date.now();
   try { const f = +localStorage.getItem('ap.first'); if (f) first = f; else localStorage.setItem('ap.first', String(first)); } catch (e) {}
-  setTimeout(show, Math.max(0, 30000 - (Date.now() - first)));
+  // never over a film or a session someone is watching or hearing (the welcome film above all): wait until it stops
+  const busy = () => { try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
+    return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } };
+  const due = () => { if (busy()) { setTimeout(due, 3000); return; } show(); };
+  setTimeout(due, Math.max(0, 30000 - (Date.now() - first)));
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
     const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
   function show(){
