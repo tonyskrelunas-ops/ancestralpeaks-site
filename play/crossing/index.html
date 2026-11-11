@@ -269,14 +269,8 @@ var sound=(function(){
   }
   function stopBed(){ if(bed){try{bed.pause();}catch(e){}} }
   function hush(){ if(cur){try{cur.pause();}catch(e){} cur=null;} }
-  function say(k,done){                                  // a spoken line, straight from the audio element (as the site does on iPhone)
-    hush(); if(!on)return false;
-    try{
-      var a=new Audio(SND[k]); cur=a;
-      if(done){a.addEventListener('ended',done); a.addEventListener('error',done);}
-      var p=a.play(); if(p&&p.catch)p.catch(function(){if(done)done();});
-      return true;
-    }catch(e){return false;}
+  function say(k,done){                                  // Tony 11/11: "the kids voice keeps coming on.. it will annoy someone" -
+    return false;                                        // no spoken lines in The Crossing; the creek alone, and the words stay on screen
   }
   function set(v){ on=v; btn.setAttribute('aria-pressed',String(v)); btn.textContent=v?'Sound on':'Sound off'; if(v)startBed(); else{stopBed();hush();} }
   btn.addEventListener('click',function(){set(!on);});
