@@ -684,9 +684,55 @@ AP.seekPage = async function(t, o){
 };
 
 /* ---------- init ---------- */
+/* ---------- the sign-up wall (Tony, 11/10: "on ancestral peaks.. 30 sec max.. have to sign up.. no matter what") ----------
+   30 seconds after a visitor first arrives (counted across pages and visits), a sign-up covers the page until they join.
+   Joining stores ap.free (the same key the Listening Room uses, so its two free sessions open) and sends through
+   PeaksCapture: an email to the team via Web3Forms, plus the tribeawaken-capture list. The partner copy never asks. */
+AP.gate = function(){
+  if (AP.render || AP.fileMode || /partners/.test(location.hostname)) return;
+  let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
+  if (joined) return;
+  let first = Date.now();
+  try { const f = +localStorage.getItem('ap.first'); if (f) first = f; else localStorage.setItem('ap.first', String(first)); } catch (e) {}
+  setTimeout(show, Math.max(0, 30000 - (Date.now() - first)));
+  function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
+    const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
+  function show(){
+    if (document.querySelector('.ap-gate')) return;
+    const g = document.createElement('div'); g.className = 'ap-gate'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); g.setAttribute('aria-labelledby', 'apGateH');
+    g.innerHTML = `<form class="ap-gate-card" novalidate>
+      <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>
+      <h2 id="apGateH">Join to keep going.</h2>
+      <p>Ancestral Peaks is open to everyone who joins. Leave your first name and email and the free room opens to you: Morning Water, two full sessions in the Listening Room, the games, and the stories by the fire.</p>
+      <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
+      <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" required></label>
+      <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn earth" type="submit">Join free <span class="arrow">→</span></button>
+      <p class="err" aria-live="polite"></p>
+      <p class="fine">Members: use the email you joined with. Nothing to pay here.</p>
+    </form>`;
+    document.body.appendChild(g); document.documentElement.classList.add('gated');
+    try { document.querySelectorAll('audio,video').forEach(m => { if (!m.muted) m.pause(); }); if (AP.sound && AP.sound.on) AP.sound.stop(); } catch (e) {}
+    const form = g.querySelector('form'), err = g.querySelector('.err');
+    setTimeout(() => { try { form.name.focus({ preventScroll: true }); } catch (e) {} }, 60);
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name = form.name.value.trim(), email = form.email.value.trim();
+      if (!name) { err.textContent = 'Your first name, please.'; form.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'That email does not look complete.'; form.email.focus(); return; }
+      const btn = form.querySelector('button'); btn.disabled = true; err.textContent = '';
+      try { localStorage.setItem('ap.free', JSON.stringify({ name: name.split(' ')[0].slice(0, 40), at: Date.now() })); } catch (e2) {}
+      const C = await capture();
+      if (C && !form.botcheck.checked) { try { await C.send({ name, email, source: 'peaks-signup-wall' + location.pathname.replace(/\/$/, '').replace(/\//g, '-'), subject: 'Ancestral Peaks — a new sign-up' }); } catch (e3) {} }
+      g.remove(); document.documentElement.classList.remove('gated');
+      if (/\/listen\//.test(location.pathname)) location.reload();
+    });
+  }
+};
+
 AP.init = function(root){
   AP.smooth();
-  AP.nav(); AP.footer(); AP.thumb();
+  AP.nav(); AP.footer(); AP.thumb(); AP.gate();
   AP.words(root); AP.reveal(root); AP.counts(root);
   $$('.ap-loop[data-src]', root).forEach(el => { if (!el.closest('.ap-cut')) AP.loop(el); });
   $$('.ap-cut', root).forEach(el => AP.cut(el).start());

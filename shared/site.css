@@ -303,3 +303,20 @@ html.has-thumb[data-scene] .ap-scene-chip{bottom:calc(128px + env(safe-area-inse
 @media (min-width:981px) and (max-width:1500px){
   .ap-bar .ap-nav{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;max-width:min(640px,52vw);column-gap:1.05rem;row-gap:.25rem;font-size:.86rem;line-height:1.25}
 }
+
+/* the sign-up wall (11/10): solid, no blur, above everything */
+.ap-gate{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px 16px;background:rgba(12,8,10,.95);overflow:auto}
+html.gated,html.gated body{overflow:hidden}
+.ap-gate-card{width:min(440px,100%);background:#1C1517;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:28px 24px 22px;color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.ap-gate .mk{display:flex;align-items:center;gap:.55rem;font-family:var(--display);font-weight:800;font-size:1.05rem;margin-bottom:1.1rem}
+.ap-gate .mk svg{width:28px;height:28px}
+.ap-gate h2{font-size:clamp(1.8rem,6.5vw,2.3rem);line-height:1.04;letter-spacing:-.02em}
+.ap-gate p{margin-top:.7rem;color:rgba(255,255,255,.86);line-height:1.45;font-size:1rem}
+.ap-gate label{display:block;margin-top:.95rem}
+.ap-gate label span{display:block;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:.35rem}
+.ap-gate input{width:100%;min-height:52px;border-radius:14px;border:1px solid rgba(255,255,255,.28);background:#100B0D;color:#fff;padding:0 14px;font:inherit;font-size:16px}
+.ap-gate input:focus{outline:2px solid var(--gold,#D1A63C);outline-offset:1px}
+.ap-gate .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.ap-gate .btn{width:100%;justify-content:center;margin-top:1.15rem;min-height:56px;font-size:1.05rem}
+.ap-gate .err{color:#F3B28A;min-height:1.2em;font-size:.92rem;margin-top:.6rem}
+.ap-gate .fine{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.3rem}
