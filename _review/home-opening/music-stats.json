@@ -1,0 +1,15 @@
+{
+ "length_s": 198.0,
+ "lufs_integrated": -20.0,
+ "true_peak_dbtp": -5.67,
+ "events": {
+  "bowl": 11,
+  "strings": 62,
+  "cello": 14,
+  "kankles": 135,
+  "koto": 28,
+  "shakuhachi": 7,
+  "skuduciai": 24
+ },
+ "sample_rate": 48000
+}

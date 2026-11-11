@@ -10,39 +10,57 @@
 <style>
 /* ===== HOME PAGE — built on shared/site.css. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
 
-/* ---------- ARRIVAL: the cinematic cut, the ring, the words ---------- */
-.arrive{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
-.arrive .cutwrap{position:absolute;inset:0;z-index:0;will-change:transform}
-.arrive .ap-cut{position:absolute;inset:0}
-.arrive .ap-cut .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.5) 0%,rgba(16,11,13,.05) 28%,rgba(16,11,13,.05) 50%,rgba(16,11,13,.86) 100%)}
-.arrive .ripples{position:absolute;inset:0;z-index:1;opacity:.55;mix-blend-mode:screen}
-.arrive .copy{position:relative;z-index:3;align-self:end;padding:0 var(--gutter) clamp(28px,5vh,64px);max-width:46rem}
-.arrive h1{font-size:clamp(2.9rem,7vw,6.4rem);max-width:12ch}
-.arrive .lede{margin-top:1.1rem;max-width:34rem;font-size:clamp(1.05rem,1rem + .5vw,1.35rem);line-height:1.4;color:rgba(255,255,255,.92)}
+/* ---------- ARRIVAL: his footage graded to one look, the words on a quiet shade, the breath ring, the score ---------- */
+.arrive{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
+.arrive .film{position:absolute;inset:0;z-index:0;overflow:hidden;background:var(--night)}
+.arrive .film .shot{position:absolute;inset:0;opacity:0;transform-origin:50% 50%;will-change:opacity,transform}
+.arrive .film .shot>img,.arrive .film .shot>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);background:var(--night)}
+.arrive .film .shade{position:absolute;inset:0;z-index:7;pointer-events:none;background:linear-gradient(90deg,rgba(16,11,13,.95) 0%,rgba(16,11,13,.88) 20%,rgba(16,11,13,.6) 42%,rgba(16,11,13,.16) 62%,rgba(16,11,13,0) 76%),linear-gradient(180deg,rgba(16,11,13,.5) 0%,rgba(16,11,13,0) 24%,rgba(16,11,13,0) 64%,rgba(16,11,13,.72) 100%)}
+.arrive .copy{position:relative;z-index:3;align-self:end;padding:calc(var(--bar-h) + 40px) var(--gutter) 118px;max-width:52rem}
+.arrive h1{font-size:clamp(2.6rem,4.9vw,4.6rem);max-width:14ch;letter-spacing:-.03em;line-height:.96}
+.arrive .lede{margin-top:1.2rem;max-width:33rem;font-size:clamp(1.04rem,.95rem + .4vw,1.2rem);line-height:1.5;color:rgba(255,255,255,.86)}
 .arrive .lede b{font-weight:600;color:#fff}
-.arrive .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem;align-items:center}
-.arrive .gift{margin-top:1rem}.arrive .gift a{color:#fff;font-weight:600;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:.25em}
-.arrive .where{margin-top:1rem;font-size:.86rem;color:rgba(255,255,255,.72)}
-.arrive .say{margin-top:1.2rem}
-.arrive .ringcol{position:relative;z-index:3;display:grid;place-items:center;min-height:100svh}
-.arrive .ringcol .ap-ring{width:min(78%,520px)}
-.sitchip{position:absolute;right:var(--gutter);bottom:clamp(20px,4vh,40px);z-index:4;background:var(--glass);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:.55em 1em;font-size:.86rem;font-weight:600;display:flex;gap:.7em;align-items:center}
-.sitchip i{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--gold)}
+.arrive .acts{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem;align-items:center}
+.arrive .gifts{margin-top:1.6rem;max-width:36rem;border-top:1px solid rgba(255,255,255,.2)}
+.arrive .gift{margin:0;border-bottom:1px solid rgba(255,255,255,.2)}
+.arrive .gift a{display:flex;align-items:baseline;justify-content:space-between;gap:1.2rem;padding:.7rem 0;color:#fff;font-weight:500;text-decoration:none;font-size:.98rem;line-height:1.4;transition:color .25s}
+.arrive .gift a .arrow{flex:none;font-family:var(--display);font-weight:700;color:var(--gold);transition:transform .3s}
+.arrive .gift a:hover{color:var(--gold)}.arrive .gift a:hover .arrow{transform:translateX(4px)}
+.arrive .where{margin-top:1.1rem;font-size:.88rem;line-height:1.5;color:rgba(255,255,255,.66);max-width:34rem}
+.arrive .say{margin-top:.9rem}
+.arrive .ringcol{position:relative;z-index:3;display:grid;place-items:center;min-height:100svh;padding-top:var(--bar-h)}
+.arrive .ringcol .ap-ring{width:min(70%,500px)}
+/* the ring, refined: no filter over the film, hairline guide, a soft gold disc, eighteen ticks for the eighteen seconds */
+.arrive .ap-ring svg{filter:none;overflow:visible}
+.arrive .ap-ring svg>circle:nth-of-type(1){stroke:rgba(255,255,255,.14);stroke-width:1}
+.arrive .ap-ring svg>circle:nth-of-type(2){stroke:#E9C97E;stroke-width:36}
+.arrive .ap-ring svg>circle:nth-of-type(3){stroke:#E9C97E;fill:#E9C97E;stroke-width:2.5}
+.arrive .ap-ring .word{font-weight:600;font-size:70px;letter-spacing:-.025em}
+.arrive .ap-ring .count{font-weight:400;font-size:33px;fill:rgba(255,255,255,.78)}
+.arrive .ap-ring .legend{font-size:16px;letter-spacing:5px;fill:rgba(255,255,255,.5);font-weight:600}
+.arrive .ap-ring .ticks line{stroke:rgba(255,255,255,.26);stroke-width:1.5;stroke-linecap:round}
+.arrive .ap-ring .ticks line.gold{stroke:rgba(233,201,126,.8)}
+.sitchip{position:absolute;right:var(--gutter);bottom:clamp(20px,4vh,40px);z-index:4;background:rgba(16,11,13,.74);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:999px;padding:.55em 1em;font-size:.84rem;font-weight:600;display:flex;gap:.7em;align-items:center}
+.sitchip i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold)}
 .done{position:absolute;left:0;right:0;bottom:0;z-index:5;padding:1.2rem var(--gutter) 1.4rem;background:linear-gradient(180deg,rgba(16,11,13,0),rgba(16,11,13,.92) 40%);color:#fff;transform:translateY(100%);transition:transform .6s ease}
 .done.show{transform:none}
 .done h3{font-size:1.6rem;font-weight:700}
 .done p{margin-top:.3rem;color:rgba(255,255,255,.85)}
-.shotname{position:absolute;left:var(--gutter);top:calc(var(--bar-h) + 14px);z-index:3;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);font-weight:600;display:flex;gap:.6em;align-items:center}
-.shotname i{width:28px;height:1px;background:rgba(255,255,255,.5)}
+@media (min-width:981px) and (max-height:840px){.arrive .copy{padding-top:calc(var(--bar-h) + 20px);padding-bottom:134px}.arrive h1{font-size:clamp(2.4rem,4.4vw,4rem)}.arrive .lede{margin-top:1rem}}
 @media (max-width:980px){
   .arrive{grid-template-columns:1fr;grid-template-rows:auto 1fr}
-  .arrive .ringcol{min-height:0;padding-top:calc(var(--bar-h) + 24px);order:-1}
-  .arrive .ringcol .ap-ring{width:min(62%,300px)}
+  .arrive .film .shade{background:linear-gradient(180deg,rgba(16,11,13,.62) 0%,rgba(16,11,13,.06) 20%,rgba(16,11,13,.06) 38%,rgba(16,11,13,.84) 58%,rgba(16,11,13,.96) 100%)}
+  .arrive .ringcol{order:-1;min-height:0;padding:calc(var(--bar-h) + 8px) 0 0}
+  .arrive .ringcol .ap-ring{width:min(56%,260px)}
   .arrive .ringcol .ap-ring .legend{display:none}
-  .arrive .copy{padding-bottom:88px}
-  .arrive h1{font-size:clamp(2.6rem,12vw,4rem)}
+  .arrive .copy{padding:10px var(--gutter) 96px;max-width:none}
+  .arrive h1{font-size:clamp(2.5rem,11.5vw,3.8rem);max-width:none}
+  .arrive .lede{margin-top:1rem;font-size:1.02rem;line-height:1.5}
+  .arrive .acts{margin-top:1.3rem}
+  .arrive .gifts{margin-top:1.4rem}
+  .arrive .gift a{padding:.6rem 0;font-size:.9rem}
+  .arrive .where{margin-top:1rem;font-size:.84rem}
   .sitchip{right:auto;left:var(--gutter);bottom:26px}
-  .shotname{display:none}
 }
 
 /* ---------- TODAY ---------- */
@@ -308,20 +326,18 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 
 <header data-ap-nav data-active="/" data-menu-image="media/oakcreek-rim-1000.jpg"></header>
 
-<!-- ===== ARRIVAL: a cut from his own footage, the breath ring over it, his voice ===== -->
-<section class="arrive" id="top" data-scene="creek" data-scene-label="Oak Creek, the water over the pebbles">
-  <div class="cutwrap" id="cutwrap">
-    <div class="ap-cut" id="cut" data-fade="2">
-      <div class="shot" data-dur="7" data-name="Oak Creek Canyon, water over the pebbles"><div class="ap-loop" data-src="media/v-pebbles.mp4" data-poster="media/v-pebbles-poster.jpg"></div></div>
-      <div class="shot" data-dur="6" data-name="A canyon waterfall, August"><div class="ap-loop" data-src="media/v-canyon-waterfall.mp4" data-poster="media/v-canyon-waterfall-poster.jpg"></div></div>
-      <div class="shot" data-dur="6" data-name="The trail to the Peaks"><img src="media/peaks-trail-2200.jpg" alt="" fetchpriority="high"></div>
-      <div class="shot" data-dur="6" data-name="Water over the boulders, March"><div class="ap-loop" data-src="media/v-rapids-white.mp4" data-poster="media/v-rapids-white-poster.jpg"></div></div>
-      <div class="shot" data-dur="6" data-name="The red wall over the creek, May"><div class="ap-loop" data-src="media/v-redwall-water.mp4" data-poster="media/v-redwall-water-poster.jpg"></div></div>
-      <div class="shot" data-dur="6" data-name="Sunset over the red earth"><img src="media/sedona-sunset-2200.jpg" alt=""></div>
-    </div>
-    <canvas class="ap-particles ripples" data-kind="ripples" data-n="6" data-opacity=".8"></canvas>
+<!-- ===== ARRIVAL: his footage graded to one look, the words on a quiet shade, the breath ring, and the score when the sound is on ===== -->
+<section class="arrive" id="top" data-scene="creek" data-scene-label="Peaks Opening, an original score">
+  <div class="film" id="film" aria-hidden="true">
+    <div class="shot" data-dur="10" data-sp="media/opening/morning-p.jpg" data-sl="media/opening/morning-l.jpg" style="--pos:50% 36%"></div>
+    <div class="shot" data-dur="8" data-p="media/opening/waterfall-p.mp4" data-l="media/opening/waterfall-l.mp4" data-pp="media/opening/waterfall-p.jpg" data-pl="media/opening/waterfall-l.jpg"></div>
+    <div class="shot" data-dur="5" data-p="media/opening/pebbles-p.mp4" data-l="media/opening/pebbles-l.mp4" data-pp="media/opening/pebbles-p.jpg" data-pl="media/opening/pebbles-l.jpg"></div>
+    <div class="shot" data-dur="10" data-sp="media/opening/trail-p.jpg" data-sl="media/opening/trail-l.jpg" style="--pos:50% 42%"></div>
+    <div class="shot" data-dur="12" data-p="media/opening/creek-p.mp4" data-l="media/opening/creek-l.mp4" data-pp="media/opening/creek-p.jpg" data-pl="media/opening/creek-l.jpg"></div>
+    <div class="shot" data-dur="5" data-p="media/opening/rapids-p.mp4" data-l="media/opening/rapids-l.mp4" data-pp="media/opening/rapids-p.jpg" data-pl="media/opening/rapids-l.jpg"></div>
+    <div class="shot" data-dur="10" data-sp="media/opening/sunset-p.jpg" data-sl="media/opening/sunset-l.jpg" style="--pos:50% 40%"></div>
+    <div class="shade"></div>
   </div>
-  <p class="shotname" aria-hidden="true"><i></i><span id="shotName">Oak Creek Canyon, water over the pebbles</span></p>
 
   <div class="copy">
     <h1 data-words="90">We are the far messengers now.</h1>
@@ -330,8 +346,10 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
       <button class="btn earth" id="beginBreath">Begin one minute <span class="arrow">→</span></button>
       <button class="btn ghost" id="soundBtn" aria-pressed="false">Sound on</button>
     </div>
-    <p class="gift reveal d3"><a href="listen/#free">A gift: Morning Water. Eleven minutes, open to everyone, no sign-up <span class="arrow">→</span></a></p>
-    <p class="gift reveal d3"><a href="play/crossing/">A game: The Crossing. Five minutes, then a story by the fire <span class="arrow">→</span></a></p>
+    <div class="gifts reveal d3">
+      <p class="gift"><a href="listen/#free"><span>A gift: Morning Water. Eleven minutes, open to everyone, no sign-up</span> <span class="arrow">→</span></a></p>
+      <p class="gift"><a href="play/crossing/"><span>A game: The Crossing. Five minutes, then a story by the fire</span> <span class="arrow">→</span></a></p>
+    </div>
     <p class="where reveal d4">In four. Hold four. Out six. Hold four. Three rounds, then the creek. Turn the sound on and the water, the wind and the fire follow you down the page.</p>
     <div class="say reveal d4"><button class="ap-say dark" data-src="media/say/w1-safe-to-think.mp3" data-who="Week one" data-text="Standing tall, widening your view, and softening your jaw tells your body it is safe to think again."></button></div>
   </div>
@@ -712,14 +730,56 @@ if (AP.motion) { (function loop(){ mosaicSeek((performance.now() - swapT0) / 100
 AP.registerSeek(mosaicSeek);
 
 /* ---------- now wire the shell: nav, footer, loops, players, voice lines, particles, scenes, smooth scroll ---------- */
-AP.sound.register('creek', 'media/beds/bed-creek-oakcreek.mp3');   // his real Oak Creek water, looped; the other scenes are synthesized
+// Peaks Opening: the original score for this page (tools/music/peaks_opening.py), 3 min 18, looped; the other scenes are synthesized
+AP.sound.register('creek', document.createElement('audio').canPlayType('audio/mp4; codecs="mp4a.40.2"') ? 'media/sound/peaks-opening.m4a' : 'media/sound/peaks-opening.mp3');
 AP.init();
-const cut = $('#cut')._cut;
 const gsap = AP.gsap, ST = AP.ST;
 
-/* ---------- the shot name under the bar follows the cut ---------- */
-const shotNames = cut.shots.map(s => s.dataset.name);
-(function nameLoop(){ let best = 0, bo = 0; cut.shots.forEach((s, i) => { const o = parseFloat(s.style.opacity || 0); if (o > bo) { bo = o; best = i; } }); const el = $('#shotName'); if (el.textContent !== shotNames[best]) el.textContent = shotNames[best]; if (AP.motion) requestAnimationFrame(nameLoop); })();
+/* ---------- the opening film: his clips and photographs graded to one look, long crossfades, a slow drift, at most two films running at once ---------- */
+const film = (function(){
+  const host = $('#film'); if (!host) return null;
+  const shots = $$('.shot', host), wide = matchMedia('(min-aspect-ratio: 1/1)').matches;
+  const FADE = 3.2, RATE = 0.65, ZOOM = 0.07, ease = x => x * x * (3 - 2 * x);
+  shots.forEach((s, i) => {
+    if (s.dataset.sp) { const im = document.createElement('img'); im.alt = ''; im.decoding = 'async'; s.dataset.src = wide ? s.dataset.sl : s.dataset.sp; if (i === 0) { im.setAttribute('fetchpriority', 'high'); im.src = s.dataset.src; } s.appendChild(im); s._im = im; return; }   // the photographs load a few seconds before they are needed; only the first comes with the page
+    const v = document.createElement('video'); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'none'; v.disableRemotePlayback = true;
+    v.poster = wide ? s.dataset.pl : s.dataset.pp; s.dataset.src = wide ? s.dataset.l : s.dataset.p; v.defaultPlaybackRate = RATE;
+    s.appendChild(v); s._v = v; s._on = false;
+  });
+  const durs = shots.map(s => Number(s.dataset.dur) || 9), starts = []; let acc = 0; durs.forEach(d => { starts.push(acc); acc += d; }); const DUR = acc;
+  let running = false, t0 = 0, raf = 0, pausedAt = 0;
+  function turn(s, on){
+    const v = s._v; if (!v || s._on === on) return; s._on = on;
+    if (on) { if (!v.getAttribute('src')) { v.src = s.dataset.src; v.load(); } else { try { v.currentTime = 0; } catch (e) {} } v.playbackRate = RATE; if (!AP.render) v.play().catch(() => {}); }
+    else v.pause();
+  }
+  function seek(t){
+    const tt = ((t % DUR) + DUR) % DUR;
+    shots.forEach((s, i) => {
+      const a = starts[i], b = a + durs[i]; let o = 0, local = 0;
+      const since = tt - (a - FADE);
+      if (s._im && since >= -5 && tt < b && !s._im.getAttribute('src')) s._im.src = s.dataset.src;
+      if (since >= 0 && tt < b) { o = since < FADE ? ease(since / FADE) : 1; local = since / (durs[i] + FADE); }
+      if (i === 0 && tt >= DUR - FADE) { o = ease((tt - (DUR - FADE)) / FADE); local = (tt - (DUR - FADE)) / (durs[0] + FADE); }
+      s.style.opacity = o.toFixed(3);
+      s.style.zIndex = o > 0 ? (i === 0 && tt >= DUR - FADE ? 6 : 2 + (i % 4)) : 1;
+      s.style.transform = o > 0 ? `scale(${(1 + ZOOM * local).toFixed(4)}) translate(${((i % 2 ? 1 : -1) * 1.1 * local).toFixed(3)}%, ${(-0.7 * local).toFixed(3)}%)` : '';
+      if (s._v) turn(s, o > 0);
+    });
+    return tt;
+  }
+  function loop(now){ seek((now - t0) / 1000); raf = requestAnimationFrame(loop); }
+  const api = { DUR, seek, shots,
+    start(){ if (running) return; if (!AP.motion) { seek(0); return; } running = true; t0 = performance.now() - pausedAt * 1000; raf = requestAnimationFrame(loop); },
+    stop(){ if (!running) return; running = false; pausedAt = ((performance.now() - t0) / 1000) % DUR; cancelAnimationFrame(raf); shots.forEach(s => { if (s._v) { s._v.pause(); s._on = false; } }); } };
+  // the film only runs while the opening is on screen and the tab is visible
+  if ('IntersectionObserver' in window && !AP.render) new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? api.start() : api.stop()), { threshold: 0.02 }).observe(host);
+  else api.start();
+  document.addEventListener('visibilitychange', () => { if (document.hidden) api.stop(); else if (!AP.render) { const r = host.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) api.start(); } });
+  if (AP.render) { shots.forEach(s => { if (s._v) { s._v.preload = 'auto'; s._v.src = s.dataset.src; } }); seek(0); }
+  AP.registerSeek(t => { seek(t); });
+  return api;
+})();
 
 /* ---------- the breath ring and the path kept in this browser ---------- */
 const KEY = 'ap.path';
@@ -754,6 +814,14 @@ const ring = AP.breathRing($('#ring'), { rounds: 3, legend: true, tones: true,
     $('#done').classList.add('show'); const b = $('#beginBreath'); b.textContent = 'Sit again'; b.disabled = false;
     setTimeout(() => $('#done').classList.remove('show'), 12000);
   } });
+// eighteen ticks around the ring, one a second: gold for the in-breath and the out-breath, quiet for the two holds
+(function ticks(){
+  const svg = ring.svg, NS = 'http://www.w3.org/2000/svg'; const g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'ticks');
+  let k = 0; [4, 4, 6, 4].forEach((n, p) => { for (let i = 0; i < n; i++, k++) {
+    const a = (k / 18) * Math.PI * 2 - Math.PI / 2, r1 = p % 2 ? 244 : 238, r2 = 250;
+    const l = document.createElementNS(NS, 'line'); l.setAttribute('x1', (300 + r1 * Math.cos(a)).toFixed(1)); l.setAttribute('y1', (300 + r1 * Math.sin(a)).toFixed(1)); l.setAttribute('x2', (300 + r2 * Math.cos(a)).toFixed(1)); l.setAttribute('y2', (300 + r2 * Math.sin(a)).toFixed(1)); if (p % 2 === 0) l.setAttribute('class', 'gold'); g.appendChild(l); } });
+  svg.insertBefore(g, svg.firstChild);
+})();
 $('#beginBreath').addEventListener('click', () => ring.start());
 // the hero's own sound button mirrors the bar's toggle
 const sb = $('#soundBtn');
@@ -821,7 +889,7 @@ $('#todayDate').textContent = 'Today, ' + now.toLocaleDateString('en-US', { week
 
 /* ---------- the arrival moves in depth as you leave it ---------- */
 if (gsap && ST && AP.motion) {
-  gsap.to('#cutwrap', { scale: 1.12, yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: AP.render ? true : 0.5 } });
+  gsap.to('#film', { scale: 1.08, yPercent: 8, ease: 'none', scrollTrigger: { trigger: '#top', start: 'top top', end: 'bottom top', scrub: AP.render ? true : 0.5 } });
   gsap.to('.arrive .copy', { yPercent: -18, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#top', start: '40% top', end: 'bottom top', scrub: AP.render ? true : 0.5 } });
   // the mosaic rows drift against each other
   $$('.mrow').forEach(r => gsap.fromTo(r, { x: -Number(r.dataset.drift) }, { x: Number(r.dataset.drift), ease: 'none', scrollTrigger: { trigger: '#ground', start: 'top bottom', end: 'bottom top', scrub: AP.render ? true : 0.6 } }));
