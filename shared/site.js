@@ -113,9 +113,14 @@ AP.thumb = function(){
     listen: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8.5" opacity=".55"/></svg>',
     weeks: '<svg viewBox="0 0 24 24"><path d="M4 18h4v-4h4v-4h4V6h4"/></svg>',
     play: '<svg viewBox="0 0 24 24"><path d="M12 3c1 3.2 4.5 4.7 4.5 9a4.5 4.5 0 0 1-9 0c0-2.3 1.4-3.5 2.2-5 .5 1.5 1.3 2.2 2.3 2.6C12.4 7.5 11.8 5.4 12 3z"/></svg>',
+    reading: '<svg viewBox="0 0 24 24"><path d="M3 6.5c3-1.3 6-1.3 9 .8 3-2.1 6-2.1 9-.8V19c-3-1.3-6-1.3-9 .8-3-2.1-6-2.1-9-.8z"/><path d="M12 7.3v12.5"/></svg>',
+    practice: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v3.5M12 17v3.5M3.5 12H7M17 12h3.5"/></svg>',
+    books: '<svg viewBox="0 0 24 24"><path d="M5 4.5h4v15H5zM10 4.5h4v15h-4z"/><path d="M15.4 5.6l3.6-.9 3 14.6-3.6.9z"/></svg>',
     menu: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>'
   };
-  const items = [['/', 'Home', 'home'], ['/listen/', 'Listen', 'listen'], ['/weeks/', '8 Weeks', 'weeks'], ['/play/', 'Play', 'play']];
+  // 11/10 (Tony): two rows, with the Reading Room in it, on phones and laptops
+  const items = [['/', 'Home', 'home'], ['/listen/', 'Listen', 'listen'], ['/reading/', 'Reading', 'reading'], ['/weeks/', '8 Weeks', 'weeks'],
+                 ['/practice/', 'Practice', 'practice'], ['/play/', 'Play', 'play'], ['/books/', 'Books', 'books']];
   const bar = document.createElement('nav'); bar.className = 'ap-thumb'; bar.setAttribute('aria-label', 'Quick links');
   bar.innerHTML = items.map(([h, t, k]) => `<a href="${AP.href(h)}"${h === active ? ' aria-current="page"' : ''}>${ico[k]}<span>${t}</span></a>`).join('')
     + `<button type="button" aria-label="Menu">${ico.menu}<span>Menu</span></button>`;
