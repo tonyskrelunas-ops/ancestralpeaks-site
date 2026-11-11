@@ -692,13 +692,24 @@ AP.gate = function(){
   if (AP.render || AP.fileMode || /partners/.test(location.hostname)) return;
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
+  // Tony's own pass, like tribeawaken.com/?member: open any page with ?member once on a device and it never asks there
+  if (/[?&]member\b/.test(location.search)) { try { localStorage.setItem('ap.free', JSON.stringify({ name: 'Member', at: Date.now(), pass: true })); } catch (e) {} return; }
+  // the home page (11/10, Tony): the opening and the welcome film are free to watch; the 30 seconds start only once the
+  // visitor has scrolled past the section after the welcome film. Every other page counts from the visitor's first page.
+  const after = document.querySelector('#welcome-film + section');
+  if (after) {
+    const past = () => after.getBoundingClientRect().bottom < innerHeight * 0.5;
+    const arm = () => { if (!past()) return; removeEventListener('scroll', arm); setTimeout(due, 30000); };
+    addEventListener('scroll', arm, { passive: true }); setTimeout(arm, 1200);
+    return;
+  }
   let first = Date.now();
   try { const f = +localStorage.getItem('ap.first'); if (f) first = f; else localStorage.setItem('ap.first', String(first)); } catch (e) {}
-  // never over a film or a session someone is watching or hearing (the welcome film above all): wait until it stops
-  const busy = () => { try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
-    return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } };
-  const due = () => { if (busy()) { setTimeout(due, 3000); return; } show(); };
   setTimeout(due, Math.max(0, 30000 - (Date.now() - first)));
+  // never over a film or a session someone is watching or hearing (the welcome film above all): wait until it stops
+  function busy(){ try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
+    return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } }
+  function due(){ if (busy()) { setTimeout(due, 3000); return; } show(); }
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
     const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
   function show(){
