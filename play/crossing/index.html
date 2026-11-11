@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="https://ancestralpeaks.com/play/crossing/">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Crossing · Ancestral Peaks</title>
 <meta name="description" content="A free two-minute game from The Council Fire. Cross hard ground, answer what steps into the path, then come in by the fire for a story.">
-<link rel="canonical" href="https://ancestralpeaks.com/play/crossing/">
 <link rel="stylesheet" href="../../shared/site.css?v=1110t">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
@@ -16,99 +16,143 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <script src="/app/pwa.js?v=1108e" defer></script>
 <style>
-/* THE CROSSING — one page, sound off until asked for, nothing sent anywhere. Colors and type come from shared/site.css. */
+/* THE CROSSING — one page, sound off until asked for, nothing sent anywhere. Colors and type come from shared/site.css.
+   This version stands the game in a real place: layered photographs behind the words, the light changing with the day,
+   dust, seed and spray drifting in a plain 2D canvas. Transforms and opacity only: no blend modes, no filters, no WebGL. */
 html,body{background:var(--night);color:#fff}
 body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;transition:background 1.2s;
   background:linear-gradient(180deg,#17110F 0%,var(--night) 70%)}
 body[data-d="ocean"]{background:linear-gradient(180deg,#0C1826 0%,var(--night) 75%)}
 body[data-d="desert"]{background:linear-gradient(180deg,#2C170E 0%,var(--night) 75%)}
 body[data-d="mountains"]{background:linear-gradient(180deg,#13231D 0%,var(--night) 75%)}
+
+/* the place: the far country, the ground close by, the air, the light of the hour, and a veil so the words can be read */
+.scene{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:var(--night)}
+.scene .ly{position:absolute;will-change:transform;transform:translate3d(0,0,0)}
+.scene .ly.far{top:-5%;bottom:-5%;left:-6%;right:-6%}
+.scene .ly.near{left:-7%;right:-7%;bottom:-4%;height:52%;transform-origin:50% 100%;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.6) 32%,#000 58%);mask-image:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.6) 32%,#000 58%)}
+@media (orientation:landscape){.scene .ly.near{height:42%}}
+.scene .ly img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.8s ease}
+.scene .ly.far img{object-position:50% 42%}
+.scene .ly.near img{object-position:50% 100%}
+.scene .ly img.on{opacity:1}
+.scene canvas{position:absolute;inset:0;width:100%;height:100%}
+.scene .light{position:absolute;inset:0;opacity:0;transition:opacity 2.8s ease}
+.scene .light.on{opacity:1}
+.scene .light.dawn{background:linear-gradient(180deg,rgba(150,170,205,.40),rgba(95,105,140,.30) 50%,rgba(20,16,26,.5))}
+.scene .light.morning{background:linear-gradient(180deg,rgba(255,236,205,.16),rgba(255,222,175,.10) 50%,rgba(30,20,16,.36))}
+.scene .light.day{background:linear-gradient(180deg,rgba(255,255,245,.06),rgba(255,250,232,.03) 50%,rgba(20,14,12,.38))}
+.scene .light.afternoon{background:linear-gradient(180deg,rgba(255,222,172,.14),rgba(255,192,122,.14) 55%,rgba(30,18,12,.42))}
+.scene .light.gold{background:linear-gradient(180deg,rgba(255,182,92,.20),rgba(232,132,62,.18) 55%,rgba(40,18,10,.42))}
+.scene .light.evening{background:linear-gradient(180deg,rgba(214,122,72,.24),rgba(132,66,66,.22) 55%,rgba(30,12,16,.5))}
+.scene .light.dusk{background:linear-gradient(180deg,rgba(62,52,102,.30),rgba(42,32,62,.40) 55%,rgba(14,10,16,.68))}
+.scene .light.night{background:linear-gradient(180deg,rgba(6,10,28,.46),rgba(10,8,18,.42) 55%,rgba(10,6,8,.5))}
+.scene .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.46),rgba(16,11,13,.14) 26%,rgba(16,11,13,.26) 55%,rgba(16,11,13,.72))}
+.cx-top,.road,.stage{position:relative;z-index:1}
+
 .cx{width:100%;max-width:520px;margin:0 auto;padding-inline:20px}
 .cx-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-top:calc(env(safe-area-inset-top,0px) + 14px);padding-bottom:6px}
-.cx-top a.mark{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap}
+.cx-top a.mark{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6)}
 @media (max-width:420px){.cx-top a.mark span{display:none}}
 .cx-top a.mark svg{width:26px;height:26px}
 .cx-top .tools{display:flex;align-items:center;white-space:nowrap}
 .cx-top button[aria-pressed="true"]{color:var(--amber)}
-.cx-top button{background:none;border:0;padding:.6em 0 .6em .9em;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);min-height:44px}
+.cx-top button{background:none;border:0;padding:.6em 0 .6em .9em;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.78);min-height:44px;text-shadow:0 1px 6px rgba(0,0,0,.7)}
 .cx-top button[hidden]{display:none}
 
-/* the road: the same drawing language as the Crossing road on For Your Work */
-.road{margin-top:2px}
+/* the road: the same line as before, now a trail of light across the ground, walked by a figure */
+.road{margin-top:2px;padding-bottom:8px}
 .road svg{width:100%;height:auto;overflow:visible}
-.road .thin{fill:none;stroke:rgba(255,255,255,.4);stroke-width:3;stroke-dasharray:3 12;stroke-linecap:round}
-.road .lit{fill:none;stroke:var(--amber);stroke-width:4;stroke-linecap:round}
-.road text{font-family:var(--text);font-size:30px;fill:rgba(255,255,255,.6)}
-.road .mk circle{fill:none;stroke:#E0714A;stroke-width:4;stroke-dasharray:6 9;transition:stroke .6s}
+.road .thin{fill:none;stroke:rgba(255,255,255,.34);stroke-width:3;stroke-dasharray:2 11;stroke-linecap:round}
+.road .glow{fill:none;stroke:rgba(242,197,107,.26);stroke-width:16;stroke-linecap:round}
+.road .lit{fill:none;stroke:#F2C56B;stroke-width:3.5;stroke-linecap:round}
+.road text{font-family:var(--text);font-size:30px;fill:rgba(255,255,255,.78);paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:5px;stroke-linejoin:round}
+.road .mk circle{fill:rgba(0,0,0,.14);stroke:rgba(255,255,255,.5);stroke-width:3;stroke-dasharray:6 9;transition:stroke .6s}
 .road .mk.done circle{stroke:var(--amber);stroke-dasharray:none}
 .road .mk.now circle{stroke:#fff}
+.road .comp{fill:rgba(255,246,226,.9)}
+.road .shade{fill:rgba(0,0,0,.42)}
+.road .left{fill:rgba(217,168,76,.6)}
+.road image{transition:x 1.5s,y 1.5s}
 
-.stage{flex:1;display:flex;flex-direction:column;padding-top:10px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transition:opacity .22s ease}
+.stage{flex:1;display:flex;flex-direction:column;padding-top:16px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transition:opacity .22s ease;
+  background:linear-gradient(180deg,rgba(16,11,13,.36),rgba(16,11,13,.58) 38%,rgba(16,11,13,.66));border-radius:26px 26px 0 0}
 .stage.out{opacity:0}
 .stage .body{flex:1}
 .stage .foot{padding-top:22px;display:flex;flex-direction:column;gap:10px}
-.stage h1{font-size:clamp(2.6rem,13vw,3.6rem)}
-.stage h2{font-size:clamp(1.7rem,7.6vw,2.2rem);line-height:1.04}
+.stage h1{font-size:clamp(2.6rem,13vw,3.6rem);text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.stage h2{font-size:clamp(1.7rem,7.6vw,2.2rem);line-height:1.04;text-shadow:0 2px 14px rgba(0,0,0,.5)}
 .move{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.7rem}
-.stage p{margin-top:.9rem;color:rgba(255,255,255,.86)}
-.stage p.fine{font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.45}
+.stage p{margin-top:.9rem;color:rgba(255,255,255,.9)}
+.stage p.fine{font-size:.88rem;color:rgba(255,255,255,.66);line-height:1.45}
 .stage p.fine a{color:#fff}
 .stage .btn{justify-content:center;width:100%;min-height:56px;font-size:1.05rem;white-space:normal;text-align:center}
-.stage .btn.amber{background:var(--amber);color:var(--night)}
+.stage .btn.amber{background:var(--amber);color:var(--night);box-shadow:0 8px 28px rgba(217,168,76,.22)}
 .stage .btn.amber:hover{background:#E6BA66}
 .quiet{background:none;border:0;color:rgba(255,255,255,.7);font-size:.92rem;min-height:44px;text-decoration:underline;text-underline-offset:3px}
 
 /* three distances */
 .dist{display:flex;flex-direction:column;gap:12px;margin-top:1.2rem}
-.dist button{display:flex;gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1px solid var(--line-light);border-radius:18px;padding:14px;color:#fff;transition:background .2s,border-color .2s}
-.dist button:active,.dist button:hover{background:rgba(255,255,255,.12);border-color:var(--amber)}
-.dist .med{flex:0 0 58px;width:58px;height:58px;border-radius:50%;background:#F7F0E1;overflow:hidden;display:grid;place-items:center}
-.dist .med svg{width:100%;height:100%}
+.dist button{display:flex;gap:14px;align-items:center;text-align:left;background:rgba(255,255,255,.07);border:1px solid var(--line-light);border-radius:18px;padding:14px;color:#fff;transition:background .2s,border-color .2s}
+.dist button:active,.dist button:hover{background:rgba(255,255,255,.13);border-color:var(--amber)}
+.dist .med{flex:0 0 58px;width:58px;height:58px;border-radius:50%;background:#F7F0E1;overflow:hidden;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+.dist .med img{width:100%;height:100%;object-fit:cover;display:block}
 .dist b{display:block;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
-.dist span span{display:block;font-size:.9rem;line-height:1.4;color:rgba(255,255,255,.72);margin-top:2px}
+.dist span span{display:block;font-size:.9rem;line-height:1.4;color:rgba(255,255,255,.74);margin-top:2px}
 
 /* the calm */
 .breath{display:grid;place-items:center;margin:26px auto 6px;width:230px;height:230px;position:relative}
 .breath .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--amber);box-shadow:0 0 44px rgba(217,168,76,.22) inset;transform:scale(.62);transition:transform 1s linear}
-.breath svg{width:96px;height:auto;position:relative}
+.breath img.stone{width:150px;height:150px;border-radius:50%;position:relative;display:block;box-shadow:0 14px 34px rgba(0,0,0,.5)}
 .count{text-align:center;font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.02em;min-height:2.2rem;margin-top:10px}
 .count small{font-family:var(--text);font-weight:600;font-size:1rem;color:var(--amber);margin-left:.4em}
 
 /* the sending */
-.carry{width:100%;margin-top:1rem;background:rgba(255,255,255,.07);border:1px solid var(--line-light);border-radius:14px;color:#fff;font:inherit;padding:14px;min-height:92px;resize:none}
+.carry{width:100%;margin-top:1rem;background:rgba(255,255,255,.08);border:1px solid var(--line-light);border-radius:14px;color:#fff;font:inherit;padding:14px;min-height:92px;resize:none}
 .carry::placeholder{color:rgba(255,255,255,.45)}
-.party{margin-top:.5rem;padding-left:0;list-style:none;font-size:.93rem;color:rgba(255,255,255,.75);line-height:1.45}
+.party{margin-top:.5rem;padding-left:0;list-style:none;font-size:.93rem;color:rgba(255,255,255,.76);line-height:1.45}
 .party li{padding-left:1.1em;position:relative;margin-top:.35em}
 .party li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8)}
 
 /* what steps into the path: a card around the neck is a costume */
 .mask{display:flex;flex-direction:column;align-items:center;margin-top:4px;transition:transform .8s ease,opacity .8s ease;transform-origin:50% 0}
 .mask .cord{width:120px;height:34px;border:2px solid rgba(255,255,255,.45);border-bottom:0;border-radius:60px 60px 0 0}
-.mask .card{background:#F7F0E1;color:#3B3020;border-radius:10px;padding:12px 20px 14px;text-align:center;max-width:300px;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:sway 5s ease-in-out infinite;transform-origin:50% -34px}
+.mask .card{background:#F7F0E1 url(img/paper.jpg);color:#3B3020;border-radius:10px;padding:12px 20px 14px;text-align:center;max-width:300px;box-shadow:0 10px 30px rgba(0,0,0,.45);animation:sway 5s ease-in-out infinite;transform-origin:50% -34px}
 .mask .card small{display:block;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#91691F}
 .mask .card b{display:block;font-family:var(--display);font-weight:800;font-size:1.45rem;letter-spacing:-.02em;line-height:1.05;margin-top:3px}
 .mask.off{transform:translateY(-4px) rotate(7deg) scale(.8);opacity:.3}
 .mask.off .card{animation:none}
 @keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
-.dir{font-style:italic;font-size:.9rem;color:rgba(255,255,255,.6);text-align:center}
+.dir{font-style:italic;font-size:.9rem;color:rgba(255,255,255,.62);text-align:center}
 .says{margin:1rem 0 0;font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,5.8vw,1.6rem);line-height:1.18;letter-spacing:-.015em;text-align:center;text-wrap:balance}
-.ask{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:1.3rem}
+.ask{font-weight:600;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:1.3rem}
 .choices{display:flex;flex-direction:column;gap:10px;margin-top:.7rem}
-.choices button{text-align:left;background:rgba(255,255,255,.07);border:1px solid var(--line-light);border-radius:16px;padding:14px 16px;min-height:56px;line-height:1.35;color:#fff;transition:opacity .4s,background .2s,border-color .2s}
-.choices button:hover{background:rgba(255,255,255,.12)}
+.choices button{text-align:left;background:rgba(255,255,255,.08);border:1px solid var(--line-light);border-radius:16px;padding:14px 16px;min-height:56px;line-height:1.35;color:#fff;transition:opacity .4s,background .2s,border-color .2s}
+.choices button:hover{background:rgba(255,255,255,.14)}
 .choices button.set{opacity:.32;pointer-events:none}
 .stage p.conductor{margin-top:.9rem;font-size:.95rem;color:var(--amber);min-height:1.5em}
 .answer{margin-top:1.2rem;border-left:3px solid var(--amber);padding:2px 0 2px 16px}
 .answer b{display:block;font-family:var(--display);font-weight:800;font-size:1.3rem;line-height:1.15;letter-spacing:-.015em}
-.stage p.big{color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(2rem,9.4vw,2.7rem);line-height:1.02;letter-spacing:-.025em;margin-top:1.4rem;text-wrap:balance}
-.carried{margin-top:1.1rem;background:#F7F0E1;color:#3B3020;border-radius:12px;padding:14px 16px;white-space:pre-wrap;overflow-wrap:anywhere}
+.stage p.big{color:#fff;font-family:var(--display);font-weight:800;font-size:clamp(2rem,9.4vw,2.7rem);line-height:1.02;letter-spacing:-.025em;margin-top:1.4rem;text-wrap:balance;text-shadow:0 2px 18px rgba(0,0,0,.5)}
+.carried{margin-top:1.1rem;background:#F7F0E1 url(img/paper.jpg);color:#3B3020;border-radius:12px;padding:14px 16px;white-space:pre-wrap;overflow-wrap:anywhere}
 .met{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.1rem}
 .met i{width:20px;height:27px;border-radius:4px;border:1.5px solid rgba(255,255,255,.35)}
 .met i.on{background:#F7F0E1;border-color:#F7F0E1}
-@media (prefers-reduced-motion:reduce){.mask .card{animation:none}.stage{transition:none}}
+@media (prefers-reduced-motion:reduce){.mask .card{animation:none}.stage{transition:none}.scene canvas{display:none}}
 </style>
+
 </head>
 <body>
+
+<div class="scene" id="scene" aria-hidden="true">
+  <div class="ly far"><img alt=""><img alt=""></div>
+  <div class="ly near"><img alt=""><img alt=""></div>
+  <canvas class="air"></canvas>
+  <div class="light dawn"></div><div class="light morning"></div><div class="light day"></div><div class="light afternoon"></div>
+  <div class="light gold"></div><div class="light evening"></div><div class="light dusk"></div><div class="light night"></div>
+  <div class="veil"></div>
+</div>
 
 <header class="cx cx-top">
   <a class="mark" href="../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
@@ -121,7 +165,6 @@ body[data-d="mountains"]{background:linear-gradient(180deg,#13231D 0%,var(--nigh
 
 <noscript><p class="cx" style="padding-block:2rem">The Crossing needs JavaScript to play.</p></noscript>
 
-<script src="../../js/far-messengers-stars.js?v=1108e"></script>
 <script>
 /* THE CROSSING. Every rule and nearly every word here is from "A Crossing to Play" in The Council Fire:
    the six moves, the three distances, the twelve monsters and what answers them, the conductor's pause and again.
@@ -173,15 +216,19 @@ var road=(function(){
   var base=el('path',{d:d,'class':'thin'},svg), L=base.getTotalLength();
   var lit=el('path',{d:d,'class':'lit'},svg); lit.style.strokeDasharray=L; lit.style.strokeDashoffset=L;
   var t1=el('text',{x:40,y:215,'text-anchor':'start'},svg); t1.textContent='home';
-  var t2=el('text',{x:960,y:60,'text-anchor':'end'},svg); t2.textContent='the far shore';
+  var t2=el('text',{x:912,y:52,'text-anchor':'end'},svg); t2.textContent='the far shore';
   var marks=el('g',{},svg), left=el('g',{},svg);
-  var comp=[0,1,2,3].map(function(){return el('circle',{r:8,fill:'rgba(255,255,255,.82)'},svg);});
-  var carrier=el('circle',{r:15,fill:'#D9A84C'},svg);
+  var glow=el('path',{d:d,'class':'glow'},svg); glow.style.strokeDasharray=L; glow.style.strokeDashoffset=L;
+  var comp=[0,1,2,3].map(function(){return el('circle',{r:7,'class':'comp'},svg);});
+  var shade=el('ellipse',{rx:24,ry:7,'class':'shade'},svg);
+  var carrier=el('image',{width:44,height:119,href:'img/walker.png',preserveAspectRatio:'xMidYMax meet'},svg);
+  carrier.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','img/walker.png');
   var k=0.02, raf=0, mk=[];
   function at(q){return base.getPointAtLength(L*Math.max(0,Math.min(1,q)));}
   function place(q){
-    k=q; lit.style.strokeDashoffset=(L*(1-q)).toFixed(1);
-    var p=at(q); carrier.setAttribute('cx',p.x.toFixed(1)); carrier.setAttribute('cy',p.y.toFixed(1));
+    k=q; lit.style.strokeDashoffset=(L*(1-q)).toFixed(1); glow.style.strokeDashoffset=(L*(1-q)).toFixed(1);
+    var p=at(q); carrier.setAttribute('x',(p.x-22).toFixed(1)); carrier.setAttribute('y',(p.y-112).toFixed(1));
+    shade.setAttribute('cx',p.x.toFixed(1)); shade.setAttribute('cy',(p.y+2).toFixed(1));
     comp.forEach(function(c,j){var r=at(q-0.035*(j+1)); c.setAttribute('cx',r.x.toFixed(1)); c.setAttribute('cy',(r.y+(j%2?-13:13)).toFixed(1)); c.setAttribute('opacity',q-0.035*(j+1)>0?1:0);});
   }
   function go(to){
@@ -196,7 +243,7 @@ var road=(function(){
     cancelAnimationFrame(raf); place(0.02);
   }
   function meet(i){mk.forEach(function(g,j){g.setAttribute('class','mk'+(j<i?' done':j===i?' now':''));}); go(pos(i)-0.045);}
-  function pass(i,relay){mk[i].setAttribute('class','mk done'); if(relay){var p=at(pos(i)); el('circle',{cx:p.x.toFixed(1),cy:(p.y+44).toFixed(1),r:7,fill:'rgba(217,168,76,.55)'},left);} go(pos(i)+0.02);}
+  function pass(i,relay){mk[i].setAttribute('class','mk done'); if(relay){var p=at(pos(i)); el('circle',{cx:p.x.toFixed(1),cy:(p.y+44).toFixed(1),r:7,'class':'left'},left);} go(pos(i)+0.02);}
   function arrive(){go(0.985);}
   reset();
   return {reset:reset,meet:meet,pass:pass,arrive:arrive};
@@ -237,12 +284,96 @@ var sound=(function(){
   return {say:say,hush:hush,set:set};
 })();
 
-/* ---------- small drawings ---------- */
-var STONE='<svg viewBox="-34 -24 68 48" aria-hidden="true"><ellipse rx="27" ry="18" fill="#8C7F6E" stroke="#6A5F51" stroke-width="2"/><ellipse cx="-5" cy="-4" rx="11" ry="6" fill="#B5A893"/></svg>'; // the river stone, as drawn in council-tokens.js
-var MED={
- ocean:'',  // filled by the star compass from far-messengers-stars.js
- desert:'<svg viewBox="0 0 58 58" aria-hidden="true"><path d="M4 36 C14 24 22 24 30 33 S46 42 54 30" fill="none" stroke="#B98D3E" stroke-width="2.6" stroke-linecap="round"/><path d="M4 45 C16 38 26 40 34 44 S48 46 54 41" fill="none" stroke="#3B3020" stroke-width="1.6" stroke-linecap="round" opacity=".55"/><circle cx="41" cy="16" r="5" fill="#B98D3E"/></svg>',
- mountains:'<svg viewBox="-4 -2 48 48" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="#3B3020" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="#B98D3E"/></svg>'
+/* ---------- the place and its light ---------- */
+/* The place behind the words. Two photographs stand in depth, the far country and the ground close by, and drift a little
+   against each other. The light of the hour is a plain color wash that crosses over as the day goes on. What floats in the
+   air is drawn on one 2D canvas: dust on the sand road, seed over the meadow, spray above the rocks, embers at the fire.
+   Everything moves by transform and opacity only, stops when the page is hidden, and stands still under reduced motion. */
+var scene=(function(){
+  var root=$('#scene'); if(!root)return {set:function(){}};
+  var PL={
+   home:     {far:'far-home.jpg',      near:'',                  air:'motes',  sway:0,   alt:'Mountains across still water at sunset'},
+   desert:   {far:'far-desert.jpg',    near:'near-desert.jpg',   air:'dust',   sway:.35, alt:'Cloud and evening light over red rock country', nalt:'A sand road, walked and tire-tracked, running on'},
+   mountains:{far:'far-mountains.jpg', near:'near-mountains.jpg',air:'seeds',  sway:.7,  alt:'A trail through pines and meadow toward a mountain', nalt:'Meadow grass and yellow flowers in evening light'},
+   ocean:    {far:'far-ocean.jpg',     near:'near-ocean.jpg',    air:'spray',  sway:0,   alt:'A long beach under a cliff, the surf coming in', nalt:'Dark rocks and brush at the edge of the surf'},
+   night:    {far:'far-night.jpg',     near:'',                  air:'motes',  sway:0,   alt:'A small fire in a dark meadow under the moon'},
+   fire:     {far:'far-night.jpg',     near:'near-fire.jpg',     air:'embers', sway:0,   alt:'A small fire in a dark meadow under the moon', nalt:'A fire burning close, in a ring of stones'}
+  };
+  var far=$('.far',root), near=$('.near',root), lights=root.querySelectorAll('.light'), cv=$('canvas',root);
+  var cur={place:'',light:''}, sway=0, air='motes';
+  function swap(host,file,alt){
+    var imgs=host.querySelectorAll('img'), on=host.querySelector('img.on'), nxt=(on===imgs[0])?imgs[1]:imgs[0];
+    if(host.getAttribute('data-file')===file)return;
+    host.setAttribute('data-file',file);
+    if(!file){ if(on)on.classList.remove('on'); return; }
+    nxt.alt=alt||'';
+    var done=function(){ if(host.getAttribute('data-file')!==file)return; nxt.classList.add('on'); if(on&&on!==nxt)on.classList.remove('on'); };
+    nxt.onload=done; nxt.src='img/'+file; if(nxt.complete&&nxt.naturalWidth)done();
+  }
+  function set(place,light){
+    var p=PL[place]||PL.home;
+    if(cur.place!==place){ cur.place=place; swap(far,p.far,p.alt); swap(near,p.near,p.nalt); sway=p.sway; air=p.air; seed(); }
+    if(cur.light!==light){ cur.light=light; for(var i=0;i<lights.length;i++)lights[i].classList.toggle('on',lights[i].classList.contains(light)); }
+  }
+  /* preload the rest once the door is open, so each crossing arrives without a wait */
+  var pre=function(){ var seen={}; for(var k in PL){[PL[k].far,PL[k].near].forEach(function(f){ if(f&&!seen[f]){seen[f]=1; var im=new Image(); im.src='img/'+f;} }); } };
+  if('requestIdleCallback' in window)requestIdleCallback(pre,{timeout:4000}); else setTimeout(pre,1500);
+
+  if(CALM)return {set:set};                                       // reduced motion: the place stands still
+
+  /* the drift: a slow, breathing parallax, and a little lean toward the pointer on a laptop */
+  var px=0,py=0,tx=0,ty=0;
+  document.addEventListener('mousemove',function(e){ tx=(e.clientX/innerWidth-.5)*2; ty=(e.clientY/innerHeight-.5)*2; });
+  /* the air */
+  var ctx=null; try{ctx=cv.getContext('2d');}catch(e){}
+  var W=0,H=0,DPR=1,P=[];
+  function size(){ DPR=Math.min(1.5,window.devicePixelRatio||1); W=innerWidth; H=innerHeight; cv.width=Math.round(W*DPR); cv.height=Math.round(H*DPR); if(ctx)ctx.setTransform(DPR,0,0,DPR,0,0); }
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  function born(k,fresh){
+    var s={k:k,life:rnd(0,1)};
+    if(k==='dust'){  s.x=fresh?-10:rnd(0,W); s.y=rnd(H*.3,H); s.r=rnd(.6,2.2); s.a=rnd(.12,.4); s.vx=rnd(.5,1.4); s.vy=rnd(-.12,.12); s.c='230,205,160'; }
+    if(k==='seeds'){ s.x=fresh?-10:rnd(0,W); s.y=rnd(H*.2,H*.95); s.r=rnd(1,2.8); s.a=rnd(.2,.55); s.vx=rnd(.25,.7); s.vy=rnd(-.2,.1); s.c='255,236,190'; s.ph=rnd(0,6.3); }
+    if(k==='spray'){ s.x=rnd(0,W); s.y=fresh?H+6:rnd(H*.45,H); s.r=rnd(.8,2.4); s.a=rnd(.08,.3); s.vx=rnd(-.5,-.1); s.vy=rnd(-.9,-.3); s.c='235,245,255'; }
+    if(k==='motes'){ s.x=rnd(0,W); s.y=rnd(0,H); s.r=rnd(.5,1.6); s.a=rnd(.05,.22); s.vx=rnd(-.15,.15); s.vy=rnd(-.1,.1); s.c='255,240,220'; s.ph=rnd(0,6.3); }
+    if(k==='embers'){ s.x=W*rnd(.38,.62); s.y=fresh?H+4:rnd(H*.5,H); s.r=rnd(.7,2.2); s.a=rnd(.3,.8); s.vx=rnd(-.3,.3); s.vy=rnd(-1.6,-.5); s.c='255,'+Math.round(rnd(90,170))+',50'; s.ph=rnd(0,6.3); }
+    return s;
+  }
+  function seed(){ var n={dust:90,seeds:48,spray:64,motes:26,embers:54}[air]||0; P=[]; for(var i=0;i<n;i++)P.push(born(air,false)); }
+  var raf=0, last=0, running=false;
+  function frame(now){
+    if(!running)return; raf=requestAnimationFrame(frame);
+    var dt=Math.min(50,now-last)/16.7; last=now; var t=now/1000;
+    px+=(tx-px)*.03; py+=(ty-py)*.03;
+    var wind=.8+.5*Math.sin(t/4.1)+.35*Math.sin(t/1.7+1);          // a gusting wind, never still, never a gale
+    far.style.transform='translate3d('+(Math.sin(t/23)*8-px*9).toFixed(1)+'px,'+(Math.cos(t/31)*5-py*5).toFixed(1)+'px,0)';
+    near.style.transform='translate3d('+(Math.sin(t/17)*12-px*20).toFixed(1)+'px,'+(-py*8).toFixed(1)+'px,0) skewX('+(sway*(.45*Math.sin(t/2.9)+.25*Math.sin(t/1.3+2))*wind).toFixed(3)+'deg)';
+    if(!ctx)return;
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<P.length;i++){
+      var s=P[i];
+      if(s.k==='dust'){ s.x+=s.vx*wind*1.6*dt; s.y+=(s.vy+Math.sin(t*1.3+s.x*.01)*.15)*dt; if(s.x>W+10)P[i]=born('dust',true); }
+      else if(s.k==='seeds'){ s.x+=s.vx*wind*1.3*dt; s.y+=(s.vy+Math.sin(t*.9+s.ph)*.35)*dt; if(s.x>W+10||s.y<-10||s.y>H+10)P[i]=born('seeds',true); }
+      else if(s.k==='spray'){ s.x+=(s.vx*wind)*dt; s.y+=s.vy*dt; s.life-=.006*dt; if(s.life<=0||s.y<-10)P[i]=born('spray',true); }
+      else if(s.k==='motes'){ s.x+=(s.vx+Math.sin(t*.4+s.ph)*.1)*dt; s.y+=(s.vy+Math.cos(t*.3+s.ph)*.1)*dt; if(s.x<-10)s.x=W+10; if(s.x>W+10)s.x=-10; if(s.y<-10)s.y=H+10; if(s.y>H+10)s.y=-10; }
+      else if(s.k==='embers'){ s.x+=(s.vx+Math.sin(t*2+s.ph)*.4)*dt; s.y+=s.vy*dt; s.life-=.008*dt; if(s.life<=0||s.y<H*.3)P[i]=born('embers',true); }
+      var a=s.a*(s.k==='spray'||s.k==='embers'?s.life:1)*(s.ph!==undefined?.7+.3*Math.sin(t*3+s.ph):1);
+      ctx.fillStyle='rgba('+s.c+','+a.toFixed(3)+')'; ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.2832); ctx.fill();
+    }
+  }
+  function start(){ if(running)return; running=true; last=performance.now(); raf=requestAnimationFrame(frame); }
+  function stop(){ running=false; cancelAnimationFrame(raf); }
+  size(); window.addEventListener('resize',function(){size();seed();});
+  document.addEventListener('visibilitychange',function(){ if(document.hidden)stop(); else start(); });
+  start();
+  return {set:set};
+})();
+
+/* ---------- small pictures ---------- */
+var STONE='<img class="stone" src="img/stone-hand.png" width="360" height="360" alt="A smooth stone held in an open hand">';   // one stone in one hand, by the creek
+var MED={  // a round window on each place
+ ocean:'<img src="img/med-ocean.png" width="176" height="176" alt="Surf breaking on dark rocks under a pale sky">',
+ desert:'<img src="img/med-desert.png" width="176" height="176" alt="A red butte beyond a dead juniper, under a blue sky">',
+ mountains:'<img src="img/med-mountains.png" width="176" height="176" alt="A mountain under morning cloud, above a green meadow">'
 };
 
 /* ---------- showing a stage ---------- */
@@ -264,7 +395,7 @@ againBtn.addEventListener('click',function(){title();});
 
 /* 0 · the door */
 function title(){
-  S={d:'',carry:'',draw:[],i:0}; document.body.removeAttribute('data-d'); againBtn.hidden=true; road.reset();
+  S={d:'',carry:'',draw:[],i:0}; document.body.removeAttribute('data-d'); againBtn.hidden=true; road.reset(); scene.set('home','dusk');
   show('<div class="body"><p class="move">'+(SHORT?'A short crossing to play':'A crossing to play')+' · from The Council Fire</p><h1>'+(SHORT?'The Short Crossing':'The Crossing')+'</h1>'
    +'<p>You carry something your people need across a hard distance.</p>'
    +'<p>Everything you meet on the way is an ordinary trouble wearing a mask, and every one of them is answered with a discipline out of the book.</p>'
@@ -277,12 +408,9 @@ acts.dist=function(){
   againBtn.hidden=false;
   show('<div class="body"><p class="move">Three distances to choose from</p><h2>Which will you cross?</h2><div class="dist">'
    +['ocean','desert','mountains'].map(function(k){return '<button type="button" data-act="pick" data-d="'+k+'"><span class="med" data-med="'+k+'">'+MED[k]+'</span><span><b>'+D[k].n+'</b><span>'+D[k].line+'</span></span></button>';}).join('')
-   +'</div></div>',function(){
-     var host=$('[data-med="ocean"]',stage);
-     try{ if(window.FarMessengersStars){var c=window.FarMessengersStars(host,{words:false}); c.seek(c.DUR);} }catch(e){}
-   });
+   +'</div></div>');
 };
-acts.pick=function(b){S.d=b.dataset.d; document.body.dataset.d=S.d; calm();};
+acts.pick=function(b){S.d=b.dataset.d; document.body.dataset.d=S.d; scene.set(S.d,'dawn'); calm();};
 
 /* 1 · the calm */
 function calm(){
@@ -311,6 +439,7 @@ acts.count=function(){
 /* 2 · the sending */
 acts.send=function(){
   if(SHORT){acts.go();return;}
+  scene.set(S.d,'morning');
   show('<div class="body"><p class="move">Second · the sending</p><h2>What is being carried?</h2>'
    +'<p>A true thing your own people cannot afford to lose. Name it in a few words, or hold it in your head.</p>'
    +'<textarea class="carry" id="carry" maxlength="400" placeholder="What you carry" aria-label="What you carry"></textarea>'
@@ -330,7 +459,7 @@ function meetOne(){
   var m=S.draw[S.i];
   var others=shuffle(M.filter(function(o){return o.id!==m.id&&m.avoid.indexOf(o.id)<0;})).slice(0,2);
   var opts=shuffle([m].concat(others));
-  road.meet(S.i);
+  road.meet(S.i); scene.set(S.d,['morning','day','day','afternoon','gold'][Math.min(4,Math.round(S.i*4/Math.max(1,DRAW-1)))]);
   show('<div class="body"><p class="move">Third · the crossing · '+(S.i+1)+' of '+DRAW+'</p>'
    +'<div class="mask" id="mask"><div class="cord"></div><div class="card"><small>steps into the path</small><b>'+esc(m.n)+'</b></div></div>'
    +(m.dir?'<p class="dir">('+esc(m.dir)+')</p>':'')
@@ -354,13 +483,14 @@ acts.next=function(){ S.i++; if(S.i<DRAW)meetOne(); else arrive(); };
 
 /* 4 · the arrival */
 function arrive(){
-  road.arrive();
+  road.arrive(); scene.set(S.d,'evening');
   show('<div class="body"><p class="move">Fourth · the arrival</p><h2>The village stands, goes quiet, and says the oldest sentence there is.</h2>'
    +'<p class="big">“Sit, eat first, then tell us.”</p></div>'+foot('Sit','story'));
 }
 /* 5 · the story */
 acts.story=function(){
   if(SHORT){acts.wisdom();return;}
+  scene.set('night','dusk');
   show('<div class="body"><p class="move">Fifth · the story</p><h2>Two minutes, told sitting down.</h2>'
    +(S.carry?'<div class="carried" id="carried"></div>':'<p>Tell the true thing you carried. Out loud, or to yourself.</p>')
    +'<p class="fine">Everything before this exists to make a room quiet enough to receive it. Take the time it needs.</p></div>'+foot('It is told','wisdom'),
@@ -368,7 +498,7 @@ acts.story=function(){
 };
 /* 6 · the wisdom */
 acts.wisdom=function(){
-  var seen=met();
+  var seen=met(); scene.set('fire','night');
   show('<div class="body"><p class="move">Sixth · the wisdom, said by everyone together</p>'
    +'<p class="big" style="margin-top:.4rem">'+D[S.d].wisdom+'</p>'
    +'<p class="fine">Your own people’s line belongs here too. That one is theirs to fill.</p>'
