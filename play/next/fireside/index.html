@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>By the Fire · Ancestral Peaks</title>
 <meta name="description" content="A winter evening in the mountains. Come in by the fire and choose a far messenger story.">
-<link rel="canonical" href="https://ancestralpeaks.com/play/fireside/">
-<link rel="stylesheet" href="../../shared/site.css?v=1110s">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../../../shared/site.css?v=1110s">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
 <link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -26,13 +26,14 @@ body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;backg
 .cx-top a.mark svg{width:26px;height:26px}
 .cx-top a.back{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.7);text-decoration:none;padding:.8em 0 .8em 1em}
 .view{max-width:520px;width:100%;margin:2px auto 0;padding-inline:12px}
-.view svg{width:100%;height:auto;border-radius:18px;background:#0B0706}
-.scene{position:relative}
-/* Tony's own real flame (the first steady seconds of his fire-bowl video) laid over the drawn hearth; black in the video disappears */
-#flame{position:absolute;left:50%;top:58%;width:33%;transform:translateX(-50%);mix-blend-mode:screen;pointer-events:none;opacity:0;transition:opacity 1.2s;
-  -webkit-mask-image:radial-gradient(ellipse 52% 62% at 50% 62%,#000 50%,transparent 97%),linear-gradient(to bottom,#000 86%,transparent 99%);-webkit-mask-composite:source-in;
-  mask-image:radial-gradient(ellipse 52% 62% at 50% 62%,#000 50%,transparent 97%),linear-gradient(to bottom,#000 86%,transparent 99%);mask-composite:intersect}
-#flame.live{opacity:1}
+/* The room is one short film, made from Tony's own fire: the hogan, the fire in the middle of the floor, its light on the logs, the stars through the smoke hole.
+   A still of the same room sits under it and is all that shows if the film cannot play. Plain opacity only: no blend modes and no filters over the video. */
+.scene{position:relative;border-radius:18px;overflow:hidden;background:#0B0706;aspect-ratio:5/4;transform:translateZ(0)}
+.scene .still{display:block;width:100%;height:auto}
+.scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s;pointer-events:none}
+.scene video.live{opacity:1}
+.scene .glow{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.6s;background:radial-gradient(ellipse 60% 45% at 50% 82%,rgba(255,170,80,.16),rgba(255,170,80,0) 70%)}
+body.telling .scene .glow{opacity:1}
 .ambtn{display:flex;align-items:center;justify-content:center;gap:.6em;width:100%;margin-top:12px;min-height:60px;padding:14px 18px;border-radius:999px;border:1.5px solid var(--amber);background:var(--amber);color:#1B120D;font-weight:700;font-size:1.02rem;line-height:1.25;text-align:center}
 .ambtn[aria-pressed="true"]{background:#2E1F14;color:#fff}
 main{flex:1;padding-top:14px;padding-bottom:calc(env(safe-area-inset-bottom,0px) + 26px)}
@@ -69,11 +70,11 @@ main p.fine{color:rgba(255,255,255,.75)}
 <body>
 
 <header class="cx cx-top">
-  <a class="mark" href="../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
+  <a class="mark" href="../../../" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg><span>Ancestral Peaks</span></a>
   <a class="back" href="../crossing/" id="back">Back to the game</a>
 </header>
 
-<div class="view"><div class="scene"><svg id="hogan" viewBox="0 0 400 320" role="img" aria-label="Inside a log hogan at night. A fire burns in the middle of the floor, and stars show through the smoke hole in the roof."></svg><video id="flame" src="flame.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video></div><button type="button" class="ambtn" id="amb" aria-pressed="false">Push for a crackling fire and music on a winter eve</button></div>
+<div class="view"><div class="scene"><img class="still" src="scene-poster.jpg" width="960" height="768" alt="Inside a log hogan at night. A fire burns in the middle of the floor, and stars show through the smoke hole in the roof."><video id="scene" src="scene.mp4" poster="scene-poster.jpg" width="960" height="768" muted loop playsinline preload="auto" aria-hidden="true"></video><div class="glow" aria-hidden="true"></div></div><button type="button" class="ambtn" id="amb" aria-pressed="false">Push for a crackling fire and music on a winter eve</button></div>
 
 <main class="cx">
   <p class="move">Come in. Sit down.</p>
@@ -86,11 +87,10 @@ main p.fine{color:rgba(255,255,255,.75)}
 
 <script>
 /* BY THE FIRE. The four stories are cut from Tony's own recordings for the Eight Weeks, in the voice the site uses.
-   Nothing new was written. The fire is drawn with the same shapes as the fire in js/council-tokens.js.
+   Nothing new was written. The room is one short film built from Tony's own fire, with its light on the logs baked in.
    The fire sound is built from scratch, with Tony's say-so, so that no recording of anyone is in it. */
 (function(){
 'use strict';
-var NS='http://www.w3.org/2000/svg';
 var FIRE='audio/fire.mp3';   // a wood fire in a small log room with winter wind outside, built from scratch (Tony's own fire videos all had his voice in them)
 var MUSIC='audio/music.mp3'; // composed for this room: a recorded string ensemble held low and a solo flute, 72 seconds, looped
 var STORIES=[
@@ -100,7 +100,6 @@ var STORIES=[
  {id:'books',  src:'audio/the-book-carriers.mp3',  t:'The Book Carriers',          d:'Forty years of books carried through the forest at night.',              m:'2 minutes'}
 ];
 function $(s,r){return (r||document).querySelector(s);}
-function el(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
 var CALM=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
 
 /* Tony's rule (2026-11-10): one game and one story are free (The Short Crossing, The Living Memory); the rest are for members.
@@ -110,50 +109,13 @@ try{ if(all)localStorage.setItem('peaks-fire-all','1'); else all=localStorage.ge
 var from=(location.search.match(/[?&]from=([a-z-]+)/)||[])[1];
 if(from==='open-water'){$('#back').setAttribute('href','../open-water/');} else if(from==='crossing'){$('#back').setAttribute('href','../crossing/?full');}
 
-/* ---------- the hogan at night ---------- */
-var svg=$('#hogan'), defs=el('defs',{},svg);
-(function(){
-  var g=el('radialGradient',{id:'glow',cx:.5,cy:.5,r:.5},defs); el('stop',{offset:0,'stop-color':'#F2A03C','stop-opacity':.75},g); el('stop',{offset:.45,'stop-color':'#C4601E','stop-opacity':.28},g); el('stop',{offset:1,'stop-color':'#C4601E','stop-opacity':0},g);
-  var v=el('radialGradient',{id:'dark',cx:.5,cy:.74,r:.75},defs); el('stop',{offset:.3,'stop-color':'#000','stop-opacity':0},v); el('stop',{offset:1,'stop-color':'#000','stop-opacity':.86},v);
-  var w=el('linearGradient',{id:'log',x1:0,y1:0,x2:0,y2:1},defs); el('stop',{offset:0,'stop-color':'#6B4526'},w); el('stop',{offset:.55,'stop-color':'#4A2E18'},w); el('stop',{offset:1,'stop-color':'#2A190C'},w);
-})();
-el('rect',{width:400,height:320,fill:'#0B0706'},svg);
-// the roof: logs laid ring on ring, drawing in to the smoke hole
-for(var i=0;i<7;i++){ var k=i/6; el('ellipse',{cx:200,cy:36+k*54,rx:42+k*178,ry:15+k*40,fill:'none',stroke:i%2?'#3A2413':'#4A2E18','stroke-width':11},svg); }
-el('ellipse',{cx:200,cy:33,rx:33,ry:12,fill:'#0C1A30'},svg);
-[[186,30,1],[204,36,.8],[214,28,1.1],[195,37,.6],[178,35,.7]].forEach(function(s){el('circle',{cx:s[0],cy:s[1],r:s[2],fill:'#fff',opacity:.9},svg);});
-// the wall: logs laid flat, one on another
-for(var r=0;r<9;r++){ var y=98+r*17; el('rect',{x:-6,y:y,width:412,height:15.5,rx:7.5,fill:'url(#log)'},svg); el('line',{x1:0,y1:y+15.8,x2:400,y2:y+15.8,stroke:'#120904','stroke-width':1.6},svg); }
-[58,150,252,344].forEach(function(x,j){ el('line',{x1:x,y1:96,x2:x+(j<2?-10:10),y2:252,stroke:'#150B05','stroke-width':3,opacity:.7},svg); });
-// the earth floor
-el('path',{d:'M-10,250 Q200,222 410,250 L410,330 L-10,330 Z',fill:'#241509'},svg);
-var glow=el('ellipse',{cx:200,cy:262,rx:210,ry:150,fill:'url(#glow)'},svg);
-// a blanket rolled by the wall and a pot near the fire: a home, nothing more
-el('rect',{x:36,y:238,width:74,height:20,rx:10,fill:'#5A1F1A'},svg); el('rect',{x:52,y:238,width:6,height:20,fill:'#D9A84C',opacity:.7},svg); el('rect',{x:86,y:238,width:6,height:20,fill:'#D9A84C',opacity:.7},svg);
-el('path',{d:'M292,262 q-3,-22 10,-24 h16 q13,2 10,24 Z',fill:'#17100C'},svg); el('path',{d:'M328,246 q14,-2 12,10',fill:'none',stroke:'#17100C','stroke-width':3},svg); el('rect',{x:300,y:234,width:20,height:4,rx:2,fill:'#17100C'},svg);
-// the fire: the same shapes as the fire in The Council Fire's tokens
-el('ellipse',{cx:200,cy:284,rx:64,ry:12,fill:'#0E0805'},svg);
-var fire=el('g',{},svg);
-el('rect',{x:-46,y:30,width:92,height:13,rx:6,fill:'#6B4A2E',transform:'rotate(14)'},fire);
-el('rect',{x:-46,y:30,width:92,height:13,rx:6,fill:'#7E5636',transform:'rotate(-14)'},fire);
-var f1=el('path',{d:'M0,-70 C22,-40 40,-18 34,10 C30,30 14,40 0,40 C-14,40 -30,30 -34,10 C-40,-18 -22,-40 0,-70 Z',fill:'#D9822B'},fire);
-var f2=el('path',{d:'M0,-42 C14,-22 24,-8 20,12 C17,26 8,32 0,32 C-8,32 -17,26 -20,12 C-24,-8 -14,-22 0,-42 Z',fill:'#E8A93C'},fire);
-var f3=el('path',{d:'M0,-18 C7,-8 11,0 9,12 C8,20 4,24 0,24 C-4,24 -8,20 -9,12 C-11,0 -7,-8 0,-18 Z',fill:'#F6D27A'},fire);
-var sparks=[]; for(var s=0;s<9;s++)sparks.push({c:el('circle',{r:1.2,fill:'#FFC977'},svg),ph:Math.random(),x:(Math.random()-.5)*46,v:.07+Math.random()*.09});
-el('rect',{width:400,height:320,fill:'url(#dark)'},svg);
-var telling=0;
-function draw(t){
-  var big=.88+telling*.1;
-  var fl=1+.07*Math.sin(t*9.1)+.05*Math.sin(t*14.3+1), sw=Math.sin(t*3.1)*3;
-  fire.setAttribute('transform','translate(200,246) scale('+(.8*big).toFixed(3)+','+(.8*big*fl).toFixed(3)+')');
-  f2.setAttribute('transform','rotate('+sw.toFixed(1)+' 0 30)'); f3.setAttribute('transform','rotate('+(-sw*1.4).toFixed(1)+' 0 24)'); f1.setAttribute('transform','rotate('+(sw*.5).toFixed(1)+' 0 40)');
-  glow.setAttribute('opacity',(.74+.1*Math.sin(t*7.3)+.06*Math.sin(t*12.7)+telling*.1).toFixed(3));
-  sparks.forEach(function(p){ var k=((t*p.v+p.ph)%1); p.c.setAttribute('cx',(200+p.x+Math.sin(t*2+p.ph*9)*6*k).toFixed(1)); p.c.setAttribute('cy',(226-k*150).toFixed(1)); p.c.setAttribute('opacity',(k<.1?k*10:1-k).toFixed(2)); });
-}
-if(CALM)draw(0); else (function loop(now){draw(now/1000);requestAnimationFrame(loop);})(0);
-var flame=$('#flame');
-flame.addEventListener('playing',function(){ flame.classList.add('live'); [f1,f2,f3].forEach(function(f){f.setAttribute('opacity',0);}); });   // the drawn flame is only the fallback
-if(!CALM){ try{ var fp=flame.play(); if(fp&&fp.catch)fp.catch(function(){}); }catch(e){} }
+/* ---------- the room ---------- */
+var scene=$('#scene'), telling=0;
+function sceneOn(){ if(CALM||document.hidden)return; try{ var p=scene.play(); if(p&&p.catch)p.catch(function(){}); }catch(e){} }   // if it will not play, the still stays
+scene.addEventListener('playing',function(){ scene.classList.add('live'); });
+scene.addEventListener('error',function(){ scene.classList.remove('live'); });
+sceneOn();
+document.addEventListener('pointerdown',function(){ if(!scene.classList.contains('live'))sceneOn(); },{passive:true});   // a first touch is enough for a phone that held it back
 
 /* ---------- the stories ---------- */
 var ICON={play:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 L16 10 L6 16.5 Z" fill="currentColor"/></svg>',
@@ -161,8 +123,8 @@ var ICON={play:'<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3.5 L16 
           shut:'<svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="9" width="12" height="8" rx="2" fill="currentColor"/><path d="M6.5 9 V6.5 a3.5 3.5 0 0 1 7 0 V9" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'};
 var list=$('#stories'), say=$('#say'), cur=null, bed=null;
 var mus=null;
-function fireOn(v){ try{ if(!bed){bed=new Audio(FIRE);bed.loop=true;bed.volume=.55; mus=new Audio(MUSIC);mus.loop=true;mus.volume=.5;} [bed,mus].forEach(function(a){ if(v){var p=a.play(); if(p&&p.catch)p.catch(function(){});} else a.pause(); }); }catch(e){} }
-function duck(on){ if(mus)mus.volume=on?.22:.5; }   // the music steps back while a story is told
+function fireOn(v){ try{ if(!bed){bed=new Audio(FIRE);bed.loop=true;bed.volume=.5; mus=new Audio(MUSIC);mus.loop=true;mus.volume=.45;} [bed,mus].forEach(function(a){ if(v){var p=a.play(); if(p&&p.catch)p.catch(function(){});} else a.pause(); }); }catch(e){} }
+function duck(on){ if(mus)mus.volume=on?.16:.45; if(bed)bed.volume=on?.26:.5; }   // the fire and the music step back while a story is told, so the voice sits clearly on top
 var amb=$('#amb'), ambOn=false, ambOff=false;
 function ambient(v){ ambOn=v; fireOn(v); amb.setAttribute('aria-pressed',String(v)); amb.textContent=v?'The fire and the music are on. Push to quiet them.':'Push for a crackling fire and music on a winter eve'; }
 amb.addEventListener('click',function(){ ambOff=ambOn; ambient(!ambOn); });
@@ -188,7 +150,12 @@ STORIES.forEach(function(s){
   });
   list.appendChild(li);
 });
-document.addEventListener('visibilitychange',function(){ if(!document.hidden)return; if(ambOn)ambient(false); if(cur&&cur.audio&&!cur.audio.paused){ cur.audio.pause(); setState(cur,false); } });
+document.addEventListener('visibilitychange',function(){
+  if(!document.hidden){ sceneOn(); return; }
+  try{ scene.pause(); }catch(e){}                                   // the picture rests while the page is away
+  if(cur&&cur.audio&&!cur.audio.paused)return;                    // a story that is playing is never stopped
+  if(ambOn)ambient(false);
+});
 })();
 </script>
 </body>
