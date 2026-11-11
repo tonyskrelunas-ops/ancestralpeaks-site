@@ -40,11 +40,11 @@ AP.pages = [
   { href: '/#path',     label: 'The Path',                 n: '01', group: 'Start here',   bar: true },
   { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true },
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
-  { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: false },
-  { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: false },
+  { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: true },
+  { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: true },
   { href: '/play/',     label: 'Games & Fireside Stories', n: '06', group: 'Explore',      bar: true },
   { href: '/books/',    label: 'The Books',                n: '07', group: 'Explore',      bar: true },
-  { href: '/work/',     label: 'For Your Work',            n: '08', group: 'Explore',      bar: false }
+  { href: '/work/',     label: 'For Your Work',            n: '08', group: 'Explore',      bar: true }
 ];
 /* the menu, grouped: Start here / The practice / Explore (Tony, 11/10: "better organize the menu") */
 AP.menuGroups = function(){
