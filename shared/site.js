@@ -855,7 +855,7 @@ AP.gate = function(){
     return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } }
   function due(){ if (busy()) { setTimeout(due, 3000); return; } show(); }
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
-    const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
+    const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1112j'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
   function show(){
     if (document.querySelector('.ap-gate')) return;
     const g = document.createElement('div'); g.className = 'ap-gate'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); g.setAttribute('aria-labelledby', 'apGateH');

@@ -17,9 +17,17 @@
   const ENDPOINT = 'https://api.web3forms.com/submit';
   const ACCESS_KEY = '057975c1-1a1a-465e-9b5e-3fb6692b2106';
 
+  // 11/12: the one members list (ancestralpeaks-members, Netlify Blobs) behind First Light and the letters.
+  // A plain-text POST, so the browser sends it without asking first; it never holds up the sign-up.
+  const JOIN = 'https://ancestralpeaks-members.netlify.app/api/join';
+  function join(f){
+    try { fetch(JOIN, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify({ email: f.email || '', first: f.name || '', source: f.source || 'peaks', page: location.pathname }), keepalive: true }).catch(function () {}); } catch (e) {}
+  }
+
   async function send(f){
     f = f || {};
     if (f.botcheck) return true;            // the honeypot was filled: a bot. Look like success, send nothing.
+    join(f);
     const body = {
       access_key: ACCESS_KEY,
       subject: f.subject || 'Ancestral Peaks — a new sign-up',
