@@ -708,6 +708,8 @@ AP.gate = function(){
   setTimeout(due, Math.max(0, 30000 - (Date.now() - first)));
   // never over a film or a session someone is watching or hearing (the welcome film above all): wait until it stops
   function busy(){ try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
+    // Tony 11/14: the stone breath on /practice/ is free and whole: never stop someone mid-breath (or on its "done")
+    if (document.querySelector('.breath.running, #done.show')) return true;
     return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } }
   function due(){ if (busy()) { setTimeout(due, 3000); return; } show(); }
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
