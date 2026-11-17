@@ -19,7 +19,7 @@
 
   // 11/12: the one members list (ancestralpeaks-members, Netlify Blobs) behind First Light and the letters.
   // A plain-text POST, so the browser sends it without asking first; it never holds up the sign-up.
-  const JOIN = 'https://ancestralpeaks-members.netlify.app/api/join';
+  const JOIN = 'https://members.ancestralpeaks.com/api/join';   // 11/17: the members service moved from Netlify to Tony's Hostinger plan
   function join(f){
     try { fetch(JOIN, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify({ email: f.email || '', first: f.name || '', source: f.source || 'peaks', page: location.pathname }), keepalive: true }).catch(function () {}); } catch (e) {}
   }
