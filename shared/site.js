@@ -137,6 +137,7 @@ AP.footer = function(host, opts){
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
     <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>
+    <p class="maker">Created by Tony Skrel&#363;nas, author of the <a href="https://ancestralwatch.com">Ancestral Watch</a> novels.</p>
     <div class="fine"><span>© 2026 Ancestral Peaks</span><span>The practice, one calm session at a time.</span></div>`;
   return host;
 };
