@@ -260,7 +260,7 @@
 /* Where the films live: films/ next to this page for now. To serve them from the Hostinger media home later, change this one line. */
 const MW_FILMS = 'films/';
 document.querySelectorAll('video.film[data-file]').forEach(v => {
-  v.dataset.src = MW_FILMS + v.dataset.file + '-540x960.mp4';   /* for a few minutes, until the wide copies arrive */
+  v.dataset.src = MW_FILMS + v.dataset.file + '-1280x720.mp4';
   v.dataset.srcPhone = MW_FILMS + v.dataset.file + '-540x960.mp4';
 });
 addEventListener('ap:ready', () => {
