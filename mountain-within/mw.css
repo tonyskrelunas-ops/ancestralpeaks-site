@@ -1,0 +1,91 @@
+/* THE MOUNTAIN WITHIN — the series section (11/19/2026). Loads after shared/site.css, css/pages.css and css/agent3.css; only adds names. */
+
+/* three films on one page: each theater is its own screen */
+.mw .theater + .chapters{padding-top:clamp(28px,4vw,56px)}
+.mw .theater .eyebrow{display:inline-block;font-weight:700;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem}
+.mw .theater .line{font-family:var(--display);font-size:clamp(1.15rem,1rem + .8vw,1.6rem);line-height:1.25;max-width:26ch;color:#fff;margin-top:.9rem}
+.mw .theater .front{padding-bottom:calc(clamp(24px,4vh,56px) + 104px)}     /* clear of the site's bottom dock */
+@media (max-width:699px){.mw .theater .front{padding-bottom:calc(clamp(24px,4vh,56px) + 92px)}}
+.mw .partno{display:block;font-family:var(--text);font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.mw .chapters .rail .chapter img{aspect-ratio:16/9;object-fit:cover}
+
+/* who it is for */
+.mw .forwho{background:var(--stone);padding:clamp(48px,7vw,110px) var(--gutter)}
+.mw .forwho .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:1rem 3rem;align-items:end;margin-bottom:clamp(24px,4vw,48px)}
+.mw .forwho h2{font-size:clamp(2.2rem,5vw,4.4rem);max-width:13ch}
+.mw .forwho .head p{font-size:clamp(1.02rem,1rem + .3vw,1.2rem);max-width:32rem}
+.mw .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.4vw,20px)}
+.mw .card{position:relative;border-radius:18px;overflow:hidden;background:var(--night);color:#fff;min-height:clamp(320px,34vw,520px);display:flex;align-items:flex-end;text-decoration:none}
+.mw .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.mw .card:hover img{transform:scale(1.04)}
+.mw .card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,0) 35%,rgba(16,11,13,.86))}
+.mw .card .t{position:relative;z-index:1;padding:18px 18px 20px}
+.mw .card b{display:block;font-family:var(--display);font-weight:700;font-size:clamp(1.2rem,1rem + .6vw,1.5rem);line-height:1.15;margin-bottom:.45rem}
+.mw .card p{font-size:.95rem;line-height:1.45;color:rgba(255,255,255,.88)}
+@media (max-width:980px){.mw .cards{grid-template-columns:repeat(2,minmax(0,1fr))}.mw .forwho .head{grid-template-columns:1fr}}
+@media (max-width:520px){.mw .cards{grid-template-columns:1fr}.mw .card{min-height:300px}}
+
+/* the practice band: the ring over the morning window */
+.mw .practice .bg::after{background:linear-gradient(90deg,rgba(16,11,13,.82),rgba(16,11,13,.45) 55%,rgba(16,11,13,.25))}
+.mw .practice .steps{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:1rem;font-weight:600;color:var(--gold);font-size:.95rem}
+
+/* the help box */
+.mw .help{background:#F4F1EA;padding:clamp(44px,6vw,90px) var(--gutter)}
+.mw .help .box{max-width:46rem;margin:0 auto;border:1.5px solid rgba(38,39,35,.18);border-radius:22px;padding:clamp(22px,3.4vw,40px);background:#fff}
+.mw .help h2{font-size:clamp(1.6rem,1.2rem + 1.6vw,2.4rem);margin-bottom:.6rem}
+.mw .help p{font-size:1.04rem;line-height:1.55;margin-top:.55rem}
+.mw .help ul{margin:.9rem 0 0;padding:0;list-style:none;display:grid;gap:.55rem}
+.mw .help li{padding-left:1.4rem;position:relative;font-size:1.04rem;line-height:1.5}
+.mw .help li::before{content:"";position:absolute;left:0;top:.62em;width:.55rem;height:.55rem;border-radius:50%;background:var(--creek)}
+.mw .help a{color:var(--creek);font-weight:700}
+
+/* close: share, then the members' door */
+.mw .close .share{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.mw .close .note{font-size:.95rem;color:rgba(255,255,255,.8);margin-top:.9rem}
+.mw .copied{position:fixed;left:50%;bottom:28px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;border-radius:999px;padding:.7em 1.2em;font-weight:600;opacity:0;transition:opacity .3s,transform .3s;z-index:50;pointer-events:none}
+.mw .copied.on{opacity:1;transform:translateX(-50%)}
+
+/* ---------- the guide ---------- */
+.mwg .ghead{position:relative;min-height:min(78vh,720px);display:flex;align-items:flex-end;color:#fff;background:var(--night);overflow:hidden}
+.mwg .ghead>.kb{position:absolute;inset:0}
+.mwg .ghead>.kb img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.mwg .ghead::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.2),rgba(16,11,13,.35) 45%,rgba(16,11,13,.9))}
+.mwg .ghead .inner{position:relative;z-index:1;width:100%;padding:calc(var(--bar-h) + 40px) var(--gutter) clamp(36px,5vw,64px);max-width:64rem}
+.mwg .ghead .kick{font-weight:700;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.mwg .ghead h1{font-size:clamp(2.4rem,6vw,5.4rem);max-width:15ch;margin:.5rem 0 .8rem}
+.mwg .ghead .dek{font-size:clamp(1.05rem,1rem + .4vw,1.3rem);max-width:38rem;color:rgba(255,255,255,.9)}
+.mwg .ghead .by{margin-top:1rem;font-size:.92rem;color:rgba(255,255,255,.78)}
+.mwg article{background:#FBFAF7;padding:clamp(40px,6vw,90px) var(--gutter) clamp(30px,4vw,60px)}
+.mwg article .col{max-width:40rem;margin:0 auto}
+.mwg article p{font-size:clamp(1.06rem,1rem + .25vw,1.2rem);line-height:1.68;margin:0 0 1.15em;color:#24251f}
+.mwg article h2{font-size:clamp(1.6rem,1.2rem + 1.4vw,2.4rem);margin:2.2em 0 .7em;line-height:1.12}
+.mwg article .first::first-letter{float:left;font-family:var(--display);font-weight:800;font-size:4.2em;line-height:.82;margin:.06em .08em 0 0;color:var(--earth)}
+.mwg article .keep{font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,1.1rem + .8vw,1.8rem);line-height:1.3;color:var(--creek);border-left:4px solid var(--gold);padding-left:1rem;margin:1.6em 0}
+.mwg article ul.list{margin:0 0 1.2em;padding-left:1.2rem}
+.mwg article ul.list li{font-size:clamp(1.06rem,1rem + .25vw,1.2rem);line-height:1.6;margin-bottom:.6em}
+.mwg article figure{margin:2em 0}
+.mwg article figure img{width:100%;height:auto;border-radius:16px;display:block}
+.mwg article figure figcaption{font-size:.88rem;color:var(--ink-2);margin-top:.5rem}
+.mwg article .films{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:1.4em 0 1.8em}
+.mwg article .films a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.mwg article .films img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.mwg article .films span{display:block;padding:.6rem .75rem .75rem;font-size:.92rem;line-height:1.35}
+.mwg article .films b{display:block;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--earth);margin-bottom:.2rem}
+@media (max-width:640px){.mwg article .films{grid-template-columns:1fr}}
+.mwg article .fine{font-size:.9rem;color:var(--ink-2)}
+.mwg article .sign{font-family:var(--display);font-weight:700;font-size:1.25rem}
+
+/* while a film plays, the site's bottom dock steps aside so the film's own controls are clear */
+html.mw-playing .ap-thumb{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(24px);transition:opacity .4s,transform .4s}
+
+/* phones and small tablets (the player's own layout below 900px): the play button sits on the picture */
+@media (max-width:900px){
+  .mw .theater .front{position:static}
+  .mw .theater .bigplay{z-index:3}
+}
+/* phones get the upright (9:16) copy of each film, so the screen stands up when one starts */
+@media (max-width:699px){
+  .mw .theater.started .screen{aspect-ratio:9/16;width:min(100%,calc((100svh - var(--bar-h)) * 9 / 16));justify-self:center}
+  .mw .theater.started .controls{top:calc(var(--bar-h) + min(177.78vw, 100svh - var(--bar-h)) - 58px)}
+  .mw .theater .controls{grid-template-columns:auto 1fr auto auto;gap:.6rem}
+}

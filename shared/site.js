@@ -42,9 +42,10 @@ AP.pages = [
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
   { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: true },
   { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: true },
-  { href: '/play/',     label: 'Games & Fireside Stories', n: '06', group: 'Explore',      bar: true },
-  { href: '/books/',    label: 'The Books',                n: '07', group: 'Explore',      bar: true },
-  { href: '/work/',     label: 'For Your Work',            n: '08', group: 'Explore',      bar: true }
+  { href: '/mountain-within/', label: 'The Mountain Within · films', n: '06', group: 'The practice', bar: false },
+  { href: '/play/',     label: 'Games & Fireside Stories', n: '07', group: 'Explore',      bar: true },
+  { href: '/books/',    label: 'The Books',                n: '08', group: 'Explore',      bar: true },
+  { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: true }
 ];
 /* the menu, grouped: Start here / The practice / Explore (Tony, 11/10: "better organize the menu") */
 AP.menuGroups = function(){
@@ -686,11 +687,15 @@ AP.seekPage = async function(t, o){
 
 /* ---------- init ---------- */
 /* ---------- the sign-up wall (Tony, 11/10: "on ancestral peaks.. 30 sec max.. have to sign up.. no matter what") ----------
-   30 seconds after a visitor first arrives (counted across pages and visits), a sign-up covers the page until they join.
+   45 seconds after a visitor first arrives (counted across pages and visits; 30 until 11/19), a sign-up covers the page until they join.
    Joining stores ap.free (the same key the Listening Room uses, so its two free sessions open) and sends through
    PeaksCapture: an email to the team via Web3Forms, plus the tribeawaken-capture list. The partner copy never asks. */
 AP.gate = function(){
   if (AP.render || AP.fileMode || /partners/.test(location.hostname)) return;
+  // 11/19, Tony: "no require signup still but lets make to 45 seconds now" (it was 30)
+  const WAIT = 45000;
+  // The Mountain Within (free films for hard days): the sign-up still comes, and it carries the help lines
+  const mw = /^\/mountain-within(\/|$)/.test(location.pathname);
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
   // Tony's own pass, like tribeawaken.com/?member: open any page with ?member once on a device and it never asks there
@@ -700,13 +705,13 @@ AP.gate = function(){
   const after = document.querySelector('#welcome-film + section');
   if (after) {
     const past = () => after.getBoundingClientRect().bottom < innerHeight * 0.5;
-    const arm = () => { if (!past()) return; removeEventListener('scroll', arm); setTimeout(due, 30000); };
+    const arm = () => { if (!past()) return; removeEventListener('scroll', arm); setTimeout(due, WAIT); };
     addEventListener('scroll', arm, { passive: true }); setTimeout(arm, 1200);
     return;
   }
   let first = Date.now();
   try { const f = +localStorage.getItem('ap.first'); if (f) first = f; else localStorage.setItem('ap.first', String(first)); } catch (e) {}
-  setTimeout(due, Math.max(0, 30000 - (Date.now() - first)));
+  setTimeout(due, Math.max(0, WAIT - (Date.now() - first)));
   // never over a film or a session someone is watching or hearing (the welcome film above all): wait until it stops
   function busy(){ try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
     // Tony 11/14: the stone breath on /practice/ is free and whole: never stop someone mid-breath (or on its "done")
@@ -727,7 +732,8 @@ AP.gate = function(){
       <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn earth" type="submit">Join free <span class="arrow">→</span></button>
       <p class="err" aria-live="polite"></p>
-      <p class="fine">Members: use the email you joined with. Nothing to pay here.</p>
+      <p class="fine">Members: use the email you joined with. Nothing to pay here.</p>${mw ? `
+      <p class="fine">Struggling right now? Call or text 988 in the United States and Canada, call Samaritans free on 116 123 in the United Kingdom and Ireland, or find a free line in your country at findahelpline.com.</p>` : ''}
     </form>`;
     document.body.appendChild(g); document.documentElement.classList.add('gated');
     try { document.querySelectorAll('audio,video').forEach(m => { if (!m.muted) m.pause(); }); if (AP.sound && AP.sound.on) AP.sound.stop(); } catch (e) {}
