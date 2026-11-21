@@ -249,6 +249,35 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 .book small{display:block;margin-top:.5rem;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);font-weight:700}
 @media (max-width:980px){.books .head{grid-template-columns:1fr;gap:1rem}.shelf{grid-template-columns:1fr}}
 
+/* ---------- IN LITHUANIAN, IN JAPANESE (Tony 11/21): the films and readings in each language ---------- */
+.lang{position:relative;background:var(--stone);padding:clamp(48px,6vw,96px) var(--gutter);border-top:1px solid var(--line)}
+.lang#japanese{background:var(--stone-2);border-bottom:1px solid var(--line)}
+.lang .lang-in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(24px,4vw,56px);align-items:start}
+.lang h2{font-size:clamp(2.2rem,4.6vw,4.2rem);line-height:1.04}
+.lang .say{margin-top:1rem;font-size:1.12rem;line-height:1.6;color:var(--ink);max-width:30rem}
+.lang .en{margin-top:.8rem;font-size:.98rem;color:var(--ink-2);max-width:30rem}
+.lang .read{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center;margin-top:1.6rem;padding:14px 16px;background:rgba(255,255,255,.85);border-radius:6px;box-shadow:0 1px 0 var(--line);text-decoration:none;color:inherit;max-width:30rem}
+.lang .read .covers{display:flex}
+.lang .read .covers img{width:54px;border-radius:3px;box-shadow:0 8px 20px rgba(38,39,35,.25);transition:transform .5s ease}
+.lang .read .covers img+img{margin-left:-24px}
+.lang .read:hover .covers img{transform:translateY(-3px)}
+.lang .read b{display:block;font-size:1.1rem;font-weight:800}
+.lang .read small{display:block;margin-top:.25rem;font-size:.9rem;color:var(--ink-2);line-height:1.4}
+.lang .films{display:grid;gap:14px}
+.lang .films .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.lang .wf-stage{box-shadow:0 18px 44px rgba(38,39,35,.28)}
+.lang .wf-go{display:flex;align-items:flex-end;justify-content:flex-start;gap:10px;padding:14px}
+.lang .wf-go .pl{width:56px;height:56px}
+.lang .wf-go .pl svg{width:22px;height:22px}
+.lang .wf-go .lb{position:static;margin-bottom:16px}
+.lang .two .wf-go{padding:10px}
+.lang .two .wf-go .pl{width:44px;height:44px}
+.lang .two .wf-go .pl svg{width:18px;height:18px}
+.lang .two .wf-go .lb{margin-bottom:12px;font-size:.86rem}
+.lang .credit{font-size:.78rem;color:var(--ink-2);line-height:1.45}
+@media (max-width:980px){.lang .lang-in{grid-template-columns:1fr}}
+@media (max-width:560px){.lang .films .two{grid-template-columns:1fr}}
+
 /* ---------- THE GROUND: a living mosaic ---------- */
 .ground{background:var(--stone-2);padding:clamp(40px,5vw,72px) 0 clamp(48px,6vw,88px);overflow:hidden}
 .ground .head{padding-inline:var(--gutter);display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap}
@@ -592,10 +621,46 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
   </div>
 </section>
 
+<!-- ===== IN LITHUANIAN AND IN JAPANESE (Tony 11/21: "Yes, add it" / "and lithuanian" / "we now have a whole bunch of lithuanian material").
+     Films load only when pressed; on a phone each one opens on its own, like the welcome film. ===== -->
+<section class="lang" id="lithuanian" lang="lt" data-bar="light">
+  <div class="lang-in">
+    <div>
+      <h2 class="reveal">Lietuviškai.</h2>
+      <p class="say reveal">Sena, paprasta praktika, kuri telpa delne. Mažas glotnus akmuo, kelios ramios minutės ir skaičius: įkvėpti iki keturių, sulaikyti iki keturių, iškvėpti iki šešių, vėl sulaikyti iki keturių.</p>
+      <p class="en reveal" lang="en">In Lithuanian: the Stone Breath, three rounds with the stone in the hand. Two more films from the books, and stories and essays to read.</p>
+      <a class="read reveal" href="https://ancestralwatch.com/lt/"><span class="covers"><img src="media/cover-far-messengers-cover-600.jpg" alt=""><img src="media/cover-stone-breath-cover-600.jpg" alt=""></span><span><b>Istorijos ir esė lietuviškai.</b><small>Tony Skrelūno istorijos ir esė — lietuvių kalba.</small></span></a>
+    </div>
+    <div class="films reveal">
+      <div class="wf" data-page="media/lt/akmens-kvepavimas-1280x720.mp4" data-wide="media/lt/akmens-kvepavimas-1280x720.mp4" data-poster-wide="media/lt/akmens-kvepavimas-title.jpg"><div class="wf-stage"><img src="media/lt/akmens-kvepavimas-title.jpg" alt="" loading="lazy"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Akmens kvėpavimas“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:07</span></button></div></div>
+      <div class="two">
+        <div class="wf" data-page="media/lt/rasa-1280x720.mp4" data-wide="media/lt/rasa-1280x720.mp4" data-poster-wide="media/lt/rasa-title.jpg"><div class="wf-stage"><img src="media/lt/rasa-title.jpg" alt="" loading="lazy"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Rasa“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:12</span></button></div></div>
+        <div class="wf" data-page="media/lt/ka-zino-lietuva-1280x720.mp4" data-wide="media/lt/ka-zino-lietuva-1280x720.mp4" data-poster-wide="media/lt/ka-zino-lietuva-title.jpg"><div class="wf-stage"><img src="media/lt/ka-zino-lietuva-title.jpg" alt="" loading="lazy"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Ką žino Lietuva“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:21</span></button></div></div>
+      </div>
+      <p class="credit" lang="en">Photographs in the Lithuanian films: Tony Skrelūnas; Wikimedia Commons: Aidas U. and VietovesLt (CC BY 3.0), Wojsyl (CC BY-SA 3.0), Scotch Mist and Bcecilija (CC BY-SA 4.0), Saulius Gruodis, Lithuanian State Central Archives (CC BY 4.0), Haragayato (CC BY-SA 4.0), others public domain or CC0; Unsplash.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lang" id="japanese" lang="ja" data-bar="light">
+  <div class="lang-in">
+    <div>
+      <h2 class="reveal">日本語で。</h2>
+      <p class="say reveal">高地砂漠の、電気の通っていない円い家。石油ランプの小さな灯りのもとで、ひとりのディネ（ナバホ）の少年が、郵便で届いた日本の本を読んだ。</p>
+      <p class="en reveal" lang="en">In Japanese: Under the Lamplight, a four-minute film, and five chapters of the books, free to read.</p>
+      <a class="read reveal" href="https://ancestralwatch.com/ja/read/"><span class="covers"><img src="media/cover-stone-breath-cover-600.jpg" alt=""><img src="media/cover-council-fire-cover-600.jpg" alt=""><img src="media/cover-far-messengers-cover-600.jpg" alt=""></span><span><b>五つの章を、無料で。</b><small>その少年がのちに書いた三冊の小説から、五つの章を日本語で、無料でお読みいただけます。</small></span></a>
+    </div>
+    <div class="films reveal">
+      <div class="wf" data-page="https://ancestralwatch.com/ja/read/" data-wide="https://ancestralwatch.com/assets/video/under-the-lamplight-ja.mp4" data-poster-wide="https://ancestralwatch.com/assets/video/under-the-lamplight-ja-poster.jpg"><div class="wf-stage"><img src="https://ancestralwatch.com/assets/video/under-the-lamplight-ja-poster.jpg" alt="" loading="lazy"><button class="wf-go" type="button" aria-label="映画『ランプの灯りのもとで』を観る、4分19秒"><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4分19秒</span></button></div></div>
+      <p class="credit" lang="en">Photographs: the author’s own and original scenes made for the film; Wikimedia Commons (stone lantern by Chi King, CC BY 3.0; others CC0 or public domain); Unsplash.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== THE GROUND: a living mosaic of his photographs and clips ===== -->
 <section class="ground" id="ground" data-scene="creek" data-scene-label="the creek" data-bar="light">
   <div class="head">
-    <div><h2 class="reveal">The ground this was made on.</h2><p class="reveal">Every photograph and every second of film on this page is our own: the canyon, the creek, the Peaks, the coast, the fire. The tiles change while you watch.</p></div>
+    <div><h2 class="reveal">The ground this was made on.</h2><p class="reveal">Every photograph and every second of film in this mosaic is our own: the canyon, the creek, the Peaks, the coast, the fire. The tiles change while you watch.</p></div>
     <div class="tally reveal"><span><b data-count="47">0</b>photographs</span><span><b data-count="18">0</b>film clips</span><span><b data-count="7">0</b>sessions</span><span><b data-count="10">0</b>voice notes</span></div>
   </div>
   <div class="mosaic" id="mosaic"></div>
