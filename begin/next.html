@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Begin free · Ancestral Peaks</title>
+<meta name="description" content="Two minutes each weekday morning, and three free months of the practice. A first name and an email.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../shared/site.next.css?v=1125c">
+<link rel="stylesheet" href="../css/pages.css?v=1125a">
+<link rel="stylesheet" href="../css/plan.css?v=1125c">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<link rel="canonical" href="https://ancestralpeaks.com/begin/">
+<meta property="og:title" content="Ancestral Peaks: begin free">
+<meta property="og:description" content="Two minutes each weekday morning, and three free months of the practice.">
+<meta property="og:image" content="https://ancestralpeaks.com/media/world/share-home-1200x630.jpg">
+<!-- THE BEGIN PAGE (11/25): the one page an ad, a film's description or a letter leads to. One promise, one form, nothing to wander
+     off into (the business plan of 11/24, part 2: every one of the five companies puts one promise and one button first).
+     The headline follows the link that brought the visitor (?for=morning | calm | hard-season), so the page says what the ad said.
+     Every sign-up carries the tag of the link that brought it (js/peaks-capture.next.js). Kept out of search engines. -->
+<style>
+.begin{position:relative;isolation:isolate;min-height:100svh;background:var(--night);color:#fff;display:grid;align-items:end;overflow:hidden}
+.begin .bg{position:absolute;inset:0;z-index:-1}
+.begin .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.begin .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.72) 0%,rgba(16,11,13,.25) 30%,rgba(16,11,13,.62) 62%,rgba(16,11,13,.96) 100%)}
+.begin .wrapb{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(22px,4vw,64px);align-items:end;padding:calc(var(--bar-h) + 28px) var(--gutter) clamp(28px,5vh,60px)}
+.begin h1{font-size:clamp(2.5rem,6.4vw,5.4rem);max-width:13ch}
+.begin .lede{margin:1rem 0 0;max-width:34rem;font-size:clamp(1.05rem,1rem + .5vw,1.3rem);line-height:1.4;color:rgba(255,255,255,.92)}
+.begin ul.gets{list-style:none;margin:1.3rem 0 0;padding:0;display:grid;gap:.5rem;max-width:34rem}
+.begin ul.gets li{position:relative;padding-left:1.5rem;line-height:1.4;color:rgba(255,255,255,.9)}
+.begin ul.gets li::before{content:"";position:absolute;left:0;top:.5em;width:.55rem;height:.55rem;border-radius:50%;background:var(--gold)}
+.begin .card{background:rgba(16,11,13,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-top-color:rgba(209,166,60,.8);border-radius:18px;padding:clamp(18px,2.4vw,28px)}
+.begin .card h2{font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem)}
+.bg-form{display:grid;gap:12px;margin-top:14px}
+.bg-form[hidden],.bg-done[hidden]{display:none}
+.bg-form label{display:grid;gap:6px;font-size:.85rem;font-weight:600}
+.bg-form input:not(.hp):not([type=radio]){height:54px;width:100%;border-radius:12px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.97);color:var(--ink);padding:0 14px;font:500 16px var(--text)}
+.bg-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.bg-form fieldset{margin:0;padding:0;border:0;display:flex;flex-wrap:wrap;gap:8px}
+.bg-form legend{padding:0;margin-bottom:.5rem;font-size:.9rem;font-weight:600}
+.bg-form fieldset label{position:relative;display:block}
+.bg-form fieldset input{position:absolute;opacity:0;width:1px;height:1px}
+.bg-form fieldset span{display:block;padding:.5em .9em;border-radius:999px;border:1px solid rgba(255,255,255,.32);font-size:.88rem;font-weight:600;cursor:pointer}
+.bg-form fieldset input:checked + span{background:#fff;border-color:#fff;color:var(--night)}
+.bg-form .btn{justify-content:center;min-height:56px;font-size:1.05rem}
+.bg-form .err{min-height:1.2em;margin:0;font-size:.9rem;color:#F3B28A}
+.bg-form .fine{margin:0;font-size:.84rem;line-height:1.45;color:rgba(255,255,255,.74)}
+.bg-done b{display:block;font-family:var(--display);font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);letter-spacing:-.02em}
+.bg-done p{margin:.6rem 0 0;line-height:1.5;color:rgba(255,255,255,.9)}
+.bg-done .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:1rem}
+.said{background:var(--stone);color:var(--ink);padding:clamp(44px,7vw,96px) var(--gutter)}
+.said .wrapn{max-width:1180px;margin:0 auto}
+.said h2{font-size:clamp(1.6rem,3.4vw,2.6rem);max-width:22ch}
+.said .q{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);margin-top:clamp(20px,3vw,36px)}
+.said blockquote{margin:0;background:#fff;border-radius:16px;padding:clamp(18px,2.2vw,26px);box-shadow:0 18px 40px -28px rgba(38,39,35,.5);line-height:1.5}
+.said cite{display:block;margin-top:.8rem;font-style:normal;font-weight:700;font-size:.92rem}
+@media (max-width:900px){.begin .wrapb{grid-template-columns:1fr;align-items:start;padding-top:calc(var(--bar-h) + 18px)}.said .q{grid-template-columns:1fr}.begin ul.gets{display:none}}
+/* this page has one job: no row of links across the top, no bar of icons, no menu */
+.begin-page .ap-nav,.begin-page .ap-thumb,.begin-page .ap-burger,.begin-page .ap-bar .btn{display:none!important}
+</style>
+<script>try{sessionStorage.setItem("ap.founding.peek","1")}catch(e){}</script>   <!-- review copy: the founding season shows, so it can be looked at before November 27 -->
+</head>
+<body class="begin-page">
+
+<header data-ap-nav data-active="/begin/"></header>
+
+<section class="begin" id="top">
+  <div class="bg"><img id="bgImg" src="../media/peaks-morning-2000.jpg" srcset="../media/peaks-morning-1000.jpg 1000w, ../media/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The San Francisco Peaks under the morning cloud" fetchpriority="high"></div>
+  <div class="wrapb">
+    <div>
+      <h1 id="bgH">Two minutes each morning, before the phone.</h1>
+      <p class="lede" id="bgLede">A short practice in your inbox at 5:30 each weekday morning, and three free months of the practice it comes from.</p>
+      <ul class="gets">
+        <li>First Light, the two-minute morning letter, each weekday.</li>
+        <li>Morning Water, eleven minutes, open the moment you sign up.</li>
+        <li>About a quarter of every room for three months: sessions, films, readings, and week one of the Eight Weeks.</li>
+      </ul>
+    </div>
+    <div class="card" id="bgCard">
+      <h2>Begin free.</h2>
+      <form class="bg-form" id="bgForm" novalidate>
+        <fieldset><legend>What brings you here?</legend>
+          <label><input type="radio" name="why" value="hard-season"><span>A hard season</span></label>
+          <label><input type="radio" name="why" value="calm-under-pressure"><span>Calm under pressure</span></label>
+          <label><input type="radio" name="why" value="stories-books"><span>Stories and books</span></label>
+          <label><input type="radio" name="why" value="my-work"><span>My work</span></label>
+        </fieldset>
+        <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
+        <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" required></label>
+        <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn earth" type="submit">Send me First Light</button>
+        <p class="err" aria-live="polite"></p>
+        <p class="fine">Free. No card. Your address stays with our team and is never shared or sold. Reply “stop” to any letter and it stops.</p>
+      </form>
+      <div class="bg-done" id="bgDone" hidden aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="said" data-bar="light">
+  <div class="wrapn">
+    <h2>What readers said of Stone Breath, the book the practice comes from.</h2>
+    <div class="q">
+      <blockquote>“The tools for endurance, belonging, and purpose are not lost. They are dormant. This book awakens them.”<cite>Carmella Kahn, DrPH, MPH, University of New Mexico</cite></blockquote>
+      <blockquote>“Blending ancestral wisdom, cross-cultural storytelling, and practical tools… the courage to live from inner knowing rather than fear.”<cite>Emily Affolter, Ph.D., Associate Dean of Doctoral Studies</cite></blockquote>
+      <blockquote>“Honors the Lithuanian thread, the forest, the songs, the endurance, with the precision of a native, not a tourist.”<cite>Dainius Macikenas, PhD</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script>window.AP_NO_GATE = true;</script>
+<script src="../shared/site.next.js?v=1125c"></script>
+<script src="../js/peaks-capture.next.js?v=1125c"></script>
+<script>
+AP.init();
+(function(){
+  // the page says what the link said: ?for=morning (the letter), calm (the stone breath), hard-season (the films)
+  var V = {
+    'calm': { h: 'A calm you can carry.', l: 'One small stone, a counted breath, and two minutes each weekday morning. Three free months of the practice.', img: '../media/hand-stone-1400.jpg', pos: '50% 30%' },
+    'hard-season': { h: 'For a hard season.', l: 'Three short films for hard days, a counted breath, and two minutes each weekday morning. Three free months of the practice.', img: '../mountain-within/media/poster-2-wide-1920.jpg', pos: '50% 40%' }
+  };
+  var v = V[(new URLSearchParams(location.search).get('for') || '').toLowerCase()];
+  if (v) { document.getElementById('bgH').textContent = v.h; document.getElementById('bgLede').textContent = v.l; var im = document.getElementById('bgImg'); im.removeAttribute('srcset'); im.src = v.img; im.style.objectPosition = v.pos; }
+  var pre = (new URLSearchParams(location.search).get('for') || '').toLowerCase(); var r = document.querySelector('.bg-form input[value="' + (pre === 'calm' ? 'calm-under-pressure' : pre) + '"]'); if (r) r.checked = true;
+
+  var form = document.getElementById('bgForm'), done = document.getElementById('bgDone'), err = form.querySelector('.err');
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function thanks(name, fresh){
+    form.hidden = true; document.querySelector('#bgCard h2').hidden = true;
+    done.innerHTML = '<b>' + (fresh ? 'It is on its way, ' + esc(name) + '.' : 'You are in' + (name ? ', ' + esc(name) : '') + '.') + '</b>'
+      + '<p>A welcome letter comes first. First Light comes the next weekday morning at 5:30. You do not have to wait for it: Morning Water is open now.</p>'
+      + '<div class="acts"><a class="btn earth" href="../listen/#free">Listen to Morning Water</a><a class="btn ghost" href="../">See the whole of it</a></div>';
+    done.hidden = false;
+  }
+  var j = null; try { j = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
+  if (j && !j.pass && !j.owner) thanks(j.name, false);
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.name.value.trim(), email = form.email.value.trim();
+    if (!name) { err.textContent = 'Your first name, please.'; form.name.focus(); return; }
+    if (!PeaksCapture.validEmail(email)) { err.textContent = 'That email does not look complete.'; form.email.focus(); return; }
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true; err.textContent = '';
+    var first = name.split(' ')[0].slice(0, 40), why = (form.querySelector('input[name=why]:checked') || {}).value || '';
+    try { localStorage.setItem('ap.free', JSON.stringify({ name: first, at: Date.now() })); } catch (e2) {}
+    var go = form.botcheck.checked ? Promise.resolve() : PeaksCapture.send({ name: name, email: email, source: 'peaks-begin' + (why ? '-' + why : ''), subject: 'Ancestral Peaks — a new sign-up (the begin page)' });
+    Promise.resolve(go).catch(function(){}).then(function(){ thanks(first, true); try { window.dispatchEvent(new CustomEvent('ap:signed-up', { detail: { source: 'peaks-begin' } })); } catch (e3) {} });
+  });
+})();
+</script>
+<script>
+/* REVIEW COPY ONLY. Links to pages that have a review copy lead to that copy, so a visitor who is reviewing stays in the review. */
+(function(){
+  var M = ["/", "/begin/", "/books/", "/course/", "/films/", "/first-light/", "/founding/", "/gift/", "/listen/", "/mountain-within/", "/mountain-within/a-good-relationship-with-stress/", "/mountain-within/guide/", "/mountain-within/leaving-home/", "/mountain-within/the-hard-day/", "/play/", "/practice/", "/reader/", "/reading/", "/weeks/", "/why/", "/work/"];
+  function fix(){
+    var as = document.querySelectorAll('a[href]');
+    for (var i = 0; i < as.length; i++) {
+      var a = as[i], u; try { u = new URL(a.href); } catch (e) { continue; }
+      if (u.origin !== location.origin) continue;
+      var p = u.pathname.replace(/index\.html$/, '');
+      if (M.indexOf(p) < 0) continue;
+      a.href = p + 'next.html' + u.search + u.hash;
+    }
+  }
+  fix();
+  if (window.MutationObserver) { var t = 0; new MutationObserver(function(){ clearTimeout(t); t = setTimeout(fix, 60); }).observe(document.body, { childList: true, subtree: true }); }
+  var c = document.createElement('div'); c.textContent = 'Review copy';
+  c.style.cssText = 'position:fixed;z-index:57;left:10px;bottom:calc(' + (document.querySelector('.ap-thumb') ? '128px' : '12px') + ' + env(safe-area-inset-bottom,0px));padding:.25em .7em;border-radius:99px;background:rgba(16,11,13,.86);border:1px solid rgba(209,166,60,.8);color:#fff;font:700 11px/1.4 system-ui,sans-serif;pointer-events:none';
+  document.body.appendChild(c);
+})();
+</script>
+</body>
+</html>
