@@ -716,12 +716,16 @@ AP.gate = function(){
   function busy(){ try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true;
     // Tony 11/14: the stone breath on /practice/ is free and whole: never stop someone mid-breath (or on its "done")
     if (document.querySelector('.breath.running, #done.show')) return true;
+    // 11/25: nor over someone filling in the First Light form on the home page
+    if (document.activeElement && document.activeElement.closest && document.activeElement.closest('.fl-form')) return true;
     return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } }
   function due(){ if (busy()) { setTimeout(due, 3000); return; } show(); }
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
     const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
   function show(){
     if (document.querySelector('.ap-gate')) return;
+    // 11/25: someone who has just joined on this page (the First Light form on the home page) is not asked again
+    try { if (JSON.parse(localStorage.getItem('ap.free') || 'null')) return; } catch (e) {}
     const g = document.createElement('div'); g.className = 'ap-gate'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); g.setAttribute('aria-labelledby', 'apGateH');
     g.innerHTML = `<form class="ap-gate-card" novalidate>
       <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>

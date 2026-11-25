@@ -322,3 +322,28 @@ html.gated,html.gated body{overflow:hidden}
 .ap-gate .btn{width:100%;justify-content:center;margin-top:1.15rem;min-height:56px;font-size:1.05rem}
 .ap-gate .err{color:#F3B28A;min-height:1.2em;font-size:.92rem;margin-top:.6rem}
 .ap-gate .fine{font-size:.85rem;color:rgba(255,255,255,.6);margin-top:.3rem}
+
+/* ===== 11/25 (Tony: "figure how to make it bling"). The mountain mark draws itself, then catches the light now and then. The
+   main buttons and the play rings carry a slow sheen. The bar of icons has a gold edge. All of it rests for anyone who has
+   asked their device for less motion. ===== */
+.ap-bar .ap-mark svg path{stroke-dasharray:100;stroke-dashoffset:100;animation:apDraw 1.7s .3s cubic-bezier(.3,.7,.2,1) forwards,apGlint 10s 4s ease-in-out infinite}
+.ap-bar .ap-mark svg ellipse{opacity:0;animation:apDot .6s 1.7s ease forwards,apGlintDot 10s 4s ease-in-out infinite}
+@keyframes apDraw{to{stroke-dashoffset:0}}
+@keyframes apDot{to{opacity:.9}}
+@keyframes apGlint{0%,84%,100%{stroke:currentColor;filter:none}92%{stroke:var(--gold);filter:drop-shadow(0 0 6px rgba(209,166,60,.8))}}
+@keyframes apGlintDot{0%,84%,100%{fill:currentColor}92%{fill:var(--gold)}}
+.btn.earth,.btn.light{position:relative;overflow:hidden}
+.btn.earth{box-shadow:0 14px 32px -16px rgba(164,67,31,.95)}
+.btn.earth::after,.btn.light::after{content:"";position:absolute;top:-20%;bottom:-20%;left:0;width:38%;pointer-events:none;transform:translateX(-170%) skewX(-18deg);background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.34),rgba(255,255,255,0));animation:apSheen 7s 2.4s ease-in-out infinite}
+.btn.light::after{background:linear-gradient(90deg,rgba(209,166,60,0),rgba(209,166,60,.42),rgba(209,166,60,0))}
+@keyframes apSheen{0%,72%{transform:translateX(-170%) skewX(-18deg)}100%{transform:translateX(440%) skewX(-18deg)}}
+.wf-go .pl{border-color:rgba(209,166,60,.9);animation:apPulse 3s ease-out infinite}
+@keyframes apPulse{0%{box-shadow:0 0 0 0 rgba(209,166,60,.5)}70%{box-shadow:0 0 0 18px rgba(209,166,60,0)}100%{box-shadow:0 0 0 0 rgba(209,166,60,0)}}
+.ap-thumb::before{content:"";position:absolute;left:14%;right:14%;top:-1px;height:1px;pointer-events:none;background:linear-gradient(90deg,rgba(209,166,60,0),rgba(209,166,60,.9),rgba(209,166,60,0))}
+.ap-thumb a[aria-current="page"] svg{filter:drop-shadow(0 0 6px rgba(209,166,60,.7))}
+@media (prefers-reduced-motion:reduce){
+  .ap-bar .ap-mark svg path{animation:none;stroke-dashoffset:0}
+  .ap-bar .ap-mark svg ellipse{animation:none;opacity:.9}
+  .btn.earth::after,.btn.light::after{display:none}
+  .wf-go .pl{animation:none}
+}

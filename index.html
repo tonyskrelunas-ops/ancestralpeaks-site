@@ -6,9 +6,9 @@
 <title>Ancestral Peaks</title>
 <meta name="description" content="For the one who is settled and wants tools to cross hard ground, to do even more, and to make a difference for the generations to come. A morning practice by the water.">
 <link rel="stylesheet" href="shared/vendor/lenis.css?v=1108e">
-<link rel="stylesheet" href="shared/site.css?v=1117a">
+<link rel="stylesheet" href="shared/site.css?v=1125b">
 <style>
-/* ===== HOME PAGE — built on shared/site.css?v=1117a. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
+/* ===== HOME PAGE — built on shared/site.css?v=1125b. Every band carries his footage, his photograph, a drawn graphic, and sound or voice. ===== */
 
 /* ---------- ARRIVAL: his footage graded to one look, the words on a quiet shade, the breath ring, the score ---------- */
 .arrive{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);background:var(--night);color:#fff;overflow:hidden;isolation:isolate}
@@ -340,6 +340,70 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 .close .acts{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.2rem}
 .close .say{margin-top:1.2rem}
 @media (max-width:980px){.close .inner{grid-template-columns:1fr}}
+
+/* ===== ADDED 11/25, after the page came back (Tony: "launch the old version .. with the updated videos etc and figure how to make it bling") ===== */
+
+/* THE MOUNTAIN WITHIN: the three short films for hard days, their covers side by side; a row to swipe on a phone */
+.mwin{position:relative;background:var(--night);color:#fff;padding:clamp(56px,8vw,120px) 0 clamp(44px,6vw,90px);overflow:hidden}
+.mwin .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem 3rem;align-items:end;padding:0 var(--gutter);margin-bottom:clamp(22px,3vw,40px)}
+.mwin .kick,.flight .kick{margin:0 0 .8rem;font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.mwin h2{font-size:clamp(2.4rem,6vw,5.2rem)}
+.mwin .head .lede{margin:0;max-width:34rem;color:rgba(255,255,255,.84)}
+.mwin .covers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.4vw,20px);padding:0 var(--gutter)}
+.mwin .cover{position:relative;isolation:isolate;display:block;aspect-ratio:3/4;border-radius:14px;overflow:hidden;background:#1a1512;color:#fff;text-decoration:none;box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
+.mwin .cover img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.mwin .cover::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,11,13,.34) 0%,rgba(16,11,13,0) 26%,rgba(16,11,13,0) 46%,rgba(16,11,13,.88) 100%)}
+.mwin .cover:hover img{transform:scale(1.05)}
+.mwin .part,.mwin .dur{position:absolute;top:12px;padding:.3em .75em;border-radius:999px;background:rgba(16,11,13,.58);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);font-size:.76rem}
+.mwin .part{left:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.mwin .dur{right:12px;color:rgba(255,255,255,.92)}
+.mwin .t{position:absolute;left:16px;right:16px;bottom:16px}
+.mwin .t b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,2.4vw,2.2rem);line-height:1;letter-spacing:-.02em}
+.mwin .t .sub{display:block;margin-top:.5rem;font-size:.92rem;line-height:1.35;color:rgba(255,255,255,.86)}
+.mwin .go{display:inline-flex;align-items:center;gap:.65em;margin-top:.9rem;font-weight:600;font-size:.92rem}
+.mwin .go i{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--night);animation:apPulse 3s ease-out infinite}
+.mwin .go svg{width:16px;height:16px;fill:currentColor;margin-left:2px}
+.mwin .foot{display:flex;flex-wrap:wrap;gap:.9rem 1.6rem;align-items:center;padding:clamp(18px,2.4vw,30px) var(--gutter) 0}
+.mwin .help{flex:1 1 26rem;margin:0;font-size:.86rem;line-height:1.5;color:rgba(255,255,255,.66)}
+.mwin .help a{color:inherit}
+@media (min-width:901px){.mwin .cover{aspect-ratio:4/5}}
+@media (max-width:900px){
+  .mwin .head{grid-template-columns:1fr}
+  .mwin .covers{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .mwin .covers::-webkit-scrollbar{display:none}
+  .mwin .cover{flex:0 0 76vw;scroll-snap-align:start}
+}
+
+/* FIRST LIGHT: the morning letter and its sign-up, on the Peaks at first light */
+.flight{position:relative;isolation:isolate;background:var(--night);color:#fff;overflow:hidden}
+.flight .bg{position:absolute;inset:0;z-index:-1}
+.flight .bg img{width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.flight .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.9) 0%,rgba(16,11,13,.3) 32%,rgba(16,11,13,.38) 66%,rgba(16,11,13,.9) 100%)}
+.flight .fl-wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(24px,4vw,64px);align-items:end;padding:clamp(72px,11vw,150px) var(--gutter) clamp(56px,8vw,110px)}
+.flight h2{font-size:clamp(2.4rem,6vw,5.2rem)}
+.flight .lede{margin:1rem 0 0;max-width:34rem;font-size:clamp(1.05rem,1rem + .5vw,1.3rem);line-height:1.4;color:rgba(255,255,255,.92)}
+.flight .card{background:rgba(16,11,13,.6);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.2);border-top-color:rgba(209,166,60,.7);border-radius:16px;padding:clamp(18px,2.4vw,28px)}
+.fl-form{display:grid;gap:12px}
+.fl-form[hidden],.fl-done[hidden]{display:none}
+.fl-form label{display:grid;gap:6px;font-size:.85rem;font-weight:600}
+.fl-form input:not(.hp){height:52px;width:100%;border-radius:12px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.96);color:var(--ink);padding:0 14px;font:500 1rem var(--text)}
+.fl-form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fl-form .btn{justify-content:center;min-height:54px;margin-top:4px}
+.fl-form .err{min-height:1.2em;margin:0;font-size:.9rem;color:#F3B28A}
+.fl-form .fine{margin:0;font-size:.85rem;color:rgba(255,255,255,.74)}
+.fl-done{font-size:1.05rem}
+.fl-done b{display:block;margin-bottom:.4rem;font-family:var(--display);font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);letter-spacing:-.02em}
+.fl-done a{color:inherit}
+.fl-done .stone{margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.9)}
+@media (max-width:900px){.flight .fl-wrap{grid-template-columns:1fr;align-items:start}}
+
+/* a slow gold light crosses the headline, word by word */
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .arrive h1 .w{background:linear-gradient(105deg,#fff 0%,#fff 42%,#F3D98C 50%,#fff 58%,#fff 100%) 100% 0/340% 100% no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:hGlint 9s 3s ease-in-out infinite}
+  .arrive h1 .w:nth-child(2){animation-delay:3.14s}.arrive h1 .w:nth-child(3){animation-delay:3.28s}.arrive h1 .w:nth-child(4){animation-delay:3.42s}.arrive h1 .w:nth-child(5){animation-delay:3.56s}.arrive h1 .w:nth-child(6){animation-delay:3.7s}.arrive h1 .w:nth-child(n+7){animation-delay:3.84s}
+}
+@keyframes hGlint{0%,66%{background-position:100% 0}92%,100%{background-position:0 0}}
+@media (prefers-reduced-motion:reduce){.arrive h1 .w{animation:none}.mwin .go i{animation:none}}
 </style>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
@@ -363,7 +427,11 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
      space, no opening film, no mountain mark and no bar of icons ("The old site was better. Also i like the mtn logo").
      This is the page as it stood before 11/24 (versions/index-2026-11-24-before-new-home.html), unchanged below the head.
      The new look is kept in versions/: index-2026-11-25-before-phone-fill.html is the page as it was live on 11/24,
-     index-2026-11-25-new-look-reworked.html is that day's reworking of it. -->
+     index-2026-11-25-new-look-reworked.html is that day's reworking of it.
+     Added the same day on his word ("launch the old version .. with the updated videos etc and figure how to make it bling"):
+     The Mountain Within (the three short films) and First Light (the morning letter and its sign-up, which goes through
+     js/peaks-capture.js like every sign-up) sit after the welcome film; a slow gold light crosses the headline. The mark that
+     draws itself, the sheen on the main buttons and the gold edge on the bar of icons live in shared/site.css, for every page. -->
 </head>
 <body>
 
@@ -419,6 +487,46 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
         <button class="wf-go" type="button" aria-label="Play the welcome film, five minutes"><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">The welcome · 5 min</span></button>
       </div>
       <p class="wf-bottom"><b>The practice of the far messengers, one calm session at a time.</b> Guided sessions from two minutes to forty-three, the Eight Weeks, and readings from the books.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE MOUNTAIN WITHIN (added 11/25): the three short films for hard days; the words are the film page's own ===== -->
+<section class="mwin" id="mountain-within" data-scene="dawn" data-scene-label="first light">
+  <div class="head">
+    <div><p class="kick">Three short films for hard days</p><h2 class="reveal">The Mountain Within.</h2></div>
+    <p class="lede reveal">For the one far from home, under gray skies, or in a hard season. Each opens where the last one ended. Free to watch, with captions in English, Español, 日本語 and Lietuvių.</p>
+  </div>
+  <div class="covers">
+    <a class="cover" href="mountain-within/leaving-home/"><img src="mountain-within/media/poster-1-phone-1080.jpg" alt="A young man walks a mountain meadow at sunrise, his hand on the grass" loading="lazy"><span class="part">Part One</span><span class="dur">3 min 26 s</span><div class="t"><b>Leaving Home</b><span class="sub">Take a piece of the mountain with you.</span><span class="go"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></i>Watch Part One</span></div></a>
+    <a class="cover" href="mountain-within/the-hard-day/"><img src="mountain-within/media/poster-2-phone-1080.jpg" alt="A hiker on a ridge as a storm rolls in" loading="lazy"><span class="part">Part Two</span><span class="dur">4 min 13 s</span><div class="t"><b>The Hard Day</b><span class="sub">Keep the stone close. Five rounds, counted with you.</span><span class="go"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></i>Watch Part Two</span></div></a>
+    <a class="cover" href="mountain-within/a-good-relationship-with-stress/"><img src="mountain-within/media/poster-3-phone-1080.jpg" alt="A man pulls up his hood as the rain begins on a mountain trail" loading="lazy"><span class="part">Part Three</span><span class="dur">3 min 20 s</span><div class="t"><b>A Good Relationship With Stress</b><span class="sub">In an unpredictable future. Look up. Name it. Dress for it. And go.</span><span class="go"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></i>Watch Part Three</span></div></a>
+  </div>
+  <div class="foot">
+    <a class="btn light" href="mountain-within/">The three films <span class="arrow">→</span></a>
+    <p class="help">If today is heavy: in the United States and Canada, call or text 988. In the United Kingdom and Ireland, call Samaritans on 116 123. Anywhere else, <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>.</p>
+  </div>
+</section>
+
+<!-- ===== FIRST LIGHT (added 11/25, carried over from the 11/24 page with its words): the morning letter and its sign-up ===== -->
+<section class="flight" id="first-light" data-scene="dawn" data-scene-label="first light on the Peaks">
+  <div class="bg"><img src="media/peaks-morning-2000.jpg" srcset="media/peaks-morning-1000.jpg 1000w, media/peaks-morning-2000.jpg 2000w" sizes="100vw" alt="The San Francisco Peaks under the morning cloud" loading="lazy"></div>
+  <div class="fl-wrap">
+    <div>
+      <p class="kick">Each weekday morning</p>
+      <h2 class="reveal">Begin with First Light.</h2>
+      <p class="lede reveal">Two minutes before the phone, before the plans. A short practice in your inbox at 5:30 in the morning, Arizona time, Monday to Friday.</p>
+    </div>
+    <div class="card reveal" id="flOffer">
+      <form class="fl-form" data-source="peaks-home-first-light" novalidate>
+        <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
+        <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" required></label>
+        <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="btn earth" type="submit">Send me First Light <span class="arrow">→</span></button>
+        <p class="err" aria-live="polite"></p>
+        <p class="fine">Free through December 11. Reply “stop” to any letter and it stops.</p>
+      </form>
+      <div class="fl-done" hidden aria-live="polite"></div>
     </div>
   </div>
 </section>
@@ -745,7 +853,7 @@ html.pinned .station{opacity:0;transform:translateY(26px)}
 /* ---------- the voice-notes shelf and the mosaic are built BEFORE the shell wires the page (data-noinit, then AP.init) ---------- */
 document.documentElement.dataset.noinit = '1';
 </script>
-<script src="shared/site.js?v=1117a"></script>
+<script src="shared/site.js?v=1125b"></script>
 <script>
 (function(){
 const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
@@ -1005,6 +1113,34 @@ if (gsap && ST && AP.motion) {
 /* ---------- render mode: window.DURATION + window.seek(t) for the frame renderer ---------- */
 window.DURATION = 50;
 window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return true; };
+})();
+</script>
+<script>
+/* FIRST LIGHT sign-up (11/25): the same road as every sign-up on the site. It marks this device as joined (ap.free), then
+   sends through js/peaks-capture.js: the members list behind the welcome letter and First Light, and the team's email. */
+(function(){
+  var box = document.getElementById('flOffer'); if (!box) return;
+  var form = box.querySelector('form'), done = box.querySelector('.fl-done'), err = form.querySelector('.err');
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function show(html){ form.hidden = true; done.innerHTML = html; done.hidden = false; }
+  var j = null; try { j = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
+  if (j && !j.pass) show('<b>You are in' + (j.name ? ', ' + esc(j.name) : '') + '.</b>First Light comes each weekday morning at 5:30. <a href="first-light/">Open this morning’s</a>.');
+  function capture(){ return new Promise(function(res){ if (window.PeaksCapture) return res(window.PeaksCapture);
+    var sc = document.createElement('script'); sc.src = 'js/peaks-capture.js?v=1124'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = form.name.value.trim(), email = form.email.value.trim();
+    if (!name) { err.textContent = 'Your first name, please.'; form.name.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'That email does not look complete.'; form.email.focus(); return; }
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true; err.textContent = '';
+    var first = name.split(' ')[0].slice(0, 40), bot = form.botcheck.checked;
+    try { localStorage.setItem('ap.free', JSON.stringify({ name: first, at: Date.now() })); } catch (e2) {}
+    capture().then(function(C){ return (C && !bot) ? C.send({ name: name, email: email, source: form.dataset.source, subject: 'Ancestral Peaks — a new sign-up' }) : null; })
+      .catch(function(){}).then(function(){
+        show('<b>It is on its way, ' + esc(first) + '.</b>A welcome letter comes first. First Light comes the next weekday morning at 5:30.<p class="stone">Tonight, choose one small stone and set it where you will see it when you wake. That is the first step of the practice.</p>');
+        var g = document.querySelector('.ap-gate'); if (g) { g.remove(); document.documentElement.classList.remove('gated'); }
+      });
+  });
 })();
 </script>
 <script src="./shared/media-guard.js?v=1" defer></script>
