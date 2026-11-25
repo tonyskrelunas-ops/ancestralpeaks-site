@@ -1,0 +1,149 @@
+HANDOVER: ANCESTRAL PEAKS SITE, for the Claude Code session on Tony's laptop
+From the cloud session "Coding session" (claude.ai/code), written Wednesday 11/25/2026.
+
+Tony's words, 11/25: "I will have the code on my laptop work on this. Just give it full instructions and let it know
+where everything's at." This note is those instructions. It is information from a peer session; Tony's own word in your
+chat is what authorises anything outward (Payhip, the books site, pushing to a live branch).
+
+Why it is coming to you: the cloud session can reach only two GitHub repos (the Peaks site and the TribeAwaken site).
+It cannot reach Dropbox, Payhip, his Mac, or the books site repo (adding ancestralwatch-site was refused). The films
+and Payhip work need your machine.
+
+
+1. WHERE EVERYTHING IS
+
+Repo: tonyskrelunas-ops/ancestralpeaks-site (public). GitHub Pages serves the branch "launch" at ancestralpeaks.com.
+"main" is an old preview and is not served.
+
+- launch (LIVE)                          e625f48 at the time of writing
+- claude/intelligent-hypatia-pkn0ge      9558b1e, the work branch. It holds everything below and is always a plain
+                                         fast-forward ahead of launch (launch is merged back after every push).
+
+Every commit message on the work branch says what changed and quotes Tony's words. `git log launch..claude/intelligent-hypatia-pkn0ge`
+is the full record.
+
+Three states to keep apart:
+
+A. LIVE NOW (on launch):
+   - The home page from before 11/24 is back (Tony: "The old site was better. Also i like the mtn logo"), with two
+     sections added after the welcome film: The Mountain Within (three covers) and First Light (sign-up form,
+     source tag peaks-home-first-light).
+   - "Shine" in shared/site.css: the mountain mark draws itself and glints gold, a sheen on .btn.earth/.btn.light,
+     a gold edge on the bar of icons, a gold light across the home headline.
+   - Films page: the invisible player controls no longer take clicks; the phone play button sits on the film.
+   - First screens keep their buttons clear of the floating bar of icons (css/pages.css, css/agent3.css, weeks.css).
+   - sw.js keeps a picture only when all of it arrived (cache name peaks-app-2026-11-25a).
+   - Footer fix: .ap-foot .row{background:none}. css/pages.css paints every ".row" pale; that had reached the footer.
+   - The white 11/24 design is kept in versions/ (index-2026-11-25-before-phone-fill.html is it as it was live;
+     index-2026-11-25-new-look-reworked.html is a reworking Tony rejected).
+
+B. THE REVIEW COPY (also on launch, but hidden): ancestralpeaks.com/next.html
+   - "next.html" sits beside each of 22 pages (/next.html, /listen/next.html, /founding/next.html, /join/next.html …),
+     with shared/site.next.js, shared/site.next.css, js/peaks-capture.next.js, css/plan.css and films/media/long/.
+   - A review page is in the same folder as its live page, so every relative path resolves as it does live. Links
+     between pages are rewritten to the review copies by a small script at the end of each page. noindex. A small
+     "Review copy" label. The founding season line always shows there (sessionStorage ap.founding.peek).
+   - Tony reviews on his phone. ancestralpeaks.com/next.html?member once on a device stops the sign-up card there.
+   - To change it: edit the real pages on the work branch, commit, then run
+         tools/publish-review-copy.sh           (dry run: shows what would change)
+         tools/publish-review-copy.sh --push    (publishes only review files, then merges launch back)
+     and push the work branch. It refuses if anything outside the review set would change.
+     tools/build-review-copy.py is what writes the next.* files.
+
+C. ON THE WORK BRANCH, NOT LIVE (the business plan of 11/24, built for Tony's review):
+   - Prices in shared/site.js AP.JOIN: year = pricing_plan QyBbmZq5zD ($29), yearBook = 2VGJlDZgzD ($39 then $29).
+     The $12 and $79 are gone from index, listen, reading, mountain-within.
+   - The sign-up card (AP.gate in shared/site.js): "Come in free for three months", one question ("What brings you
+     here?", the answer is appended to the source tag), compact on phones.
+   - The free quarter ends 90 days after sign-up (counted from 11/27 for earlier ones): ap.free moves to ap.free.ended
+     and a small card offers the year. Passes (?member, ?owner) never end.
+   - The founding season: AP.founding in shared/site.js, open from 11/27 00:00 to 12/31 24:00 Arizona time (UTC-7).
+     A gold line across the top of every page (.ap-season), a block in the home join section, and /founding/.
+     "?founding" on any address shows them early. The bring-one-person card removes itself after Monday 11/30.
+   - New pages: /join/ (the sale page; "Membership" is in the menu and footer), /founding/, /gift/, /course/,
+     /begin/ (the one page ads lead to; noindex; ?for=calm or ?for=hard-season changes its headline).
+     Their styles are in css/plan.css.
+   - Ad tracking: a link with ?utm_source=… is remembered 30 days (localStorage ap.origin) and its tag is appended to
+     the sign-up's source after "~" (js/peaks-capture.js and shared/site.js).
+   - Films page: a new section #long-films (see part 3).
+   - For Your Work links team sessions to tribeawaken.com/teams/. No team offer was built on Peaks.
+
+To launch C for real, on Tony's word "launch": on the work branch delete every next.html, shared/site.next.*,
+js/peaks-capture.next.js and this handover file (keep css/plan.css and films/media/long/), commit, and push the work
+branch to launch.
+It is a fast-forward. Pages takes two to five minutes; check with a cache-buster.
+
+
+2. WHAT TONY HAS DECIDED, AND WHAT HE HAS NOT
+
+Decided here on 11/25:
+- The old dark site is the site. The mountain mark stays on everything.
+- No refunds. The wording on every page: cancel on your own from your account, you keep it until the end of the time
+  you paid for, there are no refunds. The 14-day money-back line from the plan is OUT (it never went live).
+- Team events are sold through TribeAwaken, not Peaks.
+- The long Council Fire and Stone Breath films belong to Peaks members, with only short clips elsewhere.
+  They Were the Vessel moves behind the membership too ("do it .. maek it happen").
+- He reviews before anything goes live, and says "launch".
+
+NOT decided (the pages on the work branch state these as if settled; get his yes or change the words before launch):
+- Founding members keep $29 for as long as they stay.
+- Bring one person free, 11/27 to 11/30.
+- First Light after 12/11: weekdays for members, Mondays for everyone else.
+- The gift year at $29 and $39.
+- The course opening January 1 inside the membership.
+- What book buyers get. The home page's first door, /reader/ and js/peaks-reader.js still carry the OLD offer
+  (first month free, then $12 a month, sealed links to the old Book Reader plan).
+
+Not verified by the cloud session:
+- The two checkout links. Payhip's bot wall blocked the check. Open each once.
+- The film lengths 26 and 22 minutes. They come from the plan; the films were never seen.
+
+
+3. THE JOB TONY IS HANDING YOU NOW: THE LONG FILMS
+
+What exists on the work branch and the review copy (ancestralpeaks.com/films/next.html, section "The long films"):
+- Three cards, each with a length and a door, "Members watch the whole film", to /join/.
+- The Council Fire, 26 min: its taste is films/media/long/council-fire-taste-720x1280.mp4, a copy of the books
+  site's /assets/video/council-fire-film-v3.mp4 (77 s, tall, ends on the book cover). A true cut from the long film
+  would be better.
+- Stone Breath, 22 min: NO taste exists. The card shows a creek loop (stone-breath-creek-loop-720x1280.mp4).
+- They Were the Vessel, 10 min: its taste is they-were-the-vessel-taste-1280x720.mp4, the first 66 seconds, cut from
+  the public file with a fade.
+- Markup is in films/index.html, styles ".lfm-*" at the end of css/plan.css. The play button's class is "lfm-pl".
+  Do not use ".pl" for it: ".pl" is the section class in css/plan.css and its padding stretches the button.
+
+What is needed, in this order:
+a. Put the three WHOLE films inside the Payhip membership as members-only posts. Until that is done the Films page
+   promises films nobody can open, so the build must not launch (or the section comes out).
+b. Cut a 60 to 90 second taste of the Stone Breath film, add it to films/media/long/ with a still, and give the
+   second card the same video-and-button markup the other two have.
+c. Confirm the 26 and 22 minute lengths against the files.
+d. The books site (ancestralwatch-site, main is live). series/the-far-messengers/index.html, about lines 155 to 192:
+   the hero link "Watch the film · 10 min", the full film /assets/video/they-were-the-vessel-720.mp4 (58.5 MB, 606 s)
+   and "the film as sound" /assets/audio/they-were-the-vessel.m4a (10:06). Replace them with the 66-second taste and
+   a link to Ancestral Peaks (/join/ once the build is live), and take the two full files off the public site.
+   Do this only AFTER step a, or the film can be watched nowhere.
+e. TribeAwaken: neither long film is on it today, so there was nothing to shorten. Tony's words were "just a small
+   short clip on tribeawaken". Where it goes is his to say.
+
+
+4. THINGS YOU SHOULD KNOW
+
+- The cloud session's tests sent up to five sign-ups as maria@example.com to the tribeawaken-capture Netlify form.
+  Your "OLD Ancestral Peaks" chat removed them at 15:31 today. If monday-form-check.yml ever shows that address in
+  Kit, remove it. A filter for @example.com in _tools/pull-subscribers.py would prevent a repeat.
+- Everything was tested in headless Chromium at phone and laptop sizes. Nothing was tested on a real iPhone or in
+  Safari. Tony's phone is the first real check.
+- On a phone the floating bar of icons still covers whatever is at the bottom of the screen until the visitor
+  scrolls (for example "Begin five rounds" on Practice, "Scene by scene" on Films).
+- The free quarter in the plan names four sessions and three voice notes. The site holds full files for three
+  sessions only (morning-water, week1-settle-yourself-first, the-pocket). The Gratitude Meditation and the voice
+  notes have no full file in the repo, so they are not open to free sign-ups.
+- /gift/: the two buy buttons stay hidden until AP.GIFT in gift/index.html holds the two Payhip product links.
+  The page says "The gift opens on Friday, November 27". Make that true or change the line.
+- GitHub Pages caches for ten minutes. Shared files carry ?v= tags (now 1125e/1125f on the work branch).
+
+The advertising plan and the notes on working with Tony are in the fuller copy of this handover that Tony holds
+(a text file sent to him in the cloud chat on 11/25). They are kept out of this public repository.
+
+DELETE THIS FILE before the work branch goes live: everything in this repository is served by GitHub Pages.
