@@ -36,6 +36,17 @@ AP.JOIN = {
 };
 AP.JOIN.monthly = AP.JOIN.year; AP.JOIN.yearly = AP.JOIN.yearBook;         // older pages still ask by these two names
 
+/* ---------- where a visitor came from (11/25), so an ad can be judged by what it brought ----------
+   Read on arrival, on any page. js/peaks-capture.js adds the tag to the sign-up; the same few lines live there. */
+(function(){
+  try {
+    const q = new URLSearchParams(location.search), s = q.get('utm_source'); if (!s) return;
+    const old = JSON.parse(localStorage.getItem('ap.origin') || 'null'); if (old && Date.now() - old.at < 30 * 864e5) return;
+    const tag = [s, q.get('utm_medium'), q.get('utm_campaign'), q.get('utm_content')].filter(Boolean).join('.').toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, 64);
+    if (tag) localStorage.setItem('ap.origin', JSON.stringify({ tag: tag, at: Date.now() }));
+  } catch (e) {}
+})();
+
 /* ---------- the free quarter lasts three months (the business plan of 11/24) ----------
    It is counted from the day of the sign-up, and from November 27 for anyone who came before that. When it ends the rooms
    close back to what is free for everyone, and the door to the full year stands beside them. Tony's own passes never end.
@@ -730,6 +741,7 @@ AP.seekPage = async function(t, o){
    PeaksCapture: an email to the team via Web3Forms, plus the tribeawaken-capture list. The partner copy never asks. */
 AP.gate = function(){
   if (AP.render || AP.fileMode || /partners/.test(location.hostname)) return;
+  if (window.AP_NO_GATE) return;   // a page that is itself the sign-up (the begin page that ads lead to) does not ask twice
   // 11/19, Tony: "no require signup still but lets make to 45 seconds now" (it was 30)
   const WAIT = 45000;
   // The Mountain Within (free films for hard days): the sign-up still comes, and it carries the help lines
@@ -769,7 +781,7 @@ AP.gate = function(){
     return [...document.querySelectorAll('video,audio')].some(m => !m.paused && !m.ended && !m.muted); } catch (e) { return false; } }
   function due(){ if (busy()) { setTimeout(due, 3000); return; } show(); }
   function capture(){ return new Promise(res => { if (window.PeaksCapture) return res(window.PeaksCapture);
-    const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1108e'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
+    const sc = document.createElement('script'); sc.src = AP.href('/js/peaks-capture.js?v=1125c'); sc.onload = () => res(window.PeaksCapture || null); sc.onerror = () => res(null); document.head.appendChild(sc); }); }
   function show(){
     if (document.querySelector('.ap-gate')) return;
     // 11/25: someone who has just joined on this page (the First Light form on the home page) is not asked again

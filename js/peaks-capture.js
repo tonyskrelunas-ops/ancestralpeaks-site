@@ -24,9 +24,24 @@
     try { fetch(JOIN, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=UTF-8' }, body: JSON.stringify({ email: f.email || '', first: f.name || '', source: f.source || 'peaks', page: location.pathname }), keepalive: true }).catch(function () {}); } catch (e) {}
   }
 
+  // 11/25, so that an ad can be judged by what it brought: a link that carries ?utm_source=… (an ad, a film's description,
+  // a letter) is remembered on this device for 30 days, and its tag travels with the sign-up after a "~".
+  // "peaks-begin~meta.paid.founding.film-a" reads: signed up on the begin page, came from that ad.
+  function remember(){
+    try {
+      const q = new URLSearchParams(location.search), s = q.get('utm_source'); if (!s) return;
+      const old = JSON.parse(localStorage.getItem('ap.origin') || 'null'); if (old && Date.now() - old.at < 30 * 864e5) return;
+      const tag = [s, q.get('utm_medium'), q.get('utm_campaign'), q.get('utm_content')].filter(Boolean).join('.').toLowerCase().replace(/[^a-z0-9._-]/g, '').slice(0, 64);
+      if (tag) localStorage.setItem('ap.origin', JSON.stringify({ tag: tag, at: Date.now() }));
+    } catch (e) {}
+  }
+  function origin(){ try { const o = JSON.parse(localStorage.getItem('ap.origin') || 'null'); return o && Date.now() - o.at < 30 * 864e5 ? o.tag : ''; } catch (e) { return ''; } }
+  remember();
+
   async function send(f){
-    f = f || {};
+    f = Object.assign({}, f || {});
     if (f.botcheck) return true;            // the honeypot was filled: a bot. Look like success, send nothing.
+    const from = origin(); if (from) f.source = (f.source || 'peaks') + '~' + from;
     join(f);
     const body = {
       access_key: ACCESS_KEY,
@@ -51,5 +66,5 @@
   }
 
   const validEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(s || '').trim());
-  window.PeaksCapture = { send, validEmail, ENDPOINT };
+  window.PeaksCapture = { send, validEmail, ENDPOINT, origin };
 })();

@@ -1138,7 +1138,7 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
   var j = null; try { j = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (j && !j.pass) show('<b>You are in' + (j.name ? ', ' + esc(j.name) : '') + '.</b>First Light comes each weekday morning at 5:30. <a href="first-light/">Open this morning’s</a>.');
   function capture(){ return new Promise(function(res){ if (window.PeaksCapture) return res(window.PeaksCapture);
-    var sc = document.createElement('script'); sc.src = 'js/peaks-capture.js?v=1124'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); }
+    var sc = document.createElement('script'); sc.src = 'js/peaks-capture.js?v=1125c'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); }
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var name = form.name.value.trim(), email = form.email.value.trim();
