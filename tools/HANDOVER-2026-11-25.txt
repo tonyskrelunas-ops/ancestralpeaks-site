@@ -16,7 +16,7 @@ Repo: tonyskrelunas-ops/ancestralpeaks-site (public). GitHub Pages serves the br
 "main" is an old preview and is not served.
 
 - launch (LIVE)                          e625f48 at the time of writing
-- claude/intelligent-hypatia-pkn0ge      9558b1e, the work branch. It holds everything below and is always a plain
+- claude/intelligent-hypatia-pkn0ge      the work branch (its newest commit). It holds everything below and is always a plain
                                          fast-forward ahead of launch (launch is merged back after every push).
 
 Every commit message on the work branch says what changed and quotes Tony's words. `git log launch..claude/intelligent-hypatia-pkn0ge`
