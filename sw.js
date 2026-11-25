@@ -1,6 +1,6 @@
 /* Ancestral Peaks, the installable app: pages come fresh from the network when there is one and from the
    phone when there isn't; images, previews and the free sessions are kept on the phone after the first play. */
-const VERSION = 'peaks-app-2026-11-21b';
+const VERSION = 'peaks-app-2026-11-25a';
 const SHELL = ['/', '/listen/', '/reading/', '/manifest.webmanifest', '/app/icon-192.png', '/app/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -23,10 +23,27 @@ self.addEventListener('fetch', e => {
       .catch(() => caches.match(req, { ignoreSearch: true })));
     return;
   }
-  if (/\.(?:jpg|jpeg|png|webp|svg|woff2|mp3)$/i.test(url.pathname)) {
+  if (/\.(?:jpg|jpeg|png|webp|svg|woff2)$/i.test(url.pathname)) {
+    e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
+      if (r.ok && r.status === 200) { const kept = keepWhole(req, r.clone()); try { e.waitUntil(kept); } catch (err) {} }
+      return r;
+    })));
+    return;
+  }
+  if (/\.mp3$/i.test(url.pathname)) {
     e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
       if (r.ok && r.status === 200) { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); }
       return r;
     })));
   }
 });
+/* 11/25: a picture is kept on the phone only when all of it arrived. On a weak signal a download can be cut short, and a
+   picture kept that way would show as a thin strip over a black screen on every later visit. Raising VERSION above also
+   clears every copy kept before today. */
+function keepWhole(req, copy) {
+  const want = copy.headers.get('content-encoding') ? 0 : Number(copy.headers.get('content-length')) || 0;
+  return copy.blob().then(b => {
+    if (!b.size || (want && b.size !== want)) return;
+    return caches.open(VERSION).then(c => c.put(req, new Response(b, { status: 200, headers: copy.headers })));
+  }).catch(() => {});
+}

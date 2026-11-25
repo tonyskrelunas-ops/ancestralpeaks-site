@@ -23,6 +23,8 @@
 .hero .side{justify-self:end;max-width:30rem;color:rgba(255,255,255,.85);font-size:.95rem}
 .hero .eyebrow{display:block;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
 @media (max-width:900px){.hero .copy{grid-template-columns:1fr;gap:1rem}.hero .side{justify-self:start}.hero h1{font-size:clamp(2.6rem,12vw,4rem)}}
+/* 11/25: the first screen keeps its buttons clear of the floating bar at the bottom, as The Mountain Within does */
+html.has-thumb .hero .copy{padding-bottom:calc(clamp(28px,5vh,64px) + 96px)}
 
 /* ---------- the shelf of covers in three dimensions ---------- */
 .shelf3d{position:relative;z-index:2;display:flex;gap:clamp(10px,2vw,28px);align-items:flex-end;justify-content:flex-end;perspective:1400px;perspective-origin:50% 40%}
@@ -168,8 +170,9 @@ html.flat .scene .stick{position:relative;height:auto;min-height:100svh}
 .theater .bigplay:hover{transform:scale(1.05)}
 .theater .bigplay svg{width:32px;height:32px;fill:currentColor;margin-left:4px}
 .theater .side{justify-self:end;max-width:28rem;color:rgba(255,255,255,.85);font-size:.95rem}
-.theater .controls{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:14px var(--gutter) calc(14px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.75));opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
-.theater.playing .controls,.theater.paused .controls{opacity:1;transform:none}
+/* 11/25: until the film plays these controls are invisible, and they must not take the clicks meant for "Play" and "Watch, with sound" underneath */
+.theater .controls{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:14px var(--gutter) calc(14px + env(safe-area-inset-bottom,0px));display:grid;grid-template-columns:auto 1fr auto auto;gap:1rem;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.75));opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;pointer-events:none}
+.theater.playing .controls,.theater.paused .controls{opacity:1;transform:none;pointer-events:auto}
 .theater .controls button{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:999px;padding:.55em 1em;font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:.5em}
 .theater .controls button svg{width:16px;height:16px;fill:currentColor}
 .theater .controls .seek{height:4px;background:rgba(255,255,255,.2);border-radius:2px;position:relative;cursor:pointer}
@@ -192,10 +195,13 @@ html.flat .scene .stick{position:relative;height:auto;min-height:100svh}
   .theater .now{top:calc(var(--bar-h) + 10px)}
   .theater .now span{font-size:1.05rem}
   .theater h1{font-size:clamp(2.4rem,11vw,3.6rem)}
-  .theater .bigplay{width:64px;height:64px;position:absolute;left:50%;top:calc(var(--bar-h) + 28vw);transform:translate(-50%,-50%)}
+  /* 11/25: the play button belongs on the film. It was placed against the words below (the nearest positioned box), so on a phone it sat over the text. */
+  .theater .front{position:static}
+  .theater .bigplay{width:64px;height:64px;position:absolute;z-index:2;left:50%;top:calc(var(--bar-h) + 28.125vw);transform:translate(-50%,-50%)}
   .theater .bigplay:hover{transform:translate(-50%,-50%) scale(1.05)}
   .theater.playing .bigplay,.theater.paused .bigplay{display:none}
 }
+@media (min-width:901px){html.has-thumb .theater .front{padding-bottom:calc(clamp(24px,4vh,56px) + 96px)}}
 /* the chapter rail */
 .chapters{background:var(--night);color:#fff;padding:clamp(40px,5vw,72px) 0 clamp(36px,5vw,64px)}
 .chapters .head{padding-inline:var(--gutter);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem 2rem;align-items:end}

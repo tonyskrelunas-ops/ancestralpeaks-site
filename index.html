@@ -21,12 +21,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="media/world/alps-headlamps-1600.jpg">
+<link rel="preload" as="image" type="image/webp" href="media/world/alps-headlamps-1100.webp" media="(max-width:899px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="media/world/alps-headlamps-1600.webp" media="(min-width:900px)" fetchpriority="high">
 <!-- The home page, 11/24/2026. The new look Tony approved on 11/22 ("Beautiful", "i like it"), launched on his word
      ("lets go on the updated ancestral peaks.. launch"), with the far messenger way of inviting people in:
      give first, read the weather honestly, ask for one small step, hand them something to carry, let them pass it on.
      Every sign-up goes through js/peaks-capture.js (the members list behind the welcome letter and First Light).
-     The home page before this one is kept in versions/index-2026-11-24-before-new-home.html. -->
+     The home page before this one is kept in versions/index-2026-11-24-before-new-home.html.
+     11/25 (Tony, from his phone: "Too much empty space.. this is supposed to be a global iconic website"): the top
+     photograph is a fifth of the weight and is never a black screen while it loads; the four "What brings you here"
+     cards are photographs; phones get a menu with a photograph for every room; the sections sit closer on a phone.
+     The page before this is kept in versions/index-2026-11-25-before-phone-fill.html. -->
 <style>
 :root{
   --ink:#0B1114;--ink-2:#4A5459;--line:#DCE2E4;--mist:#F1F4F5;--snow:#FFFFFF;
@@ -55,15 +60,41 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 .nav ul{display:none;list-style:none;gap:28px;font-weight:500;font-size:.95rem}
 .nav ul a{text-decoration:none;opacity:.85}.nav ul a:hover{opacity:1}
 .nav .navjoin{height:40px;padding:0 1.1em;font-size:.9rem;white-space:nowrap}
-@media(min-width:960px){.nav ul{display:flex}}
+.navacts{display:flex;align-items:center;gap:10px}
+.navmenu{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid currentColor;background:none;color:inherit;cursor:pointer;display:grid;place-content:center;gap:5px;padding:0}
+.navmenu span{display:block;width:16px;height:1.5px;border-radius:2px;background:currentColor;transition:transform .25s ease}
+.navmenu.x span:first-child{transform:translateY(3.25px) rotate(45deg)}
+.navmenu.x span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+@media(min-width:960px){.nav ul{display:flex}.nav .navmenu{display:none}}
+@media(max-width:380px){.nav{gap:10px}.brand{font-size:1rem}.nav .navjoin{padding:0 .85em;font-size:.84rem}.navacts{gap:8px}}
+
+/* the phone menu: every room one tap away, each with its photograph */
+.menu{position:fixed;inset:0;z-index:40;display:flex;flex-direction:column;gap:20px;padding:18px var(--pad) calc(22px + env(safe-area-inset-bottom));padding-top:max(18px,env(safe-area-inset-top));background:rgba(8,12,15,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);color:var(--snow);overflow-y:auto;overscroll-behavior:contain;animation:menuin .28s ease both}
+.menu[hidden]{display:none}
+@keyframes menuin{from{opacity:0}to{opacity:1}}
+.menu .mtop{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.menu ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin:auto 0}
+.menu li{animation:rise .5s cubic-bezier(.2,.7,.2,1) both}
+.menu li:nth-child(n+3){animation-delay:.04s}.menu li:nth-child(n+5){animation-delay:.08s}.menu li:nth-child(n+7){animation-delay:.12s}.menu li:nth-child(n+9){animation-delay:.16s}
+.menu li a{display:flex;align-items:center;gap:12px;padding:7px 0;text-decoration:none;font-stretch:112%;font-weight:700;font-size:1.06rem;letter-spacing:-.02em;line-height:1.1}
+.menu li img{flex:none;width:56px;height:56px;border-radius:14px;object-fit:cover;background:#1a2226}
+.menu .mfoot{display:grid;gap:10px}
+.menu .mfoot .btn{width:100%}
+.menu .mfoot .btn .play{background:var(--snow)}.menu .mfoot .btn .play::after{border-left-color:var(--ink)}
+@media(min-width:560px){.menu ul{grid-template-columns:repeat(3,1fr)}.menu .mfoot{grid-template-columns:1fr 1fr}}
+@media(max-width:340px){.nav{gap:8px}.brand{font-size:.92rem}.nav .navjoin{padding:0 .7em;font-size:.8rem}.menu li a{font-size:.95rem;gap:10px}.menu li img{width:48px;height:48px;border-radius:12px}}
+@media(min-width:960px){.menu{display:none}}
 
 /* hero */
 .hero{position:relative;height:100svh;min-height:600px;color:var(--snow);display:grid;overflow:hidden;background:#06090c}
-.hero figure{position:absolute;inset:0;display:grid;grid-template-columns:1fr}
-.hero figure img{width:100%;height:100%;object-fit:cover;object-position:50% 35%;transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
-.hero figure img + img{display:none}
+.hero figure{position:absolute;inset:0;display:grid;grid-template-columns:1fr;grid-template-rows:100%}
+/* until the photograph arrives the frame holds the night sky, never a black screen (a small blurred copy of the picture on phones) */
+.hero figure picture{position:relative;display:block;min-width:0;overflow:hidden;background:linear-gradient(180deg,#0c1628 0%,#22344f 40%,#101a22 68%,#06090c 100%)}
+.hero figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%;transform:scale(1.06);animation:settle 2.4s cubic-bezier(.2,.7,.2,1) forwards}
+.hero figure picture + picture{display:none}
 @keyframes settle{to{transform:scale(1)}}
-@media(min-width:900px){.hero figure{grid-template-columns:1fr 1fr;gap:3px}.hero figure img + img{display:block}}
+@media(max-width:899px){.hero figure picture:first-child{background:#0c1628 url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAeABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQDBQECBv/EACAQAAIBBAIDAQAAAAAAAAAAAAECAAMEEUESIQUTMVH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwH/xAAXEQEBAQEAAAAAAAAAAAAAAAAAIQER/9oADAMBAAIRAxEAPwDlQmz8M2NLEYpXVv37LYga4ueozSrWlUjhbsAPuWlcobFeKGdQli3krem3FLNGA2SYRQaqi6kkD9+zLMEwyHsjWouDAnMgql9rAACEizCb3Wcf/9k=) 50% 35%/cover no-repeat}}
+@media(min-width:900px){.hero figure{grid-template-columns:1fr 1fr;gap:3px}.hero figure picture + picture{display:block}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 45%,rgba(0,0,0,.72) 100%)}
 .hero .copy{position:relative;z-index:2;align-self:end;padding:0 var(--pad) clamp(36px,8vh,88px);max-width:1400px}
 .hero h1{font-size:clamp(3rem,1rem + 6vw,7.2rem);opacity:0;transform:translateY(24px);animation:rise 1.1s .35s cubic-bezier(.2,.7,.2,1) forwards}
@@ -132,13 +163,16 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 /* what brings you here */
 .ask{padding:clamp(80px,12vh,140px) var(--pad)}
 .ask h2{font-size:clamp(2rem,1.2rem + 3vw,3.8rem);margin-bottom:28px}
-.ask ul{list-style:none;display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:700px){.ask ul{grid-template-columns:1fr 1fr}}
-@media(min-width:1100px){.ask ul{grid-template-columns:repeat(4,1fr)}}
-.ask a{display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:170px;padding:24px;border-radius:18px;background:var(--mist);text-decoration:none;transition:background .25s ease,color .25s ease,transform .25s ease}
-.ask a:hover{background:var(--ink);color:var(--snow);transform:translateY(-3px)}
-.ask b{font-stretch:112%;font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);letter-spacing:-.025em;line-height:1.05}
-.ask span{color:inherit;opacity:.7}
+.ask ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:700px){.ask ul{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:1100px){.ask ul{gap:16px}}
+.ask a{position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;aspect-ratio:3/4;padding:clamp(14px,1.8vw,24px);border-radius:18px;overflow:hidden;background:var(--ink);color:var(--snow);text-decoration:none;transition:transform .25s ease}
+.ask a img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ask a::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.8) 100%)}
+.ask a:hover{transform:translateY(-3px)}
+.ask a:hover img{transform:scale(1.05)}
+.ask b{font-stretch:112%;font-size:clamp(1.12rem,.8rem + 1.2vw,1.9rem);letter-spacing:-.025em;line-height:1.05}
+.ask span{font-size:clamp(.84rem,.7rem + .4vw,1rem);line-height:1.3;color:rgba(255,255,255,.88)}
 
 /* mountains rail */
 .mtns{padding-bottom:clamp(80px,12vh,140px)}
@@ -269,7 +303,30 @@ footer nav a{text-decoration:none;color:var(--snow)}
 .gate p{margin-top:14px;color:var(--ink-2)}
 .gate .cap-form{grid-template-columns:1fr}
 .gate .cap-form .btn{width:100%}
-html.gated{overflow:hidden}
+html.gated,html.menu-open{overflow:hidden}
+
+/* phones (Tony, 11/25: "Too much empty space"): the sections sit closer, and nothing is left blank */
+@media(max-width:700px){
+  .statement{padding:48px var(--pad) 52px}
+  .statement small{margin-top:16px}
+  .film{margin-top:26px;border-radius:14px}
+  .crossing figure{min-height:46svh}
+  .crossing .ccopy{padding:44px var(--pad) 52px}
+  .offer{margin-top:26px}
+  .ask{padding:52px var(--pad)}
+  .ask h2{margin-bottom:20px}
+  .head{margin-bottom:20px}
+  .mtns{padding-bottom:52px}
+  .films{padding:52px 0}
+  .langs{padding-bottom:52px}
+  .breathe{padding:52px var(--pad);gap:26px}
+  .breathe p{margin:16px 0 22px}
+  .orb{width:min(66vw,300px)}
+  .doors{padding:52px var(--pad);gap:34px}
+  .rooms{padding-bottom:52px}
+  .pass{padding:52px var(--pad);gap:26px}
+  .join{padding:60px var(--pad)}
+}
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -288,14 +345,47 @@ html.gated{overflow:hidden}
     <li><a href="play/">Games</a></li>
     <li><a href="work/">For teams</a></li>
   </ul>
-  <a class="btn navjoin" href="#first-light" data-focus>Begin free</a>
+  <div class="navacts">
+    <a class="btn navjoin" href="#first-light" data-focus>Begin free</a>
+    <button class="navmenu" id="menuOpen" type="button" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false" aria-label="Menu"><span></span><span></span></button>
+  </div>
 </header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="mtop"><a class="brand" href="./">Ancestral Peaks</a><button class="navmenu x" id="menuClose" type="button" aria-label="Close the menu"><span></span><span></span></button></div>
+  <ul>
+    <li><a href="first-light/"><img src="media/menu/first-light.jpg" width="56" height="56" alt="" loading="lazy">First Light</a></li>
+    <li><a href="films/"><img src="media/menu/films.jpg" width="56" height="56" alt="" loading="lazy">Films</a></li>
+    <li><a href="listen/"><img src="media/menu/listen.jpg" width="56" height="56" alt="" loading="lazy">Listen</a></li>
+    <li><a href="practice/"><img src="media/menu/practice.jpg" width="56" height="56" alt="" loading="lazy">Practice</a></li>
+    <li><a href="weeks/"><img src="media/menu/weeks.jpg" width="56" height="56" alt="" loading="lazy">Eight Weeks</a></li>
+    <li><a href="books/"><img src="media/menu/books.jpg" width="56" height="56" alt="" loading="lazy">Books</a></li>
+    <li><a href="play/"><img src="media/menu/games.jpg" width="56" height="56" alt="" loading="lazy">Games</a></li>
+    <li><a href="play/fireside/"><img src="media/menu/stories.jpg" width="56" height="56" alt="" loading="lazy">Stories</a></li>
+    <li><a href="reading/"><img src="media/menu/reading.jpg" width="56" height="56" alt="" loading="lazy">Reading</a></li>
+    <li><a href="work/"><img src="media/menu/teams.jpg" width="56" height="56" alt="" loading="lazy">For teams</a></li>
+  </ul>
+  <div class="mfoot">
+    <a class="btn white" href="#first-light" data-focus>Begin free</a>
+    <button class="btn" type="button" id="menuWelcome"><span class="play"></span>Watch the welcome</button>
+  </div>
+</div>
 
 <main>
 <section class="hero">
   <figure>
-    <img src="media/world/alps-headlamps-1600.jpg" width="1600" height="2385" alt="Five runners' headlamps coming down the Swiss Alps before dawn, three more above">
-    <img src="media/world/peaks-headlamps-1100.jpg" width="1100" height="1466" alt="Headlamps on the San Francisco Peaks before dawn">
+    <picture>
+      <source media="(max-width:899px)" type="image/webp" srcset="media/world/alps-headlamps-1100.webp">
+      <source media="(max-width:899px)" srcset="media/world/alps-headlamps-1100.jpg">
+      <source type="image/webp" srcset="media/world/alps-headlamps-1600.webp">
+      <img src="media/world/alps-headlamps-1600.jpg" width="1600" height="2385" alt="Five runners' headlamps coming down the Swiss Alps before dawn, three more above" fetchpriority="high" decoding="async">
+    </picture>
+    <picture>
+      <!-- phones show one photograph, so they are not asked to fetch the second -->
+      <source media="(max-width:899px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+      <source type="image/webp" srcset="media/world/peaks-headlamps-1100.webp">
+      <img src="media/world/peaks-headlamps-1100.jpg" width="1100" height="1466" alt="Headlamps on the San Francisco Peaks before dawn" decoding="async">
+    </picture>
   </figure>
   <div class="copy">
     <h1>Calm is stored,<br>not summoned.</h1>
@@ -312,7 +402,8 @@ html.gated{overflow:hidden}
   <p>A good relationship with stress helps you reach for the stars, and cross the hardest ground with songs and stories.</p>
   <small>Tony Skrelūnas</small>
   <div class="film" id="film">
-    <video id="welVid" playsinline preload="none" poster="media/welcome/welcome-poster-1920x1080.jpg"></video>
+    <video id="welVid" playsinline preload="none"></video>
+    <script>document.getElementById('welVid').poster = innerWidth < 700 ? 'media/welcome/welcome-poster-960x540.jpg' : 'media/welcome/welcome-poster-1920x1080.jpg';</script>
     <button class="bigplay" id="bigPlay" type="button"><span class="play"></span>Watch the welcome <em>5 min</em></button>
     <div class="endcard" id="endcard" hidden>
       <div>
@@ -325,7 +416,7 @@ html.gated{overflow:hidden}
 </section>
 
 <section class="crossing" id="first-light">
-  <figure><img src="media/sand-road-1600.jpg" srcset="media/sand-road-900.jpg 900w, media/sand-road-1600.jpg 1600w" sizes="(min-width:960px) 45vw, 100vw" alt="A runner far ahead on a sand road across the high desert" loading="lazy"><figcaption>The sand road, the high desert</figcaption></figure>
+  <figure><picture><source type="image/webp" srcset="media/sand-road-900.webp 900w, media/sand-road-1200.webp 1200w, media/sand-road-1600.webp 1600w" sizes="(min-width:960px) 45vw, 100vw"><img src="media/sand-road-1600.jpg" srcset="media/sand-road-900.jpg 900w, media/sand-road-1600.jpg 1600w" sizes="(min-width:960px) 45vw, 100vw" alt="A runner far ahead on a sand road across the high desert" loading="lazy"></picture><figcaption>The sand road, the high desert</figcaption></figure>
   <div class="ccopy">
     <h2 class="reveal">We are entering hard country again.</h2>
     <p class="lead reveal">It does not call for harder people. It calls for steadier ones.</p>
@@ -349,10 +440,10 @@ html.gated{overflow:hidden}
 <section class="ask" id="ask">
   <h2 class="reveal">What brings you here today?</h2>
   <ul>
-    <li class="reveal"><a href="#mountain-within" data-interest="hard-season"><b>A hard season</b><span>Three short films for hard days.</span></a></li>
-    <li class="reveal"><a href="#breathe" data-interest="calm-under-pressure"><b>Calm under pressure</b><span>One minute, right here. Then the Listening Room.</span></a></li>
-    <li class="reveal"><a href="books/" data-interest="stories-books"><b>Stories and books</b><span>Begin with Stone Breath.</span></a></li>
-    <li class="reveal"><a href="work/" data-interest="team"><b>For my team</b><span>Talks, workshops and coaching.</span></a></li>
+    <li class="reveal"><a href="#mountain-within" data-interest="hard-season"><img src="media/ask/hard-season-600.jpg" width="600" height="800" alt="" loading="lazy"><b>A hard season</b><span>Three short films for hard days.</span></a></li>
+    <li class="reveal"><a href="#breathe" data-interest="calm-under-pressure"><img src="media/ask/calm-600.jpg" width="600" height="800" alt="" loading="lazy"><b>Calm under pressure</b><span>One minute, right here. Then the Listening Room.</span></a></li>
+    <li class="reveal"><a href="books/" data-interest="stories-books"><img src="media/ask/stories-600.jpg" width="600" height="800" alt="" loading="lazy"><b>Stories and books</b><span>Begin with Stone Breath.</span></a></li>
+    <li class="reveal"><a href="work/" data-interest="team"><img src="media/ask/team-600.jpg" width="600" height="800" alt="" loading="lazy"><b>For my team</b><span>Talks, workshops and coaching.</span></a></li>
   </ul>
 </section>
 
@@ -497,6 +588,22 @@ html.gated{overflow:hidden}
   function onScroll(){ nav.classList.toggle('solid', window.scrollY > window.innerHeight * 0.7); }
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
+  // the phone menu (11/25): it closes before a link in it does its work, so "Begin free" and the welcome film land on the page
+  var menu = document.getElementById('menu'), menuOpen = document.getElementById('menuOpen'), menuClose = document.getElementById('menuClose');
+  function setMenu(open){
+    menu.hidden = !open; menuOpen.setAttribute('aria-expanded', String(open));
+    document.documentElement.classList.toggle('menu-open', open);
+    try { (open ? menuClose : menuOpen).focus({ preventScroll: true }); } catch (e) {}
+  }
+  function warmMenu(){ [].forEach.call(menu.querySelectorAll('img[loading]'), function(i){ i.loading = 'eager'; }); }
+  addEventListener('load', function(){ setTimeout(warmMenu, 2500); });
+  menuOpen.addEventListener('click', function(){ warmMenu(); setMenu(true); });
+  menuClose.addEventListener('click', function(){ setMenu(false); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a, #menuWelcome')) setMenu(false); }, true);
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
+  var wide = matchMedia('(min-width:960px)'), onWide = function(m){ if (m.matches && !menu.hidden) setMenu(false); };
+  if (wide.addEventListener) wide.addEventListener('change', onWide); else if (wide.addListener) wide.addListener(onWide);
+
   // words light up as you read
   var p = document.querySelector('.statement p');
   p.innerHTML = p.textContent.split(' ').map(function(w){ return '<span>' + w + '</span>'; }).join(' ');
@@ -579,6 +686,7 @@ html.gated{overflow:hidden}
   document.getElementById('playWelcome').addEventListener('click', function(){
     document.getElementById('film').scrollIntoView({ behavior: 'smooth', block: 'center' }); startFilm();
   });
+  document.getElementById('menuWelcome').addEventListener('click', function(){ document.getElementById('playWelcome').click(); });
   vid.addEventListener('ended', function(){ if (!joined()) { vid.controls = false; endcard.hidden = false; } });
   document.getElementById('replay').addEventListener('click', function(){ vid.currentTime = 0; startFilm(); });
 
