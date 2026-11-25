@@ -61,7 +61,10 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 /* nav */
 .nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px var(--pad);padding-top:max(18px,env(safe-area-inset-top));color:var(--snow);transition:background .35s ease,color .35s ease,padding .35s ease}
 .nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--ink);padding-block:12px;box-shadow:0 1px 0 var(--line)}
-.brand{font-stretch:118%;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+.brand{display:inline-flex;align-items:center;gap:.5em;font-stretch:118%;font-weight:800;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+/* the mountain mark beside the name, everywhere the name stands (Tony, 11/25: "Add back mtn logo in everything") */
+.brand svg,.gate .card .mark svg{flex:none;width:1.7em;height:1.7em}
+.gate .card .mark{display:inline-flex;align-items:center;gap:.5em}
 .nav ul{display:none;list-style:none;gap:28px;font-weight:500;font-size:.95rem}
 .nav ul a{text-decoration:none;opacity:.85}.nav ul a:hover{opacity:1}
 .nav .navjoin{height:40px;padding:0 1.1em;font-size:.9rem;white-space:nowrap}
@@ -71,6 +74,7 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 .navmenu.x span:first-child{transform:translateY(3.25px) rotate(45deg)}
 .navmenu.x span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
 @media(min-width:960px){.nav ul{display:flex}.nav .navmenu{display:none}}
+@media(max-width:440px){.nav .navmenu{display:none}}
 @media(max-width:380px){.nav{gap:10px}.brand{font-size:1rem}.nav .navjoin{padding:0 .85em;font-size:.84rem}.navacts{gap:8px}}
 
 /* the phone menu: every room one tap away, each with its photograph */
@@ -393,7 +397,7 @@ html.gated,html.menu-open{overflow:hidden}
 <body>
 
 <header class="nav" id="nav">
-  <a class="brand" href="./">Ancestral Peaks</a>
+  <a class="brand" href="./" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>Ancestral Peaks</a>
   <ul>
     <li><a href="films/">Films</a></li>
     <li><a href="listen/">Listen</a></li>
@@ -408,7 +412,7 @@ html.gated,html.menu-open{overflow:hidden}
 </header>
 
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
-  <div class="mtop"><a class="brand" href="./">Ancestral Peaks</a><button class="navmenu x" id="menuClose" type="button" aria-label="Close the menu"><span></span><span></span></button></div>
+  <div class="mtop"><a class="brand" href="./" aria-label="Ancestral Peaks, home"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>Ancestral Peaks</a><button class="navmenu x" id="menuClose" type="button" aria-label="Close the menu"><span></span><span></span></button></div>
   <ul>
     <li><a href="first-light/"><img src="media/menu/first-light.jpg" srcset="media/menu/first-light.jpg 168w, media/menu/first-light-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">First Light</a></li>
     <li><a href="films/"><img src="media/menu/films.jpg" srcset="media/menu/films.jpg 168w, media/menu/films-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Films</a></li>
@@ -625,7 +629,7 @@ html.gated,html.menu-open{overflow:hidden}
 </main>
 
 <footer>
-  <span class="brand">Ancestral Peaks</span>
+  <span class="brand"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>Ancestral Peaks</span>
   <nav><a href="first-light/">First Light</a><a href="films/">Films</a><a href="listen/">Listen</a><a href="practice/">Practice</a><a href="books/">Books</a><a href="play/">Games</a><a href="work/">For teams</a><a href="welcome/">The welcome film</a></nav>
   <p>Photographs: Tony Skrelūnas. Wikimedia Commons: Mount Fuji by Alpsdake (CC BY-SA 4.0); Annapurna by Timothy A. Gonsalves (CC BY-SA 4.0); Fitz Roy by Masa Sakano (CC BY-SA 2.0); Oxbow Bend by Eric Kilby (CC BY-SA 2.0); Lake Bled by Naturpuur (CC BY 4.0).</p>
 </footer>
@@ -633,7 +637,7 @@ html.gated,html.menu-open{overflow:hidden}
 <template id="gateTpl">
   <div class="gate" role="dialog" aria-modal="true" aria-labelledby="gateH">
     <div class="card on-light">
-      <span class="mark">Ancestral Peaks</span>
+      <span class="mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M3 31 L15 11 L22 22 L27 15 L37 31 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><ellipse cx="20" cy="34.5" rx="6" ry="2.3" fill="currentColor" opacity=".9"/></svg>Ancestral Peaks</span>
       <h2 id="gateH">Come. Sit at the fire.</h2>
       <p>There is room. Leave your first name and email and the rest opens to you: First Light each weekday morning, Morning Water, two full sessions in the Listening Room, the games, and the stories by the fire.</p>
       <form class="cap-form" data-source="peaks-signup-wall-home" data-gate novalidate>
