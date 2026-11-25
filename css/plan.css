@@ -61,3 +61,23 @@
   .days{grid-template-columns:repeat(2,minmax(0,1fr))}
   .giftcard{max-width:300px;margin:0 auto}
 }
+
+/* the sale page (11/25): three ways in, and a line that shows only while the founding season is open */
+.offer3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);margin-top:clamp(24px,3.4vw,44px)}
+.offer3 .o{display:flex;flex-direction:column;gap:.5rem;background:#fff;color:var(--ink);border-radius:18px;padding:clamp(20px,2.4vw,30px);text-decoration:none;box-shadow:0 22px 50px -30px rgba(38,39,35,.6)}
+.offer3 .o.main{background:var(--earth);color:#fff}
+.offer3 .o.free{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.2);box-shadow:none}
+.offer3 .o .k{font-weight:700;font-size:1rem}
+.offer3 .o b{font-family:var(--display);font-weight:800;font-size:clamp(2.4rem,4.4vw,3.6rem);line-height:.95;letter-spacing:-.03em}
+.offer3 .o b small{display:block;margin-top:.5em;font-family:var(--text);font-weight:500;font-size:.95rem;letter-spacing:0;opacity:.85}
+.offer3 .o p{margin:0;line-height:1.45;opacity:.9}
+.offer3 .o .btn{align-self:flex-start;margin-top:auto}
+.offer3 .o.main .btn{background:#fff;color:var(--ink)}
+.offer3 .o.free .btn{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.pl.dark .guarantee{color:rgba(255,255,255,.86)}
+.season-only{display:none}
+html.founding-open .season-only{display:block}
+.season-note{margin:clamp(18px,2.4vw,30px) 0 0;padding:clamp(14px,1.8vw,22px) clamp(16px,2vw,26px);border-radius:14px;background:var(--gold);color:var(--night);text-decoration:none;line-height:1.45}
+.season-note b{display:block;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.season-note i{font-style:normal;font-weight:700;border-bottom:1.5px solid currentColor}
+@media (max-width:900px){.offer3{grid-template-columns:1fr}}

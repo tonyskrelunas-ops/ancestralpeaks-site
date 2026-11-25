@@ -86,6 +86,7 @@ AP.pages = [
   // group: where it sits in the menu; bar: shown in the wide-screen bar; menu:false keeps it out of the menu (the logo goes home)
   { href: '/',          label: 'Home',                     n: '',   group: '',             bar: false, menu: false },
   { href: '/#path',     label: 'The Path',                 n: '01', group: 'Start here',   bar: true },
+  { href: '/join/',     label: 'Membership',               n: '',   group: 'Start here',   bar: false },   // the sale page (11/25)
   { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true },
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
   { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: true },

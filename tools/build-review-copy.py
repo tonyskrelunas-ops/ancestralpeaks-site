@@ -6,7 +6,7 @@ import os, re, json, shutil, sys
 SITE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else SITE      # with no argument the review files are written into the site itself
 PAGES = ['index.html', 'begin/index.html', 'books/index.html', 'course/index.html', 'films/index.html', 'first-light/index.html', 'founding/index.html',
-         'gift/index.html', 'listen/index.html', 'mountain-within/index.html', 'mountain-within/a-good-relationship-with-stress/index.html',
+         'gift/index.html', 'join/index.html', 'listen/index.html', 'mountain-within/index.html', 'mountain-within/a-good-relationship-with-stress/index.html',
          'mountain-within/guide/index.html', 'mountain-within/leaving-home/index.html', 'mountain-within/the-hard-day/index.html', 'play/index.html',
          'practice/index.html', 'reader/index.html', 'reading/index.html', 'weeks/index.html', 'why/index.html', 'work/index.html']
 DIRS = sorted('/' + (os.path.dirname(p) + '/' if os.path.dirname(p) else '') for p in PAGES)
