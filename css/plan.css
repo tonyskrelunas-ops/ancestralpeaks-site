@@ -81,3 +81,36 @@ html.founding-open .season-only{display:block}
 .season-note b{display:block;font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
 .season-note i{font-style:normal;font-weight:700;border-bottom:1.5px solid currentColor}
 @media (max-width:900px){.offer3{grid-template-columns:1fr}}
+
+/* the long films on the Films page (11/25): a taste of each for anyone, the whole film for members */
+.longfilms{background:var(--night);color:#fff;padding:clamp(52px,8vw,112px) 0 clamp(44px,6vw,90px)}
+.lfm-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem 3rem;align-items:end;padding:0 var(--gutter);margin-bottom:clamp(22px,3vw,40px)}
+.lfm-kick{margin:0 0 .8rem;font-weight:700;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.longfilms h2{font-size:clamp(2.4rem,6vw,5.2rem)}
+.lfm-lede{margin:0;max-width:34rem;color:rgba(255,255,255,.84)}
+.lfm-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);padding:0 var(--gutter)}
+.lfm-card{display:flex;flex-direction:column;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden}
+.lfm-media{position:relative;aspect-ratio:4/5;background:#000;overflow:hidden}
+.lfm-media video,.lfm-media .ap-loop{position:absolute;inset:0;width:100%;height:100%}
+.lfm-media video{object-fit:contain;background:#000}
+.lfm-media .ap-loop video,.lfm-media .ap-loop img{object-fit:cover}
+.lfm-go{position:absolute;inset:0;border:0;padding:0;margin:0;background:none;color:#fff;cursor:pointer}
+.lfm-go img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.lfm-go:hover img{transform:scale(1.04)}
+.lfm-go::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.1) 45%,rgba(16,11,13,.72) 100%)}
+.lfm-go .lfm-pl{position:absolute;z-index:1;left:16px;bottom:16px;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--night);animation:apPulse 3s ease-out infinite}
+.lfm-go .lfm-pl svg{width:22px;height:22px;fill:currentColor;margin-left:3px}
+.lfm-go .lb{position:absolute;z-index:1;left:84px;bottom:33px;font-weight:600;font-size:.95rem;text-shadow:0 1px 8px rgba(0,0,0,.7)}
+.lfm-media.playing .lfm-go{display:none}
+.lfm-t{display:flex;flex-direction:column;gap:.45rem;padding:clamp(16px,1.8vw,22px);flex:1}
+.lfm-t .len{font-weight:700;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.lfm-t h3{font-size:clamp(1.4rem,1.1rem + 1vw,1.9rem);line-height:1.05}
+.lfm-t p{margin:0;line-height:1.45;color:rgba(255,255,255,.84)}
+.lfm-door{align-self:flex-start;margin-top:auto;padding-top:.6rem;color:#fff;font-weight:700;text-decoration:none;border-bottom:1.5px solid var(--gold)}
+@media (max-width:900px){
+  .lfm-head{grid-template-columns:1fr}
+  .lfm-row{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);padding-bottom:6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .lfm-row::-webkit-scrollbar{display:none}
+  .lfm-card{flex:0 0 78vw;scroll-snap-align:start}
+}
+@media (prefers-reduced-motion:reduce){.lfm-go .lfm-pl{animation:none}}
