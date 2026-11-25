@@ -78,36 +78,34 @@
 </section>
 
 <!-- HOW IT WAS MADE: three of the clips in the film, moving -->
-<!-- ===== THE LONG FILMS (11/25). Tony: "the longer council fire and stone breath videos belong here .. just a small short clip on
-     tribeawaken", then "do it". The business plan of 11/24 puts the three long films in the $29 year. A taste of each plays here
-     for anyone; the whole film opens in the membership. The lengths are the plan's (26, 22) and the measured ten minutes.
-     BEFORE THIS PAGE GOES LIVE the three whole films must be inside the Payhip membership. ===== -->
+<!-- ===== FROM THE FILMS (11/25). Tony: "nope .. just a sample.. 2 mins max". The whole films are not in the membership;
+     this section shows a short taste of each, free, and promises nothing more. ===== -->
 <section class="longfilms" id="long-films" data-scene="hearth" data-scene-label="the fire">
   <div class="lfm-head">
-    <div><p class="lfm-kick">For members</p><h2 class="reveal">The long films.</h2></div>
-    <p class="lfm-lede reveal">Three films from the books, from ten minutes to twenty-six. A taste of each is here for anyone. The whole film opens in the membership.</p>
+    <div><h2 class="reveal">From the films.</h2></div>
+    <p class="lfm-lede reveal">Three films from the books. A short taste of each, free to watch.</p>
   </div>
   <div class="lfm-row">
     <article class="lfm-card">
       <div class="lfm-media">
         <video playsinline preload="none" src="media/long/council-fire-taste-720x1280.mp4"></video>
-        <button class="lfm-go" type="button" aria-label="Watch a taste of The Council Fire, one minute"><img src="media/long/council-fire-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1 min</span></button>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of The Council Fire, 1 minute 17 seconds"><img src="media/long/council-fire-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:17</span></button>
       </div>
-      <div class="lfm-t"><span class="len">26 min</span><h3>The Council Fire</h3><p>“Before there was an internet, there was a body that could cross a desert with a library inside it.”</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+      <div class="lfm-t"><h3>The Council Fire</h3><p>“Before there was an internet, there was a body that could cross a desert with a library inside it.”</p></div>
     </article>
     <article class="lfm-card">
       <div class="lfm-media">
         <video playsinline preload="none" src="media/long/stone-breath-taste-1280x720.mp4"></video>
-        <button class="lfm-go" type="button" aria-label="Watch a taste of Stone Breath, about a minute and a half"><img src="media/long/stone-breath-taste-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1 min</span></button>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of Stone Breath, 1 minute 24 seconds"><img src="media/long/stone-breath-taste-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:24</span></button>
       </div>
-      <div class="lfm-t"><span class="len">22 min</span><h3>Stone Breath</h3><p>The first book, as a film.</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+      <div class="lfm-t"><h3>Stone Breath</h3><p>The first book, as a film.</p></div>
     </article>
     <article class="lfm-card">
       <div class="lfm-media">
         <video playsinline preload="none" src="media/long/they-were-the-vessel-taste-1280x720.mp4"></video>
-        <button class="lfm-go" type="button" aria-label="Watch a taste of They Were the Vessel, one minute"><img src="media/long/they-were-the-vessel-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1 min</span></button>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of They Were the Vessel, 1 minute 6 seconds"><img src="media/long/they-were-the-vessel-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:06</span></button>
       </div>
-      <div class="lfm-t"><span class="len">10 min</span><h3>They Were the Vessel</h3><p>“If it went out of the mind, it went out of the world.”</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+      <div class="lfm-t"><h3>They Were the Vessel</h3><p>“If it went out of the mind, it went out of the world.”</p></div>
     </article>
   </div>
 </section>
@@ -166,7 +164,7 @@ addEventListener('ap:ready', () => {
 }, { once: true });
 </script>
 <script>
-/* the long films: a taste plays in its own frame; anything else that is playing with sound stops first */
+/* from the films: a taste plays in its own frame; anything else that is playing with sound stops first */
 document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
   b.addEventListener('click', function(){
     var box = b.parentNode, v = box.querySelector('video');
