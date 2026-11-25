@@ -791,7 +791,7 @@ AP.gate = function(){
     g.innerHTML = `<form class="ap-gate-card" novalidate>
       <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>
       <h2 id="apGateH">Come in free for three months.</h2>
-      <p>Leave your first name and email and about a quarter of every room opens to you for three months: the free sessions in the Listening Room, the films, four readings, week one of the Eight Weeks, The Crossing and a story by the fire, and First Light in the morning.</p>
+      <p>Your first name and email open about a quarter of every room for three months, and First Light each weekday morning.</p>
       <fieldset class="why"><legend>What brings you here?</legend>
         <label><input type="radio" name="why" value="hard-season"><span>A hard season</span></label>
         <label><input type="radio" name="why" value="calm-under-pressure"><span>Calm under pressure</span></label>

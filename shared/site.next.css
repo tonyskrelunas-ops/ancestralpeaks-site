@@ -370,3 +370,26 @@ html.has-season .ap-bar{top:34px;height:72px;padding-top:0}
 .ap-ended div{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
 .ap-ended .btn{padding:.7em 1.1em;font-size:.92rem}
 .ap-ended button{margin-left:auto;border:0;background:none;color:rgba(255,255,255,.7);font:inherit;font-size:.9rem;cursor:pointer;padding:.5em .2em}
+
+/* 11/25, after Tony's phone ("As i scroll down on phone it went out"): the sign-up card had grown taller than a phone screen, so it
+   covered the page with its button out of sight. On a phone it is now compact: the heading, the question, both fields and the
+   button all show at once, down to the shortest iPhone screens. */
+@media (max-width:480px){
+  .ap-gate{padding:12px;place-items:start center}
+  .ap-gate-card{padding:18px 18px 16px;border-radius:18px}
+  .ap-gate .mk{margin-bottom:.6rem;font-size:.98rem}
+  .ap-gate .mk svg{width:24px;height:24px}
+  .ap-gate h2{font-size:1.55rem}
+  .ap-gate p{margin-top:.45rem;font-size:.93rem;line-height:1.38}
+  .ap-gate .why{margin-top:.7rem;gap:6px}
+  .ap-gate .why legend{margin-bottom:.35rem;font-size:.9rem}
+  .ap-gate .why label span{padding:.4em .78em;font-size:.84rem}
+  .ap-gate label{margin-top:.55rem}
+  .ap-gate label span{margin-bottom:.22rem;font-size:.7rem}
+  .ap-gate input{min-height:46px}
+  .ap-gate .btn{margin-top:.75rem;min-height:50px}
+  .ap-gate .err{min-height:0;margin-top:.3rem}
+  .ap-gate .err:empty{display:none}
+  .ap-gate .fine{margin-top:.5rem;font-size:.8rem}
+}
+@media (max-width:340px){.ap-gate h2{font-size:1.4rem}.ap-gate p{font-size:.9rem}.ap-gate input{min-height:44px}.ap-gate .btn{min-height:48px}.ap-gate .why label span{padding:.36em .7em;font-size:.82rem}}
