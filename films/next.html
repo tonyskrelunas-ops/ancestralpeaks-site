@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
 <link rel="stylesheet" href="../shared/site.next.css?v=1125e">
 <link rel="stylesheet" href="../css/pages.css?v=1125a">
+<link rel="stylesheet" href="../css/plan.css?v=1125f">
 <script>if(location.hash==='#render')window.__render=true;if(location.hash==='#flat')window.__flat=true;</script>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
@@ -79,6 +80,39 @@
 </section>
 
 <!-- HOW IT WAS MADE: three of the clips in the film, moving -->
+<!-- ===== THE LONG FILMS (11/25). Tony: "the longer council fire and stone breath videos belong here .. just a small short clip on
+     tribeawaken", then "do it". The business plan of 11/24 puts the three long films in the $29 year. A taste of each plays here
+     for anyone; the whole film opens in the membership. The lengths are the plan's (26, 22) and the measured ten minutes.
+     BEFORE THIS PAGE GOES LIVE the three whole films must be inside the Payhip membership. ===== -->
+<section class="longfilms" id="long-films" data-scene="hearth" data-scene-label="the fire">
+  <div class="lfm-head">
+    <div><p class="lfm-kick">For members</p><h2 class="reveal">The long films.</h2></div>
+    <p class="lfm-lede reveal">Three films from the books, from ten minutes to twenty-six. A taste of each is here for anyone. The whole film opens in the membership.</p>
+  </div>
+  <div class="lfm-row">
+    <article class="lfm-card">
+      <div class="lfm-media">
+        <video playsinline preload="none" src="media/long/council-fire-taste-720x1280.mp4"></video>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of The Council Fire, one minute"><img src="media/long/council-fire-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1 min</span></button>
+      </div>
+      <div class="lfm-t"><span class="len">26 min</span><h3>The Council Fire</h3><p>“Before there was an internet, there was a body that could cross a desert with a library inside it.”</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+    </article>
+    <article class="lfm-card">
+      <div class="lfm-media">
+        <div class="ap-loop" data-src="media/long/stone-breath-creek-loop-720x1280.mp4" data-poster="media/long/stone-breath-poster.jpg"></div>
+      </div>
+      <div class="lfm-t"><span class="len">22 min</span><h3>Stone Breath</h3><p>The first book, as a film.</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+    </article>
+    <article class="lfm-card">
+      <div class="lfm-media">
+        <video playsinline preload="none" src="media/long/they-were-the-vessel-taste-1280x720.mp4"></video>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of They Were the Vessel, one minute"><img src="media/long/they-were-the-vessel-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1 min</span></button>
+      </div>
+      <div class="lfm-t"><span class="len">10 min</span><h3>They Were the Vessel</h3><p>“If it went out of the mind, it went out of the world.”</p><a class="lfm-door" href="../join/">Members watch the whole film</a></div>
+    </article>
+  </div>
+</section>
+
 <section class="row dark" data-scene="dawn">
   <div class="text">
     <h3><span>How it was made</span>Every scene is our own.</h3>
@@ -131,6 +165,16 @@ addEventListener('ap:ready', () => {
   document.getElementById('ringGo').addEventListener('click', () => { if (P4.film && !P4.film.film.paused) P4.film.pause(); ring.start(); });
   P4.render(45);
 }, { once: true });
+</script>
+<script>
+/* the long films: a taste plays in its own frame; anything else that is playing with sound stops first */
+document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
+  b.addEventListener('click', function(){
+    var box = b.parentNode, v = box.querySelector('video');
+    document.querySelectorAll('video,audio').forEach(function(m){ if (m !== v && !m.paused && !m.muted) m.pause(); });
+    box.classList.add('playing'); v.controls = true; v.play().catch(function(){});
+  });
+});
 </script>
 <script src="../shared/media-guard.js?v=1" defer></script>
 <script>
