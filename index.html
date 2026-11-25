@@ -31,7 +31,12 @@
      11/25 (Tony, from his phone: "Too much empty space.. this is supposed to be a global iconic website"): the top
      photograph is a fifth of the weight and is never a black screen while it loads; the four "What brings you here"
      cards are photographs; phones get a menu with a photograph for every room; the sections sit closer on a phone.
-     The page before this is kept in versions/index-2026-11-25-before-phone-fill.html. -->
+     The page before this is kept in versions/index-2026-11-25-before-phone-fill.html.
+     Later on 11/25 (Tony: "There is little improvement go back to work"): what the home page had before 11/24 and lost is
+     back, in the new look. The opening film: the photograph first, then his own footage and photographs in long crossfades.
+     The bar of icons at the bottom, tied to the menu, as on every other page. On a phone the welcome film is a full
+     picture with the words over it, the hard-country heading sits on the sand road, the films and the Lithuanian and
+     Japanese films are rows to swipe, and the eight rooms are photographs with their names on them. -->
 <style>
 :root{
   --ink:#0B1114;--ink-2:#4A5459;--line:#DCE2E4;--mist:#F1F4F5;--snow:#FFFFFF;
@@ -83,10 +88,19 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 .menu .mfoot .btn .play{background:var(--snow)}.menu .mfoot .btn .play::after{border-left-color:var(--ink)}
 @media(min-width:560px){.menu ul{grid-template-columns:repeat(3,1fr)}.menu .mfoot{grid-template-columns:1fr 1fr}}
 @media(max-width:340px){.nav{gap:8px}.brand{font-size:.92rem}.nav .navjoin{padding:0 .7em;font-size:.8rem}.menu li a{font-size:.95rem;gap:10px}.menu li img{width:48px;height:48px;border-radius:12px}}
-@media(min-width:960px){.menu{display:none}}
+@media(min-width:960px){.menu{padding-inline:max(var(--pad),calc(50vw - 480px))}.menu ul{grid-template-columns:repeat(5,1fr);gap:30px 22px}.menu li a{flex-direction:column;align-items:flex-start;gap:12px;font-size:1.15rem;padding:0}.menu li img{width:100%;height:auto;aspect-ratio:1;border-radius:18px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}.menu li a:hover img{transform:scale(1.04)}.menu .mfoot{max-width:560px}}
+
+/* the bar of icons at the bottom, tied to the menu: the same eight as on every other page (Tony, 11/10), in this page's look */
+.dock{position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:calc(10px + env(safe-area-inset-bottom));width:min(600px,calc(100vw - 20px));display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:6px;border-radius:22px;background:rgba(11,17,20,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.14);box-shadow:0 18px 40px -16px rgba(0,0,0,.6)}
+.dock a,.dock button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:46px;border:0;background:none;color:#E6ECEE;font:600 .7rem/1.15 Archivo,sans-serif;text-decoration:none;border-radius:16px;cursor:pointer;padding:0 2px}
+.dock a:hover,.dock button:hover,.dock a:active,.dock button:active{background:rgba(255,255,255,.09);color:#fff}
+.dock a[aria-current="page"]{color:#A9D3DA}
+.dock svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(min-width:960px){.dock a,.dock button{flex-direction:row;gap:8px;min-height:42px;font-size:.86rem}}
+html.menu-open .dock,html.gated .dock{display:none}
 
 /* hero */
-.hero{position:relative;height:100svh;min-height:600px;color:var(--snow);display:grid;overflow:hidden;background:#06090c}
+.hero{position:relative;min-height:max(100svh,600px);color:var(--snow);display:grid;overflow:hidden;background:#06090c}
 .hero figure{position:absolute;inset:0;display:grid;grid-template-columns:1fr;grid-template-rows:100%}
 /* until the photograph arrives the frame holds the night sky, never a black screen (a small blurred copy of the picture on phones) */
 .hero figure picture{position:relative;display:block;min-width:0;overflow:hidden;background:linear-gradient(180deg,#0c1628 0%,#22344f 40%,#101a22 68%,#06090c 100%)}
@@ -95,19 +109,28 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 @keyframes settle{to{transform:scale(1)}}
 @media(max-width:899px){.hero figure picture:first-child{background:#0c1628 url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDABMNDhEODBMRDxEVFBMXHTAfHRoaHToqLCMwRT1JR0Q9Q0FMVm1dTFFoUkFDX4JgaHF1e3x7SlyGkIV3j214e3b/2wBDARQVFR0ZHTgfHzh2T0NPdnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnb/wAARCAAeABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQDBQECBv/EACAQAAIBBAIDAQAAAAAAAAAAAAECAAMEEUESIQUTMVH/xAAWAQEBAQAAAAAAAAAAAAAAAAACAwH/xAAXEQEBAQEAAAAAAAAAAAAAAAAAIQER/9oADAMBAAIRAxEAPwDlQmz8M2NLEYpXVv37LYga4ueozSrWlUjhbsAPuWlcobFeKGdQli3krem3FLNGA2SYRQaqi6kkD9+zLMEwyHsjWouDAnMgql9rAACEizCb3Wcf/9k=) 50% 35%/cover no-repeat}}
 @media(min-width:900px){.hero figure{grid-template-columns:1fr 1fr;gap:3px}.hero figure picture + picture{display:block}}
+/* the opening film: his own footage and photographs cross the first photograph in long fades */
+.hero .cut{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero .cut .shot{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.hero .cut .shot>img,.hero .cut .shot>video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%)}
+.hero .cut .shot::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,9,12,.5) 0%,rgba(6,9,12,.36) 22%,rgba(6,9,12,.34) 46%,rgba(6,9,12,.52) 62%,rgba(6,9,12,.86) 100%)}
+@media(min-width:900px){.hero .cut .shot::after{background:linear-gradient(90deg,rgba(6,9,12,.8) 0%,rgba(6,9,12,.6) 32%,rgba(6,9,12,.16) 64%,rgba(6,9,12,0) 100%),linear-gradient(180deg,rgba(6,9,12,.4) 0%,rgba(6,9,12,0) 26%,rgba(6,9,12,.2) 60%,rgba(6,9,12,.8) 100%)}}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 22%,rgba(0,0,0,0) 45%,rgba(0,0,0,.72) 100%)}
-.hero .copy{position:relative;z-index:2;align-self:end;padding:0 var(--pad) clamp(36px,8vh,88px);max-width:1400px}
-.hero h1{font-size:clamp(3rem,1rem + 6vw,7.2rem);opacity:0;transform:translateY(24px);animation:rise 1.1s .35s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .copy{position:relative;z-index:2;align-self:end;padding:92px var(--pad) calc(clamp(28px,5vh,56px) + 122px);max-width:1400px}
+.hero h1{text-shadow:0 2px 34px rgba(0,0,0,.35);font-size:clamp(3rem,1rem + 6vw,7.2rem);opacity:0;transform:translateY(24px);animation:rise 1.1s .35s cubic-bezier(.2,.7,.2,1) forwards}
 .hero p{max-width:34ch;margin-top:22px;font-size:clamp(1.05rem,1rem + .4vw,1.35rem);color:rgba(255,255,255,.86);opacity:0;animation:rise 1s .65s cubic-bezier(.2,.7,.2,1) forwards}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;opacity:0;animation:rise 1s .85s cubic-bezier(.2,.7,.2,1) forwards}
-.hero .where{position:absolute;z-index:2;right:var(--pad);bottom:clamp(36px,8vh,88px);font-size:.85rem;color:rgba(255,255,255,.7);display:none;text-align:right}
-@media(min-width:900px){.hero .where{display:block}}
+.hero .where{position:absolute;z-index:2;right:var(--pad);bottom:calc(clamp(28px,5vh,56px) + 122px);font-size:.85rem;color:rgba(255,255,255,.7);display:none;text-align:right}
+@media(min-width:900px){.hero .where{display:block;transition:color 1.2s ease}.hero.cutting .where{color:transparent}}
+/* short phone screens: the headline, the words and both buttons fit between the top bar and the bar of icons */
+@media(max-width:700px) and (max-height:650px){.hero{min-height:max(100svh,520px)}.hero .copy{padding-top:84px}.hero h1{font-size:2.5rem}.hero p{margin-top:14px;font-size:1rem}.hero .ctas{margin-top:18px;gap:8px}.hero .ctas .btn{height:46px;padding:0 1.05em;font-size:.92rem}}
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 
 /* statement and the welcome film */
 .statement{padding:clamp(96px,18vh,200px) var(--pad)}
-.statement p{font-stretch:112%;font-weight:700;letter-spacing:-.03em;line-height:1.08;font-size:clamp(1.9rem,1rem + 3.4vw,4.4rem);max-width:22ch}
-.statement p span{opacity:.14;transition:opacity .25s linear}
+.statement > p{font-stretch:112%;font-weight:700;letter-spacing:-.03em;line-height:1.08;font-size:clamp(1.9rem,1rem + 3.4vw,4.4rem);max-width:22ch}
+.statement > p span{opacity:.14;transition:opacity .25s linear}
+.statement > p span.lit{opacity:1}
 .statement small{display:block;margin-top:28px;color:var(--ink-2);font-size:1rem}
 .film{position:relative;margin-top:clamp(40px,8vh,80px);border-radius:18px;overflow:hidden;aspect-ratio:16/9;background:#000}
 .film video{width:100%;height:100%;object-fit:cover}
@@ -290,7 +313,7 @@ h1,h2,h3{font-stretch:112%;font-weight:750;letter-spacing:-.035em;line-height:.9
 .join .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:34px 0 20px}
 .join .small{font-size:.9rem;margin-top:12px}
 
-footer{background:var(--ink);color:rgba(255,255,255,.7);padding:56px var(--pad) calc(56px + env(safe-area-inset-bottom));font-size:.85rem;display:grid;gap:18px}
+footer{background:var(--ink);color:rgba(255,255,255,.7);padding:56px var(--pad) calc(56px + 124px + env(safe-area-inset-bottom));font-size:.85rem;display:grid;gap:18px}
 footer .brand{color:var(--snow);font-size:1.4rem}
 footer nav{display:flex;flex-wrap:wrap;gap:14px 22px}
 footer nav a{text-decoration:none;color:var(--snow)}
@@ -305,32 +328,65 @@ footer nav a{text-decoration:none;color:var(--snow)}
 .gate .cap-form .btn{width:100%}
 html.gated,html.menu-open{overflow:hidden}
 
-/* phones (Tony, 11/25: "Too much empty space"): the sections sit closer, and nothing is left blank */
+/* phones (Tony, 11/25: "Too much empty space", then "little improvement go back to work"): picture edge to edge, words on the
+   pictures, rows to swipe, nothing left blank */
 @media(max-width:700px){
-  .statement{padding:48px var(--pad) 52px}
-  .statement small{margin-top:16px}
-  .film{margin-top:26px;border-radius:14px}
-  .crossing figure{min-height:46svh}
-  .crossing .ccopy{padding:44px var(--pad) 52px}
+  /* the welcome film: the Peaks under the morning cloud fill the screen, the words sit on the sky, the film plays in place */
+  .statement{display:grid;grid-template-rows:auto auto 1fr;padding:0;background:#06090c;color:var(--snow)}
+  .statement > p{grid-area:1/1/2/2;z-index:2;max-width:none;padding:34px var(--pad) 0;font-size:clamp(1.6rem,7.4vw,2.3rem);text-shadow:0 2px 26px rgba(0,0,0,.5);pointer-events:none}
+  .statement > p span{opacity:.45}
+  .statement > small{grid-area:2/1/3/2;z-index:2;margin-top:14px;padding:0 var(--pad);color:rgba(255,255,255,.84);pointer-events:none}
+  .statement .film{grid-area:1/1/-1/2;margin:0;border-radius:0;aspect-ratio:auto;height:min(134vw,88svh);transition:height .45s ease}
+  .statement .film::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(6,9,12,.8) 0%,rgba(6,9,12,.46) 30%,rgba(6,9,12,0) 52%,rgba(6,9,12,0) 80%,rgba(6,9,12,.34) 100%);transition:opacity .4s ease}
+  .statement .bigplay{z-index:2;top:auto;bottom:34px;transform:translateX(-50%)}
+  .statement .bigplay:hover{transform:translateX(-50%)}
+  .statement .endcard{z-index:3}
+  .statement.playing .film{height:56.25vw}
+  .statement.playing .film::before{opacity:0}
+  .statement.playing > p,.statement.playing > small,.statement.ended > p,.statement.ended > small{display:none}
+
+  /* hard country: the heading stands on the sand road */
+  .crossing figure{min-height:60svh}
+  .crossing figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,17,20,0) 38%,rgba(11,17,20,.62) 74%,var(--ink) 100%)}
+  .crossing figcaption{bottom:auto;top:16px;z-index:1}
+  .crossing .ccopy{position:relative;z-index:1;margin-top:-138px;padding:0 var(--pad) 48px}
   .offer{margin-top:26px}
-  .ask{padding:52px var(--pad)}
+
+  .ask{padding:48px var(--pad)}
   .ask h2{margin-bottom:20px}
   .head{margin-bottom:20px}
-  .mtns{padding-bottom:52px}
-  .films{padding:52px 0}
-  .langs{padding-bottom:52px}
-  .breathe{padding:52px var(--pad);gap:26px}
+  .mtns{padding-bottom:48px}
+
+  /* the films, and the films in Lithuanian and Japanese: rows to swipe, the next one always showing */
+  .films{padding:48px 0}
+  .reel,.langs .grid{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);padding:0 var(--pad) 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .reel::-webkit-scrollbar,.langs .grid::-webkit-scrollbar{display:none}
+  .reel a{flex:0 0 76vw;scroll-snap-align:start}
+  .langs{padding-bottom:48px}
+  .langs .lf{flex:0 0 80vw;scroll-snap-align:start}
+  .langs .lf.reveal{opacity:1;transform:none}
+
+  .breathe{padding:48px var(--pad);gap:26px}
   .breathe p{margin:16px 0 22px}
   .orb{width:min(66vw,300px)}
-  .doors{padding:52px var(--pad);gap:34px}
-  .rooms{padding-bottom:52px}
-  .pass{padding:52px var(--pad);gap:26px}
-  .join{padding:60px var(--pad)}
+  .doors{padding:48px var(--pad);gap:34px}
+
+  /* the eight rooms: photographs with their names on them */
+  .rooms{padding-bottom:48px}
+  .rooms ul{gap:10px}
+  .rooms a{position:relative;isolation:isolate;border-radius:14px;overflow:hidden;color:var(--snow)}
+  .rooms .ph{border-radius:0}
+  .rooms a::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,0) 42%,rgba(0,0,0,.8) 100%)}
+  .rooms b{position:absolute;z-index:2;left:12px;right:12px;bottom:11px;margin:0;font-size:1.04rem;line-height:1.1}
+  .rooms span{display:none}
+
+  .pass{padding:48px var(--pad);gap:26px}
+  .join{padding:56px var(--pad)}
 }
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1,.hero p,.hero .ctas,.reveal{opacity:1;transform:none}.statement p span{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.hero h1,.hero p,.hero .ctas,.reveal{opacity:1;transform:none}.statement > p span{opacity:1!important}}
 </style>
 <script src="/app/pwa.js?v=1108e" defer></script>
 </head>
@@ -354,22 +410,33 @@ html.gated,html.menu-open{overflow:hidden}
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
   <div class="mtop"><a class="brand" href="./">Ancestral Peaks</a><button class="navmenu x" id="menuClose" type="button" aria-label="Close the menu"><span></span><span></span></button></div>
   <ul>
-    <li><a href="first-light/"><img src="media/menu/first-light.jpg" width="56" height="56" alt="" loading="lazy">First Light</a></li>
-    <li><a href="films/"><img src="media/menu/films.jpg" width="56" height="56" alt="" loading="lazy">Films</a></li>
-    <li><a href="listen/"><img src="media/menu/listen.jpg" width="56" height="56" alt="" loading="lazy">Listen</a></li>
-    <li><a href="practice/"><img src="media/menu/practice.jpg" width="56" height="56" alt="" loading="lazy">Practice</a></li>
-    <li><a href="weeks/"><img src="media/menu/weeks.jpg" width="56" height="56" alt="" loading="lazy">Eight Weeks</a></li>
-    <li><a href="books/"><img src="media/menu/books.jpg" width="56" height="56" alt="" loading="lazy">Books</a></li>
-    <li><a href="play/"><img src="media/menu/games.jpg" width="56" height="56" alt="" loading="lazy">Games</a></li>
-    <li><a href="play/fireside/"><img src="media/menu/stories.jpg" width="56" height="56" alt="" loading="lazy">Stories</a></li>
-    <li><a href="reading/"><img src="media/menu/reading.jpg" width="56" height="56" alt="" loading="lazy">Reading</a></li>
-    <li><a href="work/"><img src="media/menu/teams.jpg" width="56" height="56" alt="" loading="lazy">For teams</a></li>
+    <li><a href="first-light/"><img src="media/menu/first-light.jpg" srcset="media/menu/first-light.jpg 168w, media/menu/first-light-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">First Light</a></li>
+    <li><a href="films/"><img src="media/menu/films.jpg" srcset="media/menu/films.jpg 168w, media/menu/films-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Films</a></li>
+    <li><a href="listen/"><img src="media/menu/listen.jpg" srcset="media/menu/listen.jpg 168w, media/menu/listen-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Listen</a></li>
+    <li><a href="practice/"><img src="media/menu/practice.jpg" srcset="media/menu/practice.jpg 168w, media/menu/practice-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Practice</a></li>
+    <li><a href="weeks/"><img src="media/menu/weeks.jpg" srcset="media/menu/weeks.jpg 168w, media/menu/weeks-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Eight Weeks</a></li>
+    <li><a href="books/"><img src="media/menu/books.jpg" srcset="media/menu/books.jpg 168w, media/menu/books-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Books</a></li>
+    <li><a href="play/"><img src="media/menu/games.jpg" srcset="media/menu/games.jpg 168w, media/menu/games-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Games</a></li>
+    <li><a href="play/fireside/"><img src="media/menu/stories.jpg" srcset="media/menu/stories.jpg 168w, media/menu/stories-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Stories</a></li>
+    <li><a href="reading/"><img src="media/menu/reading.jpg" srcset="media/menu/reading.jpg 168w, media/menu/reading-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">Reading</a></li>
+    <li><a href="work/"><img src="media/menu/teams.jpg" srcset="media/menu/teams.jpg 168w, media/menu/teams-336.jpg 336w" sizes="(min-width:960px) 170px, 56px" width="56" height="56" alt="" loading="lazy">For teams</a></li>
   </ul>
   <div class="mfoot">
     <a class="btn white" href="#first-light" data-focus>Begin free</a>
     <button class="btn" type="button" id="menuWelcome"><span class="play"></span>Watch the welcome</button>
   </div>
 </div>
+
+<nav class="dock" id="dock" aria-label="Quick links">
+  <a href="./" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4.5l8 7"/><path d="M6 10v9h4.5v-5h3v5H18v-9"/></svg><span>Home</span></a>
+  <a href="listen/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="8.5" opacity=".55"/></svg><span>Listen</span></a>
+  <a href="reading/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5c3-1.3 6-1.3 9 .8 3-2.1 6-2.1 9-.8V19c-3-1.3-6-1.3-9 .8-3-2.1-6-2.1-9-.8z"/><path d="M12 7.3v12.5"/></svg><span>Reading</span></a>
+  <a href="weeks/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h4v-4h4v-4h4V6h4"/></svg><span>8 Weeks</span></a>
+  <a href="practice/"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v3.5M12 17v3.5M3.5 12H7M17 12h3.5"/></svg><span>Practice</span></a>
+  <a href="play/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c1 3.2 4.5 4.7 4.5 9a4.5 4.5 0 0 1-9 0c0-2.3 1.4-3.5 2.2-5 .5 1.5 1.3 2.2 2.3 2.6C12.4 7.5 11.8 5.4 12 3z"/></svg><span>Play</span></a>
+  <a href="books/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4.5h4v15H5zM10 4.5h4v15h-4z"/><path d="M15.4 5.6l3.6-.9 3 14.6-3.6.9z"/></svg><span>Books</span></a>
+  <button type="button" id="dockMenu" aria-haspopup="dialog" aria-controls="menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg><span>Menu</span></button>
+</nav>
 
 <main>
 <section class="hero">
@@ -387,6 +454,14 @@ html.gated,html.menu-open{overflow:hidden}
       <img src="media/world/peaks-headlamps-1100.jpg" width="1100" height="1466" alt="Headlamps on the San Francisco Peaks before dawn" decoding="async">
     </picture>
   </figure>
+  <!-- the opening film, back on 11/25: tall cuts on a phone, wide on a laptop; nothing here is fetched until its turn is near -->
+  <div class="cut" id="cut" aria-hidden="true">
+    <div class="shot" data-dur="7" data-p="media/opening/waterfall-p.mp4" data-l="media/opening/waterfall-l.mp4" data-pp="media/opening/waterfall-p.jpg" data-pl="media/opening/waterfall-l.jpg"></div>
+    <div class="shot" data-dur="6" data-sp="media/opening/trail-p.jpg" data-sl="media/opening/trail-l.jpg" style="--pos:50% 42%"></div>
+    <div class="shot" data-dur="9" data-p="media/opening/creek-p.mp4" data-l="media/opening/creek-l.mp4" data-pp="media/opening/creek-p.jpg" data-pl="media/opening/creek-l.jpg"></div>
+    <div class="shot" data-dur="6" data-sp="media/opening/sunset-p.jpg" data-sl="media/opening/sunset-l.jpg" style="--pos:50% 40%"></div>
+    <div class="shot" data-dur="6" data-p="media/opening/rapids-p.mp4" data-l="media/opening/rapids-l.mp4" data-pp="media/opening/rapids-p.jpg" data-pl="media/opening/rapids-l.jpg"></div>
+  </div>
   <div class="copy">
     <h1>Calm is stored,<br>not summoned.</h1>
     <p>Practices, films and stories for a good relationship with stress, carried from the mountains of the world.</p>
@@ -403,7 +478,7 @@ html.gated,html.menu-open{overflow:hidden}
   <small>Tony Skrelūnas</small>
   <div class="film" id="film">
     <video id="welVid" playsinline preload="none"></video>
-    <script>document.getElementById('welVid').poster = innerWidth < 700 ? 'media/welcome/welcome-poster-960x540.jpg' : 'media/welcome/welcome-poster-1920x1080.jpg';</script>
+    <script>document.getElementById('welVid').poster = innerWidth <= 700 ? 'media/welcome/welcome-poster-720x1280.jpg' : 'media/welcome/welcome-poster-1920x1080.jpg';</script>
     <button class="bigplay" id="bigPlay" type="button"><span class="play"></span>Watch the welcome <em>5 min</em></button>
     <div class="endcard" id="endcard" hidden>
       <div>
@@ -601,18 +676,75 @@ html.gated,html.menu-open{overflow:hidden}
   menuClose.addEventListener('click', function(){ setMenu(false); });
   menu.addEventListener('click', function(e){ if (e.target.closest('a, #menuWelcome')) setMenu(false); }, true);
   addEventListener('keydown', function(e){ if (e.key === 'Escape' && !menu.hidden) setMenu(false); });
-  var wide = matchMedia('(min-width:960px)'), onWide = function(m){ if (m.matches && !menu.hidden) setMenu(false); };
-  if (wide.addEventListener) wide.addEventListener('change', onWide); else if (wide.addListener) wide.addListener(onWide);
+  document.getElementById('dockMenu').addEventListener('click', function(){ warmMenu(); setMenu(true); });
+
+  // the opening film (back on 11/25): the first photograph stays underneath; his footage and photographs cross it in long
+  // fades with a slow drift. It runs only while the top of the page is on screen, each piece is fetched only when its turn
+  // is near, and where a phone will not play a film on its own (low power) or asks for less data, it shows the stills.
+  (function(){
+    var host = document.getElementById('cut');
+    if (!host || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var conn = navigator.connection || {}, lean = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+    var wide = matchMedia('(min-aspect-ratio: 1/1)').matches;
+    var shots = [].slice.call(host.querySelectorAll('.shot')), HOLD = 6, FADE = 2.4, RATE = 0.7, ZOOM = 0.06;
+    function ease(x){ return x * x * (3 - 2 * x); }
+    function still(s, src){ var im = document.createElement('img'); im.alt = ''; im.decoding = 'async'; s._src = src; s.appendChild(im); s._im = im; s._v = null; }
+    shots.forEach(function(s){
+      var d = s.dataset;
+      if (d.sp) { still(s, wide ? d.sl : d.sp); return; }
+      s._poster = wide ? d.pl : d.pp;
+      if (lean) { still(s, s._poster); return; }
+      var v = document.createElement('video'); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'none'; v.disableRemotePlayback = true;
+      s._src = wide ? d.l : d.p; s.appendChild(v); s._v = v; s._on = false;
+    });
+    var starts = [], acc = HOLD; shots.forEach(function(s){ starts.push(acc); acc += Number(s.dataset.dur) || 7; });
+    var DUR = acc, last = shots.length - 1, running = false, t0 = 0, raf = 0, at = 0;
+    function turn(s, on){
+      var v = s._v; if (!v || s._on === on) return; s._on = on;
+      if (!on) { v.pause(); return; }
+      v.playbackRate = RATE; var pr = v.play();
+      if (pr && pr.catch) pr.catch(function(e){ if (e && e.name === 'NotAllowedError' && s._v === v) { v.remove(); still(s, s._poster); s._im.src = s._poster; } });
+    }
+    var hero = host.parentNode, cutting = false;
+    function frame(t){
+      var tt = t % DUR, over = false;
+      shots.forEach(function(s, i){
+        var a = starts[i], b = i < last ? starts[i + 1] : DUR, since = tt - (a - FADE), o = 0;
+        if (since >= -6 && tt < b) {
+          if (s._im && !s._im.getAttribute('src')) s._im.src = s._src;
+          if (s._v && !s._v.getAttribute('poster')) s._v.poster = s._poster;
+          if (s._v && since >= -3 && !s._v.getAttribute('src')) { s._v.preload = 'auto'; s._v.src = s._src; }
+        }
+        if (since >= 0 && tt < b) o = since < FADE ? ease(since / FADE) : 1;
+        if (i === last && tt > DUR - FADE) o = ease((DUR - tt) / FADE);
+        if (o !== s._o) { s._o = o; s.style.opacity = o.toFixed(3); }
+        if (o > 0) { var k = since / (b - a + FADE); s.style.transform = 'scale(' + (1 + ZOOM * k).toFixed(4) + ') translate(' + ((i % 2 ? 1 : -1) * k).toFixed(3) + '%,' + (-0.6 * k).toFixed(3) + '%)'; }
+        if (s._v) turn(s, o > 0);
+        if (o > .5) over = true;
+      });
+      if (over !== cutting) { cutting = over; hero.classList.toggle('cutting', over); }
+    }
+    function loop(now){ frame((now - t0) / 1000); raf = requestAnimationFrame(loop); }
+    // the film waits for the first photograph: on a weak signal nothing competes with it
+    var first = document.querySelector('.hero figure img'), ready = !first || (first.complete && first.naturalWidth > 0);
+    if (!ready) first.addEventListener('load', function(){ ready = true; if (seen() && !document.hidden) start(); });
+    function start(){ if (running || !ready) return; running = true; t0 = performance.now() - at * 1000; raf = requestAnimationFrame(loop); }
+    function stop(){ if (!running) return; running = false; at = ((performance.now() - t0) / 1000) % DUR; cancelAnimationFrame(raf); shots.forEach(function(s){ if (s._v) { s._v.pause(); s._on = false; } }); }
+    function seen(){ var r = host.getBoundingClientRect(); return r.bottom > 40 && r.top < innerHeight; }
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting && !document.hidden) start(); else stop(); }); }, { threshold: .05 }).observe(host);
+    else start();
+    document.addEventListener('visibilitychange', function(){ if (document.hidden) stop(); else if (seen()) start(); });
+  })();
 
   // words light up as you read
-  var p = document.querySelector('.statement p');
+  var p = document.querySelector('.statement > p');
   p.innerHTML = p.textContent.split(' ').map(function(w){ return '<span>' + w + '</span>'; }).join(' ');
   var words = p.querySelectorAll('span');
   function lit(){
     var r = p.getBoundingClientRect(), vh = innerHeight;
     var t = Math.min(1, Math.max(0, (vh * 0.85 - r.top) / (r.height + vh * 0.35)));
     var n = Math.round(t * words.length);
-    for (var i = 0; i < words.length; i++) words[i].style.opacity = i < n ? 1 : .14;
+    for (var i = 0; i < words.length; i++) words[i].classList.toggle('lit', i < n);
   }
   addEventListener('scroll', lit, { passive: true }); lit();
 
@@ -677,9 +809,10 @@ html.gated,html.menu-open{overflow:hidden}
   go.addEventListener('click', run);
 
   // the welcome film, in place; at its end, one small next step
-  var vid = document.getElementById('welVid'), big = document.getElementById('bigPlay'), endcard = document.getElementById('endcard');
+  var vid = document.getElementById('welVid'), big = document.getElementById('bigPlay'), endcard = document.getElementById('endcard'), stage = document.getElementById('welcome');
   function startFilm(){
     if (!vid.src) vid.src = innerWidth < 700 ? 'media/welcome/welcome-voice-1280x720.mp4' : 'media/welcome/welcome-voice-1600x900.mp4';
+    stage.classList.remove('ended'); stage.classList.add('playing');
     endcard.hidden = true; vid.controls = true; big.hidden = true; vid.play().catch(function(){});
   }
   big.addEventListener('click', startFilm);
@@ -687,7 +820,7 @@ html.gated,html.menu-open{overflow:hidden}
     document.getElementById('film').scrollIntoView({ behavior: 'smooth', block: 'center' }); startFilm();
   });
   document.getElementById('menuWelcome').addEventListener('click', function(){ document.getElementById('playWelcome').click(); });
-  vid.addEventListener('ended', function(){ if (!joined()) { vid.controls = false; endcard.hidden = false; } });
+  vid.addEventListener('ended', function(){ if (!joined()) { vid.controls = false; endcard.hidden = false; stage.classList.remove('playing'); stage.classList.add('ended'); } });
   document.getElementById('replay').addEventListener('click', function(){ vid.currentTime = 0; startFilm(); });
 
   // films in Lithuanian and Japanese: they load only when pressed
