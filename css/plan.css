@@ -1,0 +1,63 @@
+/* The pages the business plan of 11/24 asks for: the founding season, the gift year, the 22-day course.
+   Built 11/25 on shared/site.css and css/pages.css, in the look of the rest of the site. */
+.pl{background:var(--stone);color:var(--ink);padding:clamp(52px,8vw,112px) var(--gutter)}
+.pl.dark{background:var(--night);color:#fff}
+.pl .wrapn{max-width:1180px;margin:0 auto}
+.pl h2{font-size:clamp(2rem,4.6vw,3.6rem);max-width:18ch}
+.pl .lead{margin:1rem 0 0;max-width:40rem;font-size:clamp(1.05rem,1rem + .4vw,1.25rem);line-height:1.45;color:var(--ink-2,#4b4d47)}
+.pl.dark .lead{color:rgba(255,255,255,.86)}
+.pl .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);margin-top:clamp(24px,3.4vw,44px)}
+.pl .cols.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pl .item{background:#fff;border-radius:16px;padding:clamp(18px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(38,39,35,.5)}
+.pl.dark .item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);box-shadow:none}
+.pl .item .n{font-family:var(--display);font-weight:800;font-size:1.6rem;line-height:1;color:var(--earth)}
+.pl.dark .item .n{color:var(--gold)}
+.pl .item h3{margin-top:.7rem;font-size:clamp(1.25rem,1.1rem + .7vw,1.6rem);line-height:1.08}
+.pl .item p{margin:.6rem 0 0;line-height:1.5;color:var(--ink-2,#4b4d47)}
+.pl.dark .item p{color:rgba(255,255,255,.82)}
+.pl .item .when{display:block;margin-top:.8rem;font-size:.86rem;font-weight:600;color:var(--earth)}
+.pl.dark .item .when{color:var(--gold)}
+
+/* the two prices, the same on every page that carries them */
+.offer2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(12px,1.6vw,22px);margin-top:clamp(24px,3.4vw,44px)}
+.offer2 .o{display:flex;flex-direction:column;gap:.5rem;background:#fff;color:var(--ink);border-radius:18px;padding:clamp(20px,2.4vw,30px);text-decoration:none;box-shadow:0 22px 50px -30px rgba(38,39,35,.6)}
+.offer2 .o.main{background:var(--night);color:#fff}
+.offer2 .o .k{font-weight:700;font-size:1rem}
+.offer2 .o b{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,5vw,4rem);line-height:.95;letter-spacing:-.03em}
+.offer2 .o b small{font-family:var(--text);font-weight:500;font-size:1rem;letter-spacing:0;opacity:.8;margin-left:.3em}
+.offer2 .o p{margin:0;line-height:1.45;opacity:.86}
+.offer2 .o .btn{align-self:flex-start;margin-top:.7rem}
+.offer2 .o.main .btn{background:var(--earth)}
+.guarantee{margin:1.4rem 0 0;max-width:46rem;font-size:.98rem;line-height:1.5}
+.guarantee b{font-weight:700}
+.pl .small{margin:1rem 0 0;font-size:.9rem;line-height:1.5;color:var(--ink-2,#4b4d47);max-width:46rem}
+.pl.dark .small{color:rgba(255,255,255,.7)}
+.pl .small a{color:inherit}
+
+/* the gift card, as it prints */
+.card-show{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.giftcard{position:relative;aspect-ratio:5/7;max-width:380px;width:100%;border-radius:14px;overflow:hidden;background:var(--night);color:#fff;box-shadow:0 40px 80px -30px rgba(0,0,0,.7);transform:rotate(-2.5deg)}
+.giftcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.giftcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.1) 40%,rgba(16,11,13,.86) 100%)}
+.giftcard .t{position:absolute;z-index:1;left:22px;right:22px;bottom:22px}
+.giftcard .t b{display:block;font-family:var(--display);font-weight:800;font-size:1.7rem;line-height:1}
+.giftcard .t span{display:block;margin-top:.5rem;font-size:.9rem;opacity:.86}
+.steps{list-style:none;margin:clamp(20px,3vw,36px) 0 0;padding:0;display:grid;gap:14px;counter-reset:s}
+.steps li{position:relative;padding-left:3.1rem;line-height:1.5;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:-.1em;width:2.2rem;height:2.2rem;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--night);font-family:var(--display);font-weight:800}
+.soon{display:inline-block;margin-top:1rem;padding:.6em 1em;border-radius:999px;background:rgba(209,166,60,.18);border:1px solid rgba(209,166,60,.6);font-weight:600;font-size:.95rem}
+
+/* the course: the days */
+.days{list-style:none;margin:clamp(22px,3vw,40px) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.days li{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:16px}
+.days li span{display:block;font-size:.86rem;color:var(--gold);font-weight:700}
+.days li b{display:block;margin-top:.3rem;font-family:var(--display);font-weight:800;font-size:1.2rem;line-height:1.1}
+
+/* names of founding members, when there are some */
+.names{margin:clamp(20px,3vw,36px) 0 0;padding:clamp(18px,2.2vw,28px);border-radius:16px;border:1px dashed rgba(38,39,35,.3);max-width:46rem;line-height:1.5;color:var(--ink-2,#4b4d47)}
+
+@media (max-width:900px){
+  .pl .cols,.pl .cols.three,.offer2,.card-show{grid-template-columns:1fr}
+  .days{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .giftcard{max-width:300px;margin:0 auto}
+}

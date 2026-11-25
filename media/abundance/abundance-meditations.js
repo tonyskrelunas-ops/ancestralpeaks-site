@@ -1,5 +1,5 @@
 /* The 1440 abundance meditations, short and long.
-   They land in Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/MASKED SESSIONS/abundance meditations — short and long/.
+   They land in Dropbox/2026 ANCESTRAL PEAKS/RECORDINGS/abundance meditations — short and long/.
    The site plays a 30-second preview of each (media/previews/<preview>-30s.mp3). The Pocket opens in full after the free
    sign-up in the Listening Room (free: true); the others play in full for members inside the membership, so their full
    files are not kept on the public site. The shelf on the home page builds itself from this list. (11/7: store window) */

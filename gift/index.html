@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Give a year · Ancestral Peaks</title>
+<meta name="description" content="A year of Ancestral Peaks for someone carrying a lot: a printable card with their name on it, and a code that opens the full year.">
+<link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
+<link rel="stylesheet" href="../shared/site.css?v=1125c">
+<link rel="stylesheet" href="../css/pages.css?v=1125a">
+<link rel="stylesheet" href="../css/plan.css?v=1125c">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<script src="/app/pwa.js?v=1108e" defer></script>
+<link rel="canonical" href="https://ancestralpeaks.com/gift/">
+<!-- THE GIFT YEAR. From the business plan of 11/24, part 3. Built 11/25 for Tony to review. The two buy buttons stay hidden until the two gift products exist in Payhip (AP.GIFT below). -->
+</head>
+<body>
+
+<header data-ap-nav data-active="/gift/" data-menu-image="../media/img/oakcreek-rim-1000.jpg"></header>
+
+<section class="hero" id="top" data-scene="dawn" data-scene-label="the Alps before dawn">
+  <div class="bg"><img src="../media/world/alps-headlamps-1600.jpg" alt="Runners' headlamps coming down the Swiss Alps before dawn"></div>
+  <div class="copy">
+    <div>
+      <h1 data-words="90">Give a year.</h1>
+      <p class="lede reveal d2"><b>A year of Ancestral Peaks for someone carrying a lot.</b> A printable card with their name on it, and a code that opens the full year.</p>
+      <div class="acts reveal d3"><a class="btn earth" href="#gifts">Choose the gift</a></div>
+    </div>
+    <p class="side reveal d3">For Christmas, the last gift day is Wednesday, December 23.</p>
+  </div>
+</section>
+
+<section class="pl" id="gifts" data-bar="light">
+  <div class="wrapn">
+    <div class="card-show">
+      <div class="giftcard reveal"><img src="../media/world/alps-headlamps-1100.jpg" alt="" loading="lazy"><div class="t"><b>A year of Ancestral Peaks</b><span>To and From, your own note inside, and the code on the back.</span></div></div>
+      <div>
+        <h2 class="reveal">A card they can hold, and a year behind it.</h2>
+        <ol class="steps">
+          <li>Choose the gift below and pay as you would for yourself.</li>
+          <li>You receive the card to print, five by seven inches, and a code. Write their name on it.</li>
+          <li>They go to ancestralpeaks.com, choose the year, and enter the code. Nothing is charged to them.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="offer2" id="giftOffers">
+      <a class="o main" data-gift="yearBook" href="#gifts"><span class="k">A year with Stone Breath</span><b>$39</b><p>The full year, and the Stone Breath ebook with the twenty-two tools.</p><span class="btn earth">Give this</span></a>
+      <a class="o" data-gift="year" href="#gifts"><span class="k">A year of Ancestral Peaks</span><b>$29</b><p>Every session and voice note in full, the Eight Weeks, the long films, the readings, and First Light every weekday.</p><span class="btn">Give this</span></a>
+    </div>
+    <p class="soon" id="giftSoon">The gift opens on Friday, November 27.</p>
+    <p class="small">A gift is a full year, paid once. It does not renew on its own. Questions: <a href="mailto:far-messenger@ancestralpeaks.com?subject=A%20gift%20year">far-messenger@ancestralpeaks.com</a>.</p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script src="../shared/vendor/gsap.min.js?v=1108e"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
+<script src="../shared/vendor/lenis.min.js?v=1108e"></script>
+<script src="../shared/site.js?v=1125c"></script>
+<script>
+AP.init();
+// the two gift products, once they exist in Payhip: put their links here and the buttons come alive
+AP.GIFT = { year: '', yearBook: '' };
+(function(){
+  var ready = !!(AP.GIFT.year && AP.GIFT.yearBook);
+  document.querySelectorAll('[data-gift]').forEach(function(a){
+    if (ready) a.href = AP.GIFT[a.dataset.gift];
+    else { a.removeAttribute('href'); a.querySelector('.btn').style.display = 'none'; }
+  });
+  if (ready) document.getElementById('giftSoon').remove();
+})();
+</script>
+<script src="../shared/media-guard.js?v=1" defer></script>
+</body>
+</html>

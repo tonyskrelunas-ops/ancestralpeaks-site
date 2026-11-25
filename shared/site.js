@@ -25,12 +25,49 @@ if (AP.render) html.classList.add('render');
 if (AP.flat) html.classList.add('flat');
 AP.root = html.dataset.root !== undefined ? html.dataset.root : '';   // path prefix for site links ('' on the live site, '..' in a preview folder)
 AP.BEGIN = 'https://app.ancestralpeaks.com';
-/* the membership doors (Payhip checkout). One place for every page; the Book Reader plan is reached only through /reader/. */
+/* the membership doors (Payhip checkout). One place for every page.
+   11/25: Tony's prices from the business plan of 11/24. A full year is $29. The first year with the Stone Breath ebook is
+   $39, then $29 a year. The two plans were made in Payhip on 11/24 by the session that wrote the plan. */
 AP.JOIN = {
-  monthly: 'https://payhip.com/order?link=6bM8i&pricing_plan=nLWRyaNyGa',   // Member, $12 a month
-  yearly:  'https://payhip.com/order?link=6bM8i&pricing_plan=rdWQg8NPBj',   // Member, $79 a year
-  reader:  '/reader/',                                                      // book buyers: the word at the end of the book
-  free:    '/listen/#free'                                                  // the two sessions that open with a free sign-up
+  year:     'https://payhip.com/order?link=6bM8i&pricing_plan=QyBbmZq5zD',  // "A full year", $29 a year
+  yearBook: 'https://payhip.com/order?link=6bM8i&pricing_plan=2VGJlDZgzD',  // "A full year, with Stone Breath", $39 the first year, then $29
+  reader:  '/reader/',                                                      // book buyers
+  free:    '/listen/#free'                                                  // the free quarter: what opens with a first name and an email
+};
+AP.JOIN.monthly = AP.JOIN.year; AP.JOIN.yearly = AP.JOIN.yearBook;         // older pages still ask by these two names
+
+/* ---------- the free quarter lasts three months (the business plan of 11/24) ----------
+   It is counted from the day of the sign-up, and from November 27 for anyone who came before that. When it ends the rooms
+   close back to what is free for everyone, and the door to the full year stands beside them. Tony's own passes never end.
+   This runs before any page script reads ap.free. */
+(function(){
+  try {
+    const rec = JSON.parse(localStorage.getItem('ap.free') || 'null');
+    if (!rec || rec.pass || rec.owner || !rec.at) return;
+    const from = Math.max(rec.at, Date.UTC(2026, 10, 27, 7));
+    if (Date.now() - from < 90 * 864e5) return;
+    localStorage.setItem('ap.free.ended', JSON.stringify(rec)); localStorage.removeItem('ap.free');
+  } catch (e) {}
+})();
+
+/* ---------- the founding season: Friday 11/27 through Thursday 12/31/2026 (the business plan of 11/24) ----------
+   The deadline is real. The line across the top of every page shows from the first minute of November 27 to the last
+   minute of December 31, Arizona time, and never after. Opening any page with ?founding shows it early on that device,
+   so it can be looked at before the season opens. */
+AP.founding = (function(){
+  const start = Date.UTC(2026, 10, 27, 7), end = Date.UTC(2027, 0, 1, 7), now = Date.now();   // Arizona keeps UTC-7 all year
+  let peek = false;
+  try { if (/[?&]founding\b/.test(location.search)) sessionStorage.setItem('ap.founding.peek', '1'); peek = sessionStorage.getItem('ap.founding.peek') === '1'; } catch (e) {}
+  return { open: peek || (now >= start && now < end), early: peek && now < start };
+})();
+if (AP.founding.open) html.classList.add('founding-open');
+AP.season = function(){
+  const host = document.querySelector('[data-ap-nav]');
+  if (!AP.founding.open || !host || document.querySelector('.ap-season')) return;
+  const a = document.createElement('a'); a.className = 'ap-season'; a.href = AP.href('/founding/');
+  a.innerHTML = '<b>The founding season is open.</b><span>Through December 31</span>';
+  document.body.insertBefore(a, document.body.firstChild);
+  html.classList.add('has-season');
 };
 
 /* ---------- the pages (one source of truth for nav + footer) ---------- */
@@ -45,7 +82,8 @@ AP.pages = [
   { href: '/mountain-within/', label: 'The Mountain Within · films', n: '06', group: 'The practice', bar: false },
   { href: '/play/',     label: 'Games & Fireside Stories', n: '07', group: 'Explore',      bar: true },
   { href: '/books/',    label: 'The Books',                n: '08', group: 'Explore',      bar: true },
-  { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: true }
+  { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: true },
+  { href: '/gift/',     label: 'Give a Year',              n: '10', group: 'Explore',      bar: false }
 ];
 /* the menu, grouped: Start here / The practice / Explore (Tony, 11/10: "better organize the menu") */
 AP.menuGroups = function(){
@@ -698,6 +736,16 @@ AP.gate = function(){
   const mw = /^\/mountain-within(\/|$)/.test(location.pathname);
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
+  let ended = null; try { ended = JSON.parse(localStorage.getItem('ap.free.ended') || 'null'); } catch (e) {}
+  if (ended) {
+    try { if (sessionStorage.getItem('ap.ended.seen')) return; sessionStorage.setItem('ap.ended.seen', '1'); } catch (e) {}
+    const c = document.createElement('div'); c.className = 'ap-ended'; c.setAttribute('role', 'status');
+    c.innerHTML = `<p><b>Your three free months have ended${ended.name && ended.name !== 'Member' ? ', ' + String(ended.name).replace(/[<>&"]/g, '') : ''}.</b> What is free for everyone stays open. The whole of it is $29 for a full year.</p>
+      <div><a class="btn earth" href="${AP.JOIN.yearBook}">$39 with Stone Breath</a><a class="btn ghost" href="${AP.JOIN.year}">$29 a full year</a><button type="button" aria-label="Close">Not now</button></div>`;
+    c.querySelector('button').addEventListener('click', () => c.remove());
+    setTimeout(() => document.body.appendChild(c), 2500);
+    return;
+  }
   // Tony's own pass, like tribeawaken.com/?member: open any page with ?member once on a device and it never asks there
   if (/[?&]member\b/.test(location.search)) { try { localStorage.setItem('ap.free', JSON.stringify({ name: 'Member', at: Date.now(), pass: true })); } catch (e) {} return; }
   // the home page (11/10, Tony): the opening and the welcome film are free to watch; the 30 seconds start only once the
@@ -729,8 +777,14 @@ AP.gate = function(){
     const g = document.createElement('div'); g.className = 'ap-gate'; g.setAttribute('role', 'dialog'); g.setAttribute('aria-modal', 'true'); g.setAttribute('aria-labelledby', 'apGateH');
     g.innerHTML = `<form class="ap-gate-card" novalidate>
       <div class="mk">${AP.markSVG}<span>Ancestral Peaks</span></div>
-      <h2 id="apGateH">Join to keep going.</h2>
-      <p>Ancestral Peaks is open to everyone who joins. Leave your first name and email and the free room opens to you: Morning Water, two full sessions in the Listening Room, the games, and the stories by the fire.</p>
+      <h2 id="apGateH">Come in free for three months.</h2>
+      <p>Leave your first name and email and about a quarter of every room opens to you for three months: the free sessions in the Listening Room, the films, four readings, week one of the Eight Weeks, The Crossing and a story by the fire, and First Light in the morning.</p>
+      <fieldset class="why"><legend>What brings you here?</legend>
+        <label><input type="radio" name="why" value="hard-season"><span>A hard season</span></label>
+        <label><input type="radio" name="why" value="calm-under-pressure"><span>Calm under pressure</span></label>
+        <label><input type="radio" name="why" value="stories-books"><span>Stories and books</span></label>
+        <label><input type="radio" name="why" value="my-work"><span>My work</span></label>
+      </fieldset>
       <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
       <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" required></label>
       <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -751,7 +805,9 @@ AP.gate = function(){
       const btn = form.querySelector('button'); btn.disabled = true; err.textContent = '';
       try { localStorage.setItem('ap.free', JSON.stringify({ name: name.split(' ')[0].slice(0, 40), at: Date.now() })); } catch (e2) {}
       const C = await capture();
-      if (C && !form.botcheck.checked) { try { await C.send({ name, email, source: 'peaks-signup-wall' + location.pathname.replace(/\/$/, '').replace(/\//g, '-'), subject: 'Ancestral Peaks — a new sign-up' }); } catch (e3) {} }
+      // what brought them travels with the sign-up, so the team can see what people came for (the plan: ask before the price, and keep the answer)
+      const why = (form.querySelector('input[name=why]:checked') || {}).value || '';
+      if (C && !form.botcheck.checked) { try { await C.send({ name, email, source: 'peaks-signup-wall' + location.pathname.replace(/\/$/, '').replace(/\//g, '-') + (why ? '-' + why : ''), subject: 'Ancestral Peaks — a new sign-up' }); } catch (e3) {} }
       g.remove(); document.documentElement.classList.remove('gated');
       if (/\/listen\//.test(location.pathname)) location.reload();
     });
@@ -760,7 +816,7 @@ AP.gate = function(){
 
 AP.init = function(root){
   AP.smooth();
-  AP.nav(); AP.footer(); AP.thumb(); AP.gate();
+  AP.nav(); AP.season(); AP.footer(); AP.thumb(); AP.gate();
   AP.words(root); AP.reveal(root); AP.counts(root);
   $$('.ap-loop[data-src]', root).forEach(el => { if (!el.closest('.ap-cut')) AP.loop(el); });
   $$('.ap-cut', root).forEach(el => AP.cut(el).start());
