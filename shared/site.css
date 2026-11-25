@@ -137,7 +137,8 @@ html.render *{transition:none !important;animation-play-state:paused !important}
 
 /* ---------- footer ---------- */
 .ap-foot{background:var(--night);color:rgba(255,255,255,.72);padding:clamp(28px,4vw,48px) var(--gutter) calc(1.6rem + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.1);font-size:.92rem}
-.ap-foot .row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr);gap:1.5rem 2rem;align-items:start}
+/* 11/25: background:none, because css/pages.css paints every ".row" pale stone, and that reached this row: white words on a pale box (Tony: "i cant see the following") */
+.ap-foot .row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,2fr);gap:1.5rem 2rem;align-items:start;background:none}
 .ap-foot b{color:#fff;font-family:var(--display);font-weight:800;font-size:1.25rem;display:flex;align-items:center;gap:.5rem}
 .ap-foot b svg{width:26px;height:26px}
 .ap-foot .tag{margin-top:.5rem;max-width:30rem}
