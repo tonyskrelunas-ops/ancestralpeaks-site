@@ -1104,7 +1104,10 @@ if (gsap && ST && AP.motion) {
     const p = path.getPointAtLength(Lp * k); const r = svg.getBoundingClientRect(), tr = trail.getBoundingClientRect();
     marker.style.left = ((r.left - tr.left) + p.x / 1000 * r.width) + 'px'; marker.style.top = ((r.top - tr.top) + p.y / 60 * r.height) + 'px';
   }
-  if (desktop && gsap && ST && AP.motion && !AP.flat) {
+  // 11/26 (Tony, on a laptop: "this is where it pauses"): the section used to pin the page for 1.7 screens while the
+  // trail drew. It now scrolls straight through on every screen: the trail draws and the stations show as they arrive.
+  const PIN_PATH = false;
+  if (PIN_PATH && desktop && gsap && ST && AP.motion && !AP.flat) {
     html.classList.add('pinned');
     const tl = gsap.timeline({ scrollTrigger: { trigger: '#pathScene', start: 'top top', end: '+=170%', pin: true, scrub: AP.render ? true : 0.6, anticipatePin: 1 } });
     tl.fromTo('#pathBg img', { scale: 1.02 }, { scale: 1.14, ease: 'none', duration: 1 }, 0)
