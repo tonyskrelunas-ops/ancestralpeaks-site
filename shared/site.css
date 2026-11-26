@@ -398,3 +398,13 @@ html.has-season .ap-bar{top:34px;height:72px;padding-top:0}
 @keyframes ap-kb{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.11) translate3d(-16px,0,0)}}
 .kb>img,.kb>video,.kb>.ap-loop>video,.tile img,.player .still img{animation:ap-kb 38s ease-in-out infinite alternate}
 @media (prefers-reduced-motion:reduce){.kb>img,.kb>video,.kb>.ap-loop>video,.tile img,.player .still img{animation:none}}
+
+/* 11/26: the wide bar is five links, then Menu and one button. Menu shows on laptops too, with its word; the sound switch sits quiet beside it. */
+.ap-burger b{display:none}
+@media (min-width:1281px){
+  .ap-burger{display:inline-flex;align-items:center;width:auto;height:44px;padding:0 4px 0 34px}
+  .ap-burger span{left:4px;right:auto;width:22px}
+  .ap-burger b{display:block;font-weight:600;font-size:.95rem}
+  .ap-bar .ap-sound{border-color:transparent;padding-inline:.5em}
+}
+@media (min-width:981px) and (max-width:1500px){.ap-bar .ap-nav{flex-wrap:nowrap;max-width:none;font-size:.95rem}}
