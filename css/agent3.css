@@ -404,3 +404,51 @@ html.flat .scene{min-height:min(100svh,900px)}
 
 /* 11/8 easy to cancel, said plainly beside the plans */
 .plans .cancel{grid-column:1 / -1;font-size:.95rem;color:rgba(255,255,255,.84);margin:.3rem 0 0}
+
+/* ======================================================================================================
+   THE COACHING PAGES (11/26): /listen/move/, /listen/drive/, /listen/rest/. The room's own rows, preview
+   buttons and members' door; only the top, the "how to use this" and the three links are new.
+   ====================================================================================================== */
+.coach-top{grid-template-columns:minmax(0,1fr);min-height:min(86svh,720px)}
+.coach-top .copy{max-width:60rem}
+.coach-top h1{max-width:14ch}
+.coach-top .crumb{font-weight:600;font-size:.95rem;margin-bottom:.9rem}
+.coach-top .crumb a{color:rgba(255,255,255,.85);text-underline-offset:.25em}
+.coach-top .crumb a:hover{color:#fff}
+.coach-tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
+.coach-tabs a{color:#fff;text-decoration:none;font-weight:600;font-size:.95rem;border:1.5px solid rgba(255,255,255,.4);border-radius:999px;padding:.5em 1.1em;transition:background .2s,border-color .2s}
+.coach-tabs a:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+.coach-tabs a[aria-current]{background:#fff;color:var(--ink);border-color:#fff}
+
+.howto{background:var(--stone);padding:clamp(44px,6vw,88px) var(--gutter) clamp(36px,5vw,72px);border-bottom:1px solid var(--line)}
+.howto h2{font-size:clamp(2rem,4.4vw,3.6rem)}
+.howto .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,36px);margin-top:clamp(20px,3vw,36px)}
+.howto .step{border-top:2px solid var(--ink);padding-top:.9rem}
+.howto .step h3{font-size:1.25rem;letter-spacing:-.015em;line-height:1.15}
+.howto .step p{margin-top:.45rem;font-size:1rem;line-height:1.5;color:var(--ink-2)}
+.coach-safe{margin-top:clamp(18px,2.4vw,28px);background:#fff;border-left:5px solid var(--earth);border-radius:0 12px 12px 0;padding:1rem 1.2rem;font-size:1.05rem;line-height:1.5;max-width:52rem}
+@media (max-width:900px){.howto .steps{grid-template-columns:1fr}}
+
+.coach .sittings .when{padding-inline:var(--gutter);margin-top:clamp(30px,4vw,56px);font-size:clamp(1.35rem,1.1rem + 1vw,1.9rem);color:var(--creek)}
+.coach .sittings .rows{margin-top:.9rem}
+.coach .srow .kick{letter-spacing:0;text-transform:none;font-size:.9rem;font-weight:600}
+.coach .srow .btn.full{padding:.62em 1.15em;font-size:.92rem}
+.coach .srow .opened{font-weight:700;font-size:.92rem;color:var(--creek)}
+.coach .join-box .welcome a{color:var(--earth);font-weight:700}
+@media (max-width:900px){.coach .srow .acts{gap:.55rem .9rem}}
+
+/* the three links, in the Listening Room */
+.with-you{background:var(--stone);padding:clamp(40px,5vw,80px) var(--gutter)}
+.with-you h2{font-size:clamp(2rem,4.4vw,3.6rem)}
+.with-you>p{margin-top:.7rem;font-size:1.1rem;color:var(--ink-2);max-width:36rem}
+.with-you .three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.6vw,24px);margin-top:clamp(18px,2.4vw,32px)}
+.with-you .three a{position:relative;display:block;aspect-ratio:4/3;border-radius:14px;overflow:hidden;color:#fff;text-decoration:none;background:var(--night)}
+.with-you .three img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.with-you .three a:hover img{transform:scale(1.05)}
+.with-you .three a::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.05) 30%,rgba(16,11,13,.82))}
+.with-you .three .t{position:absolute;left:16px;right:16px;bottom:14px;z-index:1}
+.with-you .three b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,1.2rem + 1.2vw,2.2rem);letter-spacing:-.02em;line-height:1}
+.with-you .three span{display:block;margin-top:.3rem;font-size:.95rem;color:rgba(255,255,255,.88)}
+@media (max-width:900px){.with-you .three{grid-template-columns:1fr}.with-you .three a{aspect-ratio:auto;min-height:132px}}
+@media (max-width:900px){html.has-thumb .coach-top .copy{padding-bottom:calc(188px + env(safe-area-inset-bottom,0px))}}
+@media (max-width:480px){.coach .srow{grid-template-columns:84px minmax(0,1fr)}.coach .srow .pv{font-size:.92rem;gap:.5em;padding-right:.85em}.coach .srow .pv .ic{width:32px;height:32px}}

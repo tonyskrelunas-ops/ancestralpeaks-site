@@ -7,7 +7,7 @@
 <meta name="description" content="Every session and voice note in the Listening Room. Play thirty seconds of any of them; three sessions and three voice notes open in full with a free sign-up, and members hear the whole room.">
 <link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
 <link rel="stylesheet" href="../shared/site.css?v=1125e">
-<link rel="stylesheet" href="../css/agent3.css?v=1125a">
+<link rel="stylesheet" href="../css/agent3.css?v=1126b">
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
 <link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
@@ -101,6 +101,17 @@
   <ul class="rows" id="sitRows"></ul>
 </section>
 
+<!-- MOVE, DRIVE, REST: the three listening pages (11/26) -->
+<section class="with-you" id="with-you" data-bar="light">
+  <h2 class="reveal">Take it with you.</h2>
+  <p class="reveal">Three pages put the room in order for a moment of the day, each with a few short guides made for it.</p>
+  <div class="three reveal">
+    <a href="move/"><img src="../media/img/peaks-trail-1100.jpg" alt="" loading="lazy"><span class="t"><b>Move</b><span>A workout, a run, a walk</span></span></a>
+    <a href="drive/"><img src="../media/img/sand-road-800.jpg" alt="" loading="lazy"><span class="t"><b>Drive</b><span>Eyes open, on the road</span></span></a>
+    <a href="rest/"><img src="../media/img/peaks-lake-sunset-1000.jpg" alt="" loading="lazy"><span class="t"><b>Rest</b><span>Unwinding, and the night</span></span></a>
+  </div>
+</section>
+
 <!-- VOICE NOTES -->
 <section class="notes on-dark" id="notes" data-scene="hearth" data-scene-label="the fire">
   <div class="bg"><img src="../media/img/fire-circle-1600.jpg" alt="" loading="lazy"></div>
@@ -163,12 +174,12 @@
 <script src="../shared/vendor/gsap.min.js?v=1108e"></script>
 <script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
 <script src="../shared/vendor/lenis.min.js?v=1108e"></script>
-<script src="../shared/site.js?v=1125e"></script>
-<script src="../media/sessions.js?v=1126a"></script>
+<script src="../shared/site.js?v=1126a"></script>
+<script src="../media/sessions.js?v=1126b"></script>
 <script src="../js/peaks-capture.js?v=1125c"></script>
 <script src="../js/peaks-field.js?v=1108e"></script>
 <script src="../js/peaks-voice.js?v=1108k"></script>
-<script src="../js/peaks-listen.js?v=1126c"></script>
+<script src="../js/peaks-listen.js?v=1126d"></script>
 <script>
   // the real bed loops (built with the same recipes as the sessions' own beds), then the shell
   ['dawn','ocean','desert','hearth','creek'].forEach(s=>AP.sound.register(s,'../media/beds/bed-'+s+'.mp3'));

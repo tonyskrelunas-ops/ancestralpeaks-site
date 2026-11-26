@@ -131,5 +131,38 @@ window.PEAKS_SESSIONS = {
     { "id": "note-34-the-runner-pick-up-a-pebble-run-east", "title": "Pick up a pebble, run east", "sub": "The runner", "dur": 56, "bed": "dawn", "img": "valley-sunset-900", "free": true, "full": "notes/note-34-the-runner-pick-up-a-pebble-run-east.mp3" },
     { "id": "note-35-the-races-were-spiritual", "title": "The races were spiritual", "sub": "The runner", "dur": 54, "bed": "dawn", "img": "peaks-meadow-evening-800" },
     { "id": "note-44-look-at-the-positivity", "title": "Look at the positivity", "sub": "What holds in a storm", "dur": 67, "bed": "hearth", "img": "antelope-light-800" }
-  ]
+  ],
+  /* THE COACHING PAGES (11/26): /listen/move/, /listen/drive/, /listen/rest/. Short guides made for each, in the
+     narration voice. Same rule as the room: everyone hears 30 seconds (media/previews/<id>-30s.mp3); free: true opens
+     in full after the free sign-up (full: the path under media/); the others play in full inside the membership.
+     Drive guides keep the eyes open and never hold the breath. Move guides never hold the breath. */
+  "guides": [
+    { "id": "move-before-the-first-step", "kind": "New guide", "title": "Before the First Step", "blurb": "Stand tall, widen your view, soften the jaw, and choose how you want to feel when you come back. Then begin slower than you think you should.", "mins": "2 min", "dur": 133, "bed": "dawn", "img": "peaks-trail-1100", "free": true, "full": "guides/move-before-the-first-step.mp3" },
+    { "id": "move-the-steady-middle", "kind": "New guide", "title": "The Steady Middle", "blurb": "For the part where the mind starts to talk. The breath keeps moving, never held, and you check the jaw, the shoulders, the hands and the eyes.", "mins": "3 min", "dur": 176, "bed": "dawn", "img": "meadow-trail-walker-1600" },
+    { "id": "move-coming-down", "kind": "New guide", "title": "Coming Down", "blurb": "An easy walk, long breaths out, a look around, and thanks for the legs, the lungs and the time you made.", "mins": "2 min", "dur": 139, "bed": "dawn", "img": "peaks-meadow-evening-800" },
+    { "id": "drive-before-you-pull-out", "kind": "New guide", "title": "Before You Pull Out", "blurb": "A minute or two in the parked car, eyes open. Easy hands on the wheel, a wide view, and one question: how do I want to arrive?", "mins": "2 min", "dur": 130, "bed": "desert", "img": "peaks-morning-1000", "free": true, "full": "guides/drive-before-you-pull-out.mp3" },
+    { "id": "drive-the-long-road", "kind": "New guide", "title": "The Long Road", "blurb": "For the highway and the commute. Eyes far and wide, easy hands, a tall back, and a way to come back when the mind has left.", "mins": "3 min", "dur": 188, "bed": "desert", "img": "valley-sunset-900" },
+    { "id": "drive-when-traffic-tightens", "kind": "New guide", "title": "When Traffic Tightens", "blurb": "Someone cut in, or you are late and every light is red. Loosen the hands one notch, widen your view, and leave more room than you want to.", "mins": "2 min", "dur": 144, "bed": "desert", "img": "sedona-juniper-1600" },
+    { "id": "rest-setting-the-day-down", "kind": "New guide", "title": "Setting the Day Down", "blurb": "The face, the shoulders, the belly, the feet, one piece at a time. Then the day seen from high on the mountain, one thanks, and the pack set down.", "mins": "3 min", "dur": 158, "bed": "hearth", "img": "peaks-lake-sunset-1000", "free": true, "full": "guides/rest-setting-the-day-down.mp3" },
+    { "id": "rest-the-stone-breath-at-night", "kind": "New guide", "title": "The Stone Breath at Night", "blurb": "The stone in your hand, four slow rounds counted with you, four in, four held, six out, and then the creek in the dark.", "mins": "3 min", "dur": 193, "bed": "creek", "img": "hand-stone-800" },
+    { "id": "rest-awake-in-the-night", "kind": "New guide", "title": "Awake in the Night", "blurb": "For three in the morning. No clock, the weight of the blanket, a long quiet breath out, and the thoughts going by like cloud over the peak.", "mins": "2 min", "dur": 144, "bed": "hearth", "img": "fire-moon-800" }
+  ],
+  /* the order on each coaching page: new guides and recordings from the room, by the moment they fit */
+  "coach": {
+    "move": [
+      { "h": "Before you start", "ids": ["move-before-the-first-step", "note-11-go-running-early"] },
+      { "h": "While you move", "ids": ["move-the-steady-middle", "four-movements", "note-35-the-races-were-spiritual", "note-18-you-have-to-be-in-state"] },
+      { "h": "When you finish", "ids": ["move-coming-down", "the-journey-of-the-stone"] }
+    ],
+    "drive": [
+      { "h": "Before you pull out", "ids": ["drive-before-you-pull-out", "note-23-under-sixty-beats"] },
+      { "h": "On the road", "ids": ["drive-the-long-road", "four-movements", "a-word-before-you-begin", "note-22-blindfolded-in-the-hull", "note-27-panic-in-the-desert"] },
+      { "h": "When it tightens", "ids": ["drive-when-traffic-tightens", "note-44-look-at-the-positivity"] }
+    ],
+    "rest": [
+      { "h": "Unwinding", "ids": ["rest-setting-the-day-down", "the-pocket", "before-we-start"] },
+      { "h": "In bed", "ids": ["rest-the-stone-breath-at-night", "the-abundance-meditation", "the-full-crossing"] },
+      { "h": "If you wake", "ids": ["rest-awake-in-the-night", "the-dry-spring"] }
+    ]
+  }
 };
