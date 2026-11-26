@@ -393,3 +393,8 @@ html.has-season .ap-bar{top:34px;height:72px;padding-top:0}
   .ap-gate .fine{margin-top:.5rem;font-size:.8rem}
 }
 @media (max-width:340px){.ap-gate h2{font-size:1.4rem}.ap-gate p{font-size:.9rem}.ap-gate input{min-height:44px}.ap-gate .btn{min-height:48px}.ap-gate .why label span{padding:.36em .7em;font-size:.82rem}}
+
+/* 11/26: the slow push-in, run by the graphics card (was a per-frame script on <html>) */
+@keyframes ap-kb{from{transform:scale(1.04) translate3d(0,0,0)}to{transform:scale(1.11) translate3d(-16px,0,0)}}
+.kb>img,.kb>video,.kb>.ap-loop>video,.tile img,.player .still img{animation:ap-kb 38s ease-in-out infinite alternate}
+@media (prefers-reduced-motion:reduce){.kb>img,.kb>video,.kb>.ap-loop>video,.tile img,.player .still img{animation:none}}

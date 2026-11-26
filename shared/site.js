@@ -196,7 +196,10 @@ AP.footer = function(host, opts){
 
 /* ---------- motion: the slow push-in clock, reveal, words, counts ---------- */
 let kb0 = performance.now();
-function kbLoop(now){ html.style.setProperty('--kb', ((now - kb0) / 1000).toFixed(2)); requestAnimationFrame(kbLoop); }
+// 11/26 (Tony: "the laptop version slows down as you scroll down"): this clock used to rewrite --kb on <html> every frame,
+// which restyled the whole page 60 times a second and let the pictures zoom without end. The slow push-in is now a CSS
+// animation on each picture (shared/site.css, ap-kb), which the graphics card runs on its own. --kb stays 0.
+function kbLoop(){ html.style.setProperty('--kb', '0'); }
 
 AP.reveal = function(root){
   const els = $$('.reveal, [data-words]', root);
