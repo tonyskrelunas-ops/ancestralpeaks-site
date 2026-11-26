@@ -8,9 +8,9 @@
 'use strict';
 const $=(s,r)=>(r||document).querySelector(s), $$=(s,r)=>Array.from((r||document).querySelectorAll(s));
 const D=window.PEAKS_SESSIONS||{sessions:[],notes:[]};
-const MEDIA='../media/';
-const JOIN=(window.AP&&AP.JOIN)||{monthly:'#members',yearly:'#members'};
 const html=document.documentElement;
+const MEDIA=(html.dataset.root||'..')+'/media/';   // '..' in the room, '../..' on the coaching pages under it
+const JOIN=(window.AP&&AP.JOIN)||{monthly:'#members',yearly:'#members'};
 const hoverable=matchMedia('(hover:hover) and (pointer:fine)').matches;
 const motion=()=>window.AP?AP.motion:true;
 const esc=s=>String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -18,13 +18,17 @@ const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+String(
 const local={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
 // Tony's owner pass: open ancestralpeaks.com/listen/?owner once on a device and the free sessions open without the sign-up
 if(/[?&]owner\b/.test(location.search)&&!local.get('ap.free',null))local.set('ap.free',{name:'Tony',at:Date.now(),owner:true});
-const byId=id=>D.sessions.find(s=>s.id===id)||D.notes.find(n=>n.id===id);
+const GUIDES=D.guides||[];
+// the member pass (the same one shared/site.js sets): ?member opens the free pieces on the first load, not the second
+if(/[?&]member\b/.test(location.search)&&!local.get('ap.free',null))local.set('ap.free',{name:'Member',at:Date.now(),pass:true});
+const byId=id=>D.sessions.find(s=>s.id===id)||D.notes.find(n=>n.id===id)||GUIDES.find(g=>g.id===id);
 const FREE=D.sessions.filter(s=>s.free);
 const ROOM=D.sessions.filter(s=>s.shelf==='sessions');
 const SITS=D.sessions.filter(s=>s.shelf==='sittings');
 const preview=id=>MEDIA+'previews/'+id+'-30s.mp3';
 // 11/26 (Tony: "yes"): the free quarter also opens three voice notes in full after the sign-up
-const fullNote=it=>!!(it&&it.free&&it.full&&D.notes.indexOf(it)>-1&&unlocked);
+// 11/26: the short guides on the coaching pages open the same way
+const fullNote=it=>!!(it&&it.free&&it.full&&(D.notes.indexOf(it)>-1||GUIDES.indexOf(it)>-1)&&unlocked);
 const LOCK='<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1zm2 0h6V7a3 3 0 0 0-6 0v3z"/></svg>';
 const PLAY='<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
 
@@ -95,6 +99,30 @@ function renderNotes(){
 }
 renderNotes();
 
+/* ---------- the coaching pages (move, drive, rest): the room's own rows, in the order that fits the moment ----------
+   <div id="coachRows" data-coach="move"> on /listen/move/ and its two neighbours. Nothing here runs in the room itself. */
+function coachRow(it){
+  const note=D.notes.indexOf(it)>-1, guide=GUIDES.indexOf(it)>-1, len=note?fmt(it.dur):it.mins;
+  const kind=guide?it.kind:note?'Voice note':'From the room';
+  const act=!it.free?doorBtn(it.title,true)
+    :!unlocked?`<a class="door-link" href="#joinBox">${LOCK}Free in full with a sign-up</a>`
+    :(note||guide)?'<span class="opened">Open on this device</span>'
+    :`<button class="btn earth full" type="button" data-full="${it.id}">Listen in full</button>`;
+  return `<li class="srow" data-id="${it.id}" data-bed="${it.bed}">
+    <div class="th"><img src="${MEDIA}img/${it.img}.jpg" alt="" loading="lazy"><span class="dur">${it.free&&unlocked?'':LOCK}${esc(len)}</span></div>
+    <div class="tx">
+      <p class="kick">${esc(kind)}, ${esc(len)}</p>
+      <h3>${esc(it.title)}</h3>
+      <p class="blurb">${esc(it.blurb||it.sub)}</p>
+      <div class="acts">${pvBtn(it.id,it.title)}${act}</div>
+    </div></li>`;
+}
+function renderCoach(){
+  const host=$('#coachRows'); if(!host) return;
+  const groups=(D.coach||{})[host.dataset.coach]||[];
+  host.innerHTML=groups.map(g=>`<h3 class="when">${esc(g.h)}</h3><ul class="rows">${g.ids.map(byId).filter(Boolean).map(coachRow).join('')}</ul>`).join('');
+}
+
 /* ---------- 30-second previews: one at a time, anywhere on the page ---------- */
 const pv=new Audio(); pv.preload='none';
 let pvId=null, pvRaf=0;
@@ -164,8 +192,8 @@ function paintUnlock(){
   });
   const form=$('#signup'), wel=$('#welcome');
   if(form) form.hidden=on; if(wel) wel.hidden=!on;
-  if(on){ const h=$('#welcomeH'); if(h) h.textContent=(unlocked.name?'Welcome, '+unlocked.name+'. ':'')+'They are open: three sessions and three voice notes.'; }
-  renderNotes(); paintPv();
+  if(on){ const h=$('#welcomeH'); if(h&&!h.dataset.keep) h.textContent=(unlocked.name?'Welcome, '+unlocked.name+'. ':'')+'They are open: three sessions and three voice notes.'; }
+  renderNotes(); renderCoach(); paintPv();
 }
 (function signup(){
   const form=$('#signup'); if(!form) return;
@@ -177,7 +205,7 @@ function paintUnlock(){
     if(!n){ say('Your first name, please, so the team knows who came in.',true); name.focus(); return; }
     if(!window.PeaksCapture||!PeaksCapture.validEmail(m)){ say('That email does not look complete yet. Check it once more.',true); email.focus(); return; }
     btn.disabled=true; btn.classList.add('busy'); say('Opening them…');
-    const ok=await PeaksCapture.send({ name:n, email:m, source:'peaks-listening-room', subject:'Ancestral Peaks — the free quarter (Listening Room)', botcheck:form.botcheck&&form.botcheck.checked });
+    const ok=await PeaksCapture.send({ name:n, email:m, source:form.dataset.source||'peaks-listening-room', subject:'Ancestral Peaks — the free quarter (Listening Room)', botcheck:form.botcheck&&form.botcheck.checked });
     btn.disabled=false; btn.classList.remove('busy');
     if(!ok){ say('That did not go through. Please try once more in a moment.',true); return; }
     unlocked={name:n.split(' ')[0].slice(0,40),at:Date.now()}; local.set('ap.free',unlocked);

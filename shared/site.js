@@ -88,6 +88,7 @@ AP.pages = [
   { href: '/#path',     label: 'The Path',                 n: '01', group: 'Start here',   bar: true },
   { href: '/join/',     label: 'Membership',               n: '',   group: 'Start here',   bar: false },   // the sale page (11/25)
   { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true },
+  { href: '/listen/#with-you', label: 'Move, Drive, Rest',  n: '',   group: 'The practice', bar: false },   // the three listening pages (11/26)
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
   { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: true },
   { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: true },
