@@ -74,7 +74,7 @@
 <script>
 AP.init();
 document.querySelectorAll('[data-join]').forEach(function(a){ var u = AP.JOIN[a.dataset.join]; if (u) a.href = u; });
-// the one-person line belongs to the Black Friday weekend only: it leaves the page when Monday ends (Arizona time)
+// the one-person line runs the founding season, 11/27 to 12/31: it leaves the page when December 31 ends (Arizona time)
 if (Date.now() >= Date.UTC(2027, 0, 1, 7)) { var b = document.getElementById('bringOne'); if (b) b.remove(); }
 </script>
 <script src="../shared/media-guard.js?v=1" defer></script>
