@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" data-root="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sit at the Fire · The Council Fire · Ancestral Peaks</title>
+<meta name="description" content="Twelve keepers, twelve peoples, one fire. Take a seat, hear what each one knows about how a circle holds, and carry one thing back to your own people. From The Council Fire by Tony Skrelūnas.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<link rel="stylesheet" href="cf.css?v=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+</head>
+<body class="cf">
+
+<header data-ap-nav data-active="/books/" data-menu-image="/media/img/fire-moon-800.jpg"></header>
+
+<!-- ARRIVAL: his own fire in the field, under the moon -->
+<section class="cf-top on-dark" id="top" data-scene="hearth" data-scene-label="the fire">
+  <div class="cf-top-bg"><img src="/media/img/fire-moon-1600.jpg" srcset="/media/img/fire-moon-800.jpg 800w, /media/img/fire-moon-1600.jpg 1600w" sizes="100vw" alt="A small fire in a wide field at dusk, the moon above it." fetchpriority="high"></div>
+  <div class="cf-top-copy">
+    <span class="label">The Council Fire · Book three</span>
+    <h1>Sit at the fire.</h1>
+    <p class="cf-lede">Twelve keepers from twelve peoples, none of them enough alone. In the book they sit in a circle with no head to the table, and each one tells what their people know about holding together. There is a seat for you.</p>
+    <div class="cf-acts">
+      <a class="btn light" href="#before" id="comeBtn">Come to the fire <span class="arrow">→</span></a>
+      <a class="btn ghost" href="#film">A taste of the film, 1:17</a>
+    </div>
+    <p class="cf-fine">The keepers speak when you tap their seats. Sound starts only when you ask for it.</p>
+  </div>
+</section>
+
+<!-- BEFORE THE FIRE: the elders' question -->
+<section class="cf-before on-dark" id="before" data-scene="hearth" data-scene-label="the fire">
+  <div class="cf-narrow">
+    <span class="label">Before the fire is lit</span>
+    <h2>What are you carrying in that you should set down?</h2>
+    <p>In the book the elders come to each keeper alone, before the first night, and ask this. Because a keeper who comes to the fire carrying anger will speak from that anger, and the whole council will be shaped by it.</p>
+    <p>A hard week. A fight you are still having in your head. The feeling that you are holding all of it by yourself. Name it if you like, or only think it.</p>
+    <form class="cf-set" id="setForm" autocomplete="off">
+      <label for="setIn">What I am setting down</label>
+      <input id="setIn" type="text" maxlength="80" placeholder="A few words, or leave it empty" enterkeyhint="done">
+      <button class="btn earth" type="submit">Set it down <span class="arrow">→</span></button>
+      <p class="cf-fine">This one is not kept anywhere. Not on this device, not anywhere else.</p>
+    </form>
+    <p class="cf-setdone" id="setDone" hidden tabindex="-1">It is set down. Come in lighter.</p>
+  </div>
+</section>
+
+<!-- THE CIRCLE: the fire, twelve seats, and one left empty -->
+<section class="cf-circle on-dark" id="circle" data-scene="hearth" data-scene-label="the fire">
+  <div class="cf-circle-head">
+    <span class="label">The circle</span>
+    <h2>Twelve seats. No head to the table.</h2>
+    <p>Tap a seat. Each keeper says one true thing from the book about how a circle holds. Every voice you hear feeds the fire.</p>
+    <button class="cf-voice" type="button" id="voiceBtn" aria-pressed="true"><i aria-hidden="true"></i><span>Voices on</span></button>
+  </div>
+
+  <div class="cf-stage">
+    <div class="cf-ring" id="ring" style="--heat:0">
+      <div class="cf-fire" aria-hidden="true">
+        <span class="glow"></span>
+        <span class="fl f1"></span><span class="fl f2"></span><span class="fl f3"></span>
+        <span class="coal"></span>
+      </div>
+      <!-- seats are added by cf.js -->
+    </div>
+
+    <div class="cf-panel" id="panel" aria-live="polite">
+      <div class="cf-panel-rest" id="panelRest">
+        <p class="cf-count"><b id="count">0</b> of 12 voices at the fire</p>
+        <p class="cf-refrain">The fire was never meant to be carried alone.</p>
+        <p class="cf-by">Tony Skrelūnas, Stone Breath</p>
+        <p class="cf-hint">Begin anywhere. The empty seat at the bottom is yours whenever you want it.</p>
+      </div>
+      <article class="cf-card" id="card" hidden>
+        <div class="cf-card-pic"><img id="cPic" src="" alt="" width="640" height="480"></div>
+        <div class="cf-card-body">
+          <p class="cf-who"><b id="cName"></b><span id="cPlace"></span></p>
+          <p class="cf-carry" id="cCarry"></p>
+          <p class="cf-setup" id="cSetup"></p>
+          <blockquote id="cLine"></blockquote>
+          <div class="cf-card-acts">
+            <button class="btn ghost" type="button" id="againBtn">Hear it again</button>
+            <button class="btn light" type="button" id="nextBtn">The next seat <span class="arrow">→</span></button>
+          </div>
+          <p class="cf-count small"><b id="count2">0</b> of 12 voices at the fire</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- YOUR SEAT -->
+<section class="cf-seat on-dark" id="seat" data-scene="hearth" data-scene-label="the fire" hidden>
+  <div class="cf-narrow">
+    <span class="label">Your seat</span>
+    <h2 id="seatH" tabindex="-1">Come. Sit at the fire. There is room. There is always room.</h2>
+    <p class="cf-by">The Council Fire</p>
+    <p>The twelve did not stay at the fire. In the morning they went home, each to their own people, and took up the work there. So before you get up: one thing, for the people you go back to.</p>
+
+    <form class="cf-form" id="seatForm" autocomplete="off">
+      <fieldset>
+        <legend>Who are your people?</legend>
+        <div class="cf-chips" id="peopleChips">
+          <button type="button">my team</button><button type="button">my family</button><button type="button">my town</button><button type="button">my organization</button><button type="button">my crew</button>
+        </div>
+        <label class="sr" for="peopleIn">Your people</label>
+        <input id="peopleIn" type="text" maxlength="40" placeholder="my team">
+      </fieldset>
+      <fieldset>
+        <legend>What one thing will you carry back to them?</legend>
+        <label class="sr" for="thingIn">The one thing</label>
+        <input id="thingIn" type="text" maxlength="120" placeholder="A few words of your own">
+        <p class="cf-fine">Or take one from the fire:</p>
+        <div class="cf-chips from-fire" id="thingChips"></div>
+      </fieldset>
+      <button class="btn earth" type="submit">Carry it home <span class="arrow">→</span></button>
+      <p class="cf-fine">What you write stays on this device only. It is never sent anywhere.</p>
+    </form>
+
+    <div class="cf-answer" id="answer" hidden tabindex="-1">
+      <p class="cf-answer-for" id="ansFor"></p>
+      <p class="cf-answer-thing" id="ansThing"></p>
+      <p class="cf-answer-fire">None of them enough alone. All of them together.<br>It is yours now. Finish what we began.</p>
+      <p class="cf-by">The Council Fire</p>
+      <div class="cf-q">
+        <p class="cf-q-lab">Hold it against the one question the twelve kept</p>
+        <p class="cf-q-q">Will this repeat the cycles of collapse, or does it honor the great-grandchildren?</p>
+      </div>
+      <p class="cf-fine"><button type="button" class="cf-link" id="changeBtn">Change it</button> · <button type="button" class="cf-link" id="clearBtn">Clear it from this device</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- THE FILM -->
+<section class="cf-film on-dark" id="film" data-scene="hearth" data-scene-label="the fire">
+  <div class="cf-film-grid">
+    <div class="cf-film-media" id="filmMedia">
+      <video playsinline preload="none" poster="/films/media/long/council-fire-poster.jpg" src="/films/media/long/council-fire-taste-720x1280.mp4"></video>
+      <button class="cf-film-go" type="button" id="filmGo" aria-label="Watch a taste of The Council Fire, 1 minute 17 seconds">
+        <img src="/films/media/long/council-fire-poster.jpg" alt="" loading="lazy">
+        <span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:17</span>
+      </button>
+    </div>
+    <div class="cf-film-copy">
+      <span class="label">The film</span>
+      <h2>The Council Fire, told as a film.</h2>
+      <p>The runners. The bowl mended with gold. The twelve, and the fire on the hill on the longest day of the year. The pact they made so their great-grandchildren could find each other.</p>
+      <p>A minute of it is here for everyone. The whole film is 26 minutes, and it is for members.</p>
+      <div class="cf-acts">
+        <a class="btn earth" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=QyBbmZq5zD" data-offer="member-year">A full year, $29 <span class="arrow">→</span></a>
+      </div>
+      <p class="cf-member"><a href="https://payhip.com/AncestralWatchPress/b-account/membership/6bM8i">Members: watch the whole film in your library <span class="arrow">→</span></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ON PEAKS, FROM THIS BOOK -->
+<section class="cf-doors" id="work" data-bar="light">
+  <div class="cf-doors-head">
+    <span class="label">From this book, on Peaks</span>
+    <h2>Now take it into a real room.</h2>
+    <p>The circle in the book is a shape any team, board or town can build, in its own language, with its own people. These are already here for that.</p>
+  </div>
+  <div class="cf-door-row">
+    <a class="cf-door" href="/work/#readings"><b>Six readings for a team or a board</b><span>Goals, structure, meetings, governance. A passage, questions for the room, and one practice for the quarter.</span><i class="arrow">→</i></a>
+    <a class="cf-door" href="/work/#crossing"><b>The Crossing</b><span>A team exercise at tables of five. Three true sentences, carried past the monsters every crossing meets.</span><i class="arrow">→</i></a>
+    <a class="cf-door" href="/practice/"><b>One breath round first</b><span>Settle the room before anything is decided. The practice, counted with the creek.</span><i class="arrow">→</i></a>
+    <a class="cf-door" href="/heal-the-healer/#five"><b>Name your five</b><span>The headlamp circle. For the ones who have been holding it alone, and are tired.</span><i class="arrow">→</i></a>
+  </div>
+  <div class="cf-book">
+    <img src="/media/img/cover-council-fire-900.jpg" alt="The Council Fire, the cover" loading="lazy" width="900" height="1350">
+    <div>
+      <h3>The book itself</h3>
+      <p>The Council Fire is Book Three of The Ancestral Watch. The keepers are invented. Almost nothing else is. It lives at Ancestral Watch, the author's site, where the opening is free to read or to hear.</p>
+      <p class="cf-book-links"><a href="https://ancestralwatch.com/series/the-council-fire/">The book, at Ancestral Watch <span class="arrow">→</span></a><a href="https://ancestralwatch.com/read/the-council-fire/">Read the opening, free <span class="arrow">→</span></a><a href="/books/">All three books on Peaks <span class="arrow">→</span></a></p>
+    </div>
+  </div>
+  <p class="cf-credits">Every line a keeper speaks is from The Council Fire by Tony Skrelūnas. Nothing closed has been opened here. Pictures of the twelve lands as they look today: the hill forts of Kernavė (Hugo.arg, public domain, via Wikimedia Commons); the flock going out, the author's own; the rest via Unsplash. The fire under the moon: photograph by Tony Skrelūnas.</p>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script>window.AP_NO_GATE = true; /* the experience is not broken by a sign-up; the doors are at the end */</script>
+<script src="/shared/site.js?v=1126o"></script>
+<script src="cf.js?v=1"></script>
+<script src="/shared/media-guard.js?v=1" defer></script>
+</body>
+</html>

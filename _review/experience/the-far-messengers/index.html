@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en" data-noinit="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arrive Whole · The Far Messengers · Ancestral Peaks</title>
+<meta name="description" content="Something to do with the fourth book. Choose what you will carry, take it across three crossings from The Far Messengers, and stay calm enough to arrive with it whole.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<link rel="stylesheet" href="fm.css?v=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+</head>
+<body class="fm">
+
+<header data-ap-nav data-active="/books/"></header>
+
+<main class="fm-stage on-dark" id="stage">
+  <div class="fm-bg" aria-hidden="true">
+    <div class="fm-layer on" data-bg="open" style="background-image:url(media/open-water.jpg)"></div>
+    <div class="fm-layer" data-bg="sand" data-img="media/sand.jpg"></div>
+    <div class="fm-layer" data-bg="water" data-img="/play/open-water/img/still-night-190.jpg"></div>
+    <div class="fm-layer" data-bg="forest" data-img="media/forest.jpg"></div>
+    <div class="fm-layer" data-bg="door" data-img="media/door.jpg"></div>
+    <div class="fm-veil"></div>
+  </div>
+
+  <div class="fm-hud" id="hud" hidden>
+    <p class="fm-chip" id="chip"><span class="dot"></span><span>You carry <b data-c="a">something</b></span></p>
+    <ol class="fm-marks" id="marks" aria-label="Where you are">
+      <li data-m="1">Sand</li><li data-m="2">Water</li><li data-m="3">Border</li><li data-m="4">Arrival</li>
+    </ol>
+    <button class="fm-voice" id="voiceBtn" type="button" aria-pressed="false">Voice off</button>
+  </div>
+
+  <!-- 0 · the opening -->
+  <section class="fm-panel on" data-bg="open" data-voice="a1-open" id="p-open">
+    <p class="label">The Far Messengers · Book Four · something to do</p>
+    <h1 tabindex="-1">Arrive Whole</h1>
+    <blockquote class="fm-q">“Before writing, everything a people knew lived in one place. Human memory. If it went out of the mind, it went out of the world.”</blockquote>
+    <p class="fm-p">So somebody had to take it across sand, open water and guarded borders, and keep calm enough to arrive with it whole. For the next six minutes, that somebody is you.</p>
+    <div class="fm-acts">
+      <button class="btn light" type="button" data-begin="voice">Begin, with the voice <span class="arrow">→</span></button>
+      <button class="btn ghost" type="button" data-begin="quiet">Begin quietly</button>
+    </div>
+    <p class="fm-fine">About six minutes. Three crossings from the book, and one counted breath. <a href="#film">Or go straight to the film ↓</a></p>
+    <p class="fm-fine" id="lastTime" hidden></p>
+    <noscript><p class="fm-fine">This walk needs JavaScript. The film and the practice are just below.</p></noscript>
+  </section>
+
+  <!-- 1 · what will you carry -->
+  <section class="fm-panel" data-bg="open" data-deep="1" id="p-choose">
+    <p class="label">Before the beach</p>
+    <h2 tabindex="-1">What will you carry?</h2>
+    <p class="fm-p">“Preparation was deciding what must not die,” the navigator says. Choose one. It weighs nothing, and it goes with you the whole way.</p>
+    <div class="fm-cargo">
+      <button type="button" data-cargo="song"><b>A song</b><span>“…the songs are about rye. About a girl going to the well.” Working songs with a people's instructions inside them, sung in kitchens with the door shut, for fifty years.</span></button>
+      <button type="button" data-cargo="seed"><b>A seed</b><span>“Seed stock, in sealed gourds, more varieties than they needed, because nobody knew what would grow on soil no one had seen.”</span></button>
+      <button type="button" data-cargo="medicine"><b>A medicine</b><span>“Which plants healed and which killed.” What it is stays with its keepers. You carry only this: it has to arrive complete.</span></button>
+      <button type="button" data-cargo="way"><b>The way across</b><span>“More than a hundred and fifty stars, each one known by the exact point on the horizon where it rises and the exact point where it sets.” The whole compass, carried in one head.</span></button>
+    </div>
+  </section>
+
+  <!-- 2 · Masan's line -->
+  <section class="fm-panel" data-bg="open" data-deep="1" data-voice="a2-masan" id="p-masan">
+    <p class="label">You are carrying <span data-c="a">it</span> now</p>
+    <h2 class="fm-big" tabindex="-1">“Anyone can leave with it. Arriving with it is the work.”</h2>
+    <p class="fm-by">Masan, stirring the pot, to a boy of seven. From Stone Breath.</p>
+    <p class="fm-p">She was telling him about the people whose work was to carry. The country in between would kill an ordinary person, she said, so they did not send an ordinary person. They sent “someone trained from small. How to breathe. How to run. How to be by yourself for four days without your own mind turning against you.”</p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Set out <span class="arrow">→</span></button></div>
+  </section>
+
+  <!-- 3–5 · the sand -->
+  <section class="fm-panel" data-bg="sand" data-mark="1" data-voice="a3-well" id="p-sand">
+    <p class="label">The first crossing · the Empty Quarter</p>
+    <h2 tabindex="-1">The dry well.</h2>
+    <p class="fm-p">A man is crossing the largest continuous sand desert on earth, alone, carrying what his people know. “He carried no map. He was the map.”</p>
+    <blockquote class="fm-q">“So. The fourth day. The dead well. Everything his crossing was strung on, cracked mud.”</blockquote>
+    <p class="fm-p">“A frightened man does one thing here, and it is always the same thing. His heart bolts. He gets up and moves — fast, in some direction, because moving feels like doing.”</p>
+    <p class="fm-p"><b>“This man did not do that. He sat down.”</b></p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Sit down with him <span class="arrow">→</span></button></div>
+  </section>
+
+  <section class="fm-panel fm-task" data-bg="sand" data-deep="1" data-mark="1" data-task="hold" id="p-sand-task">
+    <h2 tabindex="-1">Sit down.</h2>
+    <p class="fm-p">He closed his fist around a small river-worn stone, and he counted his breath “to a rhythm like a slow drum: in for four, hold for four, out for six, hold for four.”</p>
+    <p class="fm-how">Rest your thumb on the lamp and keep it there (or hold the space bar). Breathe with the ring, three rounds. If you let go, the lamp only waits.</p>
+    <div class="fm-side">
+    <div class="fm-lampbox" data-lamp></div>
+      <div class="fm-acts fm-after" hidden><button class="btn light" type="button" data-next>His heart came down <span class="arrow">→</span></button></div>
+    </div>
+    <p class="fm-fine fm-outs"><button type="button" class="fm-link" data-auto>Breathe without holding</button> · <button type="button" class="fm-link" data-next>Go on without the breath</button></p>
+  </section>
+
+  <section class="fm-panel" data-bg="sand" data-deep="1" data-mark="1" id="p-sand-after">
+    <img class="fm-plate" src="media/plate-dry-well.jpg" alt="A drawing from the book: cracked mud, with one drop of water at the centre." width="420" height="420" loading="lazy">
+    <h2 tabindex="-1">“It remembered.”</h2>
+    <p class="fm-p">“And then his heart came down. And when it did, his quiet mind did the thing his racing mind could never have done.” A seep, half a day back and to the north, that his grandfather had mentioned once. “He got up. He went north. It was there.”</p>
+    <p class="fm-p">And standing over a miserable brown trickle, with two days still to walk, “he laughed out loud, alone.” The laughter was never the opposite of the calm. “It was the calm, arriving.”</p>
+    <p class="fm-whole"><span data-c="The">It</span> is still whole.</p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Go on to the water <span class="arrow">→</span></button></div>
+  </section>
+
+  <!-- 6–8 · the water -->
+  <section class="fm-panel" data-bg="water" data-mark="2" data-voice="a4-still" id="p-water">
+    <p class="label">The second crossing · the open Pacific</p>
+    <h2 tabindex="-1">The night he went still.</h2>
+    <blockquote class="fm-q">“On the sixteenth day the wind died entirely. Not eased — died. The sail hung like laundry.”</blockquote>
+    <p class="fm-p">“A storm asks everything of your body. A calm asks everything of the other thing.” By the second windless day one of the crew had begun, quietly, to do arithmetic: days of water, days of food. “That is the thing nobody tells you about fear — it is the most contagious thing a human being carries.”</p>
+    <p class="fm-p"><b>That night the navigator “sat in the stern, and he went still.”</b></p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Go and sit in the stern <span class="arrow">→</span></button></div>
+  </section>
+
+  <section class="fm-panel fm-task" data-bg="water" data-deep="1" data-mark="2" data-task="still" id="p-water-task">
+    <h2 tabindex="-1">Go still.</h2>
+    <p class="fm-p">“Hands open on his knees, breath so slow she lost the count of it, the little masthead lamp swinging its small circle of light over him and away.”</p>
+    <p class="fm-how">Press the button, then open your hands and do nothing at all for twenty seconds. No tapping, no scrolling, no mouse. If you stir, the water stirs, and then it settles again.</p>
+    <div class="fm-side">
+    <div class="fm-lampbox" data-lamp></div>
+      <div class="fm-acts fm-go"><button class="btn light" type="button" data-start>Hands open</button></div>
+      <div class="fm-acts fm-after" hidden><button class="btn light" type="button" data-next>Morning <span class="arrow">→</span></button></div>
+    </div>
+    <p class="fm-fine fm-outs"><button type="button" class="fm-link" data-next>Go on without the stillness</button></p>
+  </section>
+
+  <section class="fm-panel" data-bg="water" data-deep="1" data-mark="2" id="p-water-after">
+    <img class="fm-plate wide" src="media/plate-night-still.jpg" alt="A drawing from the book: a crescent moon over flat, still water." width="560" height="226" loading="lazy">
+    <h2 tabindex="-1">“Good numbers. Wrong question.”</h2>
+    <p class="fm-p">He came forward at first light and changed nothing. Same heading, same rations, same watch order. “He didn’t say anything. He didn’t do anything. He just came up from the stern with his face right, and my chest unclenched, and I hadn’t known it was clenched.”</p>
+    <p class="fm-p">Everything was different anyway, because “a boat reads its navigator the way a room reads whoever is holding it.” Then he asked the man with the numbers if he knew how to fish.</p>
+    <p class="fm-whole"><span data-c="The">It</span> is still whole.</p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Go on to the border <span class="arrow">→</span></button></div>
+  </section>
+
+  <!-- 9–11 · the border -->
+  <section class="fm-panel" data-bg="forest" data-mark="3" data-voice="a5-border" id="p-border">
+    <p class="label">The third crossing · a border, at night</p>
+    <h2 tabindex="-1">The ones who carried words.</h2>
+    <p class="fm-p">Rasa, the song keeper, tells this one about her own people.</p>
+    <blockquote class="fm-q">“For forty years it was a crime to print a single book in my language.”</blockquote>
+    <p class="fm-p">And for those same forty years, “men crossed the frontier at night with books wrapped in oilcloth under the hay in their wagons, under the fish in their baskets, under their coats against their skin.”</p>
+    <p class="fm-p"><b>“What the tellings dwell on, lovingly, at length, is craft. How a man walked so the frost would not creak.”</b></p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Walk it softly <span class="arrow">→</span></button></div>
+  </section>
+
+  <section class="fm-panel fm-task" data-bg="forest" data-deep="1" data-mark="3" data-task="step" id="p-border-task">
+    <h2 tabindex="-1">One step to a breath.</h2>
+    <p class="fm-how">Breathe in as the ring opens. As it closes, on the long breath out, tap the lamp once. That is one quiet step, and five take you across. If you hurry, the frost creaks and nothing is lost. Wait for the next breath out.</p>
+    <div class="fm-side">
+    <div class="fm-lampbox" data-lamp></div>
+      <div class="fm-acts fm-after" hidden><button class="btn light" type="button" data-next>You are across <span class="arrow">→</span></button></div>
+    </div>
+    <p class="fm-fine fm-outs"><button type="button" class="fm-link" data-next>Go on without the steps</button></p>
+  </section>
+
+  <section class="fm-panel" data-bg="forest" data-deep="1" data-mark="3" id="p-border-after">
+    <h2 tabindex="-1">“The cargo is never the object.”</h2>
+    <p class="fm-p">“The books were paper. What crossed the border was the permission for a people to continue.”</p>
+    <p class="fm-p">Under all of it, Rasa says, is “the oldest law of every carrying people”: <b>“what you know, you owe.”</b></p>
+    <p class="fm-whole"><span data-c="The">It</span> is still whole. There is a lit door ahead.</p>
+    <div class="fm-acts"><button class="btn light" type="button" data-next>Arrive <span class="arrow">→</span></button></div>
+  </section>
+
+  <!-- 12–13 · arrival -->
+  <section class="fm-panel" data-bg="door" data-mark="4" data-voice="a6-arrive" id="p-arrive">
+    <p class="label">Arrival</p>
+    <h2 class="fm-big" tabindex="-1">“Arrive whole. All the way whole. It is carried in your face now — so fix your face.”</h2>
+    <p class="fm-by">The elder, at the rail landing, to the navigator.</p>
+    <p class="fm-p">You came across the sand, the still water and the border, and <span data-c="the">it</span> came with you. <span data-c="line"></span></p>
+    <p class="fm-p">Now the last part of the work. On the voyaging canoes, “they chose who would carry each of these in their body, and they chose a second person for every one of them.”</p>
+    <form class="fm-form" id="nameForm" novalidate>
+      <label for="forName">Who do you carry it for?</label>
+      <div class="row">
+        <input id="forName" name="first" type="text" maxlength="40" autocomplete="off" autocapitalize="words" spellcheck="false" placeholder="A first name">
+        <button class="btn earth" type="submit">Put it in a hand</button>
+      </div>
+      <p class="fm-fine">A first name is enough. It is kept on this device only and is never sent anywhere. <button type="button" class="fm-link" id="noName">I would rather not say</button></p>
+    </form>
+  </section>
+
+  <section class="fm-panel" data-bg="door" data-deep="1" data-mark="4" id="p-handed">
+    <img class="fm-plate wide paper" src="media/plate-the-line.jpg" alt="A drawing from the book: two hands, each holding one end of a braided rope." width="720" height="185" loading="lazy">
+    <h2 tabindex="-1" id="handedLine">Carried whole.</h2>
+    <blockquote class="fm-q">“That is all a far messenger ever was. Not a hero. A person who was carried, who is now carrying, for people they will not meet.”</blockquote>
+    <p class="fm-p">“Put it in a hand. Whatever you know how to do. This year. One person, beside you, learning it all the way through.”</p>
+    <div class="fm-acts">
+      <a class="btn light" href="#film">The film of this book <span class="arrow">↓</span></a>
+      <button class="btn ghost" type="button" id="again">Carry something else</button>
+    </div>
+  </section>
+</main>
+
+<!-- THE FILM, THE PRACTICE, THE JOIN, THE BOOK -->
+<section class="fm-end on-dark" id="film">
+  <div class="fm-film">
+    <div class="head">
+      <p class="label">The film of this book · a taste, 1:06</p>
+      <h2>They Were the Vessel</h2>
+      <p class="fm-p">The medicine, the seed, the songs and the way across lived in a human memory. The far messengers carried it, and kept themselves calm enough to arrive whole.</p>
+    </div>
+    <video controls playsinline preload="none" poster="/films/media/long/they-were-the-vessel-poster.jpg" aria-label="A taste of They Were the Vessel, one minute from the film about the far messengers">
+      <source src="/films/media/long/they-were-the-vessel-taste-1280x720.mp4" type="video/mp4">
+    </video>
+    <div class="foot">
+      <p class="fm-p">The whole film is ten minutes: the dry well in the Empty Quarter, the canoe on the open Pacific, The Runners and The Cascade, read from the books. It is in the member library.</p>
+      <div class="fm-acts">
+        <a class="btn earth" href="https://payhip.com/order?link=6bM8i&pricing_plan=QyBbmZq5zD">A full year, $29 <span class="arrow">→</span></a>
+        <a class="btn ghost" href="https://payhip.com/AncestralWatchPress/b-account/membership/6bM8i">Members: watch the whole film in your library</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="fm-tired">
+    <p class="label">If you are tired</p>
+    <blockquote>“You do not make the calm out there. You spend what you already stored. Which means the day to begin is an ordinary one, when nothing is wrong. Possibly today.”</blockquote>
+    <p class="fm-by">The Far Messengers, “If You Are Tired” <button type="button" class="fm-hear" id="hearClose" aria-pressed="false">Hear it</button></p>
+  </div>
+
+  <div class="fm-store">
+    <h2>Where the calm gets stored.</h2>
+    <p class="fm-p">What you just did at the dry well is the practice that belongs to this book. Here is where it lives on Peaks.</p>
+    <ul class="fm-doors">
+      <li><a href="/practice/"><b>The Practice</b><span>The same count as the dry well: in four, hold four, out six, hold four. Five rounds over the creek, any ordinary morning.</span></a></li>
+      <li><a href="/weeks/"><b>The Eight Weeks</b><span>The disciplines the carriers trained, one a week, in the order every tradition used. Week two is the navigator's.</span></a></li>
+      <li><a href="/listen/#free"><b>The Listening Room</b><span>Guided sessions in a calm voice. Three of them are free for three months.</span></a></li>
+      <li><a href="/play/open-water/"><b>Open Water</b><span>A game from this book: steer by the stars and the swell, in six scenes.</span></a></li>
+      <li><a href="/play/crossing/"><b>The Crossing</b><span>A five-minute game across desert, ocean or mountains. It ends at the fire.</span></a></li>
+    </ul>
+    <p class="fm-book">The book itself is at Ancestral Watch, the free author site: <a href="https://ancestralwatch.com/series/the-far-messengers/">The Far Messengers</a>, and <a href="https://ancestralwatch.com/read/the-far-messengers/">its opening, free to read</a>. The people in the book are invented. The traditions behind them are real, and nothing a tradition keeps closed has been opened here.</p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script>window.AP_NO_GATE = true; /* the experience is not broken by a sign-up; the doors are at the end */</script>
+<script src="/shared/site.js?v=1126o"></script>
+<script src="fm.js?v=1"></script>
+</body>
+</html>

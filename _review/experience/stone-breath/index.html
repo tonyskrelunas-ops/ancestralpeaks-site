@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" data-root="" data-noinit="1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Walk Home · Stone Breath · Ancestral Peaks</title>
+<meta name="description" content="Stone Breath as a walk in the dark. Your finger is the headlamp. One stone, one breath, one long night, and the people who walk you home.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<link rel="stylesheet" href="walk.css?v=1">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<script>window.AP_NO_GATE = true; /* the walk is not broken by a sign-up; the doors are at the end */</script>
+</head>
+<body class="walkpage">
+
+<header data-ap-nav data-active="/books/" data-menu-image="/media/world/alps-headlamps-1100.jpg"></header>
+
+<main class="walk" id="walk">
+
+  <div class="trail" id="trail" aria-hidden="true"><span id="trailName"></span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="inhand" id="inhand" hidden><svg viewBox="0 0 40 28" aria-hidden="true"><ellipse cx="20" cy="14" rx="17" ry="11"/></svg>The stone is in your hand</p>
+
+  <!-- 0 · THE THRESHOLD -->
+  <section class="st st-start" id="s0" data-name="Stone Breath" aria-labelledby="h0">
+    <div class="scene still"><img class="dim show" src="media/ridge.webp" alt="" width="1100" height="594"></div>
+    <div class="tell">
+      <p class="mile">Stone Breath · Book one of The Ancestral Watch</p>
+      <h1 id="h0" tabindex="-1">The Walk Home</h1>
+      <p class="q">Who will carry the fire when you cannot?<small>Masan's question, from Stone Breath by Tony Skrelūnas</small></p>
+      <p>This is the book as a walk in the dark. Your finger is the headlamp. One stone, one breath, one long night, and the people who walk you home.</p>
+      <div class="go">
+        <button class="btn light" type="button" id="startSound">Walk with sound <span class="arrow">→</span></button>
+        <button class="btn ghost" type="button" id="startQuiet">Walk in quiet</button>
+      </div>
+      <p class="fine">A few minutes. The sound is a quiet wind and a few spoken lines from the book. The button at the top turns it off.</p>
+    </div>
+  </section>
+
+  <!-- 1 · BEFORE THE SUN: the stone, hand to hand -->
+  <section class="st" id="s1" data-name="Before the sun" hidden aria-labelledby="h1">
+    <div class="scene" data-lamp="50,40" tabindex="0" aria-label="The mesa before sunrise. Move your light across it.">
+      <img class="dim" src="media/mesa.webp" alt="" width="1100" height="598"><img class="lit" src="media/mesa.webp" alt="A boy runs along the top of a mesa before the sun is up." width="1100" height="598">
+      <div class="glow"></div>
+      <button class="stonebtn" type="button" id="stoneBtn" aria-label="Press and hold to take the stone">
+        <svg viewBox="0 0 120 120" aria-hidden="true"><circle class="track" cx="60" cy="60" r="54"/><circle class="fill" cx="60" cy="60" r="54"/><ellipse class="stone" cx="60" cy="62" rx="34" ry="24"/><path class="sheen" d="M38 54c8-9 22-12 34-8"/></svg>
+        <span>Press and hold</span>
+      </button>
+    </div>
+    <div class="tell">
+      <p class="mile">Big Mountain · before the sun</p>
+      <h2 id="h1" tabindex="-1">Hold this.</h2>
+      <p>Tonas was raised by his great-grandmother Masan. Her father ran with a stone. She put it in the boy's hand.</p>
+      <p class="q">My father ran with a stone in his hand, imagining it on his tongue. Not a big one. Small. Smooth. The kind the river leaves on its banks for free. … He gave it to me. I give it to you. That is how this works.<small>Masan, in Stone Breath</small></p>
+      <button class="hear" type="button" data-say="stone">Hear it</button>
+      <p class="do" id="do1">Find the stone with your light. Press and hold until it is yours.</p>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn ghost next" type="button" data-next>Walk on <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 2 · THE BREATH (the ring is the one Peaks already has) -->
+  <section class="st" id="s2" data-name="The breath" hidden aria-labelledby="h2">
+    <div class="scene still">
+      <img class="dim show" src="media/stone.webp" alt="" width="1100" height="525">
+      <div class="ringhost" id="ring"></div>
+    </div>
+    <div class="tell">
+      <p class="mile">The start line · in the dark</p>
+      <h2 id="h2" tabindex="-1">Three rounds, with him.</h2>
+      <p class="q">Then he held the stone in his palm. Closed his eyes. Imagined it on his tongue. Three cycles of 4-4-6-4. His heart rate, already a little fast from anticipation, dropped to where he wanted it. His mind cleared.<small>Stone Breath, The Headlamp in the Dark</small></p>
+      <p>In four. Hold four. Out six. Hold four. The stone stays in your hand. It never goes in your mouth. If you have no stone, Masan says a thumb is fine.</p>
+      <div class="go inline"><button class="btn light" type="button" id="breathBtn">Begin three rounds</button></div>
+      <div class="after" id="after2" hidden>
+        <p class="q">There. Your shoulders dropped, didn’t they. Your jaw unclenched. … Your body already knew this. It was just waiting for you to remember.<small>Masan, in Stone Breath</small></p>
+        <button class="hear" type="button" data-say="breath">Hear it</button>
+      </div>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn ghost next" type="button" data-next>Walk on <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 3 · THE LONG NIGHT: three things the dark is holding -->
+  <section class="st" id="s3" data-name="The long night" hidden aria-labelledby="h3">
+    <div class="scene" data-lamp="50,88" tabindex="0" aria-label="A ridge in the Alps at night. Move your light to find three things.">
+      <img class="dim" src="media/ridge.webp" alt="" width="1100" height="594"><img class="lit" src="media/ridge.webp" alt="One runner on a high ridge under the moon." width="1100" height="594">
+      <div class="glow"></div>
+      <button class="ember" type="button" data-n="1" style="left:15%;top:58%" aria-label="Something in the valley below"></button>
+      <button class="ember" type="button" data-n="2" style="left:80%;top:26%" aria-label="Something he remembers"></button>
+      <button class="ember" type="button" data-n="3" style="left:46%;top:42%" aria-label="Something he understands"></button>
+    </div>
+    <div class="tell">
+      <p class="mile">Mile 55 to mile 70 · alone</p>
+      <h2 id="h3" tabindex="-1">The dark is holding three things.</h2>
+      <p class="do" id="do3">Move your light across the ridge until you find them.</p>
+      <ol class="found" id="found3">
+        <li hidden><b>Mile 55. Wolves, in the valley below.</b> He did not try to stop the fear. Masan had been clear about this: <em>Fear is a messenger. You do not kill the messenger.</em> <button class="hear" type="button" data-say="night1">Hear it</button></li>
+        <li hidden><b>Mile 70. A memory of the hogan floor.</b> Masan, on the ones whose work was to carry: “And how to arrive with the thing still whole. <em>Anyone can leave with it. Arriving with it is the work.</em>” <button class="hear" type="button" data-say="night2">Hear it</button></li>
+        <li hidden><b>On the ridge, he finally understood.</b> <em>They ran so I could run.</em> He touched the stone in his pocket. It was warm. <button class="hear" type="button" data-say="night3">Hear it</button></li>
+      </ol>
+      <button class="quiet" type="button" id="lightAll">Light them for me</button>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn ghost next" type="button" data-next>Walk on <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 4 · MILE 77: the glaciers -->
+  <section class="st" id="s4" data-name="Mile 77" hidden aria-labelledby="h4">
+    <div class="scene still polish">
+      <button class="rub" type="button" id="rub" aria-label="Rub the stone to polish it. With a keyboard, press Enter several times.">
+        <svg viewBox="0 0 400 300" aria-hidden="true">
+          <defs><radialGradient id="rg" cx="38%" cy="32%" r="80%"><stop id="rg0" offset="0" stop-color="#8d8a84"/><stop id="rg1" offset="1" stop-color="#3c3a38"/></radialGradient></defs>
+          <ellipse class="shadow" cx="204" cy="262" rx="130" ry="14"/>
+          <path id="rock" fill="url(#rg)"/>
+          <g id="scratches"></g>
+          <path id="shine" d="M118 118c34-46 104-62 160-36" />
+        </svg>
+      </button>
+      <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+    </div>
+    <div class="tell">
+      <p class="mile">Mile 77 · a meadow under stars</p>
+      <h2 id="h4" tabindex="-1">Take this.</h2>
+      <p>A woman is sitting on a rock at the side of the trail, crying, ready to quit. He sits down beside her. He picks up a small stone from the trail and holds it out.</p>
+      <p class="q">It started as a sharp piece of rock, maybe a cliff face up there. It fell. It tumbled down streams. It got rolled by glaciers. It banged against other rocks for thousands of years. All that friction, all that pressure, and now it’s smooth. Now it’s in your hand.<small>Stone Breath, The Headlamp in the Dark</small></p>
+      <button class="hear" type="button" data-say="polish">Hear it</button>
+      <p class="do" id="do4">Rub the stone. Be the glacier. Keep going.</p>
+      <div class="after" id="after4" hidden>
+        <p class="big">It didn’t break. It got polished.</p>
+        <p>“The stone isn’t a distraction. It’s proof. You’ve been through your own glaciers. You’re still here.”</p>
+      </div>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn ghost next" type="button" data-next>Walk on <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 5 · MILE 95: the lamps fall in -->
+  <section class="st" id="s5" data-name="Mile 95" hidden aria-labelledby="h5">
+    <div class="scene still circle" id="scene5">
+      <img class="dim" src="media/lamps.webp" alt="" width="1100" height="574"><img class="lit" src="media/lamps.webp" alt="A line of small lights along a mountain ridge at night." width="1100" height="574">
+      <span class="lamp you on" style="left:50%;top:52%"><b>You</b></span>
+      <span class="lamp" data-k="back" style="left:50%;top:82%"><b>Austėja</b></span>
+      <span class="lamp" data-k="left" style="left:22%;top:52%"><b>Lukas</b></span>
+      <span class="lamp" data-k="front" style="left:50%;top:22%"><b>Rytis</b></span>
+      <span class="lamp" data-k="right" style="left:78%;top:52%"><b>Ugnė</b></span>
+      <div class="many" id="many"></div>
+    </div>
+    <div class="tell">
+      <p class="mile">Mile 95 · the gray before dawn</p>
+      <h2 id="h5" tabindex="-1">He was barely upright.</h2>
+      <p id="log5" class="log" aria-live="polite">This is where he cannot go on alone. You are in the middle now. Take a step.</p>
+      <div class="go inline"><button class="btn light" type="button" id="stepBtn">Take a step</button></div>
+      <div class="after" id="after5" hidden>
+        <p class="big">They weren’t angels. They were witnesses.</p>
+        <p class="q">The headlamps held the circle. They walked him home. … It was just people. Ordinary people. Bakers and teachers and grandmothers.<small>Stone Breath, The Headlamp in the Dark</small></p>
+        <button class="hear" type="button" data-say="mile95">Hear it</button>
+      </div>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn ghost next" type="button" data-next>Walk on <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 6 · YOUR CIRCLE: name your five, then the turn -->
+  <section class="st" id="s6" data-name="Your circle" hidden aria-labelledby="h6">
+    <div class="scene still circle ring5" id="scene6">
+      <span class="lamp you on" style="left:50%;top:52%"><b>You</b></span>
+      <span class="lamp" style="left:50%;top:17%"><b></b></span>
+      <span class="lamp" style="left:83%;top:41%"><b></b></span>
+      <span class="lamp" style="left:70%;top:83%"><b></b></span>
+      <span class="lamp" style="left:30%;top:83%"><b></b></span>
+      <span class="lamp" style="left:17%;top:41%"><b></b></span>
+      <span class="lamp far" id="farLamp" style="left:88%;top:10%"><b></b></span>
+    </div>
+    <div class="tell">
+      <p class="mile">The Headlamp Circle · your own mile 95</p>
+      <h2 id="h6" tabindex="-1">Name your five.</h2>
+      <p class="q">Write down the names of five people who would show up for you at mile 95 of the hardest thing you ever do. If you cannot name five, that is information. Start showing up for others first.<small>The Headlamp Circle, from Stone Breath</small></p>
+      <button class="hear" type="button" data-say="circle">Hear: the fire was never meant to be carried alone</button>
+      <form id="fiveForm" class="five" autocomplete="off">
+        <input type="text" maxlength="30" aria-label="First name one" placeholder="A first name" enterkeyhint="next">
+        <input type="text" maxlength="30" aria-label="First name two" placeholder="A first name" enterkeyhint="next">
+        <input type="text" maxlength="30" aria-label="First name three" placeholder="A first name" enterkeyhint="next">
+        <input type="text" maxlength="30" aria-label="First name four" placeholder="A first name" enterkeyhint="next">
+        <input type="text" maxlength="30" aria-label="First name five" placeholder="A first name" enterkeyhint="done">
+        <button class="quiet" type="button" id="fiveClear" hidden>Clear them</button>
+      </form>
+      <p class="fine">First names only. They stay on this device and are never sent to us or to anyone. They are the same five that Heal the Healer keeps for you here.</p>
+      <div class="turn">
+        <h3>Now the other way.</h3>
+        <p>The circle is built by being someone else’s mile 95 before it is built around you. Who is in their dark hour right now?</p>
+        <label class="one"><span>Their first name</span><input type="text" id="forName" maxlength="30" autocomplete="off" placeholder="A first name" enterkeyhint="done"></label>
+        <p class="q" id="goTo" hidden><span id="goToName"></span>When someone you love is in the dark hour … do not ask if they need anything. Just go. Carry water. Carry frybread. Carry silence. Carry your own headlamp.<small>The Headlamp Circle, from Stone Breath</small></p>
+      </div>
+      <div class="go"><button class="btn ghost back" type="button" data-back>Back</button><button class="btn light next" type="button" data-next>Walk home <span class="arrow">→</span></button></div>
+    </div>
+  </section>
+
+  <!-- 7 · HOME: dawn, the cover, the film, the practice, the book -->
+  <section class="st home" id="s7" data-name="Home" hidden data-bar="light" aria-labelledby="h7">
+    <div class="sky"><i class="pink"></i><i class="gold"></i><img src="media/dawn.webp" alt="A runner on a road through the pines as the sun comes up." width="1100" height="538"></div>
+    <div class="homein">
+      <p class="mile ink">The finish · sunrise over the peaks</p>
+      <p class="order">Gray. Then pink. Then gold. In that order, no matter what is happening to anyone.</p>
+      <h2 id="h7" tabindex="-1">He had been enough all along. He had just forgotten.</h2>
+      <p class="lede">The headlamps were off. The circle had held. And he had found something he didn’t know he was looking for. Home. Not a place. A feeling. A knowing that he belonged, not because he earned it, but because he had finally stopped running from it.</p>
+      <button class="hear ink" type="button" data-say="enough">Hear it</button>
+
+      <div class="austeja">
+        <p class="mile ink">The last page · Austėja, on the ridge before the sun</p>
+        <p class="q ink">Thank you. It is good. You are good.<br>I have more than I asked for. I know it.<br>Give me the day. I will use it.<small>What Austėja Knew, the close of Stone Breath</small></p>
+        <button class="hear ink" type="button" data-say="austeja">Hear Austėja</button>
+      </div>
+
+      <div class="pair">
+        <figure class="cover"><img src="media/cover-five-and-three.jpg" alt="The Swiss Alps under the stars. On a switchback trail, five headlamps walk close together, and three more follow above." loading="lazy" width="1100" height="1640"><figcaption>The picture on the cover of Stone Breath: the lamps of mile 95, walking him home.</figcaption></figure>
+        <div class="film">
+          <p class="mile ink">The long film</p>
+          <h3>Stone Breath, told in 22 minutes.</h3>
+          <div class="vid"><video controls playsinline preload="none" poster="/films/media/long/stone-breath-taste-poster.jpg" src="/films/media/long/stone-breath-taste-1280x720.mp4" id="taste"></video></div>
+          <p>This is a taste, 1 minute 24. The whole film is for members, with the practice every morning.</p>
+          <div class="acts">
+            <a class="btn" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=QyBbmZq5zD" data-offer="member-year">A full year, $29 <span class="arrow">→</span></a>
+            <a class="btn ghost dark" href="https://payhip.com/AncestralWatchPress/b-account/membership/6bM8i">Members: watch the whole film in your library</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="rooms">
+        <p class="mile ink">Keep walking, here on Peaks</p>
+        <a class="room" href="/practice/"><b>The stone breath, over the creek</b><span>The book’s practice, counted for you. Five rounds.</span><i class="arrow">→</i></a>
+        <a class="room" href="/heal-the-healer/#five"><b>Your five at mile 95</b><span>Heal the Healer keeps your circle, and a day of short guides for the ones who carry others.</span><i class="arrow">→</i></a>
+        <a class="room" href="/listen/#free"><b>The free practice</b><span>What opens with a first name and an email in the Listening Room.</span><i class="arrow">→</i></a>
+        <a class="room" href="/films/#long-films"><b>The three long films</b><span>A taste of each, and the whole films for members.</span><i class="arrow">→</i></a>
+      </div>
+
+      <p class="book">The book itself lives on the free author site. <a href="https://ancestralwatch.com/series/stone-breath/">Stone Breath, at Ancestral Watch</a> · <a href="https://ancestralwatch.com/read/stone-breath/">Read the opening free</a></p>
+      <p class="last">The ancestors are already walking. Don’t let them find you asleep.</p>
+      <p><button class="quiet ink" type="button" id="again">Walk it again</button></p>
+    </div>
+  </section>
+
+</main>
+
+<footer data-ap-foot hidden></footer>
+
+<script src="/shared/site.js?v=1126o"></script>
+<script src="walk.js?v=1"></script>
+</body>
+</html>
