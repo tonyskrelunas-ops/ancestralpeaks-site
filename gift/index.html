@@ -62,10 +62,12 @@
 <script src="../shared/site.js?v=1125e"></script>
 <script>
 AP.init();
-// the two gift products, once they exist in Payhip: put their links here and the buttons come alive
-AP.GIFT = { year: '', yearBook: '' };
+// the two gift products in Payhip (made 11/26; each sale hands the buyer one code from a list of 25, no card asked of the
+// person who opens it). The buttons come alive at midnight Arizona time on Friday 11/27 (Tony: open it Friday), or with ?gift.
+AP.GIFT = { year: 'https://payhip.com/b/CJFvs', yearBook: 'https://payhip.com/b/otxSR' };
 (function(){
-  var ready = !!(AP.GIFT.year && AP.GIFT.yearBook);
+  var open = Date.now() >= Date.UTC(2026, 10, 27, 7) || /[?&]gift\b/.test(location.search);
+  var ready = !!(AP.GIFT.year && AP.GIFT.yearBook) && open;
   document.querySelectorAll('[data-gift]').forEach(function(a){
     if (ready) a.href = AP.GIFT[a.dataset.gift];
     else { a.removeAttribute('href'); a.querySelector('.btn').style.display = 'none'; }
