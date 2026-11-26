@@ -70,10 +70,11 @@ window.PEAKS_SESSIONS = {
       "mins": "6 min", "dur": 377, "at": 6.75, "bed": "hearth", "field": "embers", "video": null, "img": "fire-moon-1600"
     },
     {
-      "id": "the-gratitude-meditation", "shelf": "sessions", "n": "Morning practice", "where": "first light", "title": "The Gratitude Meditation",
+      "id": "the-gratitude-meditation", "shelf": "free", "free": true, "n": "Morning practice", "where": "first light", "title": "The Gratitude Meditation",
       "blurb": "The full gratitude sitting: the stream, walking feather-light, the medicines, the pebble on the tongue, four rounds of the stone breath, and the eagle watching over you.",
       "line": "Thank you for taking this journey. Thank you for still being here. You are beautiful, you are strong.",
-      "mins": "8 min", "dur": 484, "at": 4.65, "bed": "dawn", "field": "dawn", "video": "v-garden-waterfall", "img": "creek-log-1400"
+      "mins": "8 min", "dur": 484, "at": 4.65, "bed": "dawn", "field": "dawn", "video": "v-garden-waterfall", "img": "creek-log-1400",
+      "full": "sessions/the-gratitude-meditation.mp3"
     },
 
     {
@@ -120,14 +121,14 @@ window.PEAKS_SESSIONS = {
     }
   ],
   "notes": [
-    { "id": "note-11-go-running-early", "title": "Go running early", "sub": "A grandmother's teaching", "dur": 56, "bed": "dawn", "img": "red-trail-walker-800" },
+    { "id": "note-11-go-running-early", "title": "Go running early", "sub": "A grandmother's teaching", "dur": 56, "bed": "dawn", "img": "red-trail-walker-800", "free": true, "full": "notes/note-11-go-running-early.mp3" },
     { "id": "note-18-you-have-to-be-in-state", "title": "You have to be in state", "sub": "Settle yourself first", "dur": 79, "bed": "dawn", "img": "peaks-snow-800" },
     { "id": "note-21-he-knew-by-his-pelvic-bone", "title": "He knew by his pelvic bone", "sub": "Know what you steer by", "dur": 49, "bed": "ocean", "img": "pacific-waves-800" },
     { "id": "note-22-blindfolded-in-the-hull", "title": "Blindfolded in the hull", "sub": "Know what you steer by", "dur": 70, "bed": "ocean", "img": "pacific-torrey-800" },
-    { "id": "note-23-under-sixty-beats", "title": "Under sixty beats", "sub": "The breath", "dur": 59, "bed": "creek", "img": "oakcreek-fall-800" },
+    { "id": "note-23-under-sixty-beats", "title": "Under sixty beats", "sub": "The breath", "dur": 59, "bed": "creek", "img": "oakcreek-fall-800", "free": true, "full": "notes/note-23-under-sixty-beats.mp3" },
     { "id": "note-24-the-birds-and-the-cloud", "title": "The birds and the cloud", "sub": "Know what you steer by", "dur": 72, "bed": "ocean", "img": "river-peaks-900" },
     { "id": "note-27-panic-in-the-desert", "title": "Panic in the desert", "sub": "What holds in a storm", "dur": 60, "bed": "desert", "img": "sedona-bellrock-800" },
-    { "id": "note-34-the-runner-pick-up-a-pebble-run-east", "title": "Pick up a pebble, run east", "sub": "The runner", "dur": 56, "bed": "dawn", "img": "valley-sunset-900" },
+    { "id": "note-34-the-runner-pick-up-a-pebble-run-east", "title": "Pick up a pebble, run east", "sub": "The runner", "dur": 56, "bed": "dawn", "img": "valley-sunset-900", "free": true, "full": "notes/note-34-the-runner-pick-up-a-pebble-run-east.mp3" },
     { "id": "note-35-the-races-were-spiritual", "title": "The races were spiritual", "sub": "The runner", "dur": 54, "bed": "dawn", "img": "peaks-meadow-evening-800" },
     { "id": "note-44-look-at-the-positivity", "title": "Look at the positivity", "sub": "What holds in a storm", "dur": 67, "bed": "hearth", "img": "antelope-light-800" }
   ]

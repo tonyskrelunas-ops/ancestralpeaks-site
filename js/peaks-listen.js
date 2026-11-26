@@ -23,6 +23,8 @@ const FREE=D.sessions.filter(s=>s.free);
 const ROOM=D.sessions.filter(s=>s.shelf==='sessions');
 const SITS=D.sessions.filter(s=>s.shelf==='sittings');
 const preview=id=>MEDIA+'previews/'+id+'-30s.mp3';
+// 11/26 (Tony: "yes"): the free quarter also opens three voice notes in full after the sign-up
+const fullNote=it=>!!(it&&it.free&&it.full&&D.notes.indexOf(it)>-1&&unlocked);
 const LOCK='<svg class="lk" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V7a5 5 0 0 1 10 0v3h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1zm2 0h6V7a3 3 0 0 0-6 0v3z"/></svg>';
 const PLAY='<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>';
 
@@ -30,7 +32,7 @@ let unlocked=local.get('ap.free',null);
 let prog=local.get('ap.listen',{});
 
 /* ---------- pieces ---------- */
-const pvBtn=(id,title,small)=>`<button class="pv${small?' sm':''}" type="button" data-pv="${id}" aria-pressed="false" aria-label="Play a 30-second preview of ${esc(title)}"><span class="ic">${PLAY}</span>${small?'':'<span class="lb">Hear 30 seconds</span>'}<span class="tm">0:30</span><i class="fill"></i></button>`;
+const pvBtn=(id,title,small)=>{ const it=byId(id), whole=typeof unlocked!=='undefined'&&fullNote(it); return `<button class="pv${small?' sm':''}" type="button" data-pv="${id}" aria-pressed="false" aria-label="${whole?'Play '+esc(title)+' in full':'Play a 30-second preview of '+esc(title)}"><span class="ic">${PLAY}</span>${small?'':'<span class="lb">Hear 30 seconds</span>'}<span class="tm">${whole?fmt(it.dur):'0:30'}</span><i class="fill"></i></button>`; };
 const doorBtn=(title,small,dark)=>`<a class="${small?'door-link':'btn ghost'+(dark?'':' dark')+' door'}" href="${JOIN.monthly}" data-offer="member-monthly" aria-label="Members listen to ${esc(title)} in full">${LOCK}Members listen in full <span class="arrow">→</span></a>`;
 
 /* ---------- the two free sessions ---------- */
@@ -79,18 +81,19 @@ function sitHTML(s,i){
 const sit=$('#sitRows'); if(sit) sit.innerHTML=SITS.map(sitHTML).join('');
 
 /* ---------- voice notes ---------- */
-(function notes(){
+function renderNotes(){
   const host=$('#noteList'), sec=$('#notes'); if(!host) return;
   if(!D.notes||!D.notes.length){ if(sec) sec.hidden=true; return; }
   host.innerHTML=D.notes.map((n,i)=>`<li class="nrow" data-id="${n.id}" data-bed="${n.bed}">
     <span class="th"><img src="${MEDIA}img/${n.img}.jpg" alt="" loading="lazy"></span>
     <span class="nn">${String(i+1).padStart(2,'0')}</span>
-    <span class="tt"><b>${esc(n.title)}</b><small>${esc(n.sub)} · ${LOCK}${fmt(n.dur)} for members</small></span>
+    <span class="tt"><b>${esc(n.title)}</b><small>${esc(n.sub)} · ${n.free?(unlocked?'Open on this device · '+fmt(n.dur):LOCK+fmt(n.dur)+' free with a sign-up'):LOCK+fmt(n.dur)+' for members'}</small></span>
     ${pvBtn(n.id,n.title,true)}
-    ${doorBtn(n.title,true,true)}
+    ${n.free?'':doorBtn(n.title,true,true)}
   </li>`).join('');
   const c=$('#noteCount'); if(c) c.textContent=['','One short one','Two short ones','Three short ones','Four short ones','Five short ones','Six short ones','Seven short ones','Eight short ones','Nine short ones','Ten short ones'][D.notes.length]||(D.notes.length+' short ones');
-})();
+}
+renderNotes();
 
 /* ---------- 30-second previews: one at a time, anywhere on the page ---------- */
 const pv=new Audio(); pv.preload='none';
@@ -100,7 +103,7 @@ function paintPv(){
   $$('.pv').forEach(b=>{
     const on=b.dataset.pv===pvId && !pv.paused;
     b.classList.toggle('playing',on); b.setAttribute('aria-pressed',String(on));
-    const lb=$('.lb',b); if(lb) lb.textContent=on?'Playing':(b.dataset.pv===pvId&&pv.currentTime>0.5&&!pv.ended?'Paused':'Hear 30 seconds');
+    const lb=$('.lb',b); if(lb) lb.textContent=on?'Playing':(b.dataset.pv===pvId&&pv.currentTime>0.5&&!pv.ended?'Paused':(fullNote(byId(b.dataset.pv))?'Listen':'Hear 30 seconds'));
   });
 }
 function tickPv(){
@@ -108,14 +111,14 @@ function tickPv(){
   $$(`.pv[data-pv="${pvId}"]`).forEach(b=>{ $('.fill',b).style.width=(100*t/d)+'%'; $('.tm',b).textContent=fmt(Math.max(0,d-t)); });
   if(!pv.paused) pvRaf=requestAnimationFrame(tickPv);
 }
-function resetPv(id){ $$(`.pv[data-pv="${id}"]`).forEach(b=>{ $('.fill',b).style.width='0%'; $('.tm',b).textContent='0:30'; }); }
+function resetPv(id){ const it=byId(id); $$(`.pv[data-pv="${id}"]`).forEach(b=>{ $('.fill',b).style.width='0%'; $('.tm',b).textContent=fullNote(it)?fmt(it.dur):'0:30'; }); }
 function playPreview(id){
   const item=byId(id); if(!item) return;
   if(pvId===id && pv.src){ if(pv.paused){ pv.play().catch(()=>{}); } else { pv.pause(); } return; }
   if(pvId) resetPv(pvId);
   if(window.AP&&AP.current&&AP.current!==pvApi) try{ AP.current.pause(); }catch(e){}
   if(P.audio&&!P.audio.paused) P.audio.pause();
-  pvId=id; pv.src=preview(id); pv.currentTime=0;
+  pvId=id; pv.src=fullNote(item)?MEDIA+item.full:preview(id); pv.currentTime=0;
   pv.play().then(()=>{ if(window.AP){ AP.current=pvApi; AP.sound.duck(true); if(AP.sound.on&&item.bed) AP.sound.set(item.bed); } }).catch(()=>{});
   paintPv();
 }
@@ -161,7 +164,8 @@ function paintUnlock(){
   });
   const form=$('#signup'), wel=$('#welcome');
   if(form) form.hidden=on; if(wel) wel.hidden=!on;
-  if(on){ const h=$('#welcomeH'); if(h) h.textContent=(unlocked.name?'Welcome, '+unlocked.name+'. ':'')+'Both sessions are open.'; }
+  if(on){ const h=$('#welcomeH'); if(h) h.textContent=(unlocked.name?'Welcome, '+unlocked.name+'. ':'')+'They are open: three sessions and three voice notes.'; }
+  renderNotes(); paintPv();
 }
 (function signup(){
   const form=$('#signup'); if(!form) return;
@@ -172,8 +176,8 @@ function paintUnlock(){
     const n=name.value.trim().replace(/\s+/g,' '), m=email.value.trim();
     if(!n){ say('Your first name, please, so the team knows who came in.',true); name.focus(); return; }
     if(!window.PeaksCapture||!PeaksCapture.validEmail(m)){ say('That email does not look complete yet. Check it once more.',true); email.focus(); return; }
-    btn.disabled=true; btn.classList.add('busy'); say('Opening the two sessions…');
-    const ok=await PeaksCapture.send({ name:n, email:m, source:'peaks-listening-room', subject:'Ancestral Peaks — the two free sessions (Listening Room)', botcheck:form.botcheck&&form.botcheck.checked });
+    btn.disabled=true; btn.classList.add('busy'); say('Opening them…');
+    const ok=await PeaksCapture.send({ name:n, email:m, source:'peaks-listening-room', subject:'Ancestral Peaks — the free quarter (Listening Room)', botcheck:form.botcheck&&form.botcheck.checked });
     btn.disabled=false; btn.classList.remove('busy');
     if(!ok){ say('That did not go through. Please try once more in a moment.',true); return; }
     unlocked={name:n.split(' ')[0].slice(0,40),at:Date.now()}; local.set('ap.free',unlocked);
@@ -261,11 +265,11 @@ P.audio.addEventListener('ended',()=>{
   save(true); P.el.classList.remove('playing'); P.el.classList.add('finished');
   if(window.AP) AP.sound.duck(false);
   PeaksVoice.cue('done');
-  const other=FREE.find(s=>s!==cur&&!s.open)||FREE.find(s=>s!==cur)||cur;
+  const other=FREE.find(s=>s!==cur&&!s.open&&!(prog[s.id]&&prog[s.id].done))||FREE.find(s=>s!==cur&&!s.open)||FREE.find(s=>s!==cur)||cur;
   P.finH.textContent='That was '+cur.title+'.';
   if(!unlocked){   // the gift was heard without a sign-up: only now, the invitation
-    P.finP.textContent='Notice how you feel. If it served you, two more sessions open free when you leave your first name and email.';
-    P.next.firstChild.textContent='Open the two free sessions ';
+    P.finP.textContent='Notice how you feel. If it served you, three more sessions and three voice notes open free when you leave your first name and email.';
+    P.next.firstChild.textContent='Open the free sessions ';
     P.next.onclick=()=>{ close(); const j=$('#joinBox'); if(j){ (window.AP&&AP.scrollTo?AP.scrollTo(j,{offset:-90}):j.scrollIntoView({behavior:'smooth'})); setTimeout(()=>{ const n=$('#suName'); if(n) n.focus({preventScroll:true}); },700); } };
   } else {
     P.finP.textContent='Notice how you feel. Another free session is '+other.title+', '+other.mins+'. The rest of the room is open to members.';
