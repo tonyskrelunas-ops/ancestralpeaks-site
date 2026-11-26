@@ -135,7 +135,10 @@ window.PEAKS_SESSIONS = {
   /* THE COACHING PAGES (11/26): /listen/move/, /listen/drive/, /listen/rest/. Short guides made for each, in the
      narration voice. Same rule as the room: everyone hears 30 seconds (media/previews/<id>-30s.mp3); free: true opens
      in full after the free sign-up (full: the path under media/); the others play in full inside the membership.
-     Drive guides keep the eyes open and never hold the breath. Move guides never hold the breath. */
+     Drive guides keep the eyes open and never hold the breath. Move guides never hold the breath.
+     THE WORKOUTS (11/26): whole sessions with their own music and a coach, from the workout score (the full member
+     files are m4a and go into the membership; Out the Door is the free one). In them the stone breath, with its hold,
+     is counted only while walking or standing still, before the work; nothing is held once the effort begins. */
   "guides": [
     { "id": "move-before-the-first-step", "kind": "New guide", "title": "Before the First Step", "blurb": "Stand tall, widen your view, soften the jaw, and choose how you want to feel when you come back. Then begin slower than you think you should.", "mins": "2 min", "dur": 133, "bed": "dawn", "img": "peaks-trail-1100", "free": true, "full": "guides/move-before-the-first-step.mp3" },
     { "id": "move-the-steady-middle", "kind": "New guide", "title": "The Steady Middle", "blurb": "For the part where the mind starts to talk. The breath keeps moving, never held, and you check the jaw, the shoulders, the hands and the eyes.", "mins": "3 min", "dur": 176, "bed": "dawn", "img": "meadow-trail-walker-1600" },
@@ -145,14 +148,20 @@ window.PEAKS_SESSIONS = {
     { "id": "drive-when-traffic-tightens", "kind": "New guide", "title": "When Traffic Tightens", "blurb": "Someone cut in, or you are late and every light is red. Loosen the hands one notch, widen your view, and leave more room than you want to.", "mins": "2 min", "dur": 144, "bed": "desert", "img": "sedona-juniper-1600" },
     { "id": "rest-setting-the-day-down", "kind": "New guide", "title": "Setting the Day Down", "blurb": "The face, the shoulders, the belly, the feet, one piece at a time. Then the day seen from high on the mountain, one thanks, and the pack set down.", "mins": "3 min", "dur": 158, "bed": "hearth", "img": "peaks-lake-sunset-1000", "free": true, "full": "guides/rest-setting-the-day-down.mp3" },
     { "id": "rest-the-stone-breath-at-night", "kind": "New guide", "title": "The Stone Breath at Night", "blurb": "The stone in your hand, four slow rounds counted with you, four in, four held, six out, and then the creek in the dark.", "mins": "3 min", "dur": 193, "bed": "creek", "img": "hand-stone-800" },
-    { "id": "rest-awake-in-the-night", "kind": "New guide", "title": "Awake in the Night", "blurb": "For three in the morning. No clock, the weight of the blanket, a long quiet breath out, and the thoughts going by like cloud over the peak.", "mins": "2 min", "dur": 144, "bed": "hearth", "img": "fire-moon-800" }
+    { "id": "rest-awake-in-the-night", "kind": "New guide", "title": "Awake in the Night", "blurb": "For three in the morning. No clock, the weight of the blanket, a long quiet breath out, and the thoughts going by like cloud over the peak.", "mins": "2 min", "dur": 144, "bed": "hearth", "img": "fire-moon-800" },
+    { "id": "workout-out-the-door", "kind": "Workout", "title": "Out the Door", "blurb": "The starter, for the days when starting is the whole task. The door words and three breaths, a walk, then an easy run or a strong walk, and one short lift if you want it.", "mins": "10 min", "dur": 600, "bed": "dawn", "img": "dunes-footprints-800", "free": true, "full": "guides/workout-out-the-door.m4a" },
+    { "id": "workout-the-push", "kind": "Workout", "title": "The Push", "blurb": "For when five minutes is what you have. One easy minute, a build with a countdown, ninety seconds strong, and a long breath to come down.", "mins": "5 min", "dur": 278, "bed": "dawn", "img": "dune-slope-800" },
+    { "id": "workout-the-night-run", "kind": "Workout", "title": "The Night Run", "blurb": "Thirty minutes. A walk and the stone breath, counted on the drum, before the work begins. Then the beat sets your stride, the coach says less as you work harder, and the music carries the push.", "mins": "30 min", "dur": 1799, "bed": "dawn", "img": "fire-moon-800" },
+    { "id": "workout-the-long-carry", "kind": "Workout", "title": "The Long Carry", "blurb": "Forty-five steady minutes with few words. The gratitude footfall, the Headlamp Circle, two short surges, and long stretches where the music runs alone.", "mins": "45 min", "dur": 2700, "bed": "dawn", "img": "sand-road-800" },
+    { "id": "workout-strength-and-intervals", "kind": "Workout", "title": "Strength and Intervals", "blurb": "For the gym or the garage. A warm-up, six rounds of two minutes of work and one of rest, a short finisher, and a long breath out. The coaching comes in the rests.", "mins": "35 min", "dur": 2101, "bed": "dawn", "img": "peaks-snow-800" }
   ],
   /* the order on each coaching page: new guides and recordings from the room, by the moment they fit */
   "coach": {
     "move": [
       { "h": "Before you start", "ids": ["move-before-the-first-step", "note-11-go-running-early"] },
       { "h": "While you move", "ids": ["move-the-steady-middle", "four-movements", "note-35-the-races-were-spiritual", "note-18-you-have-to-be-in-state"] },
-      { "h": "When you finish", "ids": ["move-coming-down", "the-journey-of-the-stone"] }
+      { "h": "When you finish", "ids": ["move-coming-down", "the-journey-of-the-stone"] },
+      { "h": "Whole workouts, with music", "ids": ["workout-out-the-door", "workout-the-push", "workout-the-night-run", "workout-the-long-carry", "workout-strength-and-intervals"] }
     ],
     "drive": [
       { "h": "Before you pull out", "ids": ["drive-before-you-pull-out", "note-23-under-sixty-beats"] },
