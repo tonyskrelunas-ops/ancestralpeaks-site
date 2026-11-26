@@ -1,14 +1,13 @@
 <!doctype html>
-<html lang="en" data-root="">
+<html lang="en" data-root=".">
 <head>
-<link rel="preload" as="image" href="/media/opening/alps-l.jpg?v=1126" media="(min-width:900px)">
-<link rel="preload" as="image" href="/media/opening/alps-p.jpg?v=1126" media="(max-width:899px)">
+<link rel="preload" as="image" href="media/opening/alps-l.jpg?v=1126" media="(min-width:900px)">
+<link rel="preload" as="image" href="media/opening/alps-p.jpg?v=1126" media="(max-width:899px)">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ancestral Peaks · preview: how the house greets a guest</title>
-<meta name="robots" content="noindex">
+<title>Ancestral Peaks</title>
 <meta name="description" content="For the one who is settled and wants tools to cross hard ground, to do even more, and to make a difference for the generations to come. A morning practice by the water.">
-<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<link rel="stylesheet" href="shared/site.css?v=1126o">
 <style>
 /* ===== HOME PAGE, 11/26. Shorter, with one promise and one button on the first screen. The night, the gold, the mark and
    the opening film stay. The pictures are people carrying and being carried: the relay, the keepers after a long night,
@@ -261,88 +260,6 @@ html.founding-open .join .founding-block{display:block}
   .flight .bg .ap-loop{height:62%}
 }
 @media (prefers-reduced-motion:reduce){.mwin .cover img,.listen .three img,.weeks .week img{transition:none}}
-
-/* ---------- THE GREETING (preview): the welcome line, the question, the gift, the card, the invitation ---------- */
-.arrive .hello{margin:0 0 .9rem;max-width:22ch;font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,1.05rem + 1.3vw,2.1rem);line-height:1.12;letter-spacing:-.015em;color:#F3D488;text-shadow:0 1px 14px rgba(0,0,0,.7)}
-.arrive .fine{color:rgba(255,255,255,.86)}
-.cross{padding-top:clamp(40px,5vw,72px)}
-.cross .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem clamp(20px,5vw,80px);align-items:end;margin-bottom:clamp(20px,2.6vw,34px)}
-.cross .head .p{margin:0}
-.cross .kick,.pocket .kick{margin:0 0 .7rem;font-weight:600;font-size:1rem;color:var(--gold)}
-.cross .kick span,.cross .host span{color:rgba(255,255,255,.72);font-weight:500;margin-left:.4em;white-space:nowrap}
-.gift .g.words-first>div:first-child{order:2}
-.ways{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.way{min-height:64px;padding:.7rem 1rem;border-radius:14px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.05);color:#fff;font-family:var(--display);font-weight:600;font-size:clamp(1.02rem,.95rem + .35vw,1.25rem);line-height:1.15;letter-spacing:-.01em;text-align:left;transition:background .2s,border-color .2s,color .2s}
-.way:hover{border-color:var(--gold);background:rgba(255,255,255,.1)}
-.way[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--night)}
-.cross .host{margin-top:clamp(18px,2.2vw,28px);font-size:.98rem;color:rgba(255,255,255,.9)}
-
-.gift{margin-top:clamp(14px,1.6vw,22px);background:#1B1517;border:1px solid rgba(255,255,255,.14);border-top:2px solid var(--gold);border-radius:16px;padding:clamp(14px,2vw,28px);outline:0}
-.gift[hidden]{display:none}
-.gift .g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(18px,3vw,44px);align-items:center}
-.gift .tag{margin:0;font-size:.9rem;font-weight:600;color:var(--gold)}
-.gift h3{margin-top:.5rem;font-size:clamp(1.6rem,1.2rem + 1.6vw,2.5rem);line-height:1.02;color:#fff}
-.gift .d{margin-top:.8rem;color:rgba(255,255,255,.86);line-height:1.5}
-.gift .q{margin-top:1.2rem;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.16);font-size:clamp(1.1rem,1rem + .5vw,1.4rem);font-weight:600;line-height:1.25}
-.gift .src{margin-top:.5rem}
-.gift .help{margin-top:1rem;font-size:.86rem;line-height:1.5;color:rgba(255,255,255,.72)}
-.gift .help a{color:inherit}
-.gift .shut{margin-top:1.2rem;background:none;border:0;padding:.5rem 0;color:#fff;font-weight:600;border-bottom:1.5px solid rgba(255,255,255,.4)}
-.gift .shut:hover{border-color:var(--gold);color:var(--gold)}
-.gift .stage{position:relative;border-radius:12px;overflow:hidden;background:#000;aspect-ratio:16/9}
-.gift .stage video{display:block;width:100%;height:100%;object-fit:contain;background:#000}
-.gift .stage .big{position:absolute;inset:0;margin:auto;width:76px;height:76px;border-radius:50%;border:0;background:var(--gold);color:var(--night);display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.6)}
-.gift .stage .big svg{width:28px;height:28px;fill:currentColor;margin-left:4px}
-.gift .stage.on .big{display:none}
-.gift .ap-player{background:#100B0D;border:1px solid rgba(255,255,255,.12);color:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
-.gift .ap-player .vis{background:rgba(255,255,255,.05)}
-.gift .ap-player .meter{background:rgba(255,255,255,.18)}
-.gift .ap-player .play{background:var(--gold);color:var(--night)}
-.gift .ap-player .meter i{background:var(--gold)}
-.gift .still{border-radius:12px;overflow:hidden;aspect-ratio:16/9;margin-bottom:12px}
-.gift .still img{width:100%;height:100%;object-fit:cover}
-.gift .ringwrap{display:grid;justify-items:center;gap:.4rem;padding:clamp(6px,1.4vw,18px) 0}
-.gift .ringbox{width:min(300px,70vw)}
-.gift .ap-ring svg{filter:none}
-.gift .ap-ring svg>circle:nth-of-type(1){stroke:rgba(255,255,255,.16)}
-.gift .ap-ring svg>circle:nth-of-type(2),.gift .ap-ring svg>circle:nth-of-type(3){stroke:#E3BE62}
-.gift .ap-ring .word{font-size:74px}.gift .ap-ring .count{font-size:40px}
-.gift .count4{font-family:var(--display);font-weight:700;font-size:1.15rem;color:#fff;text-align:center}
-.gift .said{min-height:1.4em;font-size:.95rem;color:var(--gold);text-align:center}
-.gift .five{display:grid;gap:8px}
-.gift .five input{height:50px;width:100%;border-radius:12px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.96);color:var(--ink);padding:0 14px;font:500 1rem var(--text)}
-.gift .five .row{display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;align-items:center;margin-top:.4rem}
-.gift .five .clear{background:none;border:0;color:rgba(255,255,255,.8);text-decoration:underline}
-.gift .kept{margin-top:.8rem;color:var(--gold);min-height:1.4em}
-.gift .small{margin-top:.5rem;font-size:.85rem;color:rgba(255,255,255,.72)}
-
-.pocket .h-in{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center}
-.pocket .pic{display:block;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 80px -30px rgba(0,0,0,.9);aspect-ratio:9/16}
-.pocket .pic img{width:100%;height:100%;object-fit:cover}
-.pocket .q{margin-top:1.2rem;max-width:26ch}
-.pocket .acts{margin-top:1.5rem}
-.pocket .acts .btn{padding:1.05em 1.9em;font-size:1.05rem}
-.pocket .how{margin-top:.8rem;font-size:.9rem;color:rgba(255,255,255,.76)}
-
-.walk{border-top:1px solid rgba(255,255,255,.1)}
-.walk[hidden]{display:none}
-.walk .h-in{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(22px,5vw,80px);align-items:center}
-.walk h2{margin-top:1.3rem;font-size:clamp(2rem,3.6vw,3.3rem)}
-.walk .card{background:#1B1517;border:1px solid rgba(255,255,255,.16);border-top:2px solid var(--gold);border-radius:16px;padding:clamp(16px,1.8vw,24px)}
-.walk .fl-form{grid-template-columns:1fr}
-.walk .fl-form>*{grid-column:1}
-.walk .fl-form .no{margin:0}
-.walk .fl-form .no button{background:none;border:0;padding:.4rem 0;color:rgba(255,255,255,.86);text-decoration:underline;font-size:.95rem}
-.walk .gone{color:rgba(255,255,255,.9);font-size:1.05rem}
-@media (max-width:900px){
-  .cross .head,.gift .g,.walk .h-in{grid-template-columns:1fr}
-  .ways{grid-template-columns:1fr 1fr}
-  .way{min-height:60px}
-  .pocket .h-in{grid-template-columns:1fr;justify-items:start}
-  .pocket .pic{width:min(260px,70vw)}
-  .gift .stage.tall{aspect-ratio:9/16;height:min(56svh,480px);margin-inline:auto}
-}
-@media (prefers-reduced-motion:reduce){.way{transition:none}}
 </style>
 <link rel="manifest" href="/manifest.webmanifest">
 <meta name="theme-color" content="#100B0D">
@@ -371,101 +288,31 @@ html.founding-open .join .founding-block{display:block}
 </head>
 <body>
 
-<header data-ap-nav data-active="/" data-menu-image="/media/oakcreek-rim-1000.jpg"></header>
+<header data-ap-nav data-active="/" data-menu-image="media/oakcreek-rim-1000.jpg"></header>
 
 <!-- ===== THE OPENING: the film (the headlamps of mile 95 first), his headline, one promise, one button ===== -->
 <section class="arrive" id="top" data-scene="creek" data-scene-label="Peaks Opening, an original score">
   <div class="film" id="film" aria-hidden="true">
     <!-- 11/26, Tony: "where is the swiss apls pic? that should be first": the headlamps of mile 95 open the page -->
-    <div class="shot" data-dur="12" data-sp="/media/opening/alps-p.jpg?v=1126" data-sl="/media/opening/alps-l.jpg?v=1126" style="--pos:50% 50%"></div>
-    <div class="shot" data-dur="10" data-sp="/media/opening/morning-p.jpg" data-sl="/media/opening/morning-l.jpg" style="--pos:50% 36%"></div>
-    <div class="shot" data-dur="8" data-p="/media/opening/waterfall-p.mp4" data-l="/media/opening/waterfall-l.mp4" data-pp="/media/opening/waterfall-p.jpg" data-pl="/media/opening/waterfall-l.jpg"></div>
-    <div class="shot" data-dur="5" data-p="/media/opening/pebbles-p.mp4" data-l="/media/opening/pebbles-l.mp4" data-pp="/media/opening/pebbles-p.jpg" data-pl="/media/opening/pebbles-l.jpg"></div>
-    <div class="shot" data-dur="10" data-sp="/media/opening/trail-p.jpg" data-sl="/media/opening/trail-l.jpg" style="--pos:50% 42%"></div>
-    <div class="shot" data-dur="12" data-p="/media/opening/creek-p.mp4" data-l="/media/opening/creek-l.mp4" data-pp="/media/opening/creek-p.jpg" data-pl="/media/opening/creek-l.jpg"></div>
-    <div class="shot" data-dur="5" data-p="/media/opening/rapids-p.mp4" data-l="/media/opening/rapids-l.mp4" data-pp="/media/opening/rapids-p.jpg" data-pl="/media/opening/rapids-l.jpg"></div>
-    <div class="shot" data-dur="10" data-sp="/media/opening/sunset-p.jpg" data-sl="/media/opening/sunset-l.jpg" style="--pos:50% 40%"></div>
+    <div class="shot" data-dur="12" data-sp="media/opening/alps-p.jpg?v=1126" data-sl="media/opening/alps-l.jpg?v=1126" style="--pos:50% 50%"></div>
+    <div class="shot" data-dur="10" data-sp="media/opening/morning-p.jpg" data-sl="media/opening/morning-l.jpg" style="--pos:50% 36%"></div>
+    <div class="shot" data-dur="8" data-p="media/opening/waterfall-p.mp4" data-l="media/opening/waterfall-l.mp4" data-pp="media/opening/waterfall-p.jpg" data-pl="media/opening/waterfall-l.jpg"></div>
+    <div class="shot" data-dur="5" data-p="media/opening/pebbles-p.mp4" data-l="media/opening/pebbles-l.mp4" data-pp="media/opening/pebbles-p.jpg" data-pl="media/opening/pebbles-l.jpg"></div>
+    <div class="shot" data-dur="10" data-sp="media/opening/trail-p.jpg" data-sl="media/opening/trail-l.jpg" style="--pos:50% 42%"></div>
+    <div class="shot" data-dur="12" data-p="media/opening/creek-p.mp4" data-l="media/opening/creek-l.mp4" data-pp="media/opening/creek-p.jpg" data-pl="media/opening/creek-l.jpg"></div>
+    <div class="shot" data-dur="5" data-p="media/opening/rapids-p.mp4" data-l="media/opening/rapids-l.mp4" data-pp="media/opening/rapids-p.jpg" data-pl="media/opening/rapids-l.jpg"></div>
+    <div class="shot" data-dur="10" data-sp="media/opening/sunset-p.jpg" data-sl="media/opening/sunset-l.jpg" style="--pos:50% 40%"></div>
     <div class="shade"></div>
   </div>
 
   <div class="copy">
-    <p class="hello reveal">Welcome. We are so happy you made the journey.</p>
     <h1 data-words="90">We are the far messengers now.</h1>
     <p class="lede reveal d2">Not a hero. A person who was carried, who is now carrying, for people they will not meet. This is the practice that keeps a carrier whole: a stone in the hand, a counted breath, and a story each morning.</p>
     <div class="acts reveal d3">
-      <a class="btn gold" href="#crossing">Come in</a>
+      <a class="btn gold" href="begin/" data-begin>Begin free</a>
       <a class="watch" href="#welcome-film"><i><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></i>Watch the welcome</a>
     </div>
-    <p class="fine reveal d4">Rest first. Nothing is asked of you here.</p>
-  </div>
-</section>
-
-<!-- ===== THE GREETING (preview). Welcome first; then one question, and one whole thing set in the guest's hands for it,
-     with no name and no email; then a gift light enough to carry; and only then, as they leave, the invitation. ===== -->
-<section class="cross h-sec" id="crossing">
-  <div class="h-in">
-    <div class="head">
-      <div>
-        <p class="kick">“Nobody leaves this house hungry.” <span>Stone Breath</span></p>
-        <h2 id="crossH">What are you crossing right now?</h2>
-      </div>
-      <p class="p">Choose one, and we will set one thing in your hands for it. It is whole, and it is free. No name, no email. Your answer stays on this device.</p>
-    </div>
-    <div class="ways" role="group" aria-labelledby="crossH">
-      <button type="button" class="way" data-way="sea" aria-pressed="false">A hard sea</button>
-      <button type="button" class="way" data-way="desert" aria-pressed="false">A desert</button>
-      <button type="button" class="way" data-way="mountain" aria-pressed="false">A mountain</button>
-      <button type="button" class="way" data-way="day" aria-pressed="false">A hard day</button>
-      <button type="button" class="way" data-way="journey" aria-pressed="false">A long journey</button>
-      <button type="button" class="way" data-way="race" aria-pressed="false">A race</button>
-      <button type="button" class="way" data-way="workout" aria-pressed="false">A workout</button>
-      <button type="button" class="way" data-way="caring" aria-pressed="false">Someone you are caring for</button>
-    </div>
-    <div class="gift" id="gift" hidden tabindex="-1" aria-live="polite"></div>
-    <p class="host">“You really pay attention in the visit.” <span>Masan, in Stone Breath</span></p>
-  </div>
-</section>
-
-<!-- ===== A GIFT LIGHT ENOUGH TO CARRY: the breath on a card for the phone ===== -->
-<section class="pocket h-sec" id="card">
-  <div class="h-in">
-    <a class="pic" href="/_review/welcome/card/the-breath-light-enough-to-carry.png" data-save aria-label="Save the card: the stone breath"><img src="/_review/welcome/card/the-breath-card-540.jpg" width="540" height="960" alt="A card for your phone. The stone breath: in four, hold four, out six, hold four. Three rounds, one minute. Behind it, the Swiss Alps before dawn and the headlamps of mile 95." loading="lazy" decoding="async"></a>
-    <div>
-      <p class="kick">A gift for the road</p>
-      <h2>Light enough to carry.</h2>
-      <p class="q">They make you gifts. They make you food. They make you things that are light, that you can carry.</p>
-      <p class="src">From “Gifts Light Enough to Carry”</p>
-      <p class="p">This one is the breath: in four, hold four, out six, hold four. Three rounds, one minute. Keep it on your phone for the next hard hour, or hand it to someone who needs it tonight.</p>
-      <div class="acts">
-        <a class="btn gold" href="/_review/welcome/card/the-breath-light-enough-to-carry.png" download="the-stone-breath-ancestral-peaks.png" data-save>Save the card</a>
-      </div>
-      <p class="how" id="saveHow">It saves as a picture. Nothing to sign.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== WALK WITH THEM AS THEY LEAVE: the invitation. It stays closed until the guest has finished or closed a gift,
-     or has scrolled toward the end of the page. It is part of the page, never laid over it. ===== -->
-<section class="walk h-sec" id="walk" hidden>
-  <div class="h-in">
-    <div>
-      <p class="q">Some of the people walk with you as you leave.</p>
-      <p class="src">From “Gifts Light Enough to Carry”</p>
-      <h2><span id="walkWhen">Come back tomorrow morning.</span> We will have First Light ready.</h2>
-      <p class="p">Two minutes before the phone, before the plans: a short practice in your inbox at 5:30 in the morning, Arizona time, Monday to Friday. Your first name and email also open about a quarter of every room for three months. Nothing to pay.</p>
-    </div>
-    <div class="card" id="walkOffer">
-      <form class="fl-form" data-source="peaks-home-welcome" novalidate>
-        <label><span>First name</span><input name="name" autocomplete="given-name" required></label>
-        <label><span>Email</span><input name="email" type="email" inputmode="email" autocomplete="email" required></label>
-        <input class="hp" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <button class="btn gold" type="submit">Keep a place for me</button>
-        <p class="err" aria-live="polite"></p>
-        <p class="fine">Free every weekday through December 11. After that it comes each weekday to members, and each Monday and Wednesday to everyone else. Reply “stop” to any letter and it stops.</p>
-        <p class="no"><button type="button" id="walkNo">Not today</button></p>
-      </form>
-      <div class="fl-done" hidden aria-live="polite"></div>
-    </div>
+    <p class="fine reveal d4">Your first name and email open about a quarter of every room for three months. Nothing to pay.</p>
   </div>
 </section>
 
@@ -478,9 +325,9 @@ html.founding-open .join .founding-block{display:block}
       <p class="src reveal">From The Far Messengers</p>
     </div>
     <div class="reveal">
-      <div class="wf" data-page="/welcome/" data-tall="/media/welcome/welcome-voice-1280x720.mp4" data-wide="/media/welcome/welcome-voice-1600x900.mp4" data-poster-tall="/media/welcome/welcome-poster-720x1280.jpg?v=2" data-poster-wide="/media/welcome/welcome-poster-1920x1080.jpg">
+      <div class="wf" data-page="welcome/" data-tall="media/welcome/welcome-voice-1280x720.mp4" data-wide="media/welcome/welcome-voice-1600x900.mp4" data-poster-tall="media/welcome/welcome-poster-720x1280.jpg?v=2" data-poster-wide="media/welcome/welcome-poster-1920x1080.jpg">
         <div class="wf-stage">
-          <img src="/media/welcome/welcome-poster-1920x1080.jpg" alt="The Peaks under the morning cloud" loading="lazy" decoding="async">
+          <img src="media/welcome/welcome-poster-1920x1080.jpg" alt="The Peaks under the morning cloud" loading="lazy" decoding="async">
           <button class="wf-go" type="button" aria-label="Play the welcome film, five minutes"><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">Watch the welcome, 5 min</span></button>
         </div>
       </div>
@@ -492,8 +339,8 @@ html.founding-open .join .founding-block{display:block}
 <!-- ===== IF YOU ARE TIRED: the keepers at the end of a long night; his words from the opening of The Far Messengers ===== -->
 <section class="tired">
   <div class="pair">
-    <picture><source type="image/webp" srcset="/media/home/nurse-900.webp 900w, /media/home/nurse-1600.webp 1600w" sizes="(max-width:900px) 100vw, 56vw"><img src="/media/home/nurse-1600.jpg" srcset="/media/home/nurse-900.jpg 900w, /media/home/nurse-1600.jpg 1600w" sizes="(max-width:900px) 100vw, 56vw" alt="A nurse at a hospital window at dawn, after the night" loading="lazy" decoding="async"></picture>
-    <div class="ap-loop" data-src="/media/home/firefighter-720.mp4" data-poster="/media/home/firefighter-poster.jpg" role="img" aria-label="A firefighter at dawn after a long night, one long breath out"></div>
+    <picture><source type="image/webp" srcset="media/home/nurse-900.webp 900w, media/home/nurse-1600.webp 1600w" sizes="(max-width:900px) 100vw, 56vw"><img src="media/home/nurse-1600.jpg" srcset="media/home/nurse-900.jpg 900w, media/home/nurse-1600.jpg 1600w" sizes="(max-width:900px) 100vw, 56vw" alt="A nurse at a hospital window at dawn, after the night" loading="lazy" decoding="async"></picture>
+    <div class="ap-loop" data-src="media/home/firefighter-720.mp4" data-poster="media/home/firefighter-poster.jpg" role="img" aria-label="A firefighter at dawn after a long night, one long breath out"></div>
   </div>
   <div class="h-in words">
     <h2 class="q big reveal">If you are tired.</h2>
@@ -513,12 +360,12 @@ html.founding-open .join .founding-block{display:block}
       <p class="p reveal">For the one far from home, under gray skies, or in a hard season. Each opens where the last one ended. Free to watch, with captions in English, Español, 日本語 and Lietuvių.</p>
     </div>
     <div class="covers">
-      <a class="cover" href="/mountain-within/leaving-home/"><img src="/mountain-within/media/poster-1-wide-1200.jpg" alt="A young man walks a mountain meadow at sunrise, his hand on the grass" loading="lazy" decoding="async"><span class="part">Part One</span><span class="dur">3 min 26 s</span><div class="t"><b>Leaving Home</b><span class="sub">Take a piece of the mountain with you.</span><span class="go" aria-label="Watch Part One"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
-      <a class="cover" href="/mountain-within/the-hard-day/"><img src="/mountain-within/media/poster-2-wide-1200.jpg" alt="A hiker on a ridge as a storm rolls in" loading="lazy" decoding="async"><span class="part">Part Two</span><span class="dur">4 min 13 s</span><div class="t"><b>The Hard Day</b><span class="sub">Keep the stone close. Five rounds, counted with you.</span><span class="go" aria-label="Watch Part Two"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
-      <a class="cover" href="/mountain-within/a-good-relationship-with-stress/"><img src="/mountain-within/media/poster-3-wide-1200.jpg" alt="A man pulls up his hood as the rain begins on a mountain trail" loading="lazy" decoding="async"><span class="part">Part Three</span><span class="dur">3 min 20 s</span><div class="t"><b>A Good Relationship With Stress</b><span class="sub">In an unpredictable future. Look up. Name it. Dress for it. And go.</span><span class="go" aria-label="Watch Part Three"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
+      <a class="cover" href="mountain-within/leaving-home/"><img src="mountain-within/media/poster-1-wide-1200.jpg" alt="A young man walks a mountain meadow at sunrise, his hand on the grass" loading="lazy" decoding="async"><span class="part">Part One</span><span class="dur">3 min 26 s</span><div class="t"><b>Leaving Home</b><span class="sub">Take a piece of the mountain with you.</span><span class="go" aria-label="Watch Part One"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
+      <a class="cover" href="mountain-within/the-hard-day/"><img src="mountain-within/media/poster-2-wide-1200.jpg" alt="A hiker on a ridge as a storm rolls in" loading="lazy" decoding="async"><span class="part">Part Two</span><span class="dur">4 min 13 s</span><div class="t"><b>The Hard Day</b><span class="sub">Keep the stone close. Five rounds, counted with you.</span><span class="go" aria-label="Watch Part Two"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
+      <a class="cover" href="mountain-within/a-good-relationship-with-stress/"><img src="mountain-within/media/poster-3-wide-1200.jpg" alt="A man pulls up his hood as the rain begins on a mountain trail" loading="lazy" decoding="async"><span class="part">Part Three</span><span class="dur">3 min 20 s</span><div class="t"><b>A Good Relationship With Stress</b><span class="sub">In an unpredictable future. Look up. Name it. Dress for it. And go.</span><span class="go" aria-label="Watch Part Three"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></div></a>
     </div>
     <div class="foot">
-      <a class="btn line" href="/mountain-within/">The three films</a>
+      <a class="btn line" href="mountain-within/">The three films</a>
       <p class="help">If today is heavy: in the United States and Canada, call or text 988. In the United Kingdom and Ireland, call Samaritans on 116 123. Anywhere else, <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>.</p>
     </div>
   </div>
@@ -526,7 +373,7 @@ html.founding-open .join .founding-block{display:block}
 
 <!-- ===== FIRST LIGHT: the dawn run behind it; the morning letter and its sign-up (js/peaks-capture.js, like every sign-up) ===== -->
 <section class="flight" id="first-light" data-scene="dawn" data-scene-label="first light">
-  <div class="bg"><div class="ap-loop" data-src="/media/home/dawn-run-720.mp4" data-poster="/media/home/dawn-run-poster.jpg"></div></div>
+  <div class="bg"><div class="ap-loop" data-src="media/home/dawn-run-720.mp4" data-poster="media/home/dawn-run-poster.jpg"></div></div>
   <div class="h-in fl-wrap">
     <div>
       <p class="q reveal">The dawn is walking the land. Don’t let it find you asleep.</p>
@@ -552,7 +399,7 @@ html.founding-open .join .founding-block{display:block}
 <section class="breath h-sec" id="breath">
   <div class="h-in">
     <div>
-      <div class="hand reveal"><div class="ap-loop" data-src="/media/home/stone-hand-720.mp4" data-poster="/media/home/stone-hand-poster.jpg" role="img" aria-label="By a misty creek, a grandmother sets a river stone in a girl’s hand"></div></div>
+      <div class="hand reveal"><div class="ap-loop" data-src="media/home/stone-hand-720.mp4" data-poster="media/home/stone-hand-poster.jpg" role="img" aria-label="By a misty creek, a grandmother sets a river stone in a girl’s hand"></div></div>
       <div class="cap reveal">
         <p class="q">The breath is about a tenth of it. The other nine tenths is an old woman who has known you since you were four, who is not impressed by you, who will feed you and then tell you the truth about yourself.</p>
         <p class="src">From The Far Messengers</p>
@@ -584,14 +431,14 @@ html.founding-open .join .founding-block{display:block}
       </div>
     </div>
     <div class="three reveal">
-      <a href="/listen/move/"><picture><source type="image/webp" srcset="/media/home/relay-path-900.webp"><img src="/media/home/relay-path-900.jpg" alt="A woman sets off down a stone path above the clouds, the cord handed on" loading="lazy" decoding="async"></picture><span class="t"><b>Move</b><span>A workout, a run, a walk</span></span></a>
-      <a href="/listen/drive/"><img src="/media/img/sand-road-800.jpg" alt="A sand road through open country" loading="lazy" decoding="async"><span class="t"><b>Drive</b><span>Eyes open, on the road</span></span></a>
-      <a href="/listen/rest/"><picture><source type="image/webp" srcset="/media/home/beach-900.webp"><img src="/media/home/beach-900.jpg" alt="An older woman on a pebble beach at dusk, eyes closed, a stone in her open hand" loading="lazy" decoding="async"></picture><span class="t"><b>Rest</b><span>Unwinding, and the night</span></span></a>
+      <a href="listen/move/"><picture><source type="image/webp" srcset="media/home/relay-path-900.webp"><img src="media/home/relay-path-900.jpg" alt="A woman sets off down a stone path above the clouds, the cord handed on" loading="lazy" decoding="async"></picture><span class="t"><b>Move</b><span>A workout, a run, a walk</span></span></a>
+      <a href="listen/drive/"><img src="media/img/sand-road-800.jpg" alt="A sand road through open country" loading="lazy" decoding="async"><span class="t"><b>Drive</b><span>Eyes open, on the road</span></span></a>
+      <a href="listen/rest/"><picture><source type="image/webp" srcset="media/home/beach-900.webp"><img src="media/home/beach-900.jpg" alt="An older woman on a pebble beach at dusk, eyes closed, a stone in her open hand" loading="lazy" decoding="async"></picture><span class="t"><b>Rest</b><span>Unwinding, and the night</span></span></a>
     </div>
     <div class="hear">
-      <div class="ap-player compact" data-src="/media/previews/week1-settle-yourself-first-30s.mp3" data-preview="free" data-full="6 min" data-title="Week 1: Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
-      <div class="ap-player compact" data-src="/media/previews/the-far-messengers-of-time-30s.mp3" data-preview="member" data-full="6 min" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="30" data-color="#E08A3C"></div>
-      <a class="btn light" href="/listen/">The whole Listening Room</a>
+      <div class="ap-player compact" data-src="media/previews/week1-settle-yourself-first-30s.mp3" data-preview="free" data-full="6 min" data-title="Week 1: Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
+      <div class="ap-player compact" data-src="media/previews/the-far-messengers-of-time-30s.mp3" data-preview="member" data-full="6 min" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="30" data-color="#E08A3C"></div>
+      <a class="btn light" href="listen/">The whole Listening Room</a>
     </div>
   </div>
 </section>
@@ -610,14 +457,14 @@ html.founding-open .join .founding-block{display:block}
       </div>
     </div>
     <div class="strip">
-      <a class="week" href="/weeks/"><picture><source type="image/webp" srcset="/media/home/elder-900.webp"><img src="/media/home/elder-900.jpg" alt="An elder runs across the mesa at first light" loading="lazy" decoding="async"></picture><div class="t"><small>Week one, with Tonas</small><h3>The runner’s protocol.</h3><p>Settle the carrier first.</p></div></a>
-      <a class="week" href="/weeks/"><picture><source type="image/webp" srcset="/media/home/voyage-900.webp"><img src="/media/home/voyage-900.jpg" alt="A voyaging canoe under sail on the open Pacific at dawn" loading="lazy" decoding="async"></picture><div class="t"><small>Week two, with Nalu</small><h3>Build one house.</h3><p>Steer by the house, not the star that climbs out of reach.</p></div></a>
-      <a class="week" href="/weeks/"><picture><source type="image/webp" srcset="/media/home/desert-900.webp"><img src="/media/home/desert-900.jpg" alt="A runner alone on the dunes at sunrise" loading="lazy" decoding="async"></picture><div class="t"><small>Week three, with Satoshi</small><h3>Find the ridge under your weather.</h3><p>What the storm took, and what stayed true underneath it.</p></div></a>
-      <a class="week" href="/weeks/"><picture><source type="image/webp" srcset="/media/home/andes-900.webp"><img src="/media/home/andes-900.jpg" alt="Two relay runners leave a stone waystation above the clouds" loading="lazy" decoding="async"></picture><div class="t"><small>Week six, with Illary</small><h3>The hand-off.</h3><p>Nobody carries the whole way.</p></div></a>
+      <a class="week" href="weeks/"><picture><source type="image/webp" srcset="media/home/elder-900.webp"><img src="media/home/elder-900.jpg" alt="An elder runs across the mesa at first light" loading="lazy" decoding="async"></picture><div class="t"><small>Week one, with Tonas</small><h3>The runner’s protocol.</h3><p>Settle the carrier first.</p></div></a>
+      <a class="week" href="weeks/"><picture><source type="image/webp" srcset="media/home/voyage-900.webp"><img src="media/home/voyage-900.jpg" alt="A voyaging canoe under sail on the open Pacific at dawn" loading="lazy" decoding="async"></picture><div class="t"><small>Week two, with Nalu</small><h3>Build one house.</h3><p>Steer by the house, not the star that climbs out of reach.</p></div></a>
+      <a class="week" href="weeks/"><picture><source type="image/webp" srcset="media/home/desert-900.webp"><img src="media/home/desert-900.jpg" alt="A runner alone on the dunes at sunrise" loading="lazy" decoding="async"></picture><div class="t"><small>Week three, with Satoshi</small><h3>Find the ridge under your weather.</h3><p>What the storm took, and what stayed true underneath it.</p></div></a>
+      <a class="week" href="weeks/"><picture><source type="image/webp" srcset="media/home/andes-900.webp"><img src="media/home/andes-900.jpg" alt="Two relay runners leave a stone waystation above the clouds" loading="lazy" decoding="async"></picture><div class="t"><small>Week six, with Illary</small><h3>The hand-off.</h3><p>Nobody carries the whole way.</p></div></a>
     </div>
     <div class="rest reveal">
       <p>And between them: build one songline, map your acoustic horizon, carry one thing across, and say the names out loud.</p>
-      <a class="btn light" href="/weeks/">The eight weeks, each with its session</a>
+      <a class="btn light" href="weeks/">The eight weeks, each with its session</a>
     </div>
   </div>
 </section>
@@ -627,31 +474,31 @@ html.founding-open .join .founding-block{display:block}
   <div class="h-in">
     <h2>Heal the Healer.</h2>
     <p class="p">If you have been holding something alone for a long time and you are tired, and nobody has fed you in years: come for that one. Six short guides for the day, in two voices, for the people who carry others.</p>
-    <a class="btn line" href="/heal-the-healer/">Heal the Healer</a>
+    <a class="btn line" href="heal-the-healer/">Heal the Healer</a>
   </div>
 </section>
 
 <!-- ===== THE BOOKS: the Swiss Alps and the headlamps of mile 95 behind them ===== -->
 <section class="books" id="books" data-scene="hearth" data-scene-label="the fire">
-  <div class="bg"><picture><source type="image/webp" srcset="/media/world/alps-headlamps-1100.webp 1100w, /media/world/alps-headlamps-1600.webp 1600w" sizes="100vw"><img src="/media/world/alps-headlamps-1600.jpg" srcset="/media/world/alps-headlamps-1100.jpg 1100w, /media/world/alps-headlamps-1600.jpg 1600w" sizes="100vw" alt="The Swiss Alps before dawn, the headlamps of mile 95" loading="lazy" decoding="async"></picture></div>
+  <div class="bg"><picture><source type="image/webp" srcset="media/world/alps-headlamps-1100.webp 1100w, media/world/alps-headlamps-1600.webp 1600w" sizes="100vw"><img src="media/world/alps-headlamps-1600.jpg" srcset="media/world/alps-headlamps-1100.jpg 1100w, media/world/alps-headlamps-1600.jpg 1600w" sizes="100vw" alt="The Swiss Alps before dawn, the headlamps of mile 95" loading="lazy" decoding="async"></picture></div>
   <div class="h-in">
     <div>
       <p class="q big reveal">They weren’t angels. They were witnesses.</p>
       <p class="p reveal">The headlamps held the circle. They walked him home.</p>
       <p class="src reveal">From Stone Breath, mile 95</p>
-      <p class="p reveal" style="margin-top:1.6rem">Ancestral Peaks is the companion to the books. Each book opens a door here. <a class="tl" href="/books/">The books, and what each one opens here</a></p>
+      <p class="p reveal" style="margin-top:1.6rem">Ancestral Peaks is the companion to the books. Each book opens a door here. <a class="tl" href="books/">The books, and what each one opens here</a></p>
     </div>
     <div class="shelf reveal">
-      <a class="book" href="/books/"><img src="/media/cover-stone-breath-cover-600.jpg?v=1122" alt="Stone Breath, book one" loading="lazy" decoding="async"><h3>Stone Breath</h3><small>A story of remembering, and the breath counted on a river pebble.</small></a>
-      <a class="book" href="/books/"><img src="/media/cover-far-messengers-cover-600.jpg" alt="The Far Messengers, book two" loading="lazy" decoding="async"><h3>The Far Messengers</h3><small>Seven days at a world congress, and the people who carry.</small></a>
-      <a class="book" href="/books/"><img src="/media/cover-council-fire-cover-600.jpg" alt="The Council Fire, book three" loading="lazy" decoding="async"><h3>The Council Fire</h3><small>The original instructions for the world we rebuild.</small></a>
+      <a class="book" href="books/"><img src="media/cover-stone-breath-cover-600.jpg?v=1122" alt="Stone Breath, book one" loading="lazy" decoding="async"><h3>Stone Breath</h3><small>A story of remembering, and the breath counted on a river pebble.</small></a>
+      <a class="book" href="books/"><img src="media/cover-far-messengers-cover-600.jpg" alt="The Far Messengers, book two" loading="lazy" decoding="async"><h3>The Far Messengers</h3><small>Seven days at a world congress, and the people who carry.</small></a>
+      <a class="book" href="books/"><img src="media/cover-council-fire-cover-600.jpg" alt="The Council Fire, book three" loading="lazy" decoding="async"><h3>The Council Fire</h3><small>The original instructions for the world we rebuild.</small></a>
     </div>
   </div>
 </section>
 
 <!-- ===== JOIN: the founding season and the two doors. Prices, plans, links and wording as they stood. ===== -->
 <section class="join h-sec" id="join" data-scene="creek" data-scene-label="the water over the pebbles">
-  <div class="bg"><picture><source type="image/webp" srcset="/media/home/elden-headlamps-900.webp 900w, /media/home/elden-headlamps-1600.webp 1600w" sizes="100vw"><img src="/media/home/elden-headlamps-1600.jpg" srcset="/media/home/elden-headlamps-900.jpg 900w, /media/home/elden-headlamps-1600.jpg 1600w" sizes="100vw" alt="Headlamps climbing a trail before dawn, the Peaks behind" loading="lazy" decoding="async"></picture></div>
+  <div class="bg"><picture><source type="image/webp" srcset="media/home/elden-headlamps-900.webp 900w, media/home/elden-headlamps-1600.webp 1600w" sizes="100vw"><img src="media/home/elden-headlamps-1600.jpg" srcset="media/home/elden-headlamps-900.jpg 900w, media/home/elden-headlamps-1600.jpg 1600w" sizes="100vw" alt="Headlamps climbing a trail before dawn, the Peaks behind" loading="lazy" decoding="async"></picture></div>
   <div class="h-in">
     <div class="head">
       <div>
@@ -661,12 +508,12 @@ html.founding-open .join .founding-block{display:block}
       <p class="p reveal">The membership is the companion to the books. Inside are the far messenger writings, the films, the sessions, short and long, the writings from the books, and first word of the workshops at Rancho La Puerta and 1440.</p>
     </div>
     <!-- the founding season (11/25, from the business plan): shown only from November 27 to December 31, like the line at the top -->
-    <a class="founding-block" href="/founding/"><b>The founding season is open through December 31.</b><span>Join in these weeks and you are a founding member: a live founding circle with Tony in January, your first name on the founding page if you wish, and the $29 price for as long as you stay.</span><i>What founding members receive</i></a>
+    <a class="founding-block" href="founding/"><b>The founding season is open through December 31.</b><span>Join in these weeks and you are a founding member: a live founding circle with Tony in January, your first name on the founding page if you wish, and the $29 price for as long as you stay.</span><i>What founding members receive</i></a>
     <div class="doors">
       <div class="door reveal">
         <h3>Bought a book? Your first month is free.</h3>
         <p>Any of the three. The last page of your book carries a word; type it in and the first month is yours, then it is $12 a month.</p>
-        <a class="btn line" href="/reader/" data-offer="book-reader">Come in with the book</a>
+        <a class="btn line" href="reader/" data-offer="book-reader">Come in with the book</a>
       </div>
       <div class="door main reveal d1">
         <h3>Become a member.</h3>
@@ -675,11 +522,11 @@ html.founding-open .join .founding-block{display:block}
         <a class="btn gold" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=2VGJlDZgzD" data-offer="member-year-book">Join for $39, with Stone Breath</a>
         <a class="yearly" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=QyBbmZq5zD" data-offer="member-year">Or $29 for the year alone</a>
         <p class="cancel"><b>Safe to join, easy to leave.</b> Your card is handled by Stripe inside Payhip's secure checkout and never reaches us. Cancel anytime, on your own, from your account: Settings, then Subscriptions. No email to write, no one to call. You keep the whole of it until the end of the time you have paid for. There are no refunds.</p>
-        <p class="more"><a href="/join/">Everything the membership opens</a>. To give a year to someone, <a href="/gift/">this is the gift</a>.</p>
+        <p class="more"><a href="join/">Everything the membership opens</a>. To give a year to someone, <a href="gift/">this is the gift</a>.</p>
       </div>
     </div>
     <div class="after">
-      <button class="ap-say dark reveal" data-src="/media/say/bw-thank.mp3" data-who="Before we start" data-text="Thank you for taking this journey. Thank you for still being here. You are beautiful. You are strong."></button>
+      <button class="ap-say dark reveal" data-src="media/say/bw-thank.mp3" data-who="Before we start" data-text="Thank you for taking this journey. Thank you for still being here. You are beautiful. You are strong."></button>
       <p class="fine reveal">Either door opens the same room.</p>
     </div>
   </div>
@@ -697,40 +544,37 @@ html.founding-open .join .founding-block{display:block}
       </div>
     </div>
     <div class="films">
-      <div class="wf" lang="lt" data-page="/media/lt/akmens-kvepavimas-1280x720.mp4" data-wide="/media/lt/akmens-kvepavimas-1280x720.mp4" data-poster-wide="/media/lt/akmens-kvepavimas-title.jpg"><div class="wf-stage"><img src="/media/lt/akmens-kvepavimas-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Akmens kvėpavimas“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:07</span></button></div></div>
-      <div class="wf" lang="lt" data-page="/media/lt/rasa-1280x720.mp4" data-wide="/media/lt/rasa-1280x720.mp4" data-poster-wide="/media/lt/rasa-title.jpg"><div class="wf-stage"><img src="/media/lt/rasa-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Rasa“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:12</span></button></div></div>
-      <div class="wf" lang="lt" data-page="/media/lt/ka-zino-lietuva-1280x720.mp4" data-wide="/media/lt/ka-zino-lietuva-1280x720.mp4" data-poster-wide="/media/lt/ka-zino-lietuva-title.jpg"><div class="wf-stage"><img src="/media/lt/ka-zino-lietuva-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Ką žino Lietuva“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:21</span></button></div></div>
+      <div class="wf" lang="lt" data-page="media/lt/akmens-kvepavimas-1280x720.mp4" data-wide="media/lt/akmens-kvepavimas-1280x720.mp4" data-poster-wide="media/lt/akmens-kvepavimas-title.jpg"><div class="wf-stage"><img src="media/lt/akmens-kvepavimas-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Akmens kvėpavimas“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:07</span></button></div></div>
+      <div class="wf" lang="lt" data-page="media/lt/rasa-1280x720.mp4" data-wide="media/lt/rasa-1280x720.mp4" data-poster-wide="media/lt/rasa-title.jpg"><div class="wf-stage"><img src="media/lt/rasa-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Rasa“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:12</span></button></div></div>
+      <div class="wf" lang="lt" data-page="media/lt/ka-zino-lietuva-1280x720.mp4" data-wide="media/lt/ka-zino-lietuva-1280x720.mp4" data-poster-wide="media/lt/ka-zino-lietuva-title.jpg"><div class="wf-stage"><img src="media/lt/ka-zino-lietuva-title.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="Žiūrėti filmą „Ką žino Lietuva“, 4 min."><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4:21</span></button></div></div>
       <div class="wf" lang="ja" data-page="https://ancestralwatch.com/ja/read/" data-wide="https://ancestralwatch.com/assets/video/under-the-lamplight-ja.mp4" data-poster-wide="https://ancestralwatch.com/assets/video/under-the-lamplight-ja-poster.jpg"><div class="wf-stage"><img src="https://ancestralwatch.com/assets/video/under-the-lamplight-ja-poster.jpg" alt="" loading="lazy" decoding="async"><button class="wf-go" type="button" aria-label="映画『ランプの灯りのもとで』を観る、4分19秒"><span class="pl" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">4分19秒</span></button></div></div>
       <p class="credit">Photographs in the Lithuanian films: Tony Skrelūnas; Wikimedia Commons: Aidas U. and VietovesLt (CC BY 3.0), Wojsyl (CC BY-SA 3.0), Scotch Mist and Bcecilija (CC BY-SA 4.0), Saulius Gruodis, Lithuanian State Central Archives (CC BY 4.0), Haragayato (CC BY-SA 4.0), others public domain or CC0; Unsplash. In the Japanese film: the author’s own and original scenes made for the film; Wikimedia Commons (stone lantern by Chi King, CC BY 3.0; others CC0 or public domain); Unsplash.</p>
     </div>
   </div>
-  <div class="h-in also"><p>Also here: <a href="/practice/">the practice room</a>, <a href="/reading/">the Reading Room</a>, <a href="/play/">games and fireside stories</a>, <a href="/work/">readings for your work</a>, <a href="/listen/#free">Morning Water, eleven minutes, open to everyone</a>, and <a href="/gift/">a year to give</a>.</p></div>
+  <div class="h-in also"><p>Also here: <a href="practice/">the practice room</a>, <a href="reading/">the Reading Room</a>, <a href="play/">games and fireside stories</a>, <a href="work/">readings for your work</a>, <a href="listen/#free">Morning Water, eleven minutes, open to everyone</a>, and <a href="gift/">a year to give</a>.</p></div>
 </section>
-
-<div id="walkLate"></div>
 
 <!-- ===== THE CLOSE: enough, and the line ===== -->
 <section class="enough" data-scene="dawn" data-scene-label="first light">
-  <div class="bg"><div class="ap-loop" data-src="/media/home/relay-720.mp4" data-poster="/media/home/relay-poster.jpg" role="img" aria-label="On a stone path above the clouds, an older woman hands the knotted cord to a younger one"></div></div>
+  <div class="bg"><div class="ap-loop" data-src="media/home/relay-720.mp4" data-poster="media/home/relay-poster.jpg" role="img" aria-label="On a stone path above the clouds, an older woman hands the knotted cord to a younger one"></div></div>
   <div class="h-in">
     <p class="q big reveal">He had been enough all along. He had just forgotten.</p>
     <p class="src reveal">From Stone Breath</p>
     <p class="lineage reveal">Keh Yazh → Masan → Ada → Tony → <b>You</b></p>
     <p class="p reveal">The line, from The Far Messengers: carried here by people who will never read it.</p>
-    <div class="acts reveal"><a class="btn gold" href="/begin/" data-begin>Begin free</a></div>
+    <div class="acts reveal"><a class="btn gold" href="begin/" data-begin>Begin free</a></div>
   </div>
 </section>
 
 <footer data-ap-foot></footer>
 
-<script>window.AP_NO_GATE = true; /* the welcome: no wall on this page; the invitation comes after the guest has been fed */</script>
 <script>window.__render = location.hash === '#render'; window.__flat = location.hash === '#flat'; document.documentElement.dataset.noinit = '1';</script>
-<script src="/shared/site.js?v=1126o"></script>
+<script src="shared/site.js?v=1126o"></script>
 <script>
 (function(){
 const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
 // Peaks Opening: the original score for this page, looped; it plays only when the visitor turns the sound on
-AP.sound.register('creek', document.createElement('audio').canPlayType('audio/mp4; codecs="mp4a.40.2"') ? '/media/sound/peaks-opening.m4a' : '/media/sound/peaks-opening.mp3');
+AP.sound.register('creek', document.createElement('audio').canPlayType('audio/mp4; codecs="mp4a.40.2"') ? 'media/sound/peaks-opening.m4a' : 'media/sound/peaks-opening.mp3');
 AP.init();
 
 /* ---------- the opening film: his clips and photographs graded to one look, long crossfades, a slow drift, at most two films running at once ---------- */
@@ -783,10 +627,10 @@ const film = (function(){
 /* ---------- Begin free: the same free-quarter sign-up every page uses (AP.gate), opened at once ---------- */
 const read = k => { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } };
 $$('[data-begin]').forEach(b => {
-  if (read('ap.free')) { b.textContent = 'Open the Listening Room'; b.href = '/listen/'; const f = $('.arrive .fine'); if (f) f.hidden = true; return; }
-  if (read('ap.free.ended')) { b.textContent = 'See the membership'; b.href = '/join/'; return; }
+  if (read('ap.free')) { b.textContent = 'Open the Listening Room'; b.href = 'listen/'; const f = $('.arrive .fine'); if (f) f.hidden = true; return; }
+  if (read('ap.free.ended')) { b.textContent = 'See the membership'; b.href = 'join/'; return; }
   b.addEventListener('click', e => {
-    if (read('ap.free')) { b.href = '/listen/'; return; }
+    if (read('ap.free')) { b.href = 'listen/'; return; }
     if (AP.gateOpen) { e.preventDefault(); AP.gateOpen(); }
   });
 });
@@ -819,9 +663,9 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function show(html){ form.hidden = true; done.innerHTML = html; done.hidden = false; }
   var j = null; try { j = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
-  if (j && !j.pass) show('<b>You are in' + (j.name ? ', ' + esc(j.name) : '') + '.</b>First Light comes each weekday morning at 5:30. <a href="/first-light/">Open this morning’s</a>.');
+  if (j && !j.pass) show('<b>You are in' + (j.name ? ', ' + esc(j.name) : '') + '.</b>First Light comes each weekday morning at 5:30. <a href="first-light/">Open this morning’s</a>.');
   function capture(){ return new Promise(function(res){ if (window.PeaksCapture) return res(window.PeaksCapture);
-    var sc = document.createElement('script'); sc.src = '/js/peaks-capture.js?v=1125c'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); }
+    var sc = document.createElement('script'); sc.src = 'js/peaks-capture.js?v=1125c'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); }
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var name = form.name.value.trim(), email = form.email.value.trim();
@@ -838,198 +682,7 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
   });
 })();
 </script>
-<script>
-/* THE GREETING (preview). One question; the answer opens, in place, one whole free thing for that crossing. Nothing here
-   asks for a name. The answer is kept on this device only (ap.crossing) and is never sent, not even with a sign-up.
-   The invitation opens only after the guest has finished or closed a gift, or has scrolled toward the end of the page.
-   It is a part of the page, never laid over it. No scroll listeners: two observers, and nothing runs per frame. */
-(function(){
-  var $ = function(s, r){ return (r || document).querySelector(s); };
-  var store = { get: function(k){ try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } },
-                set: function(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
-                del: function(k){ try { localStorage.removeItem(k); } catch (e) {} } };
-  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-  var small = matchMedia('(max-width: 700px)').matches;
-  var HELP = 'If tonight is heavy: in the United States and Canada, call or text 988. In the United Kingdom and Ireland, call Samaritans on 116 123. Anywhere else, <a href="https://findahelpline.com" target="_blank" rel="noopener">findahelpline.com</a>.';
-  var MW = '/mountain-within/';
-
-  /* the eight gifts: each one is whole and open to everyone on Peaks today, with no sign-up */
-  var GIFTS = {
-    sea: { kind: 'ring', rounds: 5, tag: 'A practice · five rounds, ninety seconds', title: 'The stone breath.',
-      d: 'When the water will not hold still, hold something that does. A small stone in your hand, or whatever is there. In four, hold four, out six, hold four. Five rounds, counted with you.',
-      q: 'You do not make the calm out there. You spend what you already stored.', src: 'From The Far Messengers' },
-    desert: { kind: 'audio', file: '/media/audio/morning-water.mp3', dur: 690, img: '/media/img/flagstaff-waterfall-photo-1200.jpg', alt: 'Water coming down over dark rock',
-      tag: 'A session to hear · 11 minutes', title: 'Morning Water.',
-      d: 'For the dry stretch. Bring your own water with you and hold a small stone. The stone breath is counted with you, then three minutes of water, strings and flute to sit in.',
-      q: 'They still know how to make a living in the desert, in the mountains, in the canyons.', src: 'From “Gifts Light Enough to Carry”' },
-    mountain: { kind: 'film', wide: MW + 'films/mountain-within-3-1280x720.mp4', tall: MW + 'films/mountain-within-3-540x960.mp4', poster: MW + 'media/poster-3-wide-1200.jpg', posterTall: MW + 'media/poster-3-phone-1080.jpg',
-      tag: 'A film · 3 min 20 s', title: 'A Good Relationship With Stress.',
-      d: 'The Mountain Within, Part Three. In an unpredictable future: look up, name it, dress for it, and go.',
-      q: 'The mountains didn’t reward status. They responded only to presence.', src: 'From Stone Breath' },
-    day: { kind: 'film', wide: MW + 'films/mountain-within-2-1280x720.mp4', tall: MW + 'films/mountain-within-2-540x960.mp4', poster: MW + 'media/poster-2-wide-1200.jpg', posterTall: MW + 'media/poster-2-phone-1080.jpg',
-      tag: 'A film · 4 min 13 s', title: 'The Hard Day.',
-      d: 'The Mountain Within, Part Two. For the message you did not want, the exam, the meeting, the news from home. Keep the stone close: five rounds of the breath, counted on the screen with you.',
-      q: 'A hard day is weather. It is not a verdict.', src: 'From the film', help: true },
-    journey: { kind: 'film', wide: MW + 'films/mountain-within-1-1280x720.mp4', tall: MW + 'films/mountain-within-1-540x960.mp4', poster: MW + 'media/poster-1-wide-1200.jpg', posterTall: MW + 'media/poster-1-phone-1080.jpg',
-      tag: 'A film · 3 min 26 s', title: 'Leaving Home.',
-      d: 'The Mountain Within, Part One. For the one far from home, or on the way there: take a piece of the mountain with you.',
-      q: 'You are not leaving your sacred ground. You are learning to carry it.', src: 'From Stone Breath' },
-    race: { kind: 'film', wide: '/films/media/week1-settle-yourself-first-1280x720-crf32-2026-11-05.mp4', tall: '/films/media/week1-settle-yourself-first-768x432-phone-2026-11-04.mp4', poster: '/films/media/poster-hand-stone-1200.jpg', posterTall: '/films/media/poster-hand-stone-1200.jpg', flat: true,
-      tag: 'A film · 6 min 21 s', title: 'Settle yourself first.',
-      d: 'Week one, as a film. The runner on Big Mountain who ran east toward the sunrise every morning, a small smooth river stone in his hand. It ends in the counted breath, for the night before or the start line.',
-      q: 'The races themselves were spiritual things.', src: 'From “Gifts Light Enough to Carry”' },
-    workout: { kind: 'ring', rounds: 3, tag: 'A practice · three rounds, one minute', title: 'The counted breath, before you start.',
-      d: 'Standing still, before the work begins. In four, hold four, out six, hold four. Three rounds, then go. Once you are moving, hold nothing; let the breath run free.',
-      q: 'Clean lungs. Strong legs. A fair mind.', src: 'From the film Settle yourself first' },
-    caring: { kind: 'five', tag: 'From Heal the Healer · for the ones who carry others', title: 'Your five at mile 95.',
-      d: 'In Stone Breath, a man is ninety-five miles into a hundred, before dawn, barely upright. Then the lamps fall in around him: one in front, two on the sides, one behind. Bakers and teachers and grandmothers. They walked him home. You are carrying someone tonight. Who carries you?',
-      q: 'It did not make you weak. It made you unable.', src: 'From The Far Messengers', help: true }
-  };
-
-  var box = $('#gift'), ways = Array.prototype.slice.call(document.querySelectorAll('.way')), built = {}, open = null, started = false;
-  if (!box) return;
-
-  function quiet(){ // stop whatever the open gift is doing
-    if (!open || !built[open]) return; var b = built[open];
-    if (b.video) { try { b.video.pause(); } catch (e) {} }
-    if (b.player) { try { b.player.pause(); } catch (e) {} }
-    if (b.ring) { try { b.ring.stop(); } catch (e) {} if (b.reset) b.reset(); }
-  }
-  function duck(on){ try { if (on && AP.current && AP.current.pause) AP.current.pause(); if (AP.sound && AP.sound.duck) AP.sound.duck(on); } catch (e) {} }
-
-  function build(id){
-    var g = GIFTS[id], el = document.createElement('div'), b = { el: el }; el.className = 'g' + (g.kind === 'five' ? ' words-first' : '');
-    var media = document.createElement('div'), words = document.createElement('div');
-    words.innerHTML = '<p class="tag">' + esc(g.tag) + ' · whole, and free</p><h3>' + esc(g.title) + '</h3><p class="d">' + esc(g.d) + '</p>' +
-      '<p class="q">' + esc(g.q) + '</p><p class="src">' + esc(g.src) + '</p>' + (g.help ? '<p class="help">' + HELP + '</p>' : '') +
-      '<button class="shut" type="button">Close</button>';
-    words.querySelector('.shut').addEventListener('click', function(){ shut(true); });
-
-    if (g.kind === 'film') {
-      var tall = small && !g.flat, st = document.createElement('div'); st.className = 'stage' + (tall ? ' tall' : '');
-      var v = document.createElement('video'); v.controls = false; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'none';
-      v.poster = tall ? g.posterTall : g.poster; v.dataset.src = small ? g.tall : g.wide; v.setAttribute('aria-label', g.title);
-      var big = document.createElement('button'); big.type = 'button'; big.className = 'big'; big.setAttribute('aria-label', 'Play ' + g.title);
-      big.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
-      big.addEventListener('click', function(){ if (!v.getAttribute('src')) v.src = v.dataset.src; v.controls = true; st.classList.add('on'); var p = v.play(); if (p && p.catch) p.catch(function(){}); });
-      v.addEventListener('play', function(){ started = true; duck(true); });
-      v.addEventListener('pause', function(){ duck(false); });
-      v.addEventListener('ended', function(){ duck(false); fed(); });
-      st.appendChild(v); st.appendChild(big); media.appendChild(st); b.video = v;
-    } else if (g.kind === 'audio') {
-      media.innerHTML = '<div class="still"><img src="' + g.img + '" alt="' + esc(g.alt) + '" loading="lazy" decoding="async"></div>' +
-        '<div class="ap-player" data-src="' + g.file + '" data-title="Morning Water" data-sub="Open to everyone. No name, no email." data-visual="ripples" data-duration="' + g.dur + '" data-color="#D1A63C" data-env="/media/env/morning-water.env.json"></div>';
-      var mk = function(){ if (b.player) return; try { if (window.PEAKS_ENV && PEAKS_ENV['morning-water']) { window.AP_ENV = window.AP_ENV || {}; AP_ENV['morning-water'] = PEAKS_ENV['morning-water']; } } catch (e) {} b.player = AP.player(media.querySelector('.ap-player'));
-        b.player.audio.addEventListener('play', function(){ started = true; });
-        b.player.audio.addEventListener('ended', fed); };
-      // the picture of the sound (a small file beside the session) comes first, so the water moves with the voice
-      var sc = document.createElement('script'); sc.src = '/media/env/morning-water.env.js'; sc.onload = mk; sc.onerror = mk; document.head.appendChild(sc);
-    } else if (g.kind === 'ring') {
-      var word = g.rounds === 5 ? 'five rounds' : 'one minute';
-      media.innerHTML = '<div class="ringwrap"><div class="ringbox"><div class="ringhost" aria-live="polite"></div></div><p class="count4">Four in. Hold four. Six out. Hold four.</p>' +
-        '<button class="btn gold" type="button">Begin ' + word + '</button><p class="said" aria-live="polite"></p></div>';
-      var btn = media.querySelector('.btn'), said = media.querySelector('.said');
-      b.reset = function(){ btn.textContent = 'Begin ' + word; btn.disabled = false; };
-      b.ring = AP.breathRing(media.querySelector('.ringhost'), { rounds: g.rounds, legend: false, tones: true,
-        onStart: function(){ started = true; said.textContent = ''; btn.textContent = 'Breathing…'; btn.disabled = true; },
-        onFinish: function(){ said.textContent = 'Did your shoulders drop?'; btn.textContent = 'Once more'; btn.disabled = false; b.ring.stop(); fed(); } });
-      b.ring.stop(); b.ring.seek(0, false);
-      btn.addEventListener('click', function(){ b.ring.rest(); b.ring.start(); });
-    } else if (g.kind === 'five') {
-      var KEY = 'ap.hth.five';   // the same place Heal the Healer keeps them, so they are there when the guest opens that page
-      media.innerHTML = '<p class="q" style="margin:0 0 1rem;padding:0;border:0">Write down the names of five people who would show up for you at mile 95 of the hardest thing you ever do. If you cannot name five, that is information. Start showing up for others first.</p>' +
-        '<p class="src" style="margin:-.4rem 0 1rem">The Headlamp Circle, from Stone Breath</p>' +
-        '<form class="five" aria-label="Your five first names">' + [1, 2, 3, 4, 5].map(function(n){ return '<input type="text" maxlength="30" autocomplete="off" aria-label="First name ' + n + '" placeholder="A first name">'; }).join('') +
-        '<div class="row"><button class="btn gold" type="submit">Keep my five</button><button type="button" class="clear" hidden>Clear them</button></div></form>' +
-        '<p class="kept" role="status"></p><p class="small">The names stay on this device only. They are never sent to us or to anyone else.</p>';
-      var form = media.querySelector('form'), ins = Array.prototype.slice.call(form.querySelectorAll('input')), kept = media.querySelector('.kept'), clr = form.querySelector('.clear');
-      var show = function(){ var raw = store.get(KEY), names = (Array.isArray(raw) ? raw : []).map(function(n){ return String(n).trim().slice(0, 30); }).filter(Boolean).slice(0, 5);
-        ins.forEach(function(x, i){ x.value = names[i] || ''; }); clr.hidden = !names.length;
-        kept.textContent = names.length ? 'Kept. When the dark hour comes, let one of them carry a corner of it.' : ''; return names.length; };
-      form.addEventListener('submit', function(e){ e.preventDefault(); store.set(KEY, ins.map(function(x){ return x.value.trim().replace(/\s+/g, ' ').slice(0, 30); }).filter(Boolean)); if (show()) { started = true; fed(); } });
-      form.addEventListener('input', function(){ started = true; });
-      clr.addEventListener('click', function(){ store.del(KEY); show(); });
-      show();
-    }
-    if (g.kind === 'five') media.appendChild(words.querySelector('.shut'));   // the names come last here, so the way out sits under them
-    el.appendChild(media); el.appendChild(words);
-    return (built[id] = b);
-  }
-
-  function choose(id, silent){
-    if (!GIFTS[id]) return;
-    if (open === id && !silent) { box.scrollIntoView({ block: 'nearest', behavior: 'auto' }); return; }
-    quiet(); open = id;
-    ways.forEach(function(w){ w.setAttribute('aria-pressed', String(w.dataset.way === id)); });
-    var b = built[id] || build(id);
-    while (box.firstChild) box.removeChild(box.firstChild);
-    box.appendChild(b.el); box.hidden = false;
-    if (b.ring) { b.ring.seek(0, false); }
-    if (!silent) { store.set('ap.crossing', { way: id, at: Date.now() }); try { box.focus({ preventScroll: true }); } catch (e) {} box.scrollIntoView({ block: 'nearest', behavior: 'auto' }); }
-  }
-  function shut(byGuest){
-    quiet(); box.hidden = true; open = null;
-    ways.forEach(function(w){ w.setAttribute('aria-pressed', 'false'); });
-    if (byGuest) fed();
-  }
-  ways.forEach(function(w){ w.addEventListener('click', function(){ choose(w.dataset.way); }); });
-  var last = store.get('ap.crossing'); if (last && GIFTS[last.way]) choose(last.way, true);   // a returning guest finds it where they left it; nothing plays
-
-  /* ---------- the invitation: after they are fed ---------- */
-  var walk = $('#walk'), late = $('#walkLate');
-  function playing(){ try { if (AP.current && AP.current.audio && !AP.current.audio.paused) return true; return Array.prototype.some.call(document.querySelectorAll('video,audio'), function(m){ return !m.paused && !m.ended && !m.muted; }); } catch (e) { return false; } }
-  function fed(){ store.set('ap.fed', 1); invite(false); }
-  function invite(atEnd){
-    if (!walk || !walk.hidden) return;
-    if (atEnd && late) late.parentNode.insertBefore(walk, late);   // moved while it is still below the screen, so nothing jumps
-    walk.hidden = false;
-  }
-  if (walk) {
-    if (store.get('ap.fed')) invite(false);
-    if (late && 'IntersectionObserver' in window) {
-      // toward the end of the page. If something is being heard just then, it waits for the quiet, and it only ever opens below the screen
-      var near = false, tryLate = function(){ if (!near || !walk.hidden || playing()) return; if (late.getBoundingClientRect().top < innerHeight) return; invite(true); };
-      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ near = e.isIntersecting; tryLate(); }); }, { rootMargin: '0px 0px 900px 0px' });
-      io.observe(late);
-      document.addEventListener('pause', function(){ setTimeout(tryLate, 400); }, true);
-    }
-    // the next First Light morning, by the Arizona calendar (Monday to Friday)
-    try { var day = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Phoenix', weekday: 'short' }).format(new Date()), when = $('#walkWhen');
-      if (when && (day === 'Fri' || day === 'Sat')) when.textContent = 'Come back Monday morning.'; } catch (e) {}
-
-    /* the sign-up itself: the same road as every sign-up on Peaks (ap.free on this device, then js/peaks-capture.js) */
-    var offer = $('#walkOffer'), form = offer.querySelector('form'), done = offer.querySelector('.fl-done'), err = form.querySelector('.err');
-    var show = function(html){ form.hidden = true; done.innerHTML = html; done.hidden = false; };
-    var j = store.get('ap.free');
-    if (j && !j.pass) show('<b>You are in' + (j.name ? ', ' + esc(j.name) : '') + '.</b>First Light comes each weekday morning at 5:30. <a href="/first-light/">Open this morning’s</a>.');
-    var capture = function(){ return new Promise(function(res){ if (window.PeaksCapture) return res(window.PeaksCapture);
-      var sc = document.createElement('script'); sc.src = '/js/peaks-capture.js?v=1125c'; sc.onload = function(){ res(window.PeaksCapture || null); }; sc.onerror = function(){ res(null); }; document.head.appendChild(sc); }); };
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var name = form.name.value.trim(), email = form.email.value.trim();
-      if (!name) { err.textContent = 'Your first name, please.'; form.name.focus(); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { err.textContent = 'That email does not look complete.'; form.email.focus(); return; }
-      var btn = form.querySelector('button[type=submit]'); btn.disabled = true; err.textContent = '';
-      var first = name.split(' ')[0].slice(0, 40), bot = form.botcheck.checked;
-      store.set('ap.free', { name: first, at: Date.now() });
-      capture().then(function(C){ return (C && !bot) ? C.send({ name: name, email: email, source: form.dataset.source, subject: 'Ancestral Peaks — a new sign-up' }) : null; })
-        .catch(function(){}).then(function(){
-          show('<b>There is a place for you, ' + esc(first) + '.</b>A welcome letter comes first. First Light comes the next weekday morning at 5:30.<p class="stone">Tonight, choose one small stone and set it where you will see it when you wake. That is the first step of the practice.</p>');
-          var other = document.querySelector('#flOffer form'), od = document.querySelector('#flOffer .fl-done');   // the First Light form lower on the page does not ask again
-          if (other && od) { other.hidden = true; od.innerHTML = '<b>You are in, ' + esc(first) + '.</b>First Light comes each weekday morning at 5:30.'; od.hidden = false; }
-        });
-    });
-    $('#walkNo').addEventListener('click', function(){ offer.innerHTML = '<p class="gone">Then go well, and carry it home. The door stays open.</p>'; });
-  }
-
-  /* ---------- the card: it saves as a picture; on an iPhone it opens so it can be kept in Photos ---------- */
-  var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  if (ios) { Array.prototype.forEach.call(document.querySelectorAll('[data-save]'), function(a){ a.removeAttribute('download'); a.target = '_blank'; a.rel = 'noopener'; });
-    var how = $('#saveHow'); if (how) how.textContent = 'On an iPhone the card opens on its own. Touch and hold it, then choose Save to Photos.'; }
-  else { var pic = $('.pocket .pic'); if (pic) pic.setAttribute('download', 'the-stone-breath-ancestral-peaks.png'); }
-})();
-</script>
-<script src="/shared/media-guard.js?v=1" defer></script>
-<script src="/js/peaks-welcome.js?v=1108i" defer></script>
+<script src="./shared/media-guard.js?v=1" defer></script>
+<script src="js/peaks-welcome.js?v=1108i" defer></script>
 </body>
 </html>
