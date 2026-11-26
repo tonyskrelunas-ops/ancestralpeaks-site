@@ -61,7 +61,7 @@
   var big = window.matchMedia('(min-width: 1100px)').matches;
   var v = document.getElementById('v'), go = document.getElementById('go');
   v.poster = '../media/welcome/welcome-crossings-poster-1920x1080.jpg';
-  v.src = big ? '../media/welcome/welcome-crossings-1600x900.mp4' : '../media/welcome/welcome-crossings-1280x720.mp4';
+  v.src = big ? '../media/welcome/welcome-crossings-v2-1600x900.mp4' : '../media/welcome/welcome-crossings-v2-1280x720.mp4';
   function playing(){ go.hidden = true; v.controls = true; }
   go.addEventListener('click', function(){ var p = v.play(); playing(); if (p && p.catch) p.catch(function(){ go.hidden = false; }); });
   v.addEventListener('play', playing);
