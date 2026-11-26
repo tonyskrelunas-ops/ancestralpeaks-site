@@ -1,0 +1,33 @@
+/* Day 1 · the pictures that move with Chapter 1. at = the block (paragraph) of the chapter where the picture comes in;
+   blocks are counted as in data/chapter.js. kind: plate (a line engraving from the book's film art, shown whole),
+   photo (a made scene), clip (a made scene that moves; its still is used when motion is reduced). */
+window.DAY_SCENES = [
+  { at: 0,  id: 'dawn',        kind: 'plate', cap: 'Chapter 1 · The Canyon Within' },
+  { at: 3,  id: 'room',        kind: 'photo', cap: 'The circle' },
+  { at: 7,  id: 'four_mtns',   kind: 'plate', cap: 'The land, first' },
+  { at: 11, id: 'headlamps',   kind: 'plate', cap: 'The descent' },
+  { at: 14, id: 'palm',        kind: 'photo', cap: '“Hold this.”' },
+  { at: 17, id: 'dawn_peaks',  kind: 'plate', cap: 'Reading the walls' },
+  { at: 23, id: 'runner_mesa', kind: 'plate', cap: 'The sun comes over the rim' },
+  { at: 25, id: 'three_fires', kind: 'plate', cap: 'Three threads' },
+  { at: 30, id: 'kehrun',      kind: 'clip',  cap: 'Before the sun, with a stone' },
+  { at: 31, id: 'voice_masan', kind: 'plate', cap: 'Masan' },
+  { at: 36, id: 'open_book',   kind: 'plate', cap: 'The second thread' },
+  { at: 37, id: 'ripples',     kind: 'plate', cap: 'The third thread' },
+  { at: 40, id: 'stone_breath',kind: 'plate', cap: '“Rich.”' },
+  { at: 46, id: 'kehstone',    kind: 'clip',  cap: 'Carried by more than one' },
+  { at: 56, id: 'letter',      kind: 'plate', cap: 'The lamp, and the books that came' },
+  { at: 59, id: 'runner_ridge',kind: 'plate', cap: 'Twenty minutes down the road' },
+  { at: 62, id: 'handpick',    kind: 'photo', cap: 'Two thousand dark mornings' },
+  { at: 63, id: 'creek',       kind: 'clip',  cap: 'Home, close to the creek' },
+  { at: 66, id: 'four_mtns',   kind: 'plate', cap: 'Big Mountain' },
+  { at: 68, id: 'corn',        kind: 'plate', cap: 'The harvest' },
+  { at: 72, id: 'three_fires', kind: 'plate', cap: 'The call' },
+  { at: 76, id: 'porch',       kind: 'photo', cap: 'A long and good life' },
+  { at: 80, id: 'headlamps',   kind: 'plate', cap: 'He finished it' },
+  { at: 81, id: 'twofriends',  kind: 'photo', cap: 'By the trucks' },
+  { at: 90, id: 'bench',       kind: 'clip',  cap: 'The four days' },
+  { at: 93, id: 'meadow',      kind: 'photo', cap: 'Toward the morning' },
+  { at: 95, id: 'open_book',   kind: 'plate', cap: 'The book in the drawer' },
+  { at: 98, id: 'bus',         kind: 'photo', cap: 'East out of Vilnius' }
+];
