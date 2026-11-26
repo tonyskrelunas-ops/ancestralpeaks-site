@@ -83,20 +83,20 @@ AP.season = function(){
 
 /* ---------- the pages (one source of truth for nav + footer) ---------- */
 AP.pages = [
-  // group: where it sits in the menu; bar: shown in the wide-screen bar; menu:false keeps it out of the menu (the logo goes home)
+  // group: where it sits in the menu; bar: shown in the wide-screen bar (short = its shorter name there); menu:false keeps it out of the menu (the logo goes home)
+  // 11/26: the wide bar carries five links, then Menu and one button (it was eight links in two rows). The Path left with its section of the home page.
   { href: '/',          label: 'Home',                     n: '',   group: '',             bar: false, menu: false },
-  { href: '/#path',     label: 'The Path',                 n: '01', group: 'Start here',   bar: true },
-  { href: '/join/',     label: 'Membership',               n: '',   group: 'Start here',   bar: false },   // the sale page (11/25)
-  { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true },
+  { href: '/join/',     label: 'Membership',               n: '',   group: 'Start here',   bar: true },    // the sale page (11/25)
+  { href: '/listen/',   label: 'Listening Room',           n: '02', group: 'The practice', bar: true, short: 'Listen' },
   { href: '/listen/#with-you', label: 'Move, Drive, Rest',  n: '',   group: 'The practice', bar: false },   // the three listening pages (11/26)
   { href: '/heal-the-healer/', label: 'Heal the Healer',     n: '',   group: 'The practice', bar: false },   // basecamp for the people who carry others (11/26)
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
-  { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: true },
-  { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: true },
-  { href: '/mountain-within/', label: 'The Mountain Within · films', n: '06', group: 'The practice', bar: false },
-  { href: '/play/',     label: 'Games & Fireside Stories', n: '07', group: 'Explore',      bar: true },
-  { href: '/books/',    label: 'The Books',                n: '08', group: 'Explore',      bar: true },
-  { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: true },
+  { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: false },
+  { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: false },
+  { href: '/mountain-within/', label: 'The Mountain Within · films', n: '06', group: 'The practice', bar: true, short: 'Films' },
+  { href: '/play/',     label: 'Games & Fireside Stories', n: '07', group: 'Explore',      bar: false },
+  { href: '/books/',    label: 'The Books',                n: '08', group: 'Explore',      bar: true, short: 'Books' },
+  { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: false },
   { href: '/gift/',     label: 'Give a Year',              n: '10', group: 'Explore',      bar: false }
 ];
 /* the menu, grouped: Start here / The practice / Explore (Tony, 11/10: "better organize the menu") */
@@ -118,13 +118,13 @@ AP.nav = function(host, opts){
   if (!host) return null;
   opts = Object.assign({ active: host.dataset.active || '', light: host.dataset.light === '1', begin: AP.BEGIN, menuImage: host.dataset.menuImage || '' }, opts || {});
   host.classList.add('ap-bar'); if (opts.light) host.classList.add('on-light');
-  const links = AP.pages.filter(p => p.bar).map(p => `<a href="${AP.href(p.href)}"${p.href === opts.active ? ' aria-current="page"' : ''}>${p.label}</a>`).join('');
+  const links = AP.pages.filter(p => p.bar).sort((x, y) => (x.href === '/join/') - (y.href === '/join/')).map(p => `<a href="${AP.href(p.href)}"${p.href === opts.active ? ' aria-current="page"' : ''}>${p.short || p.label}</a>`).join('');
   host.innerHTML = `<a class="ap-mark" href="${AP.href('/')}" aria-label="Ancestral Peaks">${AP.markSVG}Ancestral Peaks</a>
     <nav class="ap-nav" aria-label="Pages">${links}</nav>
     <div class="acts">
       <button class="ap-sound" type="button" aria-pressed="false" title="Turn the sound layer on"><i><b></b><b></b><b></b></i><span class="lbl"></span></button>
       <a class="btn light" href="${opts.begin}">Begin <span class="arrow">→</span></a>
-      <button class="ap-burger" type="button" aria-expanded="false" aria-controls="apMenu" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="ap-burger" type="button" aria-expanded="false" aria-controls="apMenu" aria-label="Menu"><span></span><span></span><span></span><b>Menu</b></button>
     </div>`;
   // phone menu
   let menu = $('#apMenu');
@@ -186,7 +186,7 @@ AP.thumb = function(){
 AP.footer = function(host, opts){
   host = typeof host === 'string' ? $(host) : (host || $('[data-ap-foot]'));
   if (!host) return null;
-  opts = Object.assign({ tag: 'A place to practice. The companion to the books. Every photograph is our own.' }, opts || {});
+  opts = Object.assign({ tag: 'A place to practice. The companion to the books.' }, opts || {});
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
     <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>
@@ -752,6 +752,8 @@ AP.gate = function(){
   const WAIT = 45000;
   // The Mountain Within (free films for hard days): the sign-up still comes, and it carries the help lines
   const mw = /^\/mountain-within(\/|$)/.test(location.pathname);
+  // 11/26: a button may open this same sign-up at once (the home page's Begin free); it does nothing for someone already in
+  AP.gateOpen = show;
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
   let ended = null; try { ended = JSON.parse(localStorage.getItem('ap.free.ended') || 'null'); } catch (e) {}
