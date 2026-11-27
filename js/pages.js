@@ -327,7 +327,11 @@ P.theater = function(root, chaptersEl){
   const DUR = Number(film.dataset.duration) || 381.5;
   // the right copy for the screen
   const src = innerWidth < 700 ? film.dataset.srcPhone : film.dataset.src;
-  film.src = src; film.preload = AP.render ? 'none' : 'metadata';
+  // 11/26 top quality: 1080p, 720p and 480p from Hostinger, nothing fetched until play; the copy above stays as the fallback
+  const hq = (window.APHQ && !AP.render) ? film.dataset.hq : ''; let ready = null;
+  if (hq && APHQ.native(film)) ready = APHQ.attach(film, hq, src); else film.src = src;
+  const begin = () => ready || (ready = hq ? APHQ.attach(film, hq, src) : Promise.resolve());
+  film.preload = AP.render ? 'none' : 'metadata';
   // the living poster: a muted loop of the film's own water and ring
   if (loopV && AP.motion) { loopV.play().then(() => root.classList.add('loopon')).catch(() => {}); }
   // chapter marks on the seek bar
@@ -335,7 +339,7 @@ P.theater = function(root, chaptersEl){
   let started = false;
   function start(){
     if (!started) { started = true; root.classList.add('started'); if (loopV) { loopV.pause(); loopV.style.display = 'none'; } if (poster) poster.style.display = 'none'; film.style.display = 'block'; if (AP.current) AP.current.pause(); AP.says.forEach(s => s.stop()); }
-    film.muted = false; film.play().then(() => { root.classList.add('playing'); root.classList.remove('paused'); AP.sound.duck(true); }).catch(() => {});
+    film.muted = false; begin().then(() => film.play()).then(() => { root.classList.add('playing'); root.classList.remove('paused'); AP.sound.duck(true); }).catch(() => {});
   }
   function pause(){ film.pause(); root.classList.remove('playing'); root.classList.add('paused'); AP.sound.duck(false); }
   big.addEventListener('click', start);
@@ -347,8 +351,8 @@ P.theater = function(root, chaptersEl){
     let cur = null; chapters.forEach(c => { const a = Number(c.dataset.t), b = Number(c.dataset.end || DUR); const on = t >= a && t < b; c.classList.toggle('on', on); const bar = $('.bar i', c); if (bar) bar.style.width = (on ? clamp((t - a) / (b - a), 0, 1) * 100 : t >= b ? 100 : 0) + '%'; if (on) cur = c; });
     if (cur) { nowTxt.textContent = $('.t b', cur).textContent; if (chaptersEl && !AP.render && cur !== chaptersEl._last) { chaptersEl._last = cur; const rail = cur.parentElement; rail.scrollTo({ left: cur.offsetLeft - rail.offsetLeft - 16, behavior: 'smooth' }); } }
   });
-  seekEl.addEventListener('click', e => { const r = seekEl.getBoundingClientRect(); film.currentTime = clamp((e.clientX - r.left) / r.width, 0, 1) * DUR; if (!started) start(); });
-  chapters.forEach(c => c.addEventListener('click', () => { const t = Number(c.dataset.t); if (!started) start(); film.currentTime = t; if (film.paused) start(); root.scrollIntoView({ behavior: AP.motion ? 'smooth' : 'auto', block: 'start' }); }));
+  seekEl.addEventListener('click', e => { const r = seekEl.getBoundingClientRect(), t = clamp((e.clientX - r.left) / r.width, 0, 1) * DUR; begin().then(() => { film.currentTime = t; }); if (!started) start(); });
+  chapters.forEach(c => c.addEventListener('click', () => { const t = Number(c.dataset.t); if (!started) start(); begin().then(() => { film.currentTime = t; }); if (film.paused) start(); root.scrollIntoView({ behavior: AP.motion ? 'smooth' : 'auto', block: 'start' }); }));
   if (fsBtn) fsBtn.addEventListener('click', () => { const s = $('.screen', root); if (document.fullscreenElement) document.exitFullscreen(); else if (s.requestFullscreen) s.requestFullscreen(); else if (film.webkitEnterFullscreen) film.webkitEnterFullscreen(); });
   if (muteBtn) muteBtn.addEventListener('click', () => { film.muted = !film.muted; muteBtn.setAttribute('aria-pressed', String(film.muted)); muteBtn.querySelector('span').textContent = film.muted ? 'Sound' : 'Mute'; });
   addEventListener('ap:play', () => { if (!film.paused) pause(); });

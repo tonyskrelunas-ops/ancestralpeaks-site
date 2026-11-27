@@ -18,7 +18,7 @@
         }
       } else {
         var s = v.getAttribute('src');
-        if (!s || v.controls) return;
+        if (!s || v.controls || v._hls) return;        // 11/26: a top-quality film playing through hls.js keeps its own source
         if (!v.paused && !v.muted) return;              // someone is watching it: leave it playing
         var at = (!v.loop && v.currentTime > 0) ? v.currentTime : 0;
         v.pause(); v.dataset.guardSrc = s; if (at) v.dataset.guardT = String(at); v.removeAttribute('src'); v.load();

@@ -29,7 +29,7 @@
   <div class="screen">
     <img class="poster" src="media/poster-hand-stone-1920.jpg" alt="A hand holding one river stone, a waterfall behind: a frame from the film">
     <video class="loop" src="media/living-poster-ring-10s-960.mp4" poster="media/living-poster-ring-poster.jpg" muted loop playsinline preload="metadata" aria-hidden="true"></video>
-    <video class="film" data-src="media/week1-settle-yourself-first-1280x720-crf32-2026-11-05.mp4" data-src-phone="media/week1-settle-yourself-first-768x432-phone-2026-11-04.mp4" data-duration="381.5" playsinline preload="none" style="display:none"></video>
+    <video class="film" data-hq="https://members.ancestralpeaks.com/p/films/week1-settle-yourself-first/master.m3u8" data-src="media/week1-settle-yourself-first-1280x720-crf32-2026-11-05.mp4" data-src-phone="media/week1-settle-yourself-first-768x432-phone-2026-11-04.mp4" data-duration="381.5" playsinline preload="none" style="display:none"></video>
   </div>
   <div class="now"><small>Now</small><span></span></div>
   <div class="front">
@@ -88,22 +88,22 @@
   <div class="lfm-row">
     <article class="lfm-card">
       <div class="lfm-media">
-        <video playsinline preload="none" src="media/long/council-fire-taste-720x1280.mp4"></video>
-        <button class="lfm-go" type="button" aria-label="Watch a taste of The Council Fire, 1 minute 17 seconds"><img src="media/long/council-fire-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:17</span></button>
+        <video playsinline preload="none" data-hls="https://members.ancestralpeaks.com/p/films/council-fire-taste/master.m3u8" src="media/long/council-fire-taste-720x1280.mp4"></video>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of The Council Fire, 1 minute 17 seconds"><img src="https://members.ancestralpeaks.com/p/films/council-fire-taste/poster-1080.webp" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:17</span></button>
       </div>
       <div class="lfm-t"><h3>The Council Fire</h3><p>“Before there was an internet, there was a body that could cross a desert with a library inside it.”</p></div>
     </article>
     <article class="lfm-card">
       <div class="lfm-media">
-        <video playsinline preload="none" src="media/long/stone-breath-taste-1280x720.mp4"></video>
+        <video playsinline preload="none" data-hls="https://members.ancestralpeaks.com/p/films/stone-breath-taste/master.m3u8" src="media/long/stone-breath-taste-1280x720.mp4"></video>
         <button class="lfm-go" type="button" aria-label="Watch a taste of Stone Breath, 1 minute 24 seconds"><img src="media/long/stone-breath-taste-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:24</span></button>
       </div>
       <div class="lfm-t"><h3>Stone Breath</h3><p>The first book, as a film.</p></div>
     </article>
     <article class="lfm-card">
       <div class="lfm-media">
-        <video playsinline preload="none" src="media/long/they-were-the-vessel-taste-1280x720.mp4"></video>
-        <button class="lfm-go" type="button" aria-label="Watch a taste of They Were the Vessel, 1 minute 6 seconds"><img src="media/long/they-were-the-vessel-poster.jpg" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:06</span></button>
+        <video playsinline preload="none" data-hls="https://members.ancestralpeaks.com/p/films/they-were-the-vessel-taste/master.m3u8" src="media/long/they-were-the-vessel-taste-1280x720.mp4"></video>
+        <button class="lfm-go" type="button" aria-label="Watch a taste of They Were the Vessel, 1 minute 6 seconds"><img src="https://members.ancestralpeaks.com/p/films/they-were-the-vessel-taste/poster-1920.webp" alt="" loading="lazy"><span class="lfm-pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:06</span></button>
       </div>
       <div class="lfm-t"><h3>They Were the Vessel</h3><p>“If it went out of the mind, it went out of the world.”</p></div>
     </article>
@@ -154,7 +154,8 @@
 <script src="../shared/vendor/lenis.min.js?v=1108e"></script>
 <script src="../shared/site.js?v=1126p"></script>
 <script src="../js/peaks-members.js?v=1126p"></script>
-<script src="../js/pages.js?v=1108e"></script>
+<script src="../js/peaks-hq.js?v=1126q"></script>
+<script src="../js/pages.js?v=1126q"></script>
 <script>
 addEventListener('ap:ready', () => {
   P4.beds('../media/audio/');
@@ -208,6 +209,7 @@ document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
     function go(u){
       document.querySelectorAll('video,audio').forEach(function(x){ if (x !== v && !x.paused && !x.muted) x.pause(); });
       card.classList.add('whole'); card.querySelector('.lfm-media').classList.add('playing');
+      if (window.APHQ) APHQ.release(v);   // the taste's own player lets go of the frame
       v.dataset.film = id; v.preload = 'auto'; v.controls = true; v.src = u; v.play().catch(function(){});
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -216,6 +218,6 @@ document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
   }
 })();
 </script>
-<script src="../shared/media-guard.js?v=1" defer></script>
+<script src="../shared/media-guard.js?v=2" defer></script>
 </body>
 </html>

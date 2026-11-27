@@ -56,15 +56,18 @@
   <a class="btn" href="../listen/">Open the Listening Room <span aria-hidden="true">→</span></a>
 </section>
 
+<script src="../js/peaks-hq.js?v=1126q"></script>
 <script>
 (function(){
     var v = document.getElementById('v'), go = document.getElementById('go');
-  v.poster = '../media/stone/poster-720x1280.jpg';
-  v.src = '../media/stone/the-new-form-of-the-stone-33s-720x1280.mp4';
+  v.poster = 'https://members.ancestralpeaks.com/p/films/the-new-form-of-the-stone-33s/poster-1080.webp';
+  var mp4 = '../media/stone/the-new-form-of-the-stone-33s-720x1280.mp4';
+  // 11/26 top quality: 1080x1920, 720x1280 and 480x854 from Hostinger; the copy above stays as the fallback
+  var ready = window.APHQ ? APHQ.attach(v, 'https://members.ancestralpeaks.com/p/films/the-new-form-of-the-stone-33s/master.m3u8', mp4) : (v.src = mp4, Promise.resolve());
   function playing(){ go.hidden = true; v.controls = true; }
-  go.addEventListener('click', function(){ var p = v.play(); playing(); if (p && p.catch) p.catch(function(){ go.hidden = false; }); });
+  go.addEventListener('click', function(){ playing(); ready.then(function(){ var p = v.play(); if (p && p.catch) p.catch(function(){ go.hidden = false; }); }); });
   v.addEventListener('play', playing);
-  if (/[?&]play\b/.test(location.search)) { var p = v.play(); if (p && p.then) p.then(playing).catch(function(){}); }
+  if (/[?&]play\b/.test(location.search)) ready.then(function(){ var p = v.play(); if (p && p.then) p.then(playing).catch(function(){}); });
 })();
 </script>
 </body>
