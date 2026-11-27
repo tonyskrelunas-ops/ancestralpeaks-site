@@ -611,7 +611,7 @@ html.founding-open .join .founding-block{display:block}
       <a href="/listen/rest/"><picture><source type="image/webp" srcset="/media/home/beach-900.webp"><img src="/media/home/beach-900.jpg" alt="An older woman on a pebble beach at dusk, eyes closed, a stone in her open hand" loading="lazy" decoding="async"></picture><span class="t"><b>Rest</b><span>Unwinding, and the night</span></span></a>
     </div>
     <div class="hear2">
-      <article class="sess" data-id="week1-settle-yourself-first" data-preview="/media/previews/week1-settle-yourself-first-30s.mp3">
+      <article class="sess" data-id="week1-settle-yourself-first" data-preview="/media/previews/week1-settle-yourself-first-30s.mp3" data-whole="/media/audio/week1-settle-yourself-first.mp3">
         <img src="/media/home/dawn-run-poster.jpg" alt="A runner on the mountain at first light" loading="lazy" decoding="async">
         <button class="go" type="button" aria-label="Play Settle yourself first"><i class="ring" aria-hidden="true"></i><svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
         <div class="t"><span class="k">Week one · 6 min</span><b>Settle yourself first</b><span>The runner on Big Mountain and the stone breath.</span></div>
@@ -1077,7 +1077,7 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
       if (cur === card && a && !a.paused) { stop(); return; }
       if (cur !== card) {
         stop(); if (cur) cur.classList.remove('paused'), cur.style.removeProperty('--p');
-        var M = window.PeaksMembers, whole = M && M.on && M.src ? M.src(card.dataset.id) : null;
+        var M = window.PeaksMembers, whole = M && M.on ? ((M.src && M.src(card.dataset.id)) || card.dataset.whole || null) : null;
         a = new Audio(whole || card.dataset.preview); a.preload = 'auto'; cur = card;
         a.addEventListener('timeupdate', function(){ var d = a.duration || 30; card.style.setProperty('--p', Math.min(1, a.currentTime / d).toFixed(3)); });
         a.addEventListener('ended', function(){ card.classList.remove('playing', 'paused'); card.style.removeProperty('--p'); try { AP.sound.duck(false); } catch (e) {} });
