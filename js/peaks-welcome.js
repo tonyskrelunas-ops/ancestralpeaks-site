@@ -7,7 +7,7 @@
   for (var i = 0; i < boxes.length; i++) (function (box) {
     var go = box.querySelector('.wf-go'); if (!go) return;
     go.addEventListener('click', function () {
-      if (phone && box.dataset.page) { window.location.href = box.dataset.page + '?play'; return; }
+      if (phone && box.dataset.page) { window.location.href = box.dataset.page + (box.dataset.page.indexOf('?') >= 0 ? '&' : '?') + 'play'; return; }
       var others = document.querySelectorAll('video');
       for (var k = 0; k < others.length; k++) { var o = others[k]; try { o.pause(); if (o.getAttribute('src')) { o.dataset.guardSrc = o.getAttribute('src'); o.removeAttribute('src'); o.load(); } } catch (e) {} }
       var v = document.createElement('video');
