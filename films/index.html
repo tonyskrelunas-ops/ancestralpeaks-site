@@ -153,7 +153,7 @@
 <script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
 <script src="../shared/vendor/lenis.min.js?v=1108e"></script>
 <script src="../shared/site.js?v=1126p"></script>
-<script src="../js/peaks-members.js?v=1126p"></script>
+<script src="../js/peaks-members.js?v=1126s"></script>
 <script src="../js/peaks-hq.js?v=1126r"></script>
 <script src="../js/pages.js?v=1126q"></script>
 <script>
@@ -210,7 +210,11 @@ document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
       document.querySelectorAll('video,audio').forEach(function(x){ if (x !== v && !x.paused && !x.muted) x.pause(); });
       card.classList.add('whole'); card.querySelector('.lfm-media').classList.add('playing');
       if (window.APHQ) APHQ.release(v);   // the taste's own player lets go of the frame
-      v.dataset.film = id; v.preload = 'auto'; v.controls = true; v.src = u; v.play().catch(function(){});
+      v.dataset.film = id; v.preload = 'auto'; v.controls = true;
+      // 11/26: the whole film in top quality (1080p, 720p, 480p by the connection) when it is there; the MP4 is the fallback
+      var hq = M.hls && M.hls(id);
+      if (hq && window.APHQ) APHQ.attach(v, hq, u).then(function(){ v.play().catch(function(){}); });
+      else { v.src = u; v.play().catch(function(){}); }
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
     v.onerror = function(){ if (v.dataset.film) M.renew(v, v.dataset.film); };

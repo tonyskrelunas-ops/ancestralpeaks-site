@@ -31,7 +31,7 @@ function refresh(){
     pending = null;
     if (j.member === false) { signOut(true); return false; }                 // the membership ended: back to the door
     if (!j.urls) return !!fresh();
-    cache = { exp: j.exp, at: Date.now(), urls: j.urls, durs: j.durs || {} }; local.set(KU, cache);
+    cache = { exp: j.exp, at: Date.now(), urls: j.urls, durs: j.durs || {}, hls: j.hls || {} }; local.set(KU, cache);   // hls: the long films in top quality (11/26)
     if (j.first !== undefined && j.first !== me.first) { me.first = j.first; local.set(K, me); }
     dispatchEvent(new CustomEvent('ap:member', { detail: { on: true } }));
     return true;
@@ -56,6 +56,7 @@ window.PeaksMembers = {
   src(id){ return me && fresh() && cache.urls[id] || null; },
   get(id){ return fresh() ? Promise.resolve(this.src(id)) : refresh().then(() => this.src(id)); },
   dur(id){ return cache && cache.durs && cache.durs[id] || 0; },
+  hls(id){ return me && fresh() && cache.hls && cache.hls[id] || null; },
   refresh, signOut,
   // sign-in, used by /member/
   ask(email){ return post('/api/signin', { email }); },
