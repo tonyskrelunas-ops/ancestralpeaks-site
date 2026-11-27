@@ -12,14 +12,15 @@
       for (var k = 0; k < others.length; k++) { var o = others[k]; try { o.pause(); if (o.getAttribute('src')) { o.dataset.guardSrc = o.getAttribute('src'); o.removeAttribute('src'); o.load(); } } catch (e) {} }
       var v = document.createElement('video');
       v.controls = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
-      v.poster = box.dataset.posterWide; v.src = box.dataset.wide;
+      v.poster = box.dataset.posterWide;
+      var ready = (window.APHQ && box.dataset.hls) ? APHQ.attach(v, box.dataset.hls, box.dataset.wide) : (v.src = box.dataset.wide, Promise.resolve());   // 11/26: top quality from Hostinger
       box.classList.add('playing', 'is-wide');
       var stage = box.querySelector('.wf-stage'); stage.innerHTML = ''; stage.appendChild(v);
       var duck = function (on) { try { if (window.AP && AP.sound && AP.sound.duck) AP.sound.duck(on); if (on && AP.current && AP.current.pause) AP.current.pause(); } catch (e) {} };
       v.addEventListener('play', function () { duck(true); });
       v.addEventListener('pause', function () { duck(false); });
       v.addEventListener('ended', function () { duck(false); });
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      ready.then(function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
     });
   })(boxes[i]);
 })();
