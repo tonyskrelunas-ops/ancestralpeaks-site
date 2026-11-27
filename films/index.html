@@ -6,7 +6,7 @@
 <title>Settle yourself first · the film · Ancestral Peaks</title>
 <meta name="description" content="Week one, as a film. Every scene is our own footage.">
 <link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
-<link rel="stylesheet" href="../shared/site.css?v=1126o">
+<link rel="stylesheet" href="../shared/site.css?v=1126p">
 <link rel="stylesheet" href="../css/pages.css?v=1125a">
 <link rel="stylesheet" href="../css/plan.css?v=1125f">
 <script>if(location.hash==='#render')window.__render=true;if(location.hash==='#flat')window.__flat=true;</script>
@@ -152,7 +152,8 @@
 <script src="../shared/vendor/gsap.min.js?v=1108e"></script>
 <script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
 <script src="../shared/vendor/lenis.min.js?v=1108e"></script>
-<script src="../shared/site.js?v=1126o"></script>
+<script src="../shared/site.js?v=1126p"></script>
+<script src="../js/peaks-members.js?v=1126p"></script>
 <script src="../js/pages.js?v=1108e"></script>
 <script>
 addEventListener('ap:ready', () => {
@@ -172,6 +173,48 @@ document.querySelectorAll('.longfilms .lfm-go').forEach(function(b){
     box.classList.add('playing'); v.controls = true; v.play().catch(function(){});
   });
 });
+</script>
+<style>
+.lfm-whole{display:flex;flex-wrap:wrap;gap:8px;margin-top:.5rem}
+.lfm-whole .btn{font-size:.92rem;padding:10px 16px}
+.lfm-card.whole{grid-column:1/-1}
+.lfm-card.whole .lfm-media{aspect-ratio:16/9}
+</style>
+<script>
+/* 11/26 THE MEMBERS' LIBRARY (js/peaks-members.js): on a device where a member has signed in, each film plays whole,
+   right here, from members.ancestralpeaks.com with a signed link: The Council Fire, Stone Breath complete and its
+   22-minute cut, They Were the Vessel. Everyone else keeps the taste and the door. */
+(function(){
+  var M = window.PeaksMembers; if (!M || !M.on) return;
+  var FILMS = {
+    'council-fire': [['film-council-fire', 'The whole film, 26 min']],
+    'stone-breath': [['film-stone-breath', 'The whole film, 30 min'], ['film-stone-breath-22', 'The 22-minute cut']],
+    'they-were-the-vessel': [['film-they-were-the-vessel', 'The whole film, 10 min']]
+  };
+  var lede = document.querySelector('.lfm-lede');
+  if (lede) lede.textContent = 'Three films from the books, whole, for you as a member: The Council Fire, 26 minutes; Stone Breath, 30, and its 22-minute cut; They Were the Vessel, 10.';
+  document.querySelectorAll('.longfilms .lfm-card').forEach(function(card){
+    var v = card.querySelector('video'), m = (v.getAttribute('src') || '').match(/long\/(.+?)-taste/), key = m && m[1];
+    if (!FILMS[key]) return;
+    var row = document.createElement('div'); row.className = 'lfm-whole';
+    FILMS[key].forEach(function(f){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'btn earth'; b.textContent = f[1];
+      b.addEventListener('click', function(){ play(card, v, f[0]); });
+      row.appendChild(b);
+    });
+    card.querySelector('.lfm-t').appendChild(row);
+  });
+  function play(card, v, id){
+    function go(u){
+      document.querySelectorAll('video,audio').forEach(function(x){ if (x !== v && !x.paused && !x.muted) x.pause(); });
+      card.classList.add('whole'); card.querySelector('.lfm-media').classList.add('playing');
+      v.dataset.film = id; v.preload = 'auto'; v.controls = true; v.src = u; v.play().catch(function(){});
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    v.onerror = function(){ if (v.dataset.film) M.renew(v, v.dataset.film); };
+    var u = M.src(id); if (u) go(u); else M.get(id).then(function(u2){ if (u2) go(u2); });
+  }
+})();
 </script>
 <script src="../shared/media-guard.js?v=1" defer></script>
 </body>

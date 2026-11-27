@@ -62,8 +62,14 @@ const PIECES=[
 const byId=id=>PIECES.find(p=>p.id===id);
 const len=p=>(LEN[p.id]||{})[voice]||0;
 const mins=p=>{ const d=len(p); return d?Math.max(1,Math.round(d/60))+' min':''; };
-const whole=p=>!!(p&&p.free&&unlocked);
-const fileOf=p=>'audio/'+p.id+'-'+voice+(whole(p)?'.mp3':'-30s.mp3');
+// 11/26 THE MEMBERS' LIBRARY (js/peaks-members.js): a signed-in member hears all six in full, in either voice; the five
+// members' guides come from members.ancestralpeaks.com with a signed link (library ids hth-<guide>-<m|f>)
+const MEM=window.PeaksMembers||null;
+const member=()=>!!(MEM&&MEM.on);
+const libId=p=>'hth-'+p.id+'-'+voice;
+const fromLib=p=>!!(p&&!p.free&&member()&&MEM.has(libId(p)));
+const whole=p=>!!(p&&((p.free&&(unlocked||member()))||fromLib(p)));
+const fileOf=p=>fromLib(p)?(MEM.src(libId(p))||''):'audio/'+p.id+'-'+voice+(whole(p)?'.mp3':'-30s.mp3');
 
 /* ---------- which guide fits this hour ---------- */
 function pieceForHour(d){
@@ -87,6 +93,7 @@ function playBtn(p){
   return `<button class="pv" type="button" data-pv="${p.id}" aria-pressed="false" aria-label="${w?'Play '+esc(p.name)+' in full':'Play a 30-second preview of '+esc(p.name)}"><span class="ic">${PLAY}</span><span class="lb">${w?'Listen in full':'Hear 30 seconds'}</span><span class="tm">${w?fmt(len(p)):'0:30'}</span><i class="fill"></i></button>`;
 }
 function doorOf(p){
+  if(member()) return '<span class="opened">Yours in full</span>';
   if(!p.free) return `<a class="door-link" href="#members">${LOCK}Members listen in full</a>`;
   if(!unlocked) return `<a class="door-link" href="#joinBox">${LOCK}Free in full with a sign-up</a>`;
   return '<span class="opened">Open on this device</span>';
@@ -165,12 +172,15 @@ function play(id){
   if(playing===id&&au.src){ if(au.paused) au.play().catch(()=>{}); else au.pause(); return; }
   if(playing) reset(playing);
   if(window.AP&&AP.current&&AP.current!==api) try{ AP.current.pause(); }catch(e){}
-  playing=id; au.src=fileOf(p);
+  playing=id;
+  if(fromLib(p)&&!MEM.src(libId(p))){ paint(); const want=libId(p); MEM.get(want).then(u=>{ if(playing===id&&u&&libId(p)===want){ au.src=u; au.play().catch(()=>{}); } }); return; }   // the links were still on their way
+  au.src=fileOf(p);
   au.play().then(()=>{ if(window.AP){ AP.current=api; if(AP.sound&&AP.sound.duck) AP.sound.duck(true); } }).catch(()=>{});
   paint();
   if('mediaSession' in navigator){ try{ navigator.mediaSession.metadata=new MediaMetadata({title:p.name,artist:'Ancestral Peaks',album:'Heal the Healer'}); }catch(e){} }
 }
 au.addEventListener('play',paint);
+au.addEventListener('error',()=>{ const p=playing&&byId(playing); if(fromLib(p)) MEM.renew(au,libId(p)); });
 au.addEventListener('timeupdate',tick);
 au.addEventListener('pause',()=>{ paint(); if(window.AP&&AP.sound&&AP.sound.duck&&!au.ended) AP.sound.duck(false); });
 au.addEventListener('ended',()=>{
@@ -259,8 +269,9 @@ const dayNo=Math.floor((Date.UTC(today.getFullYear(),today.getMonth(),today.getD
 
 /* ---------- the free sign-up (the Listening Room's own, through PeaksCapture) ---------- */
 function paintUnlock(){
-  const on=!!unlocked, form=$('#signup'), wel=$('#welcome');
+  const on=!!unlocked||member(), form=$('#signup'), wel=$('#welcome');
   if(form) form.hidden=on; if(wel) wel.hidden=!on;
+  if(member()&&wel) wel.innerHTML='<h3>'+(MEM.first?esc(MEM.first)+', all six':'All six')+' are yours in full.</h3><p>Every guide plays in full on this device, in either voice, right on the page.</p>';
 }
 (function signup(){
   const form=$('#signup'); if(!form) return;

@@ -189,7 +189,7 @@ AP.footer = function(host, opts){
   opts = Object.assign({ tag: 'A place to practice. The companion to the books.' }, opts || {});
   host.classList.add('ap-foot');
   host.innerHTML = `<div class="row"><div><b>${AP.markSVG}Ancestral Peaks</b><p class="tag">${opts.tag}</p></div>
-    <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a></nav></div>
+    <nav aria-label="Pages">${AP.pages.map(p => `<a href="${AP.href(p.href)}">${p.label}</a>`).join('')}<a href="${AP.BEGIN}">Begin</a><a href="${AP.href('/member/')}">Members: sign in</a></nav></div>
     <p class="maker">Created by Tony Skrel&#363;nas, MBA, PhD candidate in human performance and resilience, and author of the <a href="https://ancestralwatch.com">Ancestral Watch</a> novels.</p>
     <div class="fine"><span>© 2026 Ancestral Peaks</span><span>The practice, one calm session at a time.</span></div>`;
   return host;
@@ -756,6 +756,8 @@ AP.gate = function(){
   AP.gateOpen = show;
   let joined = null; try { joined = JSON.parse(localStorage.getItem('ap.free') || 'null'); } catch (e) {}
   if (joined) return;
+  // 11/26: a member signed in on this device (js/peaks-members.js) is never asked to sign up
+  try { if (JSON.parse(localStorage.getItem('ap.member') || 'null')) return; } catch (e) {}
   let ended = null; try { ended = JSON.parse(localStorage.getItem('ap.free.ended') || 'null'); } catch (e) {}
   if (ended) {
     try { if (sessionStorage.getItem('ap.ended.seen')) return; sessionStorage.setItem('ap.ended.seen', '1'); } catch (e) {}

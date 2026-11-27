@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Members · Ancestral Peaks</title>
+<meta name="description" content="Members sign in once on each phone or computer, and everything plays right on the page.">
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="../shared/vendor/lenis.css?v=1108e">
+<link rel="stylesheet" href="../shared/site.css?v=1126p">
+<link rel="stylesheet" href="../css/pages.css?v=1125a">
+<link rel="stylesheet" href="../css/plan.css?v=1125f">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<link rel="canonical" href="https://ancestralpeaks.com/member/">
+<!-- THE MEMBERS' DOOR (11/26/2026, the members' library). Sign in once on a device: the email brings a link and a
+     6-digit code (the code is for a phone whose mail app opens links in its own browser). The device then remembers the
+     member for a year, and every page plays the whole recordings and films from members.ancestralpeaks.com.
+     The page never says whether an address is a member: the answer to "send me a link" is always the same. -->
+<style>
+.mb{background:var(--stone);color:var(--ink);padding:clamp(120px,16vw,180px) var(--gutter) clamp(56px,8vw,110px);min-height:70vh}
+.mb .in{max-width:640px;margin:0 auto}
+.mb h1{font-size:clamp(2.3rem,6vw,4rem);line-height:1.02;margin:0}
+.mb .lede{margin:1rem 0 0;font-size:clamp(1.05rem,1rem + .4vw,1.25rem);line-height:1.5;color:var(--ink-2,#4b4d47)}
+.mb form{margin-top:clamp(22px,3vw,34px);display:flex;flex-wrap:wrap;gap:10px}
+.mb input{flex:1 1 260px;min-width:0;font:inherit;font-size:1.1rem;padding:15px 18px;border-radius:999px;border:1px solid rgba(38,39,35,.25);background:#fff;color:var(--ink)}
+.mb input.code{letter-spacing:.3em;font-size:1.4rem;text-align:center;flex:0 1 220px}
+.mb .btn{flex:0 0 auto}
+.mb .st{min-height:1.5em;margin:.8rem 0 0;color:var(--ink-2,#4b4d47)}
+.mb .st.bad{color:#8a2d1c}
+.mb .rooms{list-style:none;padding:0;margin:clamp(22px,3vw,34px) 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mb .rooms a{display:block;background:#fff;border-radius:14px;padding:16px 18px;color:var(--ink);text-decoration:none;box-shadow:0 14px 30px -24px rgba(38,39,35,.6)}
+.mb .rooms b{display:block;font-family:var(--display);font-size:1.15rem}
+.mb .rooms span{font-size:.92rem;color:var(--ink-2,#4b4d47)}
+.mb .small{margin-top:clamp(26px,3.4vw,40px);font-size:.95rem;color:var(--ink-2,#4b4d47)}
+.mb .small a, .mb .linkish{color:var(--ink);text-decoration:underline;background:none;border:0;padding:0;font:inherit;cursor:pointer}
+@media (max-width:560px){ .mb .rooms{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header data-ap-nav data-active="/member/" data-menu-image="../media/img/oakcreek-rim-1000.jpg"></header>
+
+<section class="mb" data-bar="light">
+  <div class="in">
+
+    <div id="vAsk">
+      <h1>Members.</h1>
+      <p class="lede">Sign in once on this phone or computer. Then every session, voice note, guide, workout, Heal the Healer and the long films play right on the page, in full. Nothing to download. No password.</p>
+      <form id="askF" novalidate>
+        <label class="sr" for="askE" style="position:absolute;left:-9999px">Your email</label>
+        <input id="askE" type="email" autocomplete="email" inputmode="email" placeholder="The email you joined with" required>
+        <button class="btn earth" type="submit">Send my way in <span class="arrow">→</span></button>
+      </form>
+      <p class="st" id="askS" role="status"></p>
+      <p class="small">Not a member yet? <a href="../join/">See the membership</a>. $29 for a full year.</p>
+    </div>
+
+    <div id="vCode" hidden>
+      <h1>Check your email.</h1>
+      <p class="lede" id="codeL">If that email belongs to a member, a message is on its way from Ancestral Peaks. Tap the button in it, or type its 6-digit code here.</p>
+      <form id="codeF" novalidate>
+        <label for="codeI" style="position:absolute;left:-9999px">The 6-digit code</label>
+        <input id="codeI" class="code" inputmode="numeric" autocomplete="one-time-code" maxlength="7" placeholder="000000">
+        <button class="btn earth" type="submit">Open <span class="arrow">→</span></button>
+      </form>
+      <p class="st" id="codeS" role="status"></p>
+      <p class="small">Nothing came? Look in the spam folder, or <button class="linkish" type="button" id="again">try another email</button>.</p>
+    </div>
+
+    <div id="vWait" hidden>
+      <h1>Opening…</h1>
+      <p class="lede">One moment.</p>
+    </div>
+
+    <div id="vIn" hidden>
+      <h1 id="inH">You are in.</h1>
+      <p class="lede">This device remembers you for a year. Everything below plays in full, right on the page.</p>
+      <ul class="rooms">
+        <li><a href="../listen/"><b>The Listening Room</b><span>Every session and voice note</span></a></li>
+        <li><a href="../heal-the-healer/"><b>Heal the Healer</b><span>Six guides for one day, two voices</span></a></li>
+        <li><a href="../listen/move/"><b>Move</b><span>Guides and the whole workouts</span></a></li>
+        <li><a href="../listen/drive/"><b>Drive</b><span>Eyes open, for the road</span></a></li>
+        <li><a href="../listen/rest/"><b>Rest</b><span>For the evening and the night</span></a></li>
+        <li><a href="../films/#long-films"><b>The long films</b><span>The Council Fire, Stone Breath, They Were the Vessel</span></a></li>
+      </ul>
+      <p class="small">On another phone or computer, open this page there and sign in the same way. <button class="linkish" type="button" id="out">Sign out of this device</button></p>
+    </div>
+
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<script>window.AP_NO_GATE = true;</script>
+<script src="../shared/vendor/gsap.min.js?v=1108e"></script>
+<script src="../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
+<script src="../shared/vendor/lenis.min.js?v=1108e"></script>
+<script src="../shared/site.js?v=1126p"></script>
+<script src="../js/peaks-members.js?v=1126p"></script>
+<script>
+AP.init();
+(function(){
+  var M = window.PeaksMembers, $ = function(id){ return document.getElementById(id); };
+  var views = ['vAsk', 'vCode', 'vWait', 'vIn'], email = '';
+  function show(v){ views.forEach(function(x){ $(x).hidden = x !== v; }); }
+  function say(el, t, bad){ el.textContent = t || ''; el.classList.toggle('bad', !!bad); }
+  function inside(){ $('inH').textContent = M.first ? 'You are in, ' + M.first + '.' : 'You are in.'; show('vIn'); }
+  var q = new URLSearchParams(location.search), t = q.get('t');
+  if (t) {
+    history.replaceState(null, '', location.pathname);          // the link does not stay in the address bar or history
+    show('vWait');
+    M.link(t).then(function(j){
+      if (j.ok) return inside();
+      show('vAsk');
+      say($('askS'), j.reason === 'not-member' ? 'This email is not a member right now. If you joined a moment ago, wait a minute and try again.' : 'That link has run its course. Type your email and a fresh one comes to you.', true);
+    }).catch(function(){ show('vAsk'); say($('askS'), 'That did not go through. Check the connection and try once more.', true); });
+  } else if (M.on) inside(); else show('vAsk');
+
+  $('askF').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = $('askE').value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) { say($('askS'), 'That email does not look complete yet.', true); return; }
+    say($('askS'), 'Sending…');
+    M.ask(v).then(function(j){
+      if (j.ok === false) { say($('askS'), j.message || 'That did not go through. Try once more.', true); return; }
+      if (j.test_code) console.info('[preview only] code', j.test_code);
+      email = v; say($('askS'), ''); show('vCode'); $('codeI').focus();
+    }).catch(function(){ say($('askS'), 'That did not go through. Check the connection and try once more.', true); });
+  });
+  $('codeF').addEventListener('submit', function(e){
+    e.preventDefault();
+    var c = $('codeI').value.replace(/\D/g, '');
+    if (c.length !== 6) { say($('codeS'), 'The code has six numbers.', true); return; }
+    say($('codeS'), 'Opening…');
+    M.code(email, c).then(function(j){
+      if (j.ok) return inside();
+      say($('codeS'), j.reason === 'expired' ? 'That code has run its course. Try another email, or ask again for a fresh one.' : j.reason === 'not-member' ? 'This email is not a member right now.' : 'That code does not match. Check it once more.', true);
+    }).catch(function(){ say($('codeS'), 'That did not go through. Try once more.', true); });
+  });
+  $('again').addEventListener('click', function(){ show('vAsk'); $('askE').focus(); });
+  $('out').addEventListener('click', function(){ M.signOut(); show('vAsk'); });
+})();
+</script>
+</body>
+</html>
