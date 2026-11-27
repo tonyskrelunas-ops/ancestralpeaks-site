@@ -48,7 +48,9 @@ const doorBtn=(title,small,dark,id)=>{ const it=id&&byId(id);
     if(shortOne(it)) return small?'<span class="opened">Yours in full</span>':'';
     return `<a class="${small?'door-link':'btn earth'}" href="#" data-full="${id}" aria-label="Listen to ${esc(title)} in full">Listen in full <span class="arrow">→</span></a>`;
   }
-  return `<a class="${small?'door-link':'btn ghost'+(dark?'':' dark')+' door'}" href="${JOIN.monthly}" data-offer="member-monthly" aria-label="Members listen to ${esc(title)} in full">${LOCK}Members listen in full <span class="arrow">→</span></a>`; };
+  // 11/26 (Tony on his phone, not yet signed in there, landed on the Payhip checkout): the door opens the members' page,
+  // where a member signs in (or taps their own link) and anyone else sees the membership and joins from there
+  return `<a class="${small?'door-link':'btn ghost'+(dark?'':' dark')+' door'}" href="/member/" data-offer="member-door" aria-label="Members listen to ${esc(title)} in full">${LOCK}Members listen in full <span class="arrow">→</span></a>`; };
 
 /* ---------- the two free sessions ---------- */
 function freeCard(s,i){
