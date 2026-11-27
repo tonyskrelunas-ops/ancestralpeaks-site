@@ -1,0 +1,32 @@
+/* Day 5 · the pictures that move with Chapter 5. at = the block (paragraph) of the chapter where the picture comes in;
+   blocks are counted as in data/chapter.js. kind: plate (a line engraving from the book's film art, shown whole),
+   photo (a made scene), clip (a made scene that moves; its still is used when motion is reduced). */
+window.DAY_SCENES = [
+  { at: 0, id: 'oak', kind: 'plate', cap: 'Chapter 5 · An Oak Dies Standing' },
+  { at: 4, id: 'lt_sodyba', kind: 'plate', cap: 'The mill, the church, the river' },
+  { at: 9, id: 'bridge', kind: 'plate', cap: 'Where the river turns west' },
+  { at: 16, id: 'letter', kind: 'plate', cap: 'Friends, for fifty years' },
+  { at: 19, id: 'rye', kind: 'plate', cap: 'An overgrown field' },
+  { at: 21, id: 'dawn_peaks', kind: 'plate', cap: 'No path' },
+  { at: 27, id: 'creek', kind: 'clip', cap: 'Then they heard water' },
+  { at: 29, id: 'oakkneel', kind: 'photo', cap: 'The oak' },
+  { at: 36, id: 'oak', kind: 'plate', cap: 'Warm from the afternoon sun' },
+  { at: 42, id: 'three_fires', kind: 'plate', cap: 'Into the groves, to sing' },
+  { at: 43, id: 'voice_masan', kind: 'plate', cap: 'Wounds become strength' },
+  { at: 45, id: 'four_mtns', kind: 'plate', cap: 'The same presence' },
+  { at: 48, id: 'oak_dusk', kind: 'plate', cap: 'His father’s land' },
+  { at: 51, id: 'window', kind: 'photo', cap: 'Completely present' },
+  { at: 54, id: 'bridge', kind: 'plate', cap: 'The river under the rising moon' },
+  { at: 56, id: 'open_book', kind: 'plate', cap: 'Songs are meant for throats' },
+  { at: 59, id: 'dawn', kind: 'plate', cap: 'Gray to pink to gold' },
+  { at: 60, id: 'amber_scarf', kind: 'plate', cap: 'The storm-pattern weaving' },
+  { at: 61, id: 'open_book', kind: 'plate', cap: 'Forty nights against a smuggler’s chest' },
+  { at: 67, id: 'oak', kind: 'plate', cap: '“You are a witness.”' },
+  { at: 69, id: 'voice_ona', kind: 'plate', cap: '“Ona should have this.”' },
+  { at: 73, id: 'oak_dusk', kind: 'plate', cap: 'Turquoise, and amber beside it' },
+  { at: 87, id: 'running', kind: 'photo', cap: 'They ran' },
+  { at: 96, id: 'voice_ona', kind: 'plate', cap: 'She did not open it' },
+  { at: 97, id: 'daughter', kind: 'plate', cap: 'Ugnė' },
+  { at: 98, id: 'ring', kind: 'plate', cap: '“That is how the circle holds.”' },
+  { at: 101, id: 'stone_breath', kind: 'plate', cap: '“Tomorrow.”' }
+];

@@ -1,0 +1,31 @@
+/* Day 3 · the pictures that move with Chapter 3. at = the block (paragraph) of the chapter where the picture comes in;
+   blocks are counted as in data/chapter.js. kind: plate (a line engraving from the book's film art, shown whole),
+   photo (a made scene), clip (a made scene that moves; its still is used when motion is reduced). */
+window.DAY_SCENES = [
+  { at: 0, id: 'letter', kind: 'plate', cap: 'Chapter 3 · Fifty Years of Weather' },
+  { at: 7, id: 'dawn_peaks', kind: 'plate', cap: 'What November does in Oregon' },
+  { at: 11, id: 'writes', kind: 'photo', cap: 'Hands that embrace across time' },
+  { at: 14, id: 'bridge', kind: 'plate', cap: 'The river, black to silver' },
+  { at: 24, id: 'rye', kind: 'plate', cap: 'North, out of Antalieptė' },
+  { at: 30, id: 'ridge', kind: 'photo', cap: '“To remember who I am.”' },
+  { at: 34, id: 'amber', kind: 'plate', cap: 'Padustis' },
+  { at: 37, id: 'voice_ona', kind: 'plate', cap: '“Vytautas.” Not a question.' },
+  { at: 40, id: 'cups', kind: 'plate', cap: '“Sit. Eat first.”' },
+  { at: 42, id: 'letter', kind: 'plate', cap: 'The wooden box' },
+  { at: 46, id: 'writes', kind: 'photo', cap: 'A kitchen in Oregon, 1953' },
+  { at: 51, id: 'voice_ona', kind: 'plate', cap: '“He never came home.”' },
+  { at: 53, id: 'ring', kind: 'plate', cap: 'Like clan' },
+  { at: 58, id: 'four_mtns', kind: 'plate', cap: 'Put somewhere on purpose' },
+  { at: 64, id: 'voice_masan_ona', kind: 'plate', cap: '“The forest remembers.”' },
+  { at: 66, id: 'daughter', kind: 'plate', cap: 'Ugnė' },
+  { at: 73, id: 'dawn_peaks', kind: 'plate', cap: 'The road back, through the pines' },
+  { at: 77, id: 'herb', kind: 'plate', cap: 'The tools inside' },
+  { at: 85, id: 'lt_sodyba', kind: 'plate', cap: 'Across the yard' },
+  { at: 86, id: 'creek', kind: 'clip', cap: 'The river outside his window' },
+  { at: 87, id: 'letter', kind: 'plate', cap: 'Until two in the morning' },
+  { at: 88, id: 'writes', kind: 'photo', cap: 'The year the hand began to shake' },
+  { at: 95, id: 'voice_ona', kind: 'plate', cap: 'Ona' },
+  { at: 98, id: 'sill', kind: 'photo', cap: 'Before you sleep, three things' },
+  { at: 102, id: 'open_book', kind: 'plate', cap: 'Write them. Read them over.' },
+  { at: 103, id: 'dawn', kind: 'plate', cap: 'The morning is new' }
+];

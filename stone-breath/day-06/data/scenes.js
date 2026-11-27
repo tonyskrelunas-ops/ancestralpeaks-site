@@ -1,0 +1,31 @@
+/* Day 6 · the pictures that move with Chapter 6. at = the block (paragraph) of the chapter where the picture comes in;
+   blocks are counted as in data/chapter.js. kind: plate (a line engraving from the book's film art, shown whole),
+   photo (a made scene), clip (a made scene that moves; its still is used when motion is reduced). */
+window.DAY_SCENES = [
+  { at: 0, id: 'dawn_peaks', kind: 'plate', cap: "Chapter 6 · Morning Has Gold in Its Mouth" },
+  { at: 1, id: 'running', kind: 'photo', cap: "The third kilometer" },
+  { at: 10, id: 'palm', kind: 'photo', cap: "Four-thirty. The stone." },
+  { at: 12, id: 'dawn', kind: 'plate', cap: "Then he faced east" },
+  { at: 15, id: 'ridge', kind: 'photo', cap: "At the edge of the forest" },
+  { at: 17, id: 'pines', kind: 'clip', cap: "Twenty minutes, only rhythm" },
+  { at: 21, id: 'voice_hastiin', kind: 'plate', cap: "Hastiin’s place" },
+  { at: 23, id: 'headlamps', kind: 'plate', cap: "The mesa trails by lamplight" },
+  { at: 24, id: 'ridge', kind: 'photo', cap: "“You have a morning practice.”" },
+  { at: 28, id: 'cherry', kind: 'plate', cap: "The morning kami" },
+  { at: 30, id: 'waterfall', kind: 'photo', cap: "Shinrin-yoku" },
+  { at: 36, id: 'jp_bowl', kind: 'plate', cap: "Kyoto, three years" },
+  { at: 41, id: 'creek', kind: 'clip', cap: "The river bend" },
+  { at: 47, id: 'handpick', kind: 'photo', cap: "“So you’re a healer?”" },
+  { at: 51, id: 'lakewoman', kind: 'clip', cap: "Seiza. Seven minutes." },
+  { at: 57, id: 'ridge', kind: 'photo', cap: "“Tomorrow. Same time.”" },
+  { at: 59, id: 'runner_ridge', kind: 'plate', cap: "The third morning" },
+  { at: 64, id: 'runner_mesa', kind: 'plate', cap: "A boy on a mesa once" },
+  { at: 66, id: 'pot', kind: 'plate', cap: "Ona’s cast-iron pot" },
+  { at: 67, id: 'lt_sodyba', kind: 'plate', cap: "The blacksmith shop" },
+  { at: 79, id: 'ring', kind: 'plate', cap: "Not fans. Witnesses." },
+  { at: 96, id: 'three_fires', kind: 'plate', cap: "Ten to nine" },
+  { at: 106, id: 'lt_sodyba', kind: 'plate', cap: "The sun behind the mill" },
+  { at: 116, id: 'voice_warrior', kind: 'plate', cap: "The Warrior-Samurai" },
+  { at: 122, id: 'voice_masan', kind: 'plate', cap: "Masan" },
+  { at: 126, id: 'corn', kind: 'plate', cap: "What you care for cares for you back" }
+];

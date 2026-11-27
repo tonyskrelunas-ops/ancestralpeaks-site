@@ -113,6 +113,9 @@ AP.init();
     history.replaceState(null, '', location.pathname);          // the link does not stay in the address bar or history
     show('vWait');
     M.link(t).then(function(j){
+      // 11/27: a personal link can say where to go next on this site (the Stone Breath edition opens its Day 1)
+      var nx = q.get('next') || '';
+      if (j.ok && /^\/[a-z0-9\-\/]*$/i.test(nx) && nx.indexOf('//') < 0) { location.replace(nx); return; }
       if (j.ok) return inside();
       show('vAsk');
       say($('askS'), j.reason === 'not-member' ? 'This email is not a member right now. If you joined a moment ago, wait a minute and try again.' : 'That link has run its course. Type your email and a fresh one comes to you.', true);

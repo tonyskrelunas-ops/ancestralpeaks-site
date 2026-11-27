@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stone Breath, the Immersive Edition · Ancestral Peaks</title>
+<meta name="description" content="The whole of Stone Breath read to you, the words lighting as they are read and the pictures moving with the story. Twenty-two days, one tool each day.">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<!-- STONE BREATH · THE IMMERSIVE EDITION · its home on Peaks (11/27/2026). Tony: "start today .. we can offer stone breath
+     full experience as a book with additive offering on this holiday season". The 22 days, each a page of its own
+     (day-NN/); Day 1 open to everyone, Days 2-22 for members and the edition's readers (sb-day.js). The sale page is
+     ancestralwatch.com/edition/stone-breath/. -->
+<style>
+body.sbh{background:#100B0D;color:#f3ede2}
+.sbh-hero{display:grid;gap:clamp(22px,4vw,56px);align-items:center;padding:calc(var(--bar-h) + 30px) var(--gutter) clamp(30px,6vh,60px);max-width:1100px;margin:0 auto}
+.sbh-hero img{width:min(52vw,250px);height:auto;border-radius:4px;box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);justify-self:center}
+.sbh-k{margin:0;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.sbh h1{margin:.5rem 0 0;font-size:clamp(2.4rem,7vw,4.6rem);line-height:.98;color:#fff}
+.sbh h1 span{display:block;font-size:.42em;font-weight:500;color:rgba(255,255,255,.75);margin-top:.5rem;letter-spacing:0}
+.sbh-lede{margin:1rem 0 0;max-width:36rem;font-size:clamp(1.05rem,1rem + .4vw,1.25rem);line-height:1.5;color:rgba(255,255,255,.85)}
+.sbh-acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.4rem}
+.sbh-who{margin:1rem 0 0;color:var(--gold);font-weight:600}
+.sbh-who[hidden]{display:none}
+.sbh-list{max-width:760px;margin:0 auto;padding:0 var(--gutter) clamp(40px,8vh,90px)}
+.sbh-list h2{color:#fff;font-size:clamp(1.5rem,1.2rem + 1.2vw,2.2rem)}
+.sbh-list p.note{color:rgba(255,255,255,.75);margin:.6rem 0 1.2rem;max-width:40rem;line-height:1.5}
+.sbh-list ol{list-style:none;margin:0;padding:0}
+.sbh-part{padding:1.6rem 0 .5rem;font-size:.75rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.sbh-day a{display:grid;grid-template-columns:2.6rem 1fr 1.4rem;gap:.9rem;align-items:center;padding:.95rem 0;border-bottom:1px solid rgba(255,255,255,.1);color:#fff;text-decoration:none}
+.sbh-day a:hover b{text-decoration:underline}
+.sbh-day .n{width:2.3rem;height:2.3rem;border-radius:50%;border:1.5px solid rgba(255,255,255,.35);display:grid;place-items:center;font-weight:700;font-size:.95rem}
+.sbh-day.done .n{background:var(--gold);border-color:var(--gold);color:#100B0D}
+.sbh-day .t{display:grid;gap:.15rem}
+.sbh-day small{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.sbh-day small b{color:var(--gold);font-weight:700}
+.sbh-day .t>b{font-size:clamp(1.05rem,1rem + .3vw,1.2rem);line-height:1.3}
+.sbh-day i{font-style:normal;font-size:.92rem;color:rgba(255,255,255,.7)}
+.sbh-day .lk{width:1.1rem;height:1.1rem;opacity:.55;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M9 6l6 6-6 6'/%3E%3C/svg%3E")}
+html:not(.is-member) .sbh-day:not([data-n="1"]) .lk{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'%3E%3Crect x='5' y='10.5' width='14' height='10' rx='2'/%3E%3Cpath d='M8 10.5V8a4 4 0 0 1 8 0v2.5'/%3E%3C/svg%3E")}
+.sbh-door{max-width:760px;margin:0 auto clamp(40px,8vh,90px);padding:clamp(22px,4vw,36px) var(--gutter);border:1px solid rgba(255,255,255,.16);border-top:3px solid var(--gold);border-radius:14px;background:rgba(255,255,255,.04)}
+.sbh-door h2{color:#fff;font-size:clamp(1.4rem,1.1rem + 1vw,2rem)}
+.sbh-door p{color:rgba(255,255,255,.85);line-height:1.5;max-width:40rem}
+html.is-member .sbh-door{display:none}
+@media (min-width:820px){.sbh-hero{grid-template-columns:320px 1fr}.sbh-hero img{width:100%}}
+</style>
+</head>
+<body class="sbh on-dark">
+<header data-ap-nav data-active="/books/"></header>
+<main>
+  <section class="sbh-hero">
+    <img src="cover.jpg" width="700" height="1050" alt="The cover of Stone Breath by Tony Skrelūnas: the Swiss Alps under the stars, five headlamps close together on a switchback trail and three more above.">
+    <div>
+      <p class="sbh-k">Book One · The Ancestral Watch</p>
+      <h1>Stone Breath <span>the Immersive Edition</span></h1>
+      <p class="sbh-lede">The whole book, read to you, with the words lighting as they are read and the pictures moving with the story. Twenty-two days. One tool each day. A stone in your hand the whole way.</p>
+      <p class="sbh-who" id="who" hidden></p>
+      <div class="sbh-acts"><a class="btn earth" id="go" href="day-01/">Begin Day 1</a><a class="btn ghost" href="#days">All twenty-two days</a></div>
+    </div>
+  </section>
+
+  <section class="sbh-list" id="days" aria-labelledby="h-days">
+    <h2 id="h-days">The walk home, one chapter a day.</h2>
+    <p class="note">The chapters in the book&rsquo;s own order, each with its tool, the study behind it, and one line to write. The last chapter is the longest, so it is walked over two days. Go at your own pace; from January 1 a day opens each weekday for everyone walking it together.</p>
+    <ol>
+      <li class="sbh-day" data-n="1"><a href="day-01/"><span class="n">1</span><span class="t"><small>Chapter 1 · <b>Open to everyone</b></small><b>The Canyon Within</b><i>The tool: The Stone Breath</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-part">Part One · The Arrival</li>
+      <li class="sbh-day" data-n="2"><a href="day-02/"><span class="n">2</span><span class="t"><small>Chapter 2</small><b>The Box He Carried</b><i>The tool: The Stone Breath, the whole practice</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="3"><a href="day-03/"><span class="n">3</span><span class="t"><small>Chapter 3</small><b>Fifty Years of Weather</b><i>The tool: The Three Questions</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="4"><a href="day-04/"><span class="n">4</span><span class="t"><small>Chapter 4</small><b>That Is Not What I Asked</b><i>The tool: The Daina Practice</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="5"><a href="day-05/"><span class="n">5</span><span class="t"><small>Chapter 5</small><b>An Oak Dies Standing</b><i>The tool: The Fierce Witness</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="6"><a href="day-06/"><span class="n">6</span><span class="t"><small>Chapter 6</small><b>Morning Has Gold in Its Mouth</b><i>The tool: The Three-Breath Reset and the Dawn Alignment</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="7"><a href="day-07/"><span class="n">7</span><span class="t"><small>Chapter 7</small><b>The Talka</b><i>The tool: The Talka Protocol</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-part">Part Two · The Staying</li>
+      <li class="sbh-day" data-n="8"><a href="day-08/"><span class="n">8</span><span class="t"><small>Chapter 8</small><b>Two Weeks</b><i>The tool: The Ancestral Council</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="9"><a href="day-09/"><span class="n">9</span><span class="t"><small>Chapter 9</small><b>Face-First in the Ferns</b><i>The tool: The Engine Builder</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="10"><a href="day-10/"><span class="n">10</span><span class="t"><small>Chapter 10</small><b>The Third Arrow</b><i>The tool: The Envy Protocol</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="11"><a href="day-11/"><span class="n">11</span><span class="t"><small>Chapter 11</small><b>A Meeting Without Food</b><i>The tool: The Community Kitchen Model</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="12"><a href="day-12/"><span class="n">12</span><span class="t"><small>Chapter 12</small><b>She Asked for the Stone</b><i>The tool: The Honorable Harvest</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="13"><a href="day-13/"><span class="n">13</span><span class="t"><small>Chapter 13</small><b>The Broken Bowl</b><i>The tool: Ichigo Ichie</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="14"><a href="day-14/"><span class="n">14</span><span class="t"><small>Chapter 14</small><b>The Wound and the Medicine</b><i>The tool: The Centering</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="15"><a href="day-15/"><span class="n">15</span><span class="t"><small>Chapter 15</small><b>Where Two Lands Meet</b><i>The tool: The Land Covenant</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="16"><a href="day-16/"><span class="n">16</span><span class="t"><small>Chapter 16</small><b>The Four Days</b><i>The tool: The Honorable Recognition</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="17"><a href="day-17/"><span class="n">17</span><span class="t"><small>Chapter 17</small><b>Not a Price, a Covenant</b><i>The tool: The Compatibility Lens</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="18"><a href="day-18/"><span class="n">18</span><span class="t"><small>Chapter 18</small><b>Eleven Meters of Hallway</b><i>The tool: The Mountain Compass, with the Mantra Anchor</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="19"><a href="day-19/"><span class="n">19</span><span class="t"><small>Chapter 19</small><b>The Stillness Before the Storm</b><i>The tool: The Museum of Proof and Seijaku</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-part">Part Three · The Building</li>
+      <li class="sbh-day" data-n="20"><a href="day-20/"><span class="n">20</span><span class="t"><small>Chapter 20</small><b>The Oak at Dusk</b><i>The tool: The Passing</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="21"><a href="day-21/"><span class="n">21</span><span class="t"><small>Chapter 21</small><b>The Headlamp in the Dark, to mile 77</b><i>The tool: The Mountain Within</i></span><span class="lk" aria-hidden="true"></span></a></li>
+      <li class="sbh-day" data-n="22"><a href="day-22/"><span class="n">22</span><span class="t"><small>Chapter 21</small><b>The Headlamp in the Dark, to the finish, and What Austėja Knew</b><i>The tool: The Headlamp Circle</i></span><span class="lk" aria-hidden="true"></span></a></li>
+    </ol>
+  </section>
+
+  <section class="sbh-door" aria-labelledby="h-door">
+    <h2 id="h-door">Day 1 is open to everyone. The other twenty-one are in the edition.</h2>
+    <p>Stone Breath, the Immersive Edition, $29: all twenty-two days, the e-book to keep, and three months of Ancestral Peaks. Members of Ancestral Peaks walk it with their membership.</p>
+    <div class="sbh-acts"><a class="btn earth" href="https://ancestralwatch.com/edition/stone-breath/">The edition, $29</a><a class="btn ghost" href="/member/">Members: sign in</a></div>
+  </section>
+</main>
+<footer data-ap-foot></footer>
+<script>window.AP_NO_GATE = true;</script>
+<script src="/shared/site.js?v=1127a"></script>
+<script src="/js/peaks-members.js?v=1126s"></script>
+<script>
+AP.init();
+(function(){
+  var M = window.PeaksMembers, st = {};
+  try { st = JSON.parse(localStorage.getItem('ap.sb22') || '{}') || {}; } catch (e) {}
+  var days = st.days || {}, walked = function(d){ var x = days[d]; return !!(x && (x.chapter || x.breath)); }, last = 0;
+  document.querySelectorAll('.sbh-day').forEach(function(li){ var n = +li.dataset.n; if (walked(n)) { li.classList.add('done'); last = Math.max(last, n); } });
+  var go = document.getElementById('go'), next = Math.min(22, last + 1);
+  if (last && (next === 1 || (M && M.on))) { go.textContent = 'Continue: Day ' + next; go.href = 'day-' + (next < 10 ? '0' : '') + next + '/'; }
+  if (M && M.on) { var w = document.getElementById('who'); w.textContent = (M.first ? 'Welcome, ' + M.first + '. ' : '') + 'All twenty-two days are open to you.'; w.hidden = false; }
+})();
+</script>
+</body>
+</html>
