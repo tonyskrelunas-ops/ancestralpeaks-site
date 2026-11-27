@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" data-root="..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Peak State · Ancestral Peaks</title>
+<meta name="description" content="Peak State: eight minutes for the hour before the sun. Free. Press play and stand still.">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#100B0D">
+<link rel="apple-touch-icon" href="/app/apple-touch-icon.png">
+<link rel="canonical" href="https://ancestralpeaks.com/peak-state/">
+<meta property="og:title" content="Peak State · Ancestral Peaks">
+<meta property="og:description" content="Eight minutes for the hour before the sun. Free. Press play and stand still.">
+<meta property="og:image" content="https://ancestralpeaks.com/heal-the-healer/img/dark-trail-1600.jpg">
+<!-- PEAK STATE (11/27): the page the Peak State ad leads to. Tony: "the ad is peak state .. they can just go to it and
+     experience it". So nothing stands in front of it: no form, no sign-in. The whole dawn guide plays here, in either voice.
+     The invitation comes after it. Same files as /heal-the-healer/ (audio, loop, picture). -->
+<link rel="stylesheet" href="../shared/site.css?v=1126p">
+<style>
+.ps-page .ap-nav,.ps-page .ap-thumb,.ps-page .ap-burger,.ps-page .ap-bar .btn{display:none!important}
+.ps{position:relative;isolation:isolate;min-height:100svh;background:var(--night);color:#fff;display:grid;align-items:center;overflow:hidden;text-align:center}
+.ps .bg{position:absolute;inset:0;z-index:-1}
+.ps .bg img,.ps .bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.ps .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.7) 0%,rgba(16,11,13,.35) 34%,rgba(16,11,13,.55) 64%,rgba(16,11,13,.95) 100%)}
+.ps .in{width:min(100%,46rem);margin:0 auto;padding:calc(var(--bar-h) + 26px) var(--gutter) clamp(30px,6vh,64px)}
+.ps .k{margin:0;font-size:.82rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.ps h1{margin:.4rem 0 0;font-size:clamp(3rem,11vw,6.6rem);line-height:.95;letter-spacing:-.01em}
+.ps .lede{margin:1rem auto 0;max-width:32rem;font-size:clamp(1.08rem,1rem + .5vw,1.35rem);line-height:1.45;color:rgba(255,255,255,.93)}
+.ps .play{position:relative;margin:clamp(22px,4vh,38px) auto 0;width:clamp(124px,30vw,156px);aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:conic-gradient(var(--gold) calc(var(--p,0)*1turn),rgba(255,255,255,.22) 0);display:grid;place-items:center;
+  box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.ps .play::before{content:"";position:absolute;inset:5px;border-radius:50%;background:rgba(16,11,13,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.ps .play svg{position:relative;width:38%;height:38%;fill:#fff}
+.ps .play .i-pause{display:none}.ps .play.on .i-play{display:none}.ps .play.on .i-pause{display:block}
+.ps .play:focus-visible{outline:3px solid #fff;outline-offset:4px}
+.ps .t{margin:.8rem 0 0;font-variant-numeric:tabular-nums;font-size:.95rem;color:rgba(255,255,255,.85);min-height:1.4em}
+.ps .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 14px;margin-top:.9rem}
+.ps .seg{display:inline-flex;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:3px}
+.ps .seg button{border:0;background:transparent;color:#fff;font:600 .9rem var(--text);padding:.5rem .95rem;border-radius:999px;cursor:pointer;min-height:40px}
+.ps .seg button[aria-pressed="true"]{background:#fff;color:var(--night)}
+.ps .back15{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font:600 .9rem var(--text);padding:.5rem .95rem;border-radius:999px;cursor:pointer;min-height:40px}
+.ps .back15[hidden]{display:none}
+.ps .safe{margin:1.1rem auto 0;max-width:30rem;font-size:.95rem;color:rgba(255,255,255,.8)}
+.ps-inside{background:var(--night);color:#fff;padding:clamp(48px,8vh,90px) var(--gutter)}
+.ps-inside .w{width:min(100%,44rem);margin:0 auto}
+.ps-inside h2{font-size:clamp(1.5rem,1.2rem + 1.2vw,2.2rem)}
+.ps-inside ol{margin:1.2rem 0 0;padding:0;list-style:none;display:grid;gap:.7rem;counter-reset:s}
+.ps-inside li{position:relative;padding-left:2.4rem;line-height:1.45;color:rgba(255,255,255,.9);counter-increment:s}
+.ps-inside li::before{content:counter(s);position:absolute;left:0;top:-.05em;width:1.7rem;height:1.7rem;border-radius:50%;border:1px solid var(--gold);color:var(--gold);display:grid;place-items:center;font-size:.85rem;font-weight:700}
+.ps-inside blockquote{margin:2rem 0 0;padding:0 0 0 1.1rem;border-left:3px solid var(--gold);font-size:clamp(1.2rem,1.05rem + .6vw,1.55rem);line-height:1.4}
+.ps-inside cite{display:block;margin-top:.5rem;font-size:.9rem;font-style:normal;color:rgba(255,255,255,.7)}
+.ps-after{padding:clamp(48px,8vh,90px) var(--gutter);text-align:center}
+.ps-after .w{width:min(100%,40rem);margin:0 auto}
+.ps-after h2{font-size:clamp(1.6rem,1.2rem + 1.4vw,2.4rem)}
+.ps-after p{margin:.9rem auto 0;max-width:34rem;line-height:1.5}
+.ps-after .acts{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:1.5rem}
+.ps-after .more{margin-top:1.3rem;font-size:.95rem}
+.ps-done{display:none;margin:0 0 1rem;font-weight:700;color:var(--gold)}
+.ps-after.done .ps-done{display:block}
+@media (prefers-reduced-motion:reduce){.ps .bg video{display:none}}
+</style>
+</head>
+<body class="ps-page">
+
+<header data-ap-nav data-active="/peak-state/"></header>
+
+<section class="ps" id="top">
+  <div class="bg">
+    <img src="../heal-the-healer/loops/blue-hour-trail-poster.jpg" alt="" fetchpriority="high">
+    <video id="loop" muted loop playsinline preload="none" poster="../heal-the-healer/loops/blue-hour-trail-poster.jpg" aria-label="Three runners on a mountain trail at blue hour, seen from behind, their headlamps lighting the ground ahead."></video>
+  </div>
+  <div class="in">
+    <p class="k">Free · 8 minutes · before sunrise</p>
+    <h1>Peak State</h1>
+    <p class="lede">A grandmother’s instruction in Stone Breath, for the hour before the sun. You are not starting the day. You are entering state.</p>
+    <button class="play" id="play" type="button" aria-label="Play Peak State">
+      <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+    </button>
+    <p class="t" id="time" aria-live="off">Press play. Then stand still.</p>
+    <div class="row">
+      <div class="seg" role="group" aria-label="Voice">
+        <button type="button" data-voice="m" aria-pressed="true">Masculine</button>
+        <button type="button" data-voice="f" aria-pressed="false">Feminine</button>
+      </div>
+      <button class="back15" id="back15" type="button" hidden>Back 15 s</button>
+    </div>
+    <p class="safe">Stand still for this one. It is not for the road.</p>
+  </div>
+</section>
+
+<section class="ps-inside" data-bar="dark">
+  <div class="w">
+    <h2>What happens in it</h2>
+    <ol>
+      <li>Standing, facing east, before the phone.</li>
+      <li>The stone breath, five counted rounds.</li>
+      <li>Thanks before anything is asked.</li>
+      <li>Three hard things you have already carried.</li>
+      <li>One intention, said out loud.</li>
+    </ol>
+    <blockquote>“The dawn is walking the land. Don’t let it find you asleep.”<cite>Stone Breath</cite></blockquote>
+  </div>
+</section>
+
+<section class="ps-after" id="after" data-bar="light">
+  <div class="w">
+    <p class="ps-done">You entered state.</p>
+    <h2>That was one morning.</h2>
+    <p>Ancestral Peaks is the rest of the day: a guide for every hour, the Listening Room, the films from the books, and First Light, two minutes each weekday morning before the phone.</p>
+    <div class="acts">
+      <a class="btn earth" href="../begin/?for=morning">Begin free</a>
+      <a class="btn ghost dark" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=QyBbmZq5zD">A full year, $29</a>
+    </div>
+    <p class="more"><a href="../heal-the-healer/">Heal the Healer: six guides for one day</a></p>
+  </div>
+</section>
+
+<footer data-ap-foot></footer>
+
+<audio id="au" preload="none"></audio>
+<script>window.AP_NO_GATE = true;</script>
+<script src="../shared/site.js?v=1126p"></script>
+<script>
+AP.init();
+(function(){
+  var LEN = { m: 494, f: 484 };
+  var au = document.getElementById('au'), btn = document.getElementById('play'), time = document.getElementById('time');
+  var back = document.getElementById('back15'), after = document.getElementById('after'), loop = document.getElementById('loop');
+  var voice = 'm';
+  try { var sv = localStorage.getItem('ap.ps.voice'); if (sv === 'f' || sv === 'm') voice = sv; } catch (e) {}
+  function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function file(){ return '../heal-the-healer/audio/peak-state-' + voice + '.mp3'; }
+  function paintVoice(){ document.querySelectorAll('.seg button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.voice === voice ? 'true' : 'false'); }); }
+  function paint(){
+    var d = au.duration || LEN[voice], t = au.currentTime || 0;
+    btn.style.setProperty('--p', d ? (t / d) : 0);
+    btn.classList.toggle('on', !au.paused);
+    btn.setAttribute('aria-label', au.paused ? 'Play Peak State' : 'Pause Peak State');
+    if (au.src) time.textContent = fmt(t) + ' / ' + fmt(d);
+    back.hidden = !au.src || t < 1;
+  }
+  paintVoice();
+  btn.addEventListener('click', function(){
+    if (!au.src) { au.src = file(); }
+    if (au.paused) au.play().catch(function(){}); else au.pause();
+  });
+  document.querySelectorAll('.seg button').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (b.dataset.voice === voice) return;
+      var was = au.src && !au.paused, at = au.currentTime || 0, frac = au.duration ? at / au.duration : 0;
+      voice = b.dataset.voice; paintVoice();
+      try { localStorage.setItem('ap.ps.voice', voice); } catch (e) {}
+      if (au.src) {
+        // the same place in the other voice (the two readings differ by a few seconds, so the place is kept as a share of the whole)
+        au.preload = 'metadata'; au.src = file();
+        au.addEventListener('loadedmetadata', function f(){ au.removeEventListener('loadedmetadata', f); au.currentTime = frac * au.duration; paint(); });
+        if (was) au.play().catch(function(){}); else au.load();
+      }
+    });
+  });
+  back.addEventListener('click', function(){ au.currentTime = Math.max(0, au.currentTime - 15); });
+  ['play','pause','timeupdate','loadedmetadata'].forEach(function(e){ au.addEventListener(e, paint); });
+  au.addEventListener('ended', function(){ after.classList.add('done'); paint(); after.scrollIntoView({ behavior: 'smooth' }); });
+  if ('mediaSession' in navigator) {
+    try { navigator.mediaSession.metadata = new MediaMetadata({ title: 'Peak State', artist: 'Ancestral Peaks', artwork: [{ src: '/heal-the-healer/img/dark-trail-900.jpg', sizes: '604x900', type: 'image/jpeg' }] }); } catch (e) {}
+  }
+  // the moving trail behind the title: only when the page is in view, and never for reduced motion or data saver
+  var calm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var save = navigator.connection && navigator.connection.saveData;
+  if (!calm && !save && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(es){ es.forEach(function(e){
+      if (e.isIntersecting) { if (!loop.src) loop.src = '../heal-the-healer/loops/blue-hour-trail.mp4'; loop.play().catch(function(){}); } else loop.pause();
+    }); }).observe(loop);
+  }
+})();
+</script>
+</body>
+</html>
