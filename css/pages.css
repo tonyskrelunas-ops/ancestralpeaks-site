@@ -66,7 +66,7 @@ html.flat .scene .copy .st,html.render .scene .copy .st{opacity:1;transform:none
 .scene .progress{position:absolute;left:var(--gutter);right:var(--gutter);bottom:14px;height:2px;background:rgba(255,255,255,.15);z-index:4}
 .scene .progress i{display:block;height:100%;width:0;background:var(--gold)}
 /* the drawn graphics are made for cream paper; on his footage the paper goes and the ink turns to light */
-.gfx svg>rect:first-child{display:none}
+.gfx svg>rect:first-child,.gfx svg>rect[fill="#F7F0E1"][width="1000"]{display:none}   /* 11/26: the paper is not always the first child */
 .gfx svg text{font-family:var(--display) !important;font-style:normal !important;font-weight:700}
 .gfx svg text[fill="#3B3020"]{fill:#F6F1E6}
 .gfx svg text[fill="#6E5E48"]{fill:rgba(246,241,230,.72)}
@@ -79,8 +79,11 @@ html.flat .scene .copy .st,html.render .scene .copy .st{opacity:1;transform:none
 @media (max-width:900px){
   .scene{height:240vh}
   .scene .stick{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:minmax(0,1fr) auto;grid-template-areas:"gfx cover" "copy copy";gap:10px 14px;padding:calc(var(--bar-h) + 6px) var(--gutter) 30px;align-items:start}
-  .scene .gfx{width:min(100%,46svh);margin:0}
-  .scene .covercol{align-self:start;justify-self:end}
+  /* 11/26 (Tony's phone: the ring and the cover ran down over the words): on a phone the drawing and the cover fit the
+     space the words leave above them, and never cross into the words */
+  .scene .gfx{align-self:stretch;width:auto;height:100%;max-width:min(100%,46svh);max-height:100%;min-height:0;margin:0}
+  .scene .covercol{align-self:stretch;justify-self:end;height:100%;min-height:0;display:flex;align-items:flex-start;justify-content:flex-end}
+  .scene .covercol .cover3d.big{width:auto;height:100%;max-height:min(100%,40svh);max-width:none}
   .scene .copy{gap:.6rem;max-width:none;align-content:end}
   .scene .copy h2{font-size:clamp(1.9rem,8vw,2.6rem)}
   .scene .copy .line{font-size:clamp(1.05rem,4.6vw,1.3rem)}
