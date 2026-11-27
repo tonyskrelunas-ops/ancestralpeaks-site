@@ -93,7 +93,8 @@ AP.pages = [
   { href: '/weeks/',    label: 'Eight Weeks',              n: '03', group: 'The practice', bar: true },
   { href: '/practice/', label: 'Practice',                 n: '04', group: 'The practice', bar: false },
   { href: '/reading/',  label: 'Reading Room',             n: '05', group: 'The practice', bar: false },
-  { href: '/mountain-within/', label: 'The Mountain Within · films', n: '06', group: 'The practice', bar: true, short: 'Films' },
+  { href: '/films/',    label: 'Films from the books',     n: '06', group: 'The practice', bar: true, short: 'Films' },   // 11/27 Tony: "the films are hard to find"
+  { href: '/mountain-within/', label: 'The Mountain Within · films', n: '', group: 'The practice', bar: false },
   { href: '/play/',     label: 'Games & Fireside Stories', n: '07', group: 'Explore',      bar: false },
   { href: '/books/',    label: 'The Books',                n: '08', group: 'Explore',      bar: true, short: 'Books' },
   { href: '/work/',     label: 'For Your Work',            n: '09', group: 'Explore',      bar: false },
@@ -169,11 +170,12 @@ AP.thumb = function(){
     reading: '<svg viewBox="0 0 24 24"><path d="M3 6.5c3-1.3 6-1.3 9 .8 3-2.1 6-2.1 9-.8V19c-3-1.3-6-1.3-9 .8-3-2.1-6-2.1-9-.8z"/><path d="M12 7.3v12.5"/></svg>',
     practice: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3.5v3.5M12 17v3.5M3.5 12H7M17 12h3.5"/></svg>',
     books: '<svg viewBox="0 0 24 24"><path d="M5 4.5h4v15H5zM10 4.5h4v15h-4z"/><path d="M15.4 5.6l3.6-.9 3 14.6-3.6.9z"/></svg>',
-    menu: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>'
+    menu: '<svg viewBox="0 0 24 24"><path d="M5 7h14M5 12h14M5 17h14"/></svg>',
+    films: '<svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="M10 9.3v5.4l4.6-2.7z"/></svg>'
   };
   // 11/10 (Tony): two rows, with the Reading Room in it, on phones and laptops
   const items = [['/', 'Home', 'home'], ['/listen/', 'Listen', 'listen'], ['/reading/', 'Reading', 'reading'], ['/weeks/', '8 Weeks', 'weeks'],
-                 ['/practice/', 'Practice', 'practice'], ['/play/', 'Play', 'play'], ['/books/', 'Books', 'books']];
+                 ['/practice/', 'Practice', 'practice'], ['/films/', 'Films', 'films'], ['/books/', 'Books', 'books']];   // 11/27 Tony: "the films are hard to find" (Play stays in the menu)
   const bar = document.createElement('nav'); bar.className = 'ap-thumb'; bar.setAttribute('aria-label', 'Quick links');
   bar.innerHTML = items.map(([h, t, k]) => `<a href="${AP.href(h)}"${h === active ? ' aria-current="page"' : ''}>${ico[k]}<span>${t}</span></a>`).join('')
     + `<button type="button" aria-label="Menu">${ico.menu}<span>Menu</span></button>`;

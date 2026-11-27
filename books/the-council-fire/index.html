@@ -24,7 +24,7 @@
     <p class="cf-lede">Twelve keepers from twelve peoples, none of them enough alone. In the book they sit in a circle with no head to the table, and each one tells what their people know about holding together. There is a seat for you.</p>
     <div class="cf-acts">
       <a class="btn light" href="#before" id="comeBtn">Come to the fire <span class="arrow">→</span></a>
-      <a class="btn ghost" href="#film">A taste of the film, 1:17</a>
+      <a class="btn ghost" href="#film" data-film-member="The whole film, 26 min">A taste of the film, 1:17</a>
     </div>
     <p class="cf-fine">The keepers speak when you tap their seats. Sound starts only when you ask for it.</p>
   </div>
@@ -137,21 +137,21 @@
 <section class="cf-film on-dark" id="film" data-scene="hearth" data-scene-label="the fire">
   <div class="cf-film-grid">
     <div class="cf-film-media" id="filmMedia">
-      <video playsinline preload="none" data-hls="https://members.ancestralpeaks.com/p/films/council-fire-taste/master.m3u8" poster="https://members.ancestralpeaks.com/p/films/council-fire-taste/poster-1080.webp" src="/films/media/long/council-fire-taste-720x1280.mp4"></video>
+      <video playsinline preload="none" data-whole="film-council-fire" data-whole-label="The whole film, 26 min" data-hls="https://members.ancestralpeaks.com/p/films/council-fire-taste/master.m3u8" poster="https://members.ancestralpeaks.com/p/films/council-fire-taste/poster-1080.webp" src="/films/media/long/council-fire-taste-720x1280.mp4"></video>
       <button class="cf-film-go" type="button" id="filmGo" aria-label="Watch a taste of The Council Fire, 1 minute 17 seconds">
         <img src="https://members.ancestralpeaks.com/p/films/council-fire-taste/poster-1080.webp" alt="" loading="lazy">
-        <span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb">A taste, 1:17</span>
+        <span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="lb" data-film-go>A taste, 1:17</span>
       </button>
     </div>
     <div class="cf-film-copy">
       <span class="label">The film</span>
       <h2>The Council Fire, told as a film.</h2>
       <p>The runners. The bowl mended with gold. The twelve, and the fire on the hill on the longest day of the year. The pact they made so their great-grandchildren could find each other.</p>
-      <p>A minute of it is here for everyone. The whole film is 26 minutes, and it is for members.</p>
-      <div class="cf-acts">
+      <p data-film-member="You are signed in. The whole film plays right here, 26 minutes.">A minute of it is here for everyone. The whole film is 26 minutes, and it is for members.</p>
+      <div class="cf-acts" data-film-buy>
         <a class="btn earth" href="https://payhip.com/order?link=6bM8i&amp;pricing_plan=QyBbmZq5zD" data-offer="member-year">A full year, $29 <span class="arrow">→</span></a>
       </div>
-      <p class="cf-member"><a href="https://payhip.com/AncestralWatchPress/b-account/membership/6bM8i">Members: watch the whole film in your library <span class="arrow">→</span></a></p>
+      <p class="cf-member" data-film-buy><a href="/member/">Members: sign in once, and the whole film plays here <span class="arrow">→</span></a></p>
     </div>
   </div>
 </section>
@@ -183,9 +183,11 @@
 <footer data-ap-foot></footer>
 
 <script>window.AP_NO_GATE = true; /* the experience is not broken by a sign-up; the doors are at the end */</script>
-<script src="/shared/site.js?v=1126p"></script>
+<script src="/shared/site.js?v=1127a"></script>
+<script src="/js/peaks-members.js?v=1126s"></script>
 <script src="/js/peaks-hq.js?v=1126r"></script>
 <script src="cf.js?v=1"></script>
+<script src="/js/book-film.js?v=1127a"></script>
 <script src="/shared/media-guard.js?v=1" defer></script>
 </body>
 </html>
