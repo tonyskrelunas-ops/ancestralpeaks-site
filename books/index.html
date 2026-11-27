@@ -161,13 +161,18 @@ addEventListener('ap:ready', () => {
   P4.hoverCovers(document.querySelector('.hero'));
   const ring = P4.graphic(document.getElementById('gRing'), 'ring');
   const sSB = document.getElementById('sSB');
-  P4.scene(sSB, p => { ring.seek(p * 36); P4.tilt(sSB, p); P4.stages(sSB, p); });
+  // 11/26: on a phone each book flows down the page (css/pages.css), so its drawing plays while the drawing itself is on screen
+  const flow = matchMedia('(max-width:900px)').matches;
+  const scene = (el, draw) => (flow && AP.gsap && AP.ST && AP.motion && !AP.flat && !AP.render)
+    ? (AP.ST.create({ trigger: el.querySelector('.gfx'), start: 'top 88%', end: 'bottom 35%', scrub: 0.45, onUpdate: s => draw(s.progress) }), draw(0))
+    : P4.scene(el, draw);
+  scene(sSB, p => { ring.seek(p * 36); P4.tilt(sSB, p); P4.stages(sSB, p); });
   const tok = P4.graphic(document.getElementById('gTok'), 'tokens');
   const sCF = document.getElementById('sCF');
-  P4.scene(sCF, p => { tok.seek(p * 16); P4.tilt(sCF, p); P4.stages(sCF, p); });
+  scene(sCF, p => { tok.seek(p * 16); P4.tilt(sCF, p); P4.stages(sCF, p); });
   const stars = P4.graphic(document.getElementById('gStars'), 'stars');
   const sFM = document.getElementById('sFM');
-  P4.scene(sFM, p => { stars.seek(p * 16); P4.tilt(sFM, p); P4.stages(sFM, p); });
+  scene(sFM, p => { stars.seek(p * 16); P4.tilt(sFM, p); P4.stages(sFM, p); });
   P4.render(50);
 }, { once: true });
 </script>
