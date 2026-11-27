@@ -142,6 +142,26 @@ section{position:relative}
 .listen .three .t span{display:block;margin-top:.35rem;color:rgba(255,255,255,.86)}
 .listen .hear{display:grid;grid-template-columns:1fr 1fr auto;gap:clamp(10px,1.2vw,18px);align-items:center;margin-top:clamp(10px,1.2vw,18px)}
 .listen .ap-player{background:#1B1517;-webkit-backdrop-filter:none;backdrop-filter:none;border:1px solid rgba(255,255,255,.1)}
+/* 11/26 (Tony: "This section is tacky ... subpar"): two picture cards to begin with, one play button each, no sales lines */
+.listen .hear2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,18px);margin-top:clamp(10px,1.2vw,18px)}
+.listen .sess{position:relative;isolation:isolate;aspect-ratio:16/9;border-radius:14px;overflow:hidden;color:#fff;background:#1a1512}
+.listen .sess img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.listen .sess::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,11,13,.05) 30%,rgba(16,11,13,.88) 100%)}
+.listen .sess:hover img{transform:scale(1.04)}
+.listen .sess .t{position:absolute;left:20px;right:96px;bottom:18px}
+.listen .sess .k{display:block;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.listen .sess b{display:block;margin-top:.3rem;font-family:var(--display);font-weight:800;font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:1.02;letter-spacing:-.02em}
+.listen .sess .t>span:last-child{display:block;margin-top:.35rem;color:rgba(255,255,255,.84);font-size:.98rem;line-height:1.4}
+.listen .sess .go{position:absolute;right:18px;bottom:18px;width:62px;height:62px;border-radius:50%;border:0;padding:0;cursor:pointer;background:var(--gold,#D1A63C);color:#1b1410;display:grid;place-items:center;box-shadow:0 10px 30px -10px rgba(0,0,0,.7);transition:transform .2s ease}
+.listen .sess .go:hover{transform:scale(1.06)}
+.listen .sess .go svg{width:26px;height:26px;fill:currentColor;grid-area:1/1}
+.listen .sess .go .ic-pause{display:none}
+.listen .sess.playing .go .ic-play{display:none}.listen .sess.playing .go .ic-pause{display:block}
+.listen .sess .go .ring{grid-area:1/1;position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(#fff calc(var(--p,0) * 1turn),rgba(255,255,255,.18) 0);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));opacity:0;transition:opacity .3s}
+.listen .sess.playing .go .ring,.listen .sess.paused .go .ring{opacity:1}
+.listen .hear-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;margin-top:clamp(14px,1.6vw,22px)}
+.listen .hear-foot .note{margin:0;color:rgba(255,255,255,.7);font-size:.98rem}
+html.is-member .listen .mem-hide{display:none}
 
 /* ---------- Eight Weeks: the carriers of every people ---------- */
 .weeks .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem clamp(20px,5vw,80px);align-items:end;margin-bottom:clamp(24px,3vw,40px)}
@@ -247,6 +267,9 @@ html.founding-open .join .founding-block{display:block}
   .weeks .week{flex:0 0 62vw;scroll-snap-align:start}
   .listen .hear{grid-template-columns:1fr}
   .listen .hear .btn{justify-self:start}
+  .listen .hear2{grid-template-columns:1fr}
+  .listen .sess{aspect-ratio:4/3}
+  .listen .sess .t{right:88px}
   .breath .do{grid-template-columns:1fr}
   .breath .ringbox{width:170px}
   .books .h-in{padding-top:clamp(180px,48vw,300px)}
@@ -579,7 +602,7 @@ html.founding-open .join .founding-block{display:block}
       <div><h2 class="reveal">The Listening Room.</h2></div>
       <div>
         <p class="q reveal">A list of rules is forgotten by morning. A story plants itself and grows for a lifetime.</p>
-        <p class="p reveal" style="margin-top:.8rem">Sessions from two minutes to forty-three, told as story over water, wind, ocean, desert or fire. Thirty seconds of each plays here. Three sessions and three voice notes open in full with a free sign-up; members hear every one.</p>
+        <p class="p reveal" style="margin-top:.8rem">Sessions from two minutes to forty-three, told as story over water, wind, ocean, desert or fire.</p>
       </div>
     </div>
     <div class="three reveal">
@@ -587,10 +610,21 @@ html.founding-open .join .founding-block{display:block}
       <a href="/listen/drive/"><img src="/media/img/sand-road-800.jpg" alt="A sand road through open country" loading="lazy" decoding="async"><span class="t"><b>Drive</b><span>Eyes open, on the road</span></span></a>
       <a href="/listen/rest/"><picture><source type="image/webp" srcset="/media/home/beach-900.webp"><img src="/media/home/beach-900.jpg" alt="An older woman on a pebble beach at dusk, eyes closed, a stone in her open hand" loading="lazy" decoding="async"></picture><span class="t"><b>Rest</b><span>Unwinding, and the night</span></span></a>
     </div>
-    <div class="hear">
-      <div class="ap-player compact" data-src="/media/previews/week1-settle-yourself-first-30s.mp3" data-preview="free" data-full="6 min" data-title="Week 1: Settle yourself first" data-sub="The runner on Big Mountain and the stone breath. Dawn bed." data-visual="horizon" data-duration="30" data-color="#8FB8A8"></div>
-      <div class="ap-player compact" data-src="/media/previews/the-far-messengers-of-time-30s.mp3" data-preview="member" data-full="6 min" data-title="The far messengers of time" data-sub="The grandmother gap, the songlines, the book carriers. Hearth bed." data-visual="rings" data-duration="30" data-color="#E08A3C"></div>
-      <a class="btn light" href="/listen/">The whole Listening Room</a>
+    <div class="hear2">
+      <article class="sess" data-id="week1-settle-yourself-first" data-preview="/media/previews/week1-settle-yourself-first-30s.mp3">
+        <img src="/media/home/dawn-run-poster.jpg" alt="A runner on the mountain at first light" loading="lazy" decoding="async">
+        <button class="go" type="button" aria-label="Play Settle yourself first"><i class="ring" aria-hidden="true"></i><svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+        <div class="t"><span class="k">Week one · 6 min</span><b>Settle yourself first</b><span>The runner on Big Mountain and the stone breath.</span></div>
+      </article>
+      <article class="sess" data-id="the-far-messengers-of-time" data-preview="/media/previews/the-far-messengers-of-time-30s.mp3">
+        <picture><source type="image/webp" srcset="/media/home/voyage-900.webp"><img src="/media/home/voyage-900.jpg" alt="A voyaging canoe on open water" loading="lazy" decoding="async"></picture>
+        <button class="go" type="button" aria-label="Play The far messengers of time"><i class="ring" aria-hidden="true"></i><svg class="ic-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+        <div class="t"><span class="k">The longest crossing · 6 min</span><b>The far messengers of time</b><span>The grandmother gap, the songlines, the book carriers.</span></div>
+      </article>
+    </div>
+    <div class="hear-foot">
+      <p class="note">The opening plays here. <span class="mem-hide">Members hear every session whole.</span></p>
+      <a class="btn light" href="/listen/">The whole Listening Room <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1030,6 +1064,30 @@ window.seek = async t => { await AP.seekPage(t, { hold: 4, end: 46 }); return tr
 </script>
 <script src="/shared/media-guard.js?v=1" defer></script>
 <script src="/js/peaks-hq.js?v=1126p" defer></script>
+<script src="/js/peaks-members.js?v=1126p" defer></script>
+<script>
+/* 11/26: the two session cards on the home. One tap plays; a member hears the whole session, anyone else the opening. */
+(function(){
+  var a = null, cur = null;
+  function stop(){ if (a) a.pause(); if (cur) { cur.classList.remove('playing'); cur.classList.add('paused'); } try { if (window.AP && AP.sound) AP.sound.duck(false); } catch (e) {} }
+  addEventListener('ap:play', function(e){ if (e.detail && e.detail.el && cur && e.detail.el !== cur) stop(); });
+  document.querySelectorAll('.listen .sess').forEach(function(card){
+    var btn = card.querySelector('.go');
+    btn.addEventListener('click', function(){
+      if (cur === card && a && !a.paused) { stop(); return; }
+      if (cur !== card) {
+        stop(); if (cur) cur.classList.remove('paused'), cur.style.removeProperty('--p');
+        var M = window.PeaksMembers, whole = M && M.on && M.src ? M.src(card.dataset.id) : null;
+        a = new Audio(whole || card.dataset.preview); a.preload = 'auto'; cur = card;
+        a.addEventListener('timeupdate', function(){ var d = a.duration || 30; card.style.setProperty('--p', Math.min(1, a.currentTime / d).toFixed(3)); });
+        a.addEventListener('ended', function(){ card.classList.remove('playing', 'paused'); card.style.removeProperty('--p'); try { AP.sound.duck(false); } catch (e) {} });
+      }
+      try { if (window.AP && AP.current && AP.current.pause) AP.current.pause(); } catch (e) {}
+      a.play().then(function(){ card.classList.add('playing'); card.classList.remove('paused'); try { AP.sound.duck(true); dispatchEvent(new CustomEvent('ap:play', { detail: { el: card } })); } catch (e) {} }).catch(function(){});
+    });
+  });
+})();
+</script>
 <script src="/js/peaks-welcome.js?v=1126p" defer></script>
 </body>
 </html>
