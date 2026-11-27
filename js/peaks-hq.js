@@ -13,9 +13,13 @@
     });
     return loading;
   }
-  /* for checking by hand: add ?hq=js to a page's address to use hls.js even where the browser plays HLS itself, ?hq=off for the MP4 only */
-  var MODE = (location.search.match(/[?&]hq=(js|off)\b/) || [])[1];
-  function nativeHls(v) { return MODE !== 'js' && !!v.canPlayType('application/vnd.apple.mpegurl'); }
+  /* for checking by hand: add ?hq=js to a page's address to force hls.js, ?hq=native for the browser's own HLS, ?hq=off for the MP4 only */
+  var MODE = (location.search.match(/[?&]hq=(js|off|native)\b/) || [])[1];
+  /* iPhone, iPad and Safari play HLS themselves, and well. Chrome can too now, but it opens at 480p and takes ten seconds
+     to climb, so wherever hls.js can run outside Apple's browsers it is used: it opens sharp at once. */
+  var UA = navigator.userAgent, APPLE = /iPhone|iPad|iPod/.test(UA) || (/Safari/.test(UA) && !/Chrome|Chromium|Android|Edg\//.test(UA));
+  var MSE = !!(window.MediaSource || window.ManagedMediaSource);
+  function nativeHls(v) { if (MODE === 'js' || !v.canPlayType('application/vnd.apple.mpegurl')) return false; return MODE === 'native' || APPLE || !MSE; }
   function fallbackFor(v, mp4) {
     return function () { if (v._hqOff) return; if (mp4 && v.getAttribute('src') !== mp4) { try { if (v._hls) v._hls.destroy(); } catch (e) {} v._hls = null; v.src = mp4; var p = v.play(); if (p && p.catch) p.catch(function () {}); } };
   }

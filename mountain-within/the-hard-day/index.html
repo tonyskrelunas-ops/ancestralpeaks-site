@@ -37,6 +37,7 @@
 
   <div class="stage wide" id="stage"><div class="frame" id="frame">
     <video id="film" controls playsinline preload="metadata" poster="../media/poster-2-wide-1920.jpg"
+      data-hls="https://members.ancestralpeaks.com/p/films/mountain-within-2-wide/master.m3u8" data-hls-upright="https://members.ancestralpeaks.com/p/films/mountain-within-2-tall/master.m3u8"
       data-wide="../films/mountain-within-2-1280x720.mp4" data-upright="../films/mountain-within-2-540x960.mp4"
       data-poster-upright="../media/poster-2-phone-1080.jpg" src="../films/mountain-within-2-1280x720.mp4"></video>
     <button class="playbig" type="button" id="playBig" aria-label="Play The Hard Day"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
@@ -72,12 +73,13 @@
 <script src="../../shared/vendor/ScrollTrigger.min.js?v=1108e"></script>
 <script src="../../shared/vendor/lenis.min.js?v=1108e"></script>
 <script src="../../shared/site.js?v=1126p"></script>
+<script src="../../js/peaks-hq.js?v=1126r"></script>
 <script>
 (function(){
   const v = document.getElementById('film'), stage = document.getElementById('stage');
   // a phone held upright gets the upright copy of the film, so the whole picture fits the screen
   const upright = matchMedia('(orientation: portrait)').matches && innerWidth < 900;
-  if (upright) { stage.classList.replace('wide', 'upright'); v.poster = v.dataset.posterUpright; v.src = v.dataset.upright; }
+  if (upright) { stage.classList.replace('wide', 'upright'); v.poster = v.dataset.posterUpright; v.src = v.dataset.upright; v.dataset.hls = v.dataset.hlsUpright; }
   const frame = document.getElementById('frame');
   document.getElementById('playBig').addEventListener('click', () => { v.play().catch(() => {}); });
   v.addEventListener('play', () => frame.classList.add('started'));
