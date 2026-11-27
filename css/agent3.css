@@ -452,3 +452,12 @@ html.flat .scene{min-height:min(100svh,900px)}
 @media (max-width:900px){.with-you .three{grid-template-columns:1fr}.with-you .three a{aspect-ratio:auto;min-height:132px}}
 @media (max-width:900px){html.has-thumb .coach-top .copy{padding-bottom:calc(188px + env(safe-area-inset-bottom,0px))}}
 @media (max-width:480px){.coach .srow{grid-template-columns:84px minmax(0,1fr)}.coach .srow .pv{font-size:.92rem;gap:.5em;padding-right:.85em}.coach .srow .pv .ic{width:32px;height:32px}}
+
+/* 11/26 (the whole-site check): on a phone the welcome film inside the "They are open" card showed its logo line and its
+   closing line in cream on the white card, so they could not be read; the film gets the same dark frame it has on the home page */
+@media (max-width:899px),(orientation:portrait){
+  .welcome .wf{background:#0d0b09;border-radius:18px;padding:22px 0 20px;margin-top:18px}
+  .welcome .wf .wf-stage{border-radius:0;box-shadow:none}
+  .welcome .wf .wf-bottom{color:rgba(244,239,228,.82);font-size:.95rem;max-width:none}
+  .welcome .wf .wf-note{text-align:center;margin:12px 22px 0}
+}

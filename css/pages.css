@@ -23,6 +23,8 @@
 .hero .side{justify-self:end;max-width:30rem;color:rgba(255,255,255,.85);font-size:.95rem}
 .hero .eyebrow{display:block;font-weight:700;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
 @media (max-width:900px){.hero .copy{grid-template-columns:1fr;gap:1rem}.hero .side{justify-self:start}.hero h1{font-size:clamp(2.6rem,12vw,4rem)}}
+/* 11/26 (the whole-site check): on a phone the words sit over the bright middle of the picture, where the shade was thinnest; a little more shade there so every line reads */
+@media (max-width:900px){.hero .bg::after{background:linear-gradient(180deg,rgba(16,11,13,.55) 0%,rgba(16,11,13,.36) 30%,rgba(16,11,13,.46) 60%,rgba(16,11,13,.9) 100%)}}
 /* 11/25: the first screen keeps its buttons clear of the floating bar at the bottom, as The Mountain Within does */
 html.has-thumb .hero .copy{padding-bottom:calc(clamp(28px,5vh,64px) + 96px)}
 
@@ -224,6 +226,8 @@ html.flat .scene .stick{position:relative;height:auto;min-height:100svh}
 .chapter{flex:0 0 clamp(230px,24vw,320px);scroll-snap-align:start;position:relative;aspect-ratio:16/10;border-radius:6px;overflow:hidden;border:0;padding:0;background:#1b2420;color:#fff;text-align:left;cursor:pointer;transition:transform .3s,box-shadow .3s}
 .chapter img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s ease,opacity .4s}
 .chapter:hover img{transform:scale(1.05)}
+/* 11/26: the first scene's still carries the film's own title in its lower third, which ran under this card's label; show the land above it */
+.chapter[data-t="0"] img{height:150%;object-position:50% 0}
 .chapter::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,11,13,.05),rgba(16,11,13,.1) 45%,rgba(16,11,13,.9))}
 .chapter .t{position:absolute;left:14px;right:14px;bottom:12px;z-index:1}
 .chapter .t b{display:block;font-family:var(--display);font-weight:700;font-size:1.05rem;line-height:1.15;letter-spacing:-.01em}
@@ -353,4 +357,45 @@ html.render .fbars .f i,html.flat .fbars .f i{width:var(--w)}
   .iris .word{left:auto;right:var(--gutter);top:calc(var(--bar-h) - 5px);font-size:.78rem;line-height:1.6;text-align:right}
   .iris .copy h1{font-size:clamp(2rem,9vw,2.6rem)!important}
   .iris .copy .line{font-size:clamp(1.02rem,4.4vw,1.25rem);line-height:1.2}
+}
+/* 11/26 (the whole-site check): on a phone the "Six readings" heading and its paragraph sat in two thin columns; one column */
+@media (max-width:900px){#readings>.wrap{grid-template-columns:minmax(0,1fr)!important}}
+/* 11/26 (the whole-site check): the Why page's opening scene held more words than one screen on every size. On a short
+   phone the heading went under the top bar and the two voice cards ran off the bottom under the quick links; on a laptop
+   the second line and both voice cards were cut off below the screen, and "tunnel vision" sat on top of "Why it works".
+   The canyon still stays pinned and still narrows and opens with the scroll; the words now travel up over it, so every
+   one of them can be read on any screen. */
+.iris{height:auto}
+.iris .stick{position:relative;height:auto;overflow:visible;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;grid-template-areas:none;padding:0;gap:0}
+.iris .stick>*{grid-area:1/1}
+.iris .layer{position:sticky;inset:0 auto auto 0;width:100%;height:100svh;align-self:start}
+.iris .word{position:sticky;inset:calc(var(--bar-h) + 6px) auto auto auto;align-self:start;justify-self:end;margin:calc(var(--bar-h) + 6px) var(--gutter) 0 0;text-align:right;text-shadow:0 1px 3px rgba(16,11,13,.7)}
+.iris .copy{display:block;align-self:start;padding:40svh var(--gutter) 24svh;text-shadow:0 1px 3px rgba(16,11,13,.75),0 0 22px rgba(16,11,13,.7)}
+.iris .copy>*+*{margin-top:.7rem}
+.iris .copy .st{opacity:1;transform:none}
+.iris .copy #irisL1{margin-top:42svh}
+.iris .copy #irisL2{margin-top:38svh}
+.iris .copy .sayrow{margin-top:1.1rem}
+.iris .copy .ap-say{text-shadow:none;background:rgba(16,11,13,.74)}
+.iris .progress{display:none}
+@media (max-width:900px){.iris .copy{max-width:none}}
+/* 11/26 (the whole-site check): on a laptop screen under about 940 px tall, each pinned book held more words than the
+   screen, so the last button and the voice card were cut off at the bottom, under the quick links. Same words, same
+   order, a little smaller and closer on short laptop screens so the whole of it shows. */
+@media (min-width:901px) and (max-height:940px){
+  html.has-thumb .scene.book .stick{padding-bottom:84px}
+  .scene.book .copy{gap:.55rem}
+  .scene.book .copy h2{font-size:clamp(2rem,3.4vw,2.9rem)}
+  .scene.book .copy .line{font-size:clamp(1.1rem,.8rem + .9vw,1.45rem)}
+  .scene.book .copy .ap-say .txt{font-size:.95rem}
+}
+@media (min-width:901px) and (max-height:760px){
+  html.has-thumb .scene.book .stick{padding-top:calc(var(--bar-h) + 4px);padding-bottom:40px}
+  .scene.book .copy{gap:.4rem}
+  .scene.book .copy h2{font-size:clamp(1.8rem,3vw,2.4rem)}
+  .scene.book .copy .line{font-size:clamp(1rem,.7rem + .8vw,1.2rem)}
+  .scene.book .copy .what{font-size:.92rem;line-height:1.4}
+  .scene.book .copy .btn{padding-block:.55em}
+  .scene.book .copy .ap-say{padding:.5rem .8rem .5rem .6rem}
+  .scene.book .copy .ap-say .txt{font-size:.88rem}
 }

@@ -12,7 +12,9 @@
   function banner(html, onAdd) {
     var b = document.createElement('div');
     b.setAttribute('role', 'dialog'); b.setAttribute('aria-label', 'Add Ancestral Peaks to your phone');
-    b.style.cssText = 'position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9999;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(16,11,13,.94);color:#F3EFE5;font:500 15px/1.35 Georgia,serif;box-shadow:0 18px 40px rgba(0,0,0,.45)';
+    // 11/26: it used to lie across the quick links at the bottom (and from edge to edge on a laptop); it sits just above them now
+    var lift = document.querySelector('[data-ap-nav], .ap-thumb') ? 128 : 12;
+    b.style.cssText = 'position:fixed;left:50%;transform:translateX(-50%);width:min(620px,calc(100vw - 24px));box-sizing:border-box;bottom:calc(' + lift + 'px + env(safe-area-inset-bottom,0px));z-index:9999;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;background:rgba(16,11,13,.94);color:#F3EFE5;font:500 15px/1.35 Georgia,serif;box-shadow:0 18px 40px rgba(0,0,0,.45)';
     b.innerHTML = '<img src="/app/icon-192.png" alt="" width="44" height="44" style="border-radius:11px;flex:none">' +
       '<div style="flex:1">' + html + '</div>' +
       (onAdd ? '<button type="button" data-add style="flex:none;border:0;border-radius:999px;padding:9px 14px;background:#D1A63C;color:#100B0D;font:600 14px system-ui">Add</button>' : '') +
@@ -28,7 +30,7 @@
   if (ios && visits >= 2) {
     window.addEventListener('load', function () {
       setTimeout(function () {
-        banner('<b>Keep Ancestral Peaks on your phone.</b><br>Tap <span aria-label="Share">Share</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v8h14v-8"/></svg>, then <b>Add to Home Screen</b>.', null);
+        banner('<b>Keep Ancestral Peaks on your phone.</b><br>Tap <span aria-label="Share">Share</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:-2px"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v8h14v-8"/></svg>, then <b>Add to Home Screen</b>.', null);
       }, 4000);
     });
   }

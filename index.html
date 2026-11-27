@@ -287,6 +287,16 @@ html.founding-open .join .founding-block{display:block}
 /* ---------- THE GREETING (live 11/26, Tony: "Yes and save the other version too"): the welcome line, the question, the gift, the card, the invitation ---------- */
 .arrive .hello{margin:0 0 .9rem;max-width:22ch;font-family:var(--display);font-weight:700;font-size:clamp(1.3rem,1.05rem + 1.3vw,2.1rem);line-height:1.12;letter-spacing:-.015em;color:#F3D488;text-shadow:0 1px 14px rgba(0,0,0,.7)}
 .arrive .fine{color:rgba(255,255,255,.86)}
+/* 11/26 (the whole-site check): on a laptop screen under about 860 px tall the opening ran taller than the screen, so
+   "Come in" sat under the quick links or below the fold; the heading eases down with the height and the buttons clear the bar */
+@media (min-width:901px){html.has-thumb .arrive .copy{padding-bottom:max(clamp(96px,13vh,140px),128px)}}
+@media (min-width:901px) and (max-height:860px){
+  .arrive .copy{padding-top:calc(var(--bar-h) + 18px)}
+  .arrive h1{font-size:clamp(3rem,min(7.6vw,10.4vh),7.4rem)}
+  .arrive .hello{margin-bottom:.6rem;font-size:clamp(1.3rem,1.05rem + 1vw,1.75rem)}
+  .arrive .lede{margin-top:1rem}
+  .arrive .acts{margin-top:1.2rem}
+}
 .cross{padding-top:clamp(40px,5vw,72px)}
 .cross .head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:1rem clamp(20px,5vw,80px);align-items:end;margin-bottom:clamp(20px,2.6vw,34px)}
 .cross .head .p{margin:0}
@@ -373,7 +383,7 @@ html.founding-open .join .founding-block{display:block}
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Peaks">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<script src="/app/pwa.js?v=1108e" defer></script>
+<script src="/app/pwa.js?v=1126t" defer></script>
 <link rel="canonical" href="https://ancestralpeaks.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ancestral Peaks">
