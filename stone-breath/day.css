@@ -160,3 +160,12 @@ body.sb-locked main.day > section:not(.top):not(.sb-door){display:none!important
 .sb-door[hidden]{display:none!important}
 .sb-door .acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:1.2rem}
 body.sb-locked .top .today,body.sb-locked .top .strip,body.sb-locked .top .walked{display:none!important}
+
+/* 11/27 the book code form (sb-code.js) */
+.sbc{display:grid;gap:12px;max-width:30rem;margin-top:1rem}
+.sbc label{display:grid;gap:6px;font-size:.85rem;font-weight:600;color:rgba(255,255,255,.85)}
+.sbc input{height:52px;width:100%;border-radius:12px;border:1.5px solid rgba(255,255,255,.3);background:rgba(255,255,255,.97);color:#1b1418;padding:0 14px;font:600 16px var(--text);letter-spacing:.02em}
+.sbc input[name=code]{text-transform:uppercase;font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.sbc .btn{justify-self:start}
+.sbc-msg{margin:0;min-height:1.4em;color:rgba(255,255,255,.9);line-height:1.45}
+.sbc-msg.bad{color:#ffd9a8}

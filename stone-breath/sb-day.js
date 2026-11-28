@@ -32,6 +32,15 @@
   function door() {
     document.body.classList.add('sb-locked');
     var d = document.getElementById('sbDoor'); if (d) d.hidden = false;
+    // 11/27: the book code, right here in the door: typed once, the day opens at once
+    if (d && !d.querySelector('.sbc-box')) {
+      var box = document.createElement('div'); box.className = 'sbc-box';
+      box.innerHTML = '<p class="say" style="margin-top:1.4rem"><b>Have your book code?</b> Type it with the email you bought with.</p><div></div>';
+      (d.querySelector('.in') || d).appendChild(box);
+      var s = document.createElement('script'); s.src = '../sb-code.js?v=1127c';
+      s.onload = function () { if (window.SBCode) SBCode.mount(box.lastChild, function () { location.reload(); }); };
+      document.body.appendChild(s);
+    }
     try { window.AP.nav(); window.AP.season(); window.AP.footer(); } catch (e) {}
   }
   if (!id) return go(window.SB_FREE || 'media/');

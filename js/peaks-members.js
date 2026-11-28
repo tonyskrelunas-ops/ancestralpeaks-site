@@ -62,6 +62,8 @@ window.PeaksMembers = {
   ask(email){ return post('/api/signin', { email }); },
   link(t){ return post('/api/verify', { t }).then(j => j.ok ? signedIn(j.session, j.first).then(() => j) : j); },
   code(email, code){ return post('/api/verify', { email, code }).then(j => j.ok ? signedIn(j.session, j.first).then(() => j) : j); },
+  // 11/27: the Stone Breath edition's book code (from the Payhip receipt), typed with the buyer's email: in at once
+  redeem(code, email, first){ return post('/api/redeem', { code, email, first }).then(j => j.ok ? signedIn(j.session, j.first).then(() => j) : j); },
   ready: Promise.resolve(false)
 };
 // the links are used at once when fresh; the membership itself is re-checked in the background every 20 minutes
