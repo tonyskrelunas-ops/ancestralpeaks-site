@@ -57,6 +57,24 @@
 .ps-after .more{margin-top:1.3rem;font-size:.95rem}
 .ps-done{display:none;margin:0 0 1rem;font-weight:700;color:var(--gold)}
 .ps-after.done .ps-done{display:block}
+.ps-stage{position:relative;margin:clamp(20px,3.5vh,32px) auto 0;width:min(100%,920px);aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.1)}
+.ps-stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
+.ps-go{position:absolute;inset:0;z-index:2;border:0;padding:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.ps-go img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ps-go .pl{position:relative;width:clamp(68px,14vw,92px);aspect-ratio:1;border-radius:50%;background:rgba(16,11,13,.62);border:1.5px solid rgba(255,255,255,.8);display:grid;place-items:center;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ps-go .pl svg{width:38%;height:38%;fill:#fff;margin-left:6%}
+.ps-go .lb{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);background:rgba(16,11,13,.7);color:#fff;font:600 .9rem var(--text);padding:.4rem .8rem;border-radius:999px;white-space:nowrap}
+.ps-go[hidden]{display:none}
+.ps-listen{background:var(--night);color:#fff;text-align:center;padding:clamp(40px,7vh,80px) var(--gutter);border-top:1px solid rgba(255,255,255,.08)}
+.ps-listen h2{font-size:clamp(1.4rem,1.1rem + 1vw,2rem);color:#fff}
+.ps-listen p.note{margin:.6rem auto 0;max-width:34rem;color:rgba(255,255,255,.8);line-height:1.5}
+.ps-listen .play{position:relative;margin:1.4rem auto 0;width:clamp(110px,26vw,140px);aspect-ratio:1;border-radius:50%;border:0;padding:0;cursor:pointer;background:conic-gradient(var(--gold) calc(var(--p,0)*1turn),rgba(255,255,255,.22) 0);display:grid;place-items:center}
+.ps-listen .play::before{content:"";position:absolute;inset:5px;border-radius:50%;background:#1b1418}
+.ps-listen .play svg{position:relative;width:38%;height:38%;fill:#fff}
+.ps-listen .play .i-pause{display:none}.ps-listen .play.on .i-play{display:none}.ps-listen .play.on .i-pause{display:block}
+.ps-listen .t{margin:.8rem 0 0;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.85)}
+.ps-listen .back15{border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font:600 .9rem var(--text);padding:.5rem .95rem;border-radius:999px;cursor:pointer;min-height:40px;margin-top:.8rem}
+.ps-listen .back15[hidden]{display:none}
 @media (prefers-reduced-motion:reduce){.ps .bg video{display:none}}
 </style>
 </head>
@@ -70,23 +88,36 @@
     <video id="loop" muted loop playsinline preload="none" poster="../heal-the-healer/loops/blue-hour-trail-poster.jpg" aria-label="Three runners on a mountain trail at blue hour, seen from behind, their headlamps lighting the ground ahead."></video>
   </div>
   <div class="in">
-    <p class="k">Free · 8 minutes · before sunrise</p>
+    <p class="k">Free · a four-minute film</p>
     <h1>Peak State</h1>
     <p class="lede">A grandmother’s instruction in Stone Breath, for the hour before the sun. You are not starting the day. You are entering state.</p>
-    <button class="play" id="play" type="button" aria-label="Play Peak State">
-      <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-      <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
-    </button>
-    <p class="t" id="time" aria-live="off">Press play. Then stand still.</p>
+    <div class="ps-stage">
+      <video id="film" playsinline preload="none" poster="https://members.ancestralpeaks.com/p/films/peak-state-film-m-v1/poster-1920.jpg" aria-label="Peak State, the film: what Ancestral Peaks is, then the dawn practice with three counted breaths"></video>
+      <button class="ps-go" id="filmGo" type="button" aria-label="Watch Peak State, 3 minutes 44 seconds, with sound">
+        <img id="filmPoster" src="https://members.ancestralpeaks.com/p/films/peak-state-film-m-v1/poster-1200.jpg" srcset="https://members.ancestralpeaks.com/p/films/peak-state-film-m-v1/poster-1200.jpg 1200w, https://members.ancestralpeaks.com/p/films/peak-state-film-m-v1/poster-1920.jpg 1920w" sizes="(min-width:960px) 920px, 100vw" alt="">
+        <span class="pl"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+        <span class="lb">Watch, with sound · 3:44</span>
+      </button>
+    </div>
     <div class="row">
       <div class="seg" role="group" aria-label="Voice">
         <button type="button" data-voice="m" aria-pressed="true">Masculine</button>
         <button type="button" data-voice="f" aria-pressed="false">Feminine</button>
       </div>
-      <button class="back15" id="back15" type="button" hidden>Back 15 s</button>
     </div>
-    <p class="safe">Stand still for this one. It is not for the road.</p>
+    <p class="safe">Stand when the film asks you to. It is not for the road.</p>
   </div>
+</section>
+
+<section class="ps-listen" aria-labelledby="h-listen">
+  <h2 id="h-listen">Or just listen: the whole dawn guide</h2>
+  <p class="note">Eight minutes, five counted rounds, no pictures. For the mornings you know it by heart.</p>
+  <button class="play" id="play" type="button" aria-label="Play the whole dawn guide">
+    <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+  </button>
+  <p class="t" id="time" aria-live="off">Press play. Then stand still.</p>
+  <button class="back15" id="back15" type="button" hidden>Back 15 s</button>
 </section>
 
 <section class="ps-inside" data-bar="dark">
@@ -94,7 +125,7 @@
     <h2>What happens in it</h2>
     <ol>
       <li>Standing, facing east, before the phone.</li>
-      <li>The stone breath, five counted rounds.</li>
+      <li>The stone breath, counted rounds (three in the film, five in the whole guide).</li>
       <li>Thanks before anything is asked.</li>
       <li>Three hard things you have already carried.</li>
       <li>One intention, said out loud.</li>
@@ -121,6 +152,7 @@
 <audio id="au" preload="none"></audio>
 <script>window.AP_NO_GATE = true;</script>
 <script src="../shared/site.js?v=1127a"></script>
+<script src="../js/peaks-hq.js?v=1126r"></script>
 <script>
 AP.init();
 (function(){
@@ -162,6 +194,35 @@ AP.init();
   back.addEventListener('click', function(){ au.currentTime = Math.max(0, au.currentTime - 15); });
   ['play','pause','timeupdate','loadedmetadata'].forEach(function(e){ au.addEventListener(e, paint); });
   au.addEventListener('ended', function(){ after.classList.add('done'); paint(); after.scrollIntoView({ behavior: 'smooth' }); });
+  // 11/27 THE FILM (Tony: "i wanted them to experience the video story telling"): top quality from the public film store,
+  // the same way as the site's other films (js/peaks-hq.js), the MP4 as the fallback
+  var film = document.getElementById('film'), go = document.getElementById('filmGo'), poster = document.getElementById('filmPoster');
+  var P = 'https://members.ancestralpeaks.com/p/films/peak-state-film-';
+  function fdir(){ return P + voice + '-v1/'; }
+  function paintFilm(){ var d = fdir(); film.poster = d + 'poster-1920.jpg'; poster.src = d + 'poster-1200.jpg'; poster.srcset = d + 'poster-1200.jpg 1200w, ' + d + 'poster-1920.jpg 1920w'; }
+  paintFilm();
+  var filmOn = '';
+  function startFilm(){
+    if (!au.paused) au.pause();
+    go.hidden = true; film.controls = true;
+    if (filmOn !== voice) {
+      filmOn = voice; var d = fdir();
+      try { if (window.APHQ) APHQ.release(film); } catch (e) {}
+      film._hq = 0; film._hqOff = false;
+      if (window.APHQ) APHQ.attach(film, d + 'master.m3u8', d + 'fallback-1280x720.mp4').then(function(){ film.play().catch(function(){}); });
+      else { film.src = d + 'fallback-1280x720.mp4'; film.play().catch(function(){}); }
+    } else film.play().catch(function(){});
+  }
+  go.addEventListener('click', startFilm);
+  film.addEventListener('play', function(){ if (!au.paused) au.pause(); if (loop) loop.pause(); });
+  au.addEventListener('play', function(){ if (!film.paused) film.pause(); });
+  document.querySelectorAll('.seg button').forEach(function(b){
+    b.addEventListener('click', function(){
+      paintFilm();
+      if (filmOn && filmOn !== voice) { var was = !film.paused; film.pause(); go.hidden = false; film.controls = false; filmOn = ''; if (was) startFilm(); }
+    });
+  });
+
   if ('mediaSession' in navigator) {
     try { navigator.mediaSession.metadata = new MediaMetadata({ title: 'Peak State', artist: 'Ancestral Peaks', artwork: [{ src: '/heal-the-healer/img/dark-trail-900.jpg', sizes: '604x900', type: 'image/jpeg' }] }); } catch (e) {}
   }
