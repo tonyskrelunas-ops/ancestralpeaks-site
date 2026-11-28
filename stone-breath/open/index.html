@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en" data-root="../..">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Opening your edition · Stone Breath · Ancestral Peaks</title>
+<meta name="robots" content="noindex">
+<meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="/shared/site.css?v=1126o">
+<meta name="theme-color" content="#100B0D">
+<!-- 11/28 THE BUYER'S OWN LINK (Tony: "Why couldn't we hand them a link like you do me"). Payhip shows each buyer their own
+     link on the receipt: /stone-breath/open/?k=SB-XXXX-XXXX-XXXX. Opening it signs this device in at once as that book's
+     reader (members service /api/redeem) and goes to Day 1. No email, no code to type. The key leaves the address bar at once. -->
+<style>
+body{background:#100B0D;color:#f3ede2;min-height:100svh;display:grid;place-items:center;margin:0}
+.box{width:min(92vw,520px);text-align:center;padding:32px 20px}
+.box img{width:min(46vw,200px);height:auto;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+.box h1{font-size:clamp(1.6rem,1.2rem + 2vw,2.4rem);color:#fff;margin:1.2rem 0 0}
+.box p{color:rgba(255,255,255,.85);line-height:1.5;margin:.8rem auto 0;max-width:32rem}
+.box .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:1.4rem}
+.box .bad{color:#ffd9a8}
+</style>
+</head>
+<body>
+<main class="box">
+  <img src="../cover.jpg" width="700" height="1050" alt="Stone Breath by Tony Skrelūnas">
+  <h1 id="h">Opening your edition…</h1>
+  <p id="p">One moment. This phone or computer is being let in.</p>
+  <div class="acts" id="acts" hidden></div>
+</main>
+<script>window.AP_NO_GATE = true;</script>
+<script src="/js/peaks-members.js?v=1127c"></script>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search), k = q.get('k') || '';
+  try { history.replaceState(null, '', location.pathname); } catch (e) {}
+  var h = document.getElementById('h'), p = document.getElementById('p'), acts = document.getElementById('acts'), M = window.PeaksMembers;
+  function fail(title, text, again){
+    h.textContent = title; p.textContent = text; p.className = 'bad';
+    acts.innerHTML = (again ? '<a class="btn earth" href="?k=' + encodeURIComponent(k) + '">Try again</a>' : '') +
+      '<a class="btn ghost" href="mailto:far-messenger@ancestralpeaks.com?subject=My%20Stone%20Breath%20edition">Write to us</a>' +
+      '<a class="btn ghost" href="/stone-breath/">The edition</a>';
+    acts.hidden = false;
+  }
+  if (!k) return fail('This link is missing its end.', 'Tap the whole link from your receipt again, or write to far-messenger@ancestralpeaks.com and we will help today.');
+  if (!M || !M.redeem) return fail('That did not load.', 'Check the connection and try once more.', true);
+  M.redeem(k, '').then(function(j){
+    if (j && j.ok) { h.textContent = 'You are in.'; p.textContent = 'All twenty-two days are open on this device. Day 1 is next.'; setTimeout(function(){ location.replace('/stone-breath/day-01/'); }, 900); return; }
+    var r = j && j.reason;
+    if (r === 'code') return fail('This link does not look complete.', 'Tap the whole link from your receipt again. If it still does not open, write to far-messenger@ancestralpeaks.com and we will help today.');
+    if (r === 'used') return fail('This link is open on ten devices already.', 'Write to far-messenger@ancestralpeaks.com and we will help.');
+    if (r === 'slow') return fail('A few too many tries.', 'Wait a little and try once more.', true);
+    fail('That did not go through.', 'Check the connection and try once more.', true);
+  }).catch(function(){ fail('That did not go through.', 'Check the connection and try once more.', true); });
+})();
+</script>
+</body>
+</html>

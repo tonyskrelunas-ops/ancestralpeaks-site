@@ -35,7 +35,7 @@
     // 11/27: the book code, right here in the door: typed once, the day opens at once
     if (d && !d.querySelector('.sbc-box')) {
       var box = document.createElement('div'); box.className = 'sbc-box';
-      box.innerHTML = '<p class="say" style="margin-top:1.4rem"><b>Have your book code?</b> Type it with the email you bought with.</p><div></div>';
+      box.innerHTML = '<p class="say" style="margin-top:1.4rem"><b>Bought the edition?</b> Tap the link on your receipt, or paste it here.</p><div></div>';
       (d.querySelector('.in') || d).appendChild(box);
       var s = document.createElement('script'); s.src = '../sb-code.js?v=1127c';
       s.onload = function () { if (window.SBCode) SBCode.mount(box.lastChild, function () { location.reload(); }); };
